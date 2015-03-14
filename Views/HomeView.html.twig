@@ -1,0 +1,21 @@
+{% extends "GeneralLayoutView/GeneralSectionView.html.twig" %}
+
+{% block timeline %}
+		<div id="edit-news">
+			{{ data.newsform.formstart | raw }}
+			{{ data.newsform.news | raw }}
+			{{ data.newsform.submit | raw }}
+			{{ data.newsform.formend | raw }}
+		</div>
+		
+		<ul>
+			{% for itemnews in data.newslist %}
+			<li class="item-news">
+				<img class="profil-pic" src="Ressources/public/images/{{ itemnews.user }}.png" alt="photo profil">
+				<div class="profile"><a href="{{ itemnews.url }}">{{ itemnews.user }}</a></div><div>{{ itemnews.pubdate }}</div>
+				<span>{{ itemnews.content }}</span>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+{% endblock %}

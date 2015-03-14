@@ -1,0 +1,34 @@
+{% extends "GeneralLayoutView/SectionWithoutSongslistWidgetView.html.twig" %}
+
+{% block dashboardright %}
+	{{ parent() }}
+	<div id="songlist">
+		<h1 class="title">Last songs</h1>
+		<ul>
+			<li>The killers: Mr. Brightside</li>
+		</ul>
+	</div>
+{% endblock %}
+
+{% block timeline %}
+	<div id="tuneslist">
+		<ul>
+			<li class="header">
+				<span>Title</span>
+				<span>Composer</span>
+				<span>Category</span>
+				<span>Date</span>
+				<span>Select</span>
+			</li>
+			{% for itemtune in data.tunelist %}
+			<li class="{{ itemtune.class }}">
+				<span>{{ itemtune.title }}</span>
+				<span>{{ itemtune.composer }}</span>
+				<span>{{ itemtune.category }}</span>
+				<span>{{ itemtune.datetune }}</span>
+				<span><input type="checkbox" value="{{ item.idtune }}"></span> <!-- have to create a form by using the FormManager-->
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+{% endblock %}

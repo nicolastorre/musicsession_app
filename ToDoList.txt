@@ -1,0 +1,76 @@
+# UrlRewriting component (done except dash-hyphen)
+
+# Request class (done could be mprove latter with other variable like $_SERVER, ...)
+
+# FormManager class: (todo)
+	label ellement must refer to form control
+	put error message in parameters of the field constructor
+	password type
+	file input with uploading method
+
+# Use pseudo instead of id_user to create user and user's friends (done)
+
+# Clean templates by using heriting and including (done)
+
+# Forbidden special char in pseudo
+
+# Create image folder for each user
+
+# Create the Inscription form (done)
+
+
+BDManager: if statement == insert >>> tester avant d'insérer que le même tuple n'a pas déjà été inséré (pb qui apparaît qd recgargement des pages)
+
+http://imslp.org/
+
+Home page:
+	Publish a news (Done)
+	Display news of the user and his friends in the timeline (Done)
+	Add new songs and new scores in the timeline (ToDo)
+
+Notifications page:
+	Display the adding of friends in the timeline (Done)
+
+Messages page:
+	Display the last discussion in the main frame (Done)
+	Display all friends to start a discussion onclick in the bottom-left dashboard (Done)
+	Display a discussion after click on a friend discussion (Done)
+	Send a message to a friend (Done)
+	Update the current discussion by testing if new message have been sent in AJAX (ToDo)
+	Send a message to a friend using AJAX (ToDo)
+	Display a discussion after click on a friend discussion using AJAX (ToDo)
+
+NewSong page:
+	Display a form to post a new song (ToDo)
+
+Parameters page:
+	Display a form to update the user informations (ToDo)
+
+Profile page:
+	Display all news of a user in the timeline (Done)
+
+Friends page:
+	Display all friends with their profile photo (Done)
+
+Suggested friends Component:
+	Suuggest some futur friends to follow in the up-right dashboard (Done could be improve with a better algorithm to search "suggested friends")
+
+Songs page:
+	Display all user's songs in a table (ToDo)
+
+Songs List Component:
+	List by category all user's songs (ToDo)
+
+Last songs Component:
+	List the last songs published from any user (ToDo)
+
+Search engine Component:
+	Search by user pseudo or title of a song (ToDo)
+
+
+
+
+
+Translator component 
+Refresh the design and cleaning CSS
+Responsive design

@@ -1,0 +1,15 @@
+{% extends "GeneralLayoutView/GeneralSectionView.html.twig" %}
+
+{% block timeline %}
+	<div id="newsong">
+		<h2>Add a new song</h2>
+		{{ data.importsongform.formstart | raw }}
+		{{ data.importsongform.title | raw }}
+		{{ data.importsongform.composer | raw }}
+		{{ data.importsongform.category | raw }}
+		
+		{{ data.importsongform.pdf | raw }}
+		{{ data.importsongform.submit | raw }}
+		{{ data.importsongform.formend | raw }}
+	</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+; Development Configuration
+
+[DB]
+dbHost = localhost
+dbName = musicsession
+charset = utf8
+user = root
+pwd =
+
+[Installation]
+webroot = http://www.my-site.com/
+
+[Mail]
+smtp = smtp.domain.com
+port = 000
+protocol = XXX
+login = name@domain.com
+pwdmail = XXXXXXXX

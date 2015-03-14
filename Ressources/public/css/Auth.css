@@ -1,0 +1,25 @@
+body
+{
+	background-color: #3498DB;
+	font-family: Arial, verdana, sans-serif;
+}
+
+section
+{
+	width: 25%;
+	margin:auto;
+	margin-top: 100px;
+}
+
+label, input
+{
+	display: block;
+}
+
+.box
+{
+	background-color: white;
+	border-radius: 5px;
+	margin: 20px;
+	padding: 1em;
+}

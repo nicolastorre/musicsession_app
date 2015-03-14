@@ -1,0 +1,45 @@
+{% extends "GeneralLayoutView/SectionWithoutSongslistWidgetView.html.twig" %}
+
+{% block dashboardright %}
+	{{ parent() }}
+	<div id="discussionlist">
+		<ul>
+			{% for itemdiscu in data.discussion %}
+			<li class="item-discu">
+				<img class="profil-pic" src="Ressources/public/images/{{ itemdiscu.pseudo }}.png" alt="photo profil">
+				<div class="profile"><a href="{{ itemdiscu.url }}">{{ itemdiscu.pseudo }}</a></div>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+{% endblock %}
+
+{% block timeline %}
+
+	<div id="msglist">
+		<!--<ul>
+			<li class="item-msg">
+				<img class="profil-pic" src="Ressources/public/images/Nicowez.png" alt="photo profil">
+				<div class="profile"><a href="Profil/index/Nicowez">Nicowez</a></div>
+				<div class="time">11/03/2015 14:58:00</div>
+				<div class="msg"><pre>Bonjour Ceci est un test!!!</pre></div>
+			</li>
+		</ul>-->
+		<ul>
+			{% for itemmsg in data.msglist %}
+			<li class="item-msg">
+				<img class="profil-pic" src="Ressources/public/images/{{ itemmsg.pseudo }}.png" alt="photo profil">
+				<div class="profile"><a href="{{ itemmsg.url }}">{{ itemmsg.pseudo }}</a></div><div class="time">{{ itemmsg.date }}</div>
+				<div class="msg">{{ itemmsg.content }}</div>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+	<div id="sendmsg">
+		{{ data.sendmsgform.formstart | raw }}
+		{{ data.sendmsgform.msg | raw }}
+		{{ data.sendmsgform.submit | raw }}
+		{{ data.sendmsgform.formend | raw }}
+	</div>
+{% endblock %}

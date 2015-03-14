@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+	<head>
+		{% block head %}
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<base href="{{ webroot }}" >
+		<link rel='stylesheet' href='Ressources/public/css/CSSReset.css' type='text/css'>
+		<link rel='stylesheet' href='Ressources/public/css/main.css' type='text/css'>
+		<title>Music Score Writer</title>
+		{% endblock %}
+	</head>
+
+	<body>
+		<nav>
+			<ul>
+				{% set menu = menuAction() %}
+				{% for menuitem in 0..2 %}
+				<li><a href='{{ menu[menuitem].url }}'>{{ menu[menuitem].name }}</a></li>
+				{% endfor %}
+			</ul>
+			<ul>
+				<li><a href='{{ menu[3].url }}'>{{ menu[3].name }}</a></li>
+				<li><a href='{{ menu[4].url }}' id="parameters"><img src="Ressources/public/images/cog.png" alt="parameters"></a></li>
+			</ul>
+		</nav>
+		<section>
+			{% block section %}
+			{% endblock %}
+		</section>
+	</body>
+</html>
