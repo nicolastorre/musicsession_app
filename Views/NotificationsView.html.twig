@@ -7,7 +7,7 @@
 			<div>{{ itemfriends.datefd }}</div>
 			<span>You are friend with </span>
 			<div class="profile"><a href="{{ itemfriends.url }}">{{ itemfriends.pseudo }}</a></div>
-			<a href="{{ itemfriends.url }}"><img class="profil-pic" src="Ressources/public/images/{{ itemfriends.pseudo }}.png" alt="photo profil"></a>
+			<a href="{{ itemfriends.url }}"><img class="profil-pic" src="{{ itemfriends.profilephoto }}" alt="photo profil"></a>
 		</li>
 		{% endfor %}
 	</ul>

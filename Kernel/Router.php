@@ -30,12 +30,14 @@ class Router
         if (method_exists($ctrl, $actionName)) {
           $ctrl->$actionName($request);
         } else {
+          // replace with throw
           $error = "Not exist $actionName action for $controllerName controller";
           $e = new ErrorController($error);
           $e->indexAction();
           exit(1);
         } 
       } else {
+          // replace with throw
           $error = "Not exist $controllerName controller";
           $e = new ErrorController($error);
           $e->indexAction();

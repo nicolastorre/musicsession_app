@@ -91,7 +91,8 @@ class MessagesController extends BaseController
 			} elseif ($i->getIduserb() != $iduser) {
 				$userfriends = $userrep->findUserById($i->getIduserb());
 			}
-			$data['discussion'][] = array("url" => UrlRewriting::generateURL("Discussion",$userfriends->getPseudo()), "pseudo" => $userfriends->getPseudo());
+			$data['discussion'][] = array("url" => UrlRewriting::generateURL("Discussion",$userfriends->getPseudo()), "pseudo" => $userfriends->getPseudo(),
+				"profilephoto" => UrlRewriting::generateSrcUser($userfriends->getPseudo(),"profile_pic.png"),);
 		}
 
 		/*
@@ -107,7 +108,11 @@ class MessagesController extends BaseController
 		$data['msglist'] = array(); // list of message of the current discussion
 		if (!empty($discussion)) {
 			foreach ($discussion as $msg) {
-				$data['msglist'][] = array("url" => UrlRewriting::generateURL("Profil",$userrep->getUserPseudoById($msg->getSender())), "pseudo" => $userrep->getUserPseudoById($msg->getSender()), "date" => $msg->getDate(), "content" => $msg->getContent());
+				$data['msglist'][] = array("url" => UrlRewriting::generateURL("Profil",$userrep->getUserPseudoById($msg->getSender())), 
+					"pseudo" => $userrep->getUserPseudoById($msg->getSender()),
+					"profilephoto" => UrlRewriting::generateSrcUser($userrep->getUserPseudoById($msg->getSender()),"profile_pic.png"),
+					"date" => $msg->getDate(), 
+					"content" => $msg->getContent());
 			}
 		}
 

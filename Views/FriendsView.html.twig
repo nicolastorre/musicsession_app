@@ -3,7 +3,7 @@
 {% block timeline %}
 	{% for itemfriends in data.friends %}
 	<div class="friends">
-		<a href="{{ itemfriends.url }}"><img class="profil-pic" src="Ressources/public/images/{{ itemfriends.pseudo }}.png" alt="photo profil"></a>
+		<a href="{{ itemfriends.url }}"><img class="profil-pic" src="{{ itemfriends.profilephoto }}" alt="photo profil"></a>
 		<div class="profile"><a href="{{ itemfriends.url }}">{{ itemfriends.pseudo }}</a></div>
 	</div>
 	{% endfor %}

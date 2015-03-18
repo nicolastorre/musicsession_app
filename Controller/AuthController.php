@@ -31,11 +31,19 @@ class AuthController extends BaseController
 			$dataform = $insc->getValues();
 			$iduser = 0;
 			$lang = "fr";
+
+			// check no special char in pseudo
+
 			$user = new User($iduser,$dataform['pseudo'],$dataform['pwdhashed'],$dataform['firstname'],$dataform['name'],$dataform['email'],$lang);
 			$userrep = new UserRepository();
 			$userrep->addUser($user);
 
 			// create user directory
+			$userpath = UrlRewriting::generateSrcUser($dataform['pseudo'],"");
+			if (!is_dir($userpath) && mkdir($userpath)) {
+				// create the default profile_pic.png
+			}
+
 			//send mail to confirm inscription
 
 			$data = array();

@@ -85,6 +85,7 @@ class DBManager
 	}
 
 	public function dblastInsertId() {
+		// ajouter gestion de l'erreur
 		return self::$pdo->lastInsertId();
 	}
 }

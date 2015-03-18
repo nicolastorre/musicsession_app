@@ -6,7 +6,7 @@
 		<ul>
 			{% for itemdiscu in data.discussion %}
 			<li class="item-discu">
-				<img class="profil-pic" src="Ressources/public/images/{{ itemdiscu.pseudo }}.png" alt="photo profil">
+				<img class="profil-pic" src="{{ itemdiscu.profilephoto }}" alt="photo profil">
 				<div class="profile"><a href="{{ itemdiscu.url }}">{{ itemdiscu.pseudo }}</a></div>
 			</li>
 			{% endfor %}
@@ -28,7 +28,7 @@
 		<ul>
 			{% for itemmsg in data.msglist %}
 			<li class="item-msg">
-				<img class="profil-pic" src="Ressources/public/images/{{ itemmsg.pseudo }}.png" alt="photo profil">
+				<img class="profil-pic" src="{{ itemmsg.profilephoto }}" alt="photo profil">
 				<div class="profile"><a href="{{ itemmsg.url }}">{{ itemmsg.pseudo }}</a></div><div class="time">{{ itemmsg.date }}</div>
 				<div class="msg">{{ itemmsg.content }}</div>
 			</li>

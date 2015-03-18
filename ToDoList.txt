@@ -74,3 +74,23 @@ Search engine Component:
 Translator component 
 Refresh the design and cleaning CSS
 Responsive design
+
+
+
+Prototype
+	
+
+PHP Structure
+	Autoloader with namespaces and use
+	Password field in FormManager
+	add userErrorHandler
+	add "throw" at right points
+
+Validate features
+
+Clean CSS
+
+Refresh design
+
+Responsive design
+

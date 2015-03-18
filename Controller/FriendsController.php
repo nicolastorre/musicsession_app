@@ -51,7 +51,8 @@ class FriendsController extends BaseController
 				} while (($iduserrand == $iduser ) || in_array($iduserrand,$idfriends));
 				$userrand = $userrep->findUserById($iduserrand);
 				$userrand_pseudo = $userrand->getPseudo();
-				$suggestedFriends[] = array('iduser' => $iduserrand, 'pseudo' => $userrand_pseudo, 'url' => UrlRewriting::generateURL("Profil",$userrand_pseudo));
+				$suggestedFriends[] = array('iduser' => $iduserrand, 'pseudo' => $userrand_pseudo, 'url' => UrlRewriting::generateURL("Profil",$userrand_pseudo),
+					"profilephoto" => UrlRewriting::generateSrcUser($userrand_pseudo,"profile_pic.png"));
 			}
 		}
 		return $suggestedFriends;
@@ -88,7 +89,8 @@ class FriendsController extends BaseController
 			} elseif ($i->getIduserb() != $iduser) {
 				$userfriends = $userrep->findUserById($i->getIduserb());
 			}
-			$data['friends'][] = array("url" => UrlRewriting::generateURL("Profil",$userfriends->getPseudo()), "pseudo" => $userfriends->getPseudo());
+			$data['friends'][] = array("url" => UrlRewriting::generateURL("Profil",$userfriends->getPseudo()), "pseudo" => $userfriends->getPseudo(),
+				"profilephoto" => UrlRewriting::generateSrcUser($userfriends->getPseudo(),"profile_pic.png"),);
 		}
 
 		$data['suggestedfriends'] = self::suggestedFriends(3); // init the Suggested Friends module

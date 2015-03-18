@@ -14,6 +14,7 @@ class ProfilController extends BaseController
 		$iduser = $userrep->getUserIdByPseudo($pseudo);
 		$data['pseudo'] = $pseudo;
 		$data['pseudourl'] = UrlRewriting::generateURL("Profil",$pseudo);
+		$data['profilephoto'] = UrlRewriting::generateSrcUser($pseudo,"profile_pic.png");
 		$data['songsurl'] = UrlRewriting::generateURL("Songslist",$pseudo);
 		$data['friendsurl'] = UrlRewriting::generateURL("Friends",$pseudo);
 		
@@ -67,7 +68,8 @@ class ProfilController extends BaseController
 		$newsrep = new NewsRepository();
 		$newslist = $newsrep->findAllNewsUser($iduser);
 		foreach ($newslist as $news) {
-			$data['newslist'][] = array("url" => UrlRewriting::generateURL("Profil",$news->getIduser()), "user" => $news->getUserpseudo(),
+			$data['newslist'][] = array("url" => UrlRewriting::generateURL("Profil",$news->getUserpseudo()), "user" => $news->getUserpseudo(),
+					"profilephoto" => UrlRewriting::generateSrcUser($news->getUserpseudo(),"profile_pic.png"),
 					"pubdate" => $news->getPubdate(),
 					"content" => $news->getContent());
 		}

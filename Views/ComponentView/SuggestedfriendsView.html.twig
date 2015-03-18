@@ -3,7 +3,7 @@
 	<ul>
 		{% for suggestedfriends in data.suggestedfriends %}
 		<li class="item-suggestedfriends">
-			<img class="profil-pic" src="Ressources/public/images/{{ suggestedfriends.pseudo }}.png" alt="photo profil">
+			<img class="profil-pic" src="{{ suggestedfriends.profilephoto }}" alt="photo profil">
 			<a href="{{ suggestedfriends.url }}">{{ suggestedfriends.pseudo }}</a>
 		</li>
 		{% endfor %}
