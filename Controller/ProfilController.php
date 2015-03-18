@@ -64,6 +64,7 @@ class ProfilController extends BaseController
 		$iduser = $userrep->getUserIdByPseudo($pseudo);
 
 		$data['profilcard'] = self::ProfilCard($pseudo);
+		$data['tunelistwidget'] = SongslistController::songlistwidgetAction();
 
 		$newsrep = new NewsRepository();
 		$newslist = $newsrep->findAllNewsUser($iduser);

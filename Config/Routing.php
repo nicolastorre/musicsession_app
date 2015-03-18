@@ -18,6 +18,11 @@ class Routing
 			url::addURL("Friendship","Profil","friendshipstatus");
 
 		url::addURL("Songslist","Songslist","index");
+			url::addURL("Delete","Songslist","delete");
+			url::addURL("Share","Songslist","share");
+
+		url::addURL("Tune","Tune","index");
+
 		url::addURL("Friends","Friends","index");
 
     	url::addURL("Notifications","Notifications","index");

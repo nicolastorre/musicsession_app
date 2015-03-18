@@ -55,7 +55,7 @@ class UserRepository  extends DBManager
 		$name = $user->getName();
 		$email = $user->getEmail();
 		$lang = $user->getLang();
-		$this->query("INSERT INTO user (pseudo, pwdhashed, firstname, name, email, lang) VALUES (?, ?, ?, ?, ?, ?)",array($pseudo, $pwdhashed, $firstname, $name, $email, $lang));
+		$this->query("INSERT INTO user (pseudo, pwdhashed, firstname, name, email, lang) VALUES (?, ?, ?, ?, ?, ?);",array($pseudo, $pwdhashed, $firstname, $name, $email, $lang));
 	}
 
 	public function updateUser(user $user) {

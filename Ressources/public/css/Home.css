@@ -685,27 +685,69 @@
   padding: 2em;
 }
 
-#tuneslist > ul
+#tuneslist > table
 {
   width: 95%;
   margin: auto;
 }
 
-#tuneslist li + li
+#tuneslist table tr
 {
   margin-top: 0.5em;
 }
 
-#tuneslist li span
+#tuneslist table tr td, #tuneslist table tr th
 {
-  display: inline-block;
   width: 100px;
   overflow:hidden;
   margin-right: 0.2em;
   text-align: center;
+  border: 1px solid #66757F;
 }
 
-#tuneslist ul .item-even
+#tuneslist table .item-even
 {
   background-color: gray;
+}
+
+.share
+{
+  display: inline-block;
+  background-image: url("../images/app/share.png");
+  background-size: 20px 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.del
+{
+  display: inline-block;
+  background-image: url("../images/app/delete.png");
+  background-size: 20px 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.viewtune
+{
+  display: inline-block;
+  background-image: url("../images/app/filemusic.png");
+  background-size: 20px 20px;
+  width: 20px;
+  height: 20px;
+}
+
+
+/* tunepage */
+#tunepage
+{
+  padding: 2em;
+}
+
+#tunepage iframe
+{
+  margin-top: 2em;
+  width: 100%;
+  height: 800px;
+  border: 1px solid #000;
 }

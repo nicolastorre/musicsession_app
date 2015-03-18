@@ -41,6 +41,7 @@ class ParametersController extends BaseController
 		$iduser = $userrep->getUserIdByPseudo($pseudo);
 
 		$data['profilcard'] = ProfilController::ProfilCard($pseudo);
+		$data['tunelistwidget'] = SongslistController::songlistwidgetAction();
 
 		if ($f == null) {
 			$user = $userrep->findUserById($iduser);

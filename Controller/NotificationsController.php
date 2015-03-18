@@ -16,6 +16,7 @@ class NotificationsController extends BaseController
 		$iduser = $userrep->getUserIdByPseudo($pseudo);		
 
 		$data['profilcard'] = ProfilController::ProfilCard($pseudo);
+		$data['tunelistwidget'] = SongslistController::songlistwidgetAction();
 
 		$friendshiprep = new FriendshipRepository();
 		$friends = $friendshiprep->getFriends($iduser);

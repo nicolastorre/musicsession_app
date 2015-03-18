@@ -38,6 +38,10 @@ class Request {
     }
   }
 
+  public function setParameter($key, $value) {
+    $this->parameters[$key] = $value;
+  }
+
   public function getSession() {
     session_start();
   }

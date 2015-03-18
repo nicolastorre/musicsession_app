@@ -77,6 +77,7 @@ class FriendsController extends BaseController
 		$iduser = $userrep->getUserIdByPseudo($pseudo);		
 
 		$data['profilcard'] = ProfilController::ProfilCard($pseudo); // init the Profile Card module
+		$data['tunelistwidget'] = SongslistController::songlistwidgetAction();
 
 		/*
 		* Create the list of friends for the session user

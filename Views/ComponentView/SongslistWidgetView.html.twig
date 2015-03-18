@@ -2,21 +2,16 @@
 	<div class="container">
 		<h1 class="title">Songs list</h1>
 		<ul>
+			{% for tunecategory in data.tunelistwidget %}
 		    <li class="dropdown">
-				<a href="#" data-toggle="dropdown">Film music <i class="icon-arrow"></i></a>
+				<a href="#" data-toggle="dropdown"> {{ tunecategory.category }} <i class="icon-arrow"></i></a>
 				<ul class="dropdown-menu">
-					<li><a href="#">Indian Jones</a></li>
-					<li><a href="#">Star wars</a></li>
+					{% for tune in tunecategory.tunelist %}
+					<li><a href="{{ tune.url }}">{{ tune.title }}</a></li>
+					{% endfor %}
 				</ul>
 		    </li>
-		    <li class="dropdown">
-				<a href="#" data-toggle="dropdown">Rock <i class="icon-arrow"></i></a>
-				<ul class="dropdown-menu">
-					<li><a href="#">Nothing else matters</a></li>
-					<li><a href="#">Smoke on the water</a></li>
-					<li><a href="#">Stairway to heaven</a></li>
-				</ul>
-		    </li>
+		    {% endfor %}
 		</ul>
 	</div>
 </div>

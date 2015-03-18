@@ -60,6 +60,7 @@ class HomeController extends BaseController
 		$iduser = $userrep->getUserIdByPseudo($pseudo);
 
 		$data['profilcard'] = ProfilController::ProfilCard($pseudo); // init the Profile Card module
+		$data['tunelistwidget'] = SongslistController::songlistwidgetAction();
 
 		if ($f == null) {
 			$f = new FormManager("editnewsform","editnewsform",UrlRewriting::generateURL("addNews","")); // Form to edit and publish a news

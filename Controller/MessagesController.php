@@ -78,6 +78,7 @@ class MessagesController extends BaseController
 		$iduser = $userrep->getUserIdByPseudo($pseudo);
 
 		$data['profilcard'] = ProfilController::ProfilCard($pseudo); // init the Profile Card module
+		$data['tunelistwidget'] = SongslistController::songlistwidgetAction();
 
 		/*
 		* Create the the list of user's friends to start a discussion

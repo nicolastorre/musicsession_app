@@ -59,6 +59,7 @@ class NewsongController extends BaseController
 		$iduser = $userrep->getUserIdByPseudo($pseudo);
 
 		$data['profilcard'] = ProfilController::ProfilCard($pseudo); // init the Profile Card module
+		$data['tunelistwidget'] = SongslistController::songlistwidgetAction();
 
 		/*
 		* Create the form to add a new song
