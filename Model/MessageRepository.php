@@ -7,7 +7,7 @@ class MessageRepository extends DBManager
 		$discussion = array();
 		$discussiondata = $this->query("SELECT * from message WHERE (fk_sender = (?) OR fk_sender = (?)) AND (fk_receiver = (?) OR fk_receiver = (?)) ORDER BY date_msg ASC;",array($idusera,$iduserb,$idusera,$iduserb));
 		foreach ($discussiondata as $tuple) {
-			$discussion[] = new Message($tuple['fk_sender'],$tuple['fk_receiver'],$tuple['date_msg'],$tuple['content_msg']);
+			$discussion[] = new Message($tuple['id_msg'],$tuple['fk_sender'],$tuple['fk_receiver'],$tuple['date_msg'],$tuple['content_msg']);
 		}
 		return $discussion;
 	}
@@ -31,6 +31,15 @@ class MessageRepository extends DBManager
 
 		$this->query("INSERT INTO message (fk_sender, fk_receiver, date_msg, content_msg) VALUES (?, ?, ?, ?)",array($sender, $receiver, $date_msg, $content));
 
+	}
+
+	public function getLastMessage($idusera, $iduserb, $lastmsg) {
+		$discussion = array();
+		$discussiondata = $this->query("SELECT * from message WHERE (fk_sender = (?) OR fk_sender = (?)) AND (fk_receiver = (?) OR fk_receiver = (?)) AND (id_msg > ?) ORDER BY date_msg ASC;",array($idusera,$iduserb,$idusera,$iduserb,$lastmsg));
+		foreach ($discussiondata as $tuple) {
+			$discussion[] = new Message($tuple['id_msg'],$tuple['fk_sender'],$tuple['fk_receiver'],$tuple['date_msg'],$tuple['content_msg']);
+		}
+		return $discussion;
 	}
 }
 

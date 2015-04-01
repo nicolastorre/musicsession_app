@@ -1,96 +1,80 @@
-# UrlRewriting component (done except dash-hyphen)
+ToDo List
 
-# Request class (done could be mprove latter with other variable like $_SERVER, ...)
+Development of each functionnality
+	Authentification page
+		Form authentification
+		Form inscription to create user profile and a user folder
+			Forbidden special chars in pseudo
 
-# FormManager class: (todo)
-	label ellement must refer to form control
-	put error message in parameters of the field constructor
-	password type
-	file input with uploading method
+		Confirm email page
+		Forgotten password page
 
-# Use pseudo instead of id_user to create user and user's friends (done)
+	Home page
+		Timeline news of the current user and his friends
+		Add new song event in the timeline
 
-# Clean templates by using heriting and including (done)
+	Notifications page
+		Timeline added friends
 
-# Forbidden special char in pseudo
+	Messages page
+		List of discussion
+		Timeline of messages of the selected or last discussion
+		Add ajax to the tchat: http://openclassrooms.com/courses/un-site-web-dynamique-avec-jquery/tp-le-tchat-en-ajax
 
-# Create image folder for each user
+	NewSong page
+		Form to create a new song
 
-# Create the Inscription form (done)
+	Parameters page
+		Form to update the user informations
 
+	Profile page
+		Timeline news of the selected user
 
-BDManager: if statement == insert >>> tester avant d'insérer que le même tuple n'a pas déjà été inséré (pb qui apparaît qd recgargement des pages)
+	Friends page
+		SuggestedFriends component
 
-http://imslp.org/
-
-Home page:
-	Publish a news (Done)
-	Display news of the user and his friends in the timeline (Done)
-	Add new songs and new scores in the timeline (ToDo)
-
-Notifications page:
-	Display the adding of friends in the timeline (Done)
-
-Messages page:
-	Display the last discussion in the main frame (Done)
-	Display all friends to start a discussion onclick in the bottom-left dashboard (Done)
-	Display a discussion after click on a friend discussion (Done)
-	Send a message to a friend (Done)
-	Update the current discussion by testing if new message have been sent in AJAX (ToDo)
-	Send a message to a friend using AJAX (ToDo)
-	Display a discussion after click on a friend discussion using AJAX (ToDo)
-
-NewSong page:
-	Display a form to post a new song (ToDo)
-
-Parameters page:
-	Display a form to update the user informations (ToDo)
-
-Profile page:
-	Display all news of a user in the timeline (Done)
-
-Friends page:
-	Display all friends with their profile photo (Done)
-
-Suggested friends Component:
-	Suuggest some futur friends to follow in the up-right dashboard (Done could be improve with a better algorithm to search "suggested friends")
-
-Songs page:
-	Display all user's songs in a table (ToDo)
-
-Songs List Component:
-	List by category all user's songs (ToDo)
-
-Last songs Component:
-	List the last songs published from any user (ToDo)
-
-Search engine Component:
-	Search by user pseudo or title of a song (ToDo)
-
-
-
-
-
-Translator component 
-Refresh the design and cleaning CSS
-Responsive design
-
-
-
-Prototype
+	Songs List page
+		Songs list component
+		Last songs component
+		Song page
 	
+	Results search page
+		Results list page
+		Search form component
 
-PHP Structure
+	Translator Component
+
+	Backoffice
+		Users manager
+		Songs manager
+
+Update PHP structure
 	Autoloader with namespaces and use
-	Password field in FormManager
-	add userErrorHandler
+	FormManager: 
+		Add error message in parameters of the field constructor
+		Password field in FormManager and avoid resend the value of password input
+		file input with uploading method for pdf and musicxml
+
+	add userErrorHandler function
 	add "throw" at right points
+	DBManager: avoid insert, update and delete after reloading a page
 
-Validate features
+Validate each functionnality
 
-Clean CSS
+Update CSS code
 
 Refresh design
 
-Responsive design
+Development of responsive design
 
+Edit terms, privacy, cookies
+
+Validate the version 1
+
+Development of the Music Editor
+	Design and CSS
+	Script of the Music Editor interface to edit easily music note and send to the server via AJAX
+
+Development of PHP MIDI CLASS
+
+Edit the final report

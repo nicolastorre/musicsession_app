@@ -47,7 +47,7 @@ class MessagesController extends BaseController
 		if ($f->validate($request)) {
 			$dataform = $f->getValues();
 			$date_msg = date("y-m-d H-i-s");
-			$msg = new Message($_SESSION['iduser'],$iduserb,$date_msg,$dataform['msg']);
+			$msg = new Message(null,$_SESSION['iduser'],$iduserb,$date_msg,$dataform['msg']);
 			$msgrep = new MessageRepository();
 			$msgrep->sendMsg($msg);
 			$this->indexAction($request, $f = null, $iduserb);
@@ -55,6 +55,42 @@ class MessagesController extends BaseController
 		} else {
 			$this->indexAction($request, $f);
 		}
+	}
+        
+    public function loaderAction(Request &$request) {
+    	$iduser = intval($request->getParameter("par")[0]);
+    	$lastmsg = intval($request->getParameter("par")[1]);
+
+    	$userrep = new UserRepository();
+    	$msgrep = new MessageRepository();
+    	$discussion = $msgrep->getLastMessage($_SESSION['iduser'], $iduser, $lastmsg);
+
+    	$msglist = array(); // list of message of the current discussion
+		if (!empty($discussion)) {
+			foreach ($discussion as $msg) {
+				$msglist[] = array("idmsg" => $msg->getIdmsg(),"url" => UrlRewriting::generateURL("Profil",$userrep->getUserPseudoById($msg->getSender())), 
+					"pseudo" => $userrep->getUserPseudoById($msg->getSender()),
+					"profilephoto" => UrlRewriting::generateSrcUser($userrep->getUserPseudoById($msg->getSender()),"profile_pic.png"),
+					"date" => $msg->getDate(), 
+					"content" => $msg->getContent());
+			}    
+		}
+
+        header('Content-type: application/json');
+        echo json_encode($msglist);
+    }
+
+    public function sendmsgajaxAction(Request &$request) {
+		$f = unserialize($_SESSION["sendmsgform"]);
+		$userrep = new UserRepository();
+		$iduserb = intval($request->getParameter("par")[0]);
+		if ($f->validate($request)) {
+			$dataform = $f->getValues();
+			$date_msg = date("y-m-d H-i-s");
+			$msg = new Message(null,$_SESSION['iduser'],$iduserb,$date_msg,$dataform['msg']);
+			$msgrep = new MessageRepository();
+			$msgrep->sendMsg($msg);
+		} 
 	}
 	
 	// Principal action of the HomeController 
@@ -76,7 +112,7 @@ class MessagesController extends BaseController
 		$pseudo = $_SESSION['pseudo'];
 		$userrep = new UserRepository();
 		$iduser = $userrep->getUserIdByPseudo($pseudo);
-
+                
 		$data['profilcard'] = ProfilController::ProfilCard($pseudo); // init the Profile Card module
 		$data['tunelistwidget'] = SongslistController::songlistwidgetAction();
 
@@ -109,19 +145,21 @@ class MessagesController extends BaseController
 		$data['msglist'] = array(); // list of message of the current discussion
 		if (!empty($discussion)) {
 			foreach ($discussion as $msg) {
-				$data['msglist'][] = array("url" => UrlRewriting::generateURL("Profil",$userrep->getUserPseudoById($msg->getSender())), 
+				$data['msglist'][] = array("idmsg" => $msg->getIdmsg(),"url" => UrlRewriting::generateURL("Profil",$userrep->getUserPseudoById($msg->getSender())), 
 					"pseudo" => $userrep->getUserPseudoById($msg->getSender()),
 					"profilephoto" => UrlRewriting::generateSrcUser($userrep->getUserPseudoById($msg->getSender()),"profile_pic.png"),
 					"date" => $msg->getDate(), 
 					"content" => $msg->getContent());
-			}
+								$data['iduser'] = $iduserb;
+                                $data['lastmsg'] = $msg->getIdmsg();
+			}    
 		}
 
-		// form to send a message
+                // form to send a message
 		if ($f == null) {
 			$f = new FormManager("sendmsgform","sendmsgform",UrlRewriting::generateURL("SendMsg",$userrep->getUserPseudoById($iduserb)));
-			$f->addField("","msg","textarea","");
-			$f->addField("Submit ","submit","submit","Send");
+			$f->addField("","msg","textarea","", array("id" => "msg"));
+			$f->addField("Submit ","submit","submit","Send", array("id" => "submitmsg"));
 		}
 		$data['sendmsgform'] = $f->createView(); // add the form view in the data page
 

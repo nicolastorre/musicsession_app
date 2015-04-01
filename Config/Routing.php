@@ -30,6 +30,9 @@ class Routing
     	url::addURL("Messages","Messages","index");
     		url::addURL("Discussion","Messages","getdiscussion");
     		url::addURL("SendMsg","Messages","sendmsg");
+                url::addURL("MsgLoader","Messages","loader");
+                url::addURL("Msgsender","Messages","sendmsgajax");
+
 
 
     	url::addURL("NewSong","NewSong","index");
