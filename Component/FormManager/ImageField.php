@@ -21,9 +21,9 @@ class ImageField extends Field
 		return "\n\t<div class='error'>$this->error</div><label for=\"$this->name\">$this->label</label><input name='$this->name' type='$this->type' $attrview>";
 	}
 
-	public function notFakeImage() {
+	public function notFakeFile() {
 		// Check if image file is a actual image or fake image
-	    $check = getimagesize($this->value["tmp_name"]);
+	    $check = filesize($this->value["tmp_name"]);
 	    if($check !== false) {
 	        return true;
 	    } else {
@@ -63,7 +63,8 @@ class ImageField extends Field
 		if ($request->existsParameter($this->getName())) {
 			$value = $request->getParameter($this->getName());
 			$this->setValue($value);
-			if ($this->notEmpty() && $this->notOverflow(500000) && $this->notFakeImage() && $this->checkFormatAllowed()) {
+
+                        if ($this->notEmpty() && $this->notOverflow(500000) && $this->notFakeFile() && $this->checkFormatAllowed()) {
 				$this->error = "";
 				$target_file = self::target_dir . basename($this->value["name"]);
 				 if (move_uploaded_file($this->value["tmp_name"], $target_file)) {
@@ -74,7 +75,7 @@ class ImageField extends Field
 			    }
 				return true;
 			} else {
-				$this->error = "Sorry, there was an error uploading your file.";
+				$this->error = "Sorry, there was an error uploading your file.2";
 				return false;
 			}
 		} else {

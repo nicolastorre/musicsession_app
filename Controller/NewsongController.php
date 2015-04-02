@@ -28,10 +28,16 @@ class NewsongController extends BaseController
 		$f = unserialize($_SESSION["importsongform"]);
 		if ($f->validate($request)) {
 			$dataform = $f->getValues();
-			$datetune = date("y-m-d H-i-s");
-			$tune = new Tune(0,$_SESSION['iduser'],$dataform['title'], $dataform['composer'], $dataform['category'], $datetune, $dataform['pdf']);
+
+                        $datetune = date("y-m-d H-i-s");
+			$tune = new Tune(null,$_SESSION['iduser'],$dataform['title'], $dataform['composer'], $dataform['category'][0], $datetune, $dataform['pdf']['name']);
 			$tunerep = new TuneRepository();
 			$tunerep->addTune($tune);
+                        
+                        $filepath = "Ressources/public/images/tmp/".$dataform['pdf']['name'];
+                        $img = new ImageManager($filepath);
+                        $img->renameMove(UrlRewriting::generateSrcUser($_SESSION['pseudo'],$dataform['pdf']['name']));
+                
 			$this->indexAction($request);
 
 		} else {
@@ -67,8 +73,8 @@ class NewsongController extends BaseController
 		if ($f == null) {
 			$f = new FormManager("importsongform","importsongform",UrlRewriting::generateURL("addNewSong",""));
 			$f->addField("Title: ","title","text","");
-			$f->addField("Composer: ","composer","text","");
-			$f->addField("Category: ","category","text","");
+                        $f->addField("Composer: ","composer","text","");
+                        $f->addField("Category: ","category","select",array(array('v' => 'classique','s' => false),array('v' => 'rock','s' => true),array('v' => 'trad','s' => false)));
 			$f->addField("pdf score: ","pdf","file","");
 			$f->addField("Submit ","submit","submit","Import song");	
 		}
