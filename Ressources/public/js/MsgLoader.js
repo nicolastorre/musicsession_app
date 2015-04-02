@@ -1,21 +1,26 @@
 
 window.onload = function() {
-    
+     
     var raw_template = $('#test-template').html();
     var template = Handlebars.compile(raw_template);
+    $('#msglist').scrollTop($('#msg-container').height());
 
     setInterval( function() {
+        
         $.getJSON("Messages/loader/"+ pseudo + "/" + lastmsg,function(data){
             // alert(JSON.stringify(data));
-           if (data.length > 0) {
-                lastmsg = data[data.length-1].idmsg;
-            }
 
             $.each(data,function(index,element){
                 var html = template(element);
                 $('#msg-container').append(html);
-                console.log(element);
+                //console.log(element);
             });
+
+            if (data.length > 0) {
+                lastmsg = data[data.length-1].idmsg;
+                $('#msglist').scrollTop($('#msg-container').height());
+            }
+            
         });
         
     }, 5000);
