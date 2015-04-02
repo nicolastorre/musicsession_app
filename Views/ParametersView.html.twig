@@ -3,22 +3,27 @@
 {% block timeline %}
 	<div id="parameterspage">
 		<h2>Account<h2>
-		<h3>Change your basic account and language settings.</h3>
+		<h3>Change your basic settings.</h3>
 		{{ data.parametersform.formstart | raw }}
 		{{ data.parametersform.pseudo | raw }}
 		{{ data.parametersform.email | raw }}
 		{{ data.parametersform.lang | raw }}
-		{{ data.parametersform.pic | raw }}
-		{{ data.parametersform.country | raw }}
 		{{ data.parametersform.submit | raw }}
-		{{ data.parameterform.formend | raw }}
+		{{ data.parametersform.formend | raw }}
 		<hr>
 		<h2>Profile photo<h2>
 		<h3>Change your profile photo.</h3>
-		<label for="profile-pic">Profile photo</label>
-		<input type="file" name="fileToUpload" id="fileToUpload">
+                {{ data.updatephoto.formstart | raw}}
+		{{ data.updatephoto.pic | raw }}
+		{{ data.updatephoto.submit | raw }}
+		{{ data.updatephoto.formend | raw}}
 		<hr>
 		<h2>Password<h2>
 		<h3>Change your password settings.</h3>
+                {{ data.updatepwd.formstart | raw}}
+                {{ data.updatepwd.pwd | raw }}
+		{{ data.updatepwd.confirmpwd | raw }}
+		{{ data.updatepwd.submit | raw }}
+		{{ data.updatepwd.formend | raw}}
 	</div>
 {% endblock %}

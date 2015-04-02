@@ -22,8 +22,8 @@ class ImageManager
 	}
 
 	public function renameMove($file) {
-		$source_file = self::base_dir . $this->filepath;
-		$target_file = self::base_dir . $file;
+		$source_file = $this->filepath;
+		$target_file = $file;
 		if (rename($source_file, $target_file)) {
 			$this->filepath = $file;
 			$this->filename = pathinfo($file, PATHINFO_BASENAME);

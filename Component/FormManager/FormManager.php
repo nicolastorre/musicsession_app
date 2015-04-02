@@ -45,7 +45,7 @@ class FormManager
 				//create EmailField object
 				$this->fieldlist[] = new EmailField($label,$name,$type,$attr,$values);
 				break;
-			case 'image':
+			case 'file':
 				$type = "file";
 				//create EmailField object
 				$this->fieldlist[] = new ImageField($label,$name,$type,$attr,$values);

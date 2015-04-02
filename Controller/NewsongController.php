@@ -69,7 +69,7 @@ class NewsongController extends BaseController
 			$f->addField("Title: ","title","text","");
 			$f->addField("Composer: ","composer","text","");
 			$f->addField("Category: ","category","text","");
-			$f->addField("pdf score: ","pdf","text","");
+			$f->addField("pdf score: ","pdf","file","");
 			$f->addField("Submit ","submit","submit","Import song");	
 		}
 		$data['importsongform'] = $f->createView();

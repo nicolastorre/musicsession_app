@@ -40,6 +40,8 @@ class Routing
 
     	url::addURL("Parameters","Parameters","index");
     		url::addURL("updateparameters","Parameters","updateparameters");
+                url::addURL("updatephoto","Parameters","updatephoto");
+                url::addURL("updatepassword","Parameters","updatepwd");
 	}
 }
 

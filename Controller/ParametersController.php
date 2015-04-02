@@ -7,15 +7,47 @@
 /******************************************************************************/
 class ParametersController extends BaseController
 {
+        public function updatepwdAction(Request &$request) {
+            $h = unserialize($_SESSION["updatepwd"]);
+            if ($h->validate($request)) {
+                $dataform = $h->getValues();
+                if ($dataform['pwd'] == $dataform['confirmpwd']) {
+                
+                $userrep = new UserRepository();
+                $user = $userrep->findUserById($_SESSION['iduser']);
+                $user->setPwdhashed($dataform['pwd']);
+
+                $userrep->updateUser($user);
+                
+                $this->indexAction($request);
+                } else {
+                    $this->indexAction($request, $f = null, $g = null, $h);
+                }
+            }  else {
+		$this->indexAction($request, $f = null, $g = null, $h);
+            }
+        }
+        
+        public function updatephotoAction(Request &$request) {
+            $g = unserialize($_SESSION["updatephoto"]);
+            if ($g->validate($request)) {
+                $dataform = $g->getValues();
+
+                $filepath = "Ressources/public/images/tmp/".$dataform['pic']['name'];
+                $img = new ImageManager($filepath);
+                $img->renameMove(UrlRewriting::generateSrcUser($_SESSION['pseudo'],"profile_pic.png"));
+                
+                $this->indexAction($request);
+            } else {
+		$this->indexAction($request, $f = null, $g);
+            }
+        }
 
 	public function updateparametersAction(Request &$request) {
 		$f = unserialize($_SESSION["parametersform"]);
 		if ($f->validate($request)) {
 			$dataform = $f->getValues();
-			$filepath = "tmp/".$dataform['pic']['name'];
-			$img = new ImageManager($filepath);
-			$img->renameMove($_SESSION['pseudo'].".png");
-
+			
 			// test if pseudo is unique in the DB
 
 			$userrep = new UserRepository();
@@ -34,7 +66,7 @@ class ParametersController extends BaseController
 	}
 	
 	// Principal action of the HomeController 
-	public function indexAction(Request &$request, FormManager $f = null) {
+	public function indexAction(Request &$request, FormManager $f = null, FormManager $g = null, FormManager $h = null) {
 		$data = array();
 		$pseudo = $_SESSION['pseudo'];
 		$userrep = new UserRepository();
@@ -57,16 +89,30 @@ class ParametersController extends BaseController
 			}
 
 			$f->addField("Language: ","lang","select",$langvalues);
-			$f->addField("Profile photo: ","pic","image","");
+			
 			$f->addField("Submit ","submit","submit","Update");	
 		}
 		$data['parametersform'] = $f->createView();
 
+		if ($g == null) {
+			$g = new FormManager("updatephoto","updatephoto",UrlRewriting::generateURL("updatephoto",""));
+                        $g->addField("Profile photo: ","pic","file","");
+			$g->addField("Submitphoto","submit","submit","Update");	
+		}
+		$data['updatephoto'] = $g->createView();
+                
+                if ($h == null) {
+			$h = new FormManager("updatepwd","updatepwd",UrlRewriting::generateURL("updatepassword",""));
+                        $h->addField("Password: ","pwd","text","");
+                        $h->addField("Confirm your password: ","confirmpwd","text","");
+			$h->addField("Submitphoto","submit","submit","Update");	
+		}
+		$data['updatepwd'] = $h->createView();
+                
 		$data['suggestedfriends'] = FriendsController::suggestedFriends(3);
 
 		$this->render("ParametersView.html.twig",$data);
 	}
-
 }
 
 ?>

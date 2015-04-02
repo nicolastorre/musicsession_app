@@ -52,7 +52,7 @@ class ImageField extends Field
 		// Allow certain file formats
 		$imageFileType = pathinfo(basename($this->value["name"]),PATHINFO_EXTENSION);
 		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-		&& $imageFileType != "gif" ) {
+		&& $imageFileType != "gif" && $imageFileType != "pdf" ) {
 		    return false;
 		} else {
 			return true;
