@@ -76,7 +76,7 @@ class HomeController extends BaseController
 		$newslist = $newsrep->findAllNewsFriendsUser($iduser);
 		foreach ($newslist as $news) {
 			$data['newslist'][] = array("url" => UrlRewriting::generateURL("Profil",$news->getUserpseudo()), "user" => $news->getUserpseudo(),
-					"profilephoto" => UrlRewriting::generateSrcUser($news->getUserpseudo(),"profile_pic.png"),
+					"profilephoto" => UrlRewriting::generateSRC("userfolder", $news->getUserpseudo(),"profile_pic.png"),
 					"pubdate" => $news->getPubdate(),
 					"content" => $news->getContent());
 		}

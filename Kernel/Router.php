@@ -12,6 +12,7 @@ class Router
 
       // configuration of every routes with their parameters
       Routing::routingList();
+      Routing::srcList();
       
       // get request
       $request = new Request();

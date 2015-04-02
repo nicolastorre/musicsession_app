@@ -33,9 +33,9 @@ class ParametersController extends BaseController
             if ($g->validate($request)) {
                 $dataform = $g->getValues();
 
-                $filepath = "Ressources/public/images/tmp/".$dataform['pic']['name'];
+                $filepath = UrlRewriting::generateSRC("tmp","",$dataform['pic']['name']);
                 $img = new ImageManager($filepath);
-                $img->renameMove(UrlRewriting::generateSrcUser($_SESSION['pseudo'],"profile_pic.png"));
+                $img->renameMove(UrlRewriting::generateSRC("userfolder", $_SESSION['pseudo'],"profile_pic.png"));
                 
                 $this->indexAction($request);
             } else {

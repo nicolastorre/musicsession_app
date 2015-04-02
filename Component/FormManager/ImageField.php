@@ -2,9 +2,10 @@
 
 class ImageField extends Field
 {
-	const target_dir = "Ressources/public/images/tmp/";
+	private $target_dir;
 	//CONSTRUCTOR
 	public function __construct($label,$name,$type,array $attr, $value) {
+                $this->target_dir = UrlRewriting::generateSRC("tmp","","");
 		$this->label = $label;
 		$this->name = $name;
 		$this->type = $type;
@@ -66,7 +67,7 @@ class ImageField extends Field
 
                         if ($this->notEmpty() && $this->notOverflow(500000) && $this->notFakeFile() && $this->checkFormatAllowed()) {
 				$this->error = "";
-				$target_file = self::target_dir . basename($this->value["name"]);
+				$target_file = $this->target_dir . basename($this->value["name"]);
 				 if (move_uploaded_file($this->value["tmp_name"], $target_file)) {
 				 	$this->error = "";
 			  	} else {

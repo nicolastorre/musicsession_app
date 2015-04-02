@@ -7,6 +7,7 @@ use UrlRewriting as url;
 /****************************************************************************************************/
 class Routing
 {
+       
 	public static function routingList() {
 		url::addURL("authuser","Auth","authuser");
 		url::addURL("inscuser","Auth","inscuser");
@@ -43,6 +44,11 @@ class Routing
                 url::addURL("updatephoto","Parameters","updatephoto");
                 url::addURL("updatepassword","Parameters","updatepwd");
 	}
+        
+        public static function srcList() {
+                url::addSRC("tmp", "Ressources/public/tmp/");
+                url::addSRC("userfolder", "Ressources/public/data/Users/");
+        }
 }
 
 ?>

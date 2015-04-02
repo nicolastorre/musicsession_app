@@ -70,7 +70,7 @@ class MessagesController extends BaseController
 			foreach ($discussion as $msg) {
 				$msglist[] = array("idmsg" => $msg->getIdmsg(),"url" => UrlRewriting::generateURL("Profil",$userrep->getUserPseudoById($msg->getSender())), 
 					"pseudo" => $userrep->getUserPseudoById($msg->getSender()),
-					"profilephoto" => UrlRewriting::generateSrcUser($userrep->getUserPseudoById($msg->getSender()),"profile_pic.png"),
+					"profilephoto" => UrlRewriting::generateSRC("userfolder", $userrep->getUserPseudoById($msg->getSender()),"profile_pic.png"),
 					"date" => $msg->getDate(), 
 					"content" => $msg->getContent());
 			}    
@@ -129,7 +129,7 @@ class MessagesController extends BaseController
 				$userfriends = $userrep->findUserById($i->getIduserb());
 			}
 			$data['discussion'][] = array("url" => UrlRewriting::generateURL("Discussion",$userfriends->getPseudo()), "pseudo" => $userfriends->getPseudo(),
-				"profilephoto" => UrlRewriting::generateSrcUser($userfriends->getPseudo(),"profile_pic.png"),);
+				"profilephoto" => UrlRewriting::generateSRC("userfolder", $userfriends->getPseudo(),"profile_pic.png"),);
 		}
 
 		/*
@@ -147,7 +147,7 @@ class MessagesController extends BaseController
 			foreach ($discussion as $msg) {
 				$data['msglist'][] = array("idmsg" => $msg->getIdmsg(),"url" => UrlRewriting::generateURL("Profil",$userrep->getUserPseudoById($msg->getSender())), 
 					"pseudo" => $userrep->getUserPseudoById($msg->getSender()),
-					"profilephoto" => UrlRewriting::generateSrcUser($userrep->getUserPseudoById($msg->getSender()),"profile_pic.png"),
+					"profilephoto" => UrlRewriting::generateSRC("userfolder", $userrep->getUserPseudoById($msg->getSender()),"profile_pic.png"),
 					"date" => $msg->getDate(), 
 					"content" => $msg->getContent());
 								$data['iduser'] = $iduserb;

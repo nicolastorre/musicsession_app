@@ -34,9 +34,9 @@ class NewsongController extends BaseController
 			$tunerep = new TuneRepository();
 			$tunerep->addTune($tune);
                         
-                        $filepath = "Ressources/public/images/tmp/".$dataform['pdf']['name'];
+                        $filepath = UrlRewriting::generateSRC("tmp".$dataform['pdf']['name']);
                         $img = new ImageManager($filepath);
-                        $img->renameMove(UrlRewriting::generateSrcUser($_SESSION['pseudo'],$dataform['pdf']['name']));
+                        $img->renameMove(UrlRewriting::generateSRC("userfolder", $_SESSION['pseudo'], $dataform['pdf']['name']));
                 
 			$this->indexAction($request);
 
