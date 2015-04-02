@@ -37,7 +37,21 @@ class SongslistController extends BaseController
 	public function deleteAction(Request &$request) {
 		$idtune = $request->getParameter("par")[1];
 		$tunerep = new TuneRepository();
-		$tunerep->deleteTuneForUser($_SESSION['iduser'], $idtune);
+                $tune = $tunerep->findTuneById($idtune);
+                if ($tune != false) {
+                    if ($tune->getIduser() == $_SESSION['iduser']) {
+                        // delete the pdf file
+                        $file = UrlRewriting::generateSRC("userfolder", $_SESSION['pseudo'], $tune->getPdf());
+                        if (file_exists($file)) {
+                            unlink($file);
+                        }
+                        // delete each tuple with fk_tune in the likedtune table
+                        $tunerep->deleteTuneForAll($idtune);
+                    } else {
+                        $tunerep->deleteTuneForUser($_SESSION['iduser'], $idtune);
+                    }
+                }
+//                $request->setParameter($par[0], $pseudo);
 		$this->indexAction($request);
 	}
 
@@ -45,6 +59,7 @@ class SongslistController extends BaseController
 		$idtune = $request->getParameter("par")[1];
 		$tunerep = new TuneRepository();
 		$tunerep->shareTune($_SESSION['iduser'], $idtune);
+//                $request->setParameter($par[0], $pseudo);
 		$this->indexAction($request);
 	}
 

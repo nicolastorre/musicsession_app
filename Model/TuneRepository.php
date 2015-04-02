@@ -55,14 +55,23 @@ class TuneRepository extends DBManager
 	}
 
 	public function findTuneById($idtune) {
-		$tunedata = $this->query("SELECT * from tune WHERE id_tune = (?);",array($idtune));
-		$tuple = $tunedata[0];
-		$tune =  new Tune($tuple['id_tune'],$tuple['fk_user_tune'],$tuple['title_tune'],$tuple['composer'],$tuple['category_tune'],$tuple['date_tune'],$tuple['pdf_tune']);
-		return $tune;
+		$tunedata = $this->query("SELECT * from tune WHERE id_tune = (?) limit 1;",array($idtune));
+                if (!empty($tunedata)) {
+                    $tuple = $tunedata[0];
+                    $tune =  new Tune($tuple['id_tune'],$tuple['fk_user_tune'],$tuple['title_tune'],$tuple['composer'],$tuple['category_tune'],$tuple['date_tune'],$tuple['pdf_tune']);
+                    return $tune;
+                } else {
+                    return false;
+                }
 	}
 
 	public function deleteTuneForUser($iduser, $idtune) {
 		return $this->query("DELETE from likedtune  WHERE fk_user_lt = (?) AND fk_tune_lt = (?);",array($iduser, $idtune));
+	}
+        
+        public function deleteTuneForAll($idtune) {
+                $this->query("DELETE from likedtune  WHERE fk_tune_lt = (?);",array($idtune));
+                return $this->query("DELETE from tune  WHERE id_tune = (?);",array($idtune));      
 	}
 
 	public function shareTune($iduser, $idtune) {
