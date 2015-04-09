@@ -27,7 +27,7 @@ class HomeController extends BaseController
      */
 	public function addnewsAction(Request &$request) {
 		$f = unserialize($_SESSION["editnewsform"]); // get back the form object with the submitted news
-		if ($f->validate($request)) { // check for valide data
+		if ($f->validate($request)) { // check for valide data.
 			$dataform = $f->getValues(); // extract the data from the form
 			$date_news = date("y-m-d H-i-s");
 
@@ -35,9 +35,9 @@ class HomeController extends BaseController
 			$newsrep = new NewsRepository();
 			$newsrep->addNews($news); // add the submitted news
 			$this->indexAction($request); // reload the default home page
-
 		} else {
-			$this->indexAction($request, $f);
+			// $this->indexAction($request, $f);
+			header("location: Home/index/");
 		}
 	}
 	
@@ -59,7 +59,7 @@ class HomeController extends BaseController
 		$userrep = new UserRepository();
 		$iduser = $userrep->getUserIdByPseudo($pseudo);
 
-		$data['profilcard'] = ProfilController::ProfilCard($pseudo); // init the Profile Card module
+        $data['profilcard'] = ProfilController::ProfilCard($pseudo); // init the Profile Card module
 		$data['tunelistwidget'] = SongslistController::songlistwidgetAction();
 
 		if ($f == null) {
@@ -76,7 +76,7 @@ class HomeController extends BaseController
 		$newslist = $newsrep->findAllNewsFriendsUser($iduser);
 		foreach ($newslist as $news) {
 			$data['newslist'][] = array("url" => UrlRewriting::generateURL("Profil",$news->getUserpseudo()), "user" => $news->getUserpseudo(),
-					"profilephoto" => UrlRewriting::generateSRC("userfolder", $news->getUserpseudo(),"profile_pic.png"),
+					"profilephoto" => UrlRewriting::generateSRC("userfolder", $news->getUserpseudo(),"profile_pic.png", "../default/profile_pic.png"),
 					"pubdate" => $news->getPubdate(),
 					"content" => $news->getContent());
 		}

@@ -9,8 +9,15 @@ class Routing
 {
        
 	public static function routingList() {
-		url::addURL("authuser","Auth","authuser");
-		url::addURL("inscuser","Auth","inscuser");
+            
+        url::addURL("authpage","Auth","index");
+		  url::addURL("authuser","Auth","authuser");
+		  url::addURL("inscuser","Auth","inscuser");
+          url::addURL("Confirm","Auth","confirmmail");
+
+        url::addURL("Forgotpwd","Auth","forgotpwd");
+            url::addURL("sendmail","Auth","sendmail");
+            url::addURL("Resetpwd","Auth","reset");
 
 		url::addURL("Home","Home","index","");
 			url::addURL("addNews","Home","addnews");
@@ -20,7 +27,8 @@ class Routing
 
 		url::addURL("Songslist","Songslist","index");
 			url::addURL("Delete","Songslist","delete");
-			url::addURL("Share","Songslist","share");
+			url::addURL("Add","Songslist","add");
+            url::addURL("Share","Songslist","share");
 
 		url::addURL("Tune","Tune","index");
 
@@ -29,20 +37,22 @@ class Routing
     	url::addURL("Notifications","Notifications","index");
 
     	url::addURL("Messages","Messages","index");
-    		url::addURL("Discussion","Messages","getdiscussion");
-    		url::addURL("SendMsg","Messages","sendmsg");
-                url::addURL("MsgLoader","Messages","loader");
-                url::addURL("Msgsender","Messages","sendmsgajax");
-
-
+            url::addURL("Discussion","Messages","getdiscussion");
+            url::addURL("SendMsg","Messages","sendmsg");
+            url::addURL("MsgLoader","Messages","loader");
+            url::addURL("Msgsender","Messages","sendmsgajax");
 
     	url::addURL("NewSong","NewSong","index");
-    		url::addURL("addNewSong","NewSong","addnewsong");
+            url::addURL("addNewSong","NewSong","addnewsong");
 
+        url::addURL("Search","Search","index");
+        
     	url::addURL("Parameters","Parameters","index");
-    		url::addURL("updateparameters","Parameters","updateparameters");
-                url::addURL("updatephoto","Parameters","updatephoto");
-                url::addURL("updatepassword","Parameters","updatepwd");
+            url::addURL("updateparameters","Parameters","updateparameters");
+            url::addURL("updatephoto","Parameters","updatephoto");
+            url::addURL("updatepassword","Parameters","updatepwd");
+
+        url::addURL("Backoffice","Backoffice","index");
 	}
         
         public static function srcList() {

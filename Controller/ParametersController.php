@@ -35,11 +35,12 @@ class ParametersController extends BaseController
 
                 $filepath = UrlRewriting::generateSRC("tmp","",$dataform['pic']['name']);
                 $img = new ImageManager($filepath);
-                $img->renameMove(UrlRewriting::generateSRC("userfolder", $_SESSION['pseudo'],"profile_pic.png"));
+                $img->convertInProfilePic(UrlRewriting::generateSRC("userfolder", $_SESSION['pseudo'],"profile_pic.png"));
                 
+                // header('Content-Type: text/html; charset=utf-8');
                 $this->indexAction($request);
             } else {
-		$this->indexAction($request, $f = null, $g);
+				$this->indexAction($request, $f = null, $g);
             }
         }
 
@@ -49,16 +50,24 @@ class ParametersController extends BaseController
 			$dataform = $f->getValues();
 			
 			// test if pseudo is unique in the DB
-
-			$userrep = new UserRepository();
-			$user = $userrep->findUserById($_SESSION['iduser']);
-			$user->setpseudo($dataform['pseudo']);
-			$_SESSION['pseudo'] = $dataform['pseudo'];
-			$user->setEmail($dataform['email']);
-			$user->setLang($dataform['lang'][0]);
-			
-			$userrep->updateUser($user);
-			$this->indexAction($request);
+                        if (preg_match('/[^-_a-z0-9.]/iu', $dataform['pseudo']))
+                        {
+                            $this->indexAction($request, $f = null, $g = null, $h = null, "Special char not allowed in pseudo!");
+                        } else {
+                            $userrep = new UserRepository();
+                            if ($dataform['pseudo']==$_SESSION['pseudo'] || !$userrep->existUserPseudo($dataform['pseudo'])) {
+                                $user = $userrep->findUserById($_SESSION['iduser']);
+                                $user->setpseudo($dataform['pseudo']);
+                                $_SESSION['pseudo'] = $dataform['pseudo'];
+                                $user->setEmail($dataform['email']);
+                                $user->setLang($dataform['lang'][0]);
+                                $_SESSION['lang'] = $dataform['lang'][0];
+                                $userrep->updateUser($user);
+                                $this->indexAction($request);
+                            } else {
+                                $this->indexAction($request, $f = null, $g = null, $h = null, "Pseudo already exist!");
+                            }
+                        }
 
 		} else {
 			$this->indexAction($request, $f);
@@ -66,7 +75,7 @@ class ParametersController extends BaseController
 	}
 	
 	// Principal action of the HomeController 
-	public function indexAction(Request &$request, FormManager $f = null, FormManager $g = null, FormManager $h = null) {
+	public function indexAction(Request &$request, FormManager $f = null, FormManager $g = null, FormManager $h = null, $flashbag = null) {
 		$data = array();
 		$pseudo = $_SESSION['pseudo'];
 		$userrep = new UserRepository();
@@ -74,6 +83,8 @@ class ParametersController extends BaseController
 
 		$data['profilcard'] = ProfilController::ProfilCard($pseudo);
 		$data['tunelistwidget'] = SongslistController::songlistwidgetAction();
+                
+                $data['flashbag'] = $flashbag;
 
 		if ($f == null) {
 			$user = $userrep->findUserById($iduser);

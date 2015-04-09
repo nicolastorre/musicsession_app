@@ -1,6 +1,6 @@
 body
 {
-	background-color: #3498DB; // #FF8823;
+	background-color: #F39C12; //#3498DB; // #FF8823;
 	font-family: Arial, verdana, sans-serif;
 }
 
@@ -8,9 +8,9 @@ nav
 {
 	position: fixed:
 	top: 0;
-	background-color: white;
 	height: 50px;
 	min-width: 1000px;
+	background-color: #96281B;
 }
 
 nav > ul
@@ -41,6 +41,11 @@ nav li > form
 	display: inline-block;
 }
 
+nav a
+{
+	color: rgba(255, 255, 204, 0.9) !important;
+}
+
 #parameters
 {
 	position: absolute;
@@ -68,7 +73,7 @@ section
 
 #timeline
 {
-	background-color: white;
+	background-color: #FFECBF;
 	float: left;
 	margin: 0px 2%;
 	width: 50%;
@@ -84,7 +89,7 @@ section
 
 #footer
 {
-	background-color: white;
+	background-color: #FFECBF;
 	border-radius: 5px;
 	margin-top: 10px;
 	padding: 10px;

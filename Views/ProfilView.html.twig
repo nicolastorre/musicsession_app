@@ -4,9 +4,9 @@
 	<ul>
 		{% for itemnews in data.newslist %}
 		<li class="item-news">
-			<img class="profil-pic" src="Ressources/public/images/{{ itemnews.user }}.png" alt="photo profil">
-			<div class="profile"><a href="{{ itemnews.url }}">{{ itemnews.user }}</a></div><div>{{ itemnews.pubdate }}</div>
-			<span>{{ itemnews.content }}</span>
+			<img class="profil-pic" src="{{ itemnews.profilephoto }}" alt="photo profil">
+			<div class="profile"><a href="{{ itemnews.url }}">{{ itemnews.pseudo }}</a></div><div>{{ itemnews.pubdate }}</div>
+			<span>{{ itemnews.content | raw}}</span>
 		</li>
 		{% endfor %}
 	</ul>

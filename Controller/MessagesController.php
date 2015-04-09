@@ -16,6 +16,37 @@
  */
 class MessagesController extends BaseController
 {
+    
+    private function replaceHashtag($msg) {
+        $matches = array();
+        $toFind = "#";
+        $start = 0;
+        do { 
+        	$pos = strpos(($msg),$toFind,$start);
+            $end = strpos($msg," ",($pos+1));
+            if ($end == false) {
+                $end = strlen($msg);
+            }
+            $length = $end - $pos;
+            $matches[] = substr($msg, $pos, $length);
+            $start = $pos + 1;
+        } while (($pos != false));
+
+        $replacement = array();
+        $tunerep = new TuneRepository();
+        for ($i=0; $i<count($matches); $i++) {
+        	$tune = $tunerep->findTuneByTitle(substr($matches[$i],1));
+
+        	if ($tune != false) {
+        		$idtune = $tune->getIdtune();
+        		$url = UrlRewriting::generateURL("Tune", $idtune);
+            	$replacement[$i] = "<a href='".$url."' class='hashtag'>".$matches[$i]."</a>";
+        	} else {
+        		$replacement[$i] = $matches[$i];
+        	}
+        }
+        return str_replace($matches, $replacement, $msg);
+    }
 
 	/**
      * Get, treat and save a submitted news 
@@ -46,6 +77,8 @@ class MessagesController extends BaseController
 		$iduserb = $userrep->getUserIdByPseudo($request->getParameter("par")[0]);
 		if ($f->validate($request)) {
 			$dataform = $f->getValues();
+			$dataform['msg'] = $this->replaceHashtag($dataform['msg']);
+
 			$date_msg = date("y-m-d H-i-s");
 			$msg = new Message(null,$_SESSION['iduser'],$iduserb,$date_msg,$dataform['msg']);
 			$msgrep = new MessageRepository();
@@ -70,7 +103,7 @@ class MessagesController extends BaseController
 			foreach ($discussion as $msg) {
 				$msglist[] = array("idmsg" => $msg->getIdmsg(),"url" => UrlRewriting::generateURL("Profil",$userrep->getUserPseudoById($msg->getSender())), 
 					"pseudo" => $userrep->getUserPseudoById($msg->getSender()),
-					"profilephoto" => UrlRewriting::generateSRC("userfolder", $userrep->getUserPseudoById($msg->getSender()),"profile_pic.png"),
+					"profilephoto" => UrlRewriting::generateSRC("userfolder", $userrep->getUserPseudoById($msg->getSender()),"profile_pic.png", "../default/profile_pic.png"),
 					"date" => $msg->getDate(), 
 					"content" => $msg->getContent());
 			}    
@@ -87,6 +120,9 @@ class MessagesController extends BaseController
 		if ($f->validate($request)) {
 			$dataform = $f->getValues();
 			$date_msg = date("y-m-d H-i-s");
+                        
+            $dataform['msg'] = $this->replaceHashtag($dataform['msg']);
+                        
 			$msg = new Message(null,$_SESSION['iduser'],$iduserb,$date_msg,$dataform['msg']);
 			$msgrep = new MessageRepository();
 			$msgrep->sendMsg($msg);
@@ -122,6 +158,7 @@ class MessagesController extends BaseController
 		$userrep = new Userrepository();
 		$friendshiprep = new FriendshipRepository();
 		$friends = $friendshiprep->getFriends($iduser);
+
 		foreach ($friends as $i) {
 			if ($i->getIdusera() != $iduser) {
 				$userfriends = $userrep->findUserById($i->getIdusera());
@@ -129,7 +166,7 @@ class MessagesController extends BaseController
 				$userfriends = $userrep->findUserById($i->getIduserb());
 			}
 			$data['discussion'][] = array("url" => UrlRewriting::generateURL("Discussion",$userfriends->getPseudo()), "pseudo" => $userfriends->getPseudo(),
-				"profilephoto" => UrlRewriting::generateSRC("userfolder", $userfriends->getPseudo(),"profile_pic.png"),);
+				"profilephoto" => UrlRewriting::generateSRC("userfolder", $userfriends->getPseudo(),"profile_pic.png", "../default/profile_pic.png"),);
 		}
 
 		/*
@@ -140,28 +177,32 @@ class MessagesController extends BaseController
 		if ($iduserb == null) {
 			$iduserb = $msgrep->getLastDiscussion($iduser); // get the ID user corresponding to the last discussion
 		}
+		if ($iduserb != false) {
+			$discussion = $msgrep->getDiscussion($iduser,$iduserb);
+			$data['msglist'] = array(); // list of message of the current discussion
+			if (!empty($discussion)) {
+				foreach ($discussion as $msg) {
+					$data['msglist'][] = array("idmsg" => $msg->getIdmsg(),"url" => UrlRewriting::generateURL("Profil",$userrep->getUserPseudoById($msg->getSender())), 
+						"pseudo" => $userrep->getUserPseudoById($msg->getSender()),
+						"profilephoto" => UrlRewriting::generateSRC("userfolder", $userrep->getUserPseudoById($msg->getSender()),"profile_pic.png", "../default/profile_pic.png"),
+						"date" => $msg->getDate(), 
+						"content" => $msg->getContent());
+									$data['iduser'] = $iduserb;
+	                                $data['lastmsg'] = $msg->getIdmsg();
+				}    
+			} else {
+				$data['iduser'] = $iduserb;
+	            $data['lastmsg'] = 0;
+			}
 
-		$discussion = $msgrep->getDiscussion($iduser,$iduserb);
-		$data['msglist'] = array(); // list of message of the current discussion
-		if (!empty($discussion)) {
-			foreach ($discussion as $msg) {
-				$data['msglist'][] = array("idmsg" => $msg->getIdmsg(),"url" => UrlRewriting::generateURL("Profil",$userrep->getUserPseudoById($msg->getSender())), 
-					"pseudo" => $userrep->getUserPseudoById($msg->getSender()),
-					"profilephoto" => UrlRewriting::generateSRC("userfolder", $userrep->getUserPseudoById($msg->getSender()),"profile_pic.png"),
-					"date" => $msg->getDate(), 
-					"content" => $msg->getContent());
-								$data['iduser'] = $iduserb;
-                                $data['lastmsg'] = $msg->getIdmsg();
-			}    
+	                // form to send a message
+			if ($f == null) {
+				$f = new FormManager("sendmsgform","sendmsgform",UrlRewriting::generateURL("SendMsg",$userrep->getUserPseudoById($iduserb)));
+				$f->addField("","msg","textarea","", array("id" => "msg"));
+				$f->addField("Submit ","submit","submit","Send", array("id" => "submitmsg"));
+			}
+			$data['sendmsgform'] = $f->createView(); // add the form view in the data page
 		}
-
-                // form to send a message
-		if ($f == null) {
-			$f = new FormManager("sendmsgform","sendmsgform",UrlRewriting::generateURL("SendMsg",$userrep->getUserPseudoById($iduserb)));
-			$f->addField("","msg","textarea","", array("id" => "msg"));
-			$f->addField("Submit ","submit","submit","Send", array("id" => "submitmsg"));
-		}
-		$data['sendmsgform'] = $f->createView(); // add the form view in the data page
 
 		$data['suggestedfriends'] = FriendsController::suggestedFriends(3); // init the Suggested Friends module
 

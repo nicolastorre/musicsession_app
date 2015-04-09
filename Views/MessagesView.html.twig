@@ -38,7 +38,7 @@
 			<li class="item-msg">
 				<img class="profil-pic" src="{{ itemmsg.profilephoto }}" alt="photo profil">
 				<div class="profile"><a href="{{ itemmsg.url }}">{{ itemmsg.pseudo }}</a></div><div class="time">{{ itemmsg.date }}</div>
-				<div class="msg">{{ itemmsg.content }}</div>
+				<div class="msg">{{ itemmsg.content | raw}}</div>
 			</li>
 			{% endfor %}
                         <script id="test-template" type="text/x-handlebars-template">
@@ -46,7 +46,7 @@
                             <li class="item-msg">
 								<img class="profil-pic" src="{{ profilephoto }}" alt="photo profil">
 								<div class="profile"><a href="{{ url }}">{{ pseudo }}</a></div><div class="time">{{ date }}</div>
-								<div class="msg">{{ content }}</div>
+								<div class="msg">{{{ content }}}</div>
 							</li>
                             {% endraw %}
                         </script>

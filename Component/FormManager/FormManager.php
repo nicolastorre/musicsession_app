@@ -26,37 +26,37 @@ class FormManager
 		$_SESSION[$this->idform] = serialize($this);
 	}
 
-	public function addField($label,$name,$type, $values, array $attr=array()) {
+	public function addField($label,$name,$type, $values, array $attr = array(), $raw = false) {
 		switch ($type) { //according to the type of the input
 			case 'radio':
 			case 'checkbox':
 				//create CheckBoxRadioField object
-				$this->fieldlist[] = new CheckBoxRadioField($label,$name,$type,$attr,$values);
+				$this->fieldlist[] = new CheckBoxRadioField($label,$name,$type,$attr,$values,$raw);
 				break;
 			case 'select':
 				//create SelectField object
-				$this->fieldlist[] = new SelectField($label,$name,$type,$attr,$values);
+				$this->fieldlist[] = new SelectField($label,$name,$type,$attr,$values,$raw);
 				break;
 			case 'textarea':
 				//create TextareaField object
-				$this->fieldlist[] = new TextareaField($label,$name,$type,$attr,$values);
+				$this->fieldlist[] = new TextareaField($label,$name,$type,$attr,$values,$raw);
 				break;
 			case 'email':
 				//create EmailField object
-				$this->fieldlist[] = new EmailField($label,$name,$type,$attr,$values);
+				$this->fieldlist[] = new EmailField($label,$name,$type,$attr,$values,$raw);
 				break;
 			case 'file':
 				$type = "file";
 				//create EmailField object
-				$this->fieldlist[] = new ImageField($label,$name,$type,$attr,$values);
+				$this->fieldlist[] = new ImageField($label,$name,$type,$attr,$values,$raw);
 				break;
 			case 'submit':
 				//create SubmitField object
-				$this->fieldlist[] = new SubmitField($label,$name,$type,$attr,$values);
+				$this->fieldlist[] = new SubmitField($label,$name,$type,$attr,$values,$raw);
 				break;
 			default:
 				//create InputField object
-				$this->fieldlist[] = new InputField($label,$name,$type,$attr,$values);
+				$this->fieldlist[] = new InputField($label,$name,$type,$attr,$values,$raw);
 				break;
 		}
 	}

@@ -55,7 +55,7 @@ class SongslistController extends BaseController
 		$this->indexAction($request);
 	}
 
-	public function shareAction(Request &$request) {
+	public function addAction(Request &$request) {
 		$idtune = $request->getParameter("par")[1];
 		$tunerep = new TuneRepository();
 		$tunerep->shareTune($_SESSION['iduser'], $idtune);
@@ -63,6 +63,20 @@ class SongslistController extends BaseController
 		$this->indexAction($request);
 	}
 
+	public function shareAction(Request &$request) {
+		$idtune = $request->getParameter("par")[0];
+		
+                $tunerep = new TuneRepository();
+                $titletune = $tunerep->findTitleTuneById($idtune);
+
+                $date_news = date("y-m-d H-i-s");
+		$datanews = "<a href='Tune/index/".$idtune."' class='hashtag'>#".$titletune."</a>";
+		$news = new News($_SESSION['iduser'],$_SESSION['pseudo'],$date_news,$datanews); // create the news object
+		$newsrep = new NewsRepository();
+		$newsrep->addNews($news); // add the submitted news
+		$ctrl = new HomeController();
+		$ctrl->indexAction($request); // reload the default home page
+	}
 
 	// Principal action of the HomeController 
 	public function indexAction(Request &$request, FormManager $f = null) {
@@ -72,7 +86,8 @@ class SongslistController extends BaseController
 		$iduser = $userrep->getUserIdByPseudo($pseudo);
 
 		$data['profilcard'] = ProfilController::ProfilCard($pseudo);
-		$data['lasttune'] = self::lasttunewidgetAction();
+		$data['tunelistwidget'] = self::songlistwidgetAction();
+		// $data['lasttune'] = self::lasttunewidgetAction();
 
 		$tunerep = new TuneRepository();
 		$tunelist = $tunerep->FindUserLikedtune($iduser);
@@ -83,15 +98,18 @@ class SongslistController extends BaseController
 			} else {
 				$class = "item-odd";
 			}
-
+                        
+            $tuneaction = array();
 			if ($_SESSION['pseudo'] == $pseudo && $tunerep->checkTuneLikedByUser($_SESSION['iduser'], $tune->getIdtune())) {
-				$sharedel = array('del', UrlRewriting::generateURL("Delete",$pseudo."/".$tune->getIdtune()));
+				$tuneaction['deleteadd'] = array('class' => 'delete', 'url' => UrlRewriting::generateURL("Delete",$pseudo."/".$tune->getIdtune()));
 			} 
 			elseif (!$tunerep->checkTuneLikedByUser($_SESSION['iduser'], $tune->getIdtune())) {
-				$sharedel = array('share', UrlRewriting::generateURL("Share",$pseudo."/".$tune->getIdtune()));
+				$tuneaction['deleteadd'] = array('class' => 'add', 'url' => UrlRewriting::generateURL("Add",$pseudo."/".$tune->getIdtune()));
 			} else {
-				$sharedel = array('', "#");
+				$tuneaction['deleteadd'] = array('class' => '', 'url' => "#");
 			}
+                        
+                        $tuneaction['share'] = array();
 
 			$data['tunelist'][] = array("class" => $class,
 				"idtune" => $tune->getIdtune(), 
@@ -101,9 +119,9 @@ class SongslistController extends BaseController
 				"category" => $tune->getCategory(), 
 				"datetune" => $tune->getDatetune(),  
 				"pdftune" => $tune->getPdf(),
-				"sharedelclass" => $sharedel[0],
-				"sharedel" => $sharedel[1],
-				"urltune" => UrlRewriting::generateURL("Tune",$tune->getIdtune()));
+				"urltune" => UrlRewriting::generateURL("Tune",$tune->getIdtune()),
+                                "sharetune" => UrlRewriting::generateURL("Share",$tune->getIdtune()),
+				"deleteadd" => $tuneaction['deleteadd']);
 			$i++;
 		}
 

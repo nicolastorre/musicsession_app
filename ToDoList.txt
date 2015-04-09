@@ -1,52 +1,50 @@
 ToDo List
 
-Development of each functionnality
-	Authentification page
-		Form authentification
-		Form inscription to create user profile and a user folder
-			Forbidden special chars in pseudo
+Search profile page (done)
 
-		Confirm email page
-		Forgotten password page
+Image de profile par défaut si pas d'image de profile existe (done)
 
-	Home page
-		Timeline news of the current user and his friends
-		Add new song event in the timeline
+Check pseudo n'existe pas qd création ou modification du pseudo (done)
 
-	Notifications page
-		Timeline added friends
+Traduction (done => must be completed)
 
-	Messages page
-		List of discussion
-		Timeline of messages of the selected or last discussion
-		Add ajax to the tchat: http://openclassrooms.com/courses/un-site-web-dynamique-avec-jquery/tp-le-tchat-en-ajax
 
-	NewSong page
-		Form to create a new song
+Mail + page forgotten password
 
-	Parameters page
-		Form to update the user informations
+Mail + flashbag authentification page confirmation de l'adresse mail après inscription (done)
 
-	Profile page
-		Timeline news of the selected user
+Mail d'invitation pour nouvel utilisateur + page d'invitation dans le bas de la page friends et le module suggested friends
 
-	Friends page
-		SuggestedFriends component
+Ajouter fonctionnalité "share" => bouton "share" permet de créer automatiquement une news contenant un lien ver la musique correspondante => https://developers.facebook.com/docs/plugins/like-button (done)
 
-	Songs List page
-		Songs list component
-		Last songs component
-		Song page
-	
-	Results search page
-		Results list page
-		Search form component
+facebook twitter button
 
-	Translator Component
+/*************************************************************************************************************************/
 
-	Backoffice
-		Users manager
-		Songs manager
+Ajouter un champs autre catégorie dans Nouvelle musique (done)
+
+Backoffice
+
+bug dans messages (done)
+
+/*************************************************************************************************************************/
+
+Gestion de la taille des images de profile et conversion des images en png => https://github.com/Gregwar/Image (done)
+
+Multiversionning de partitions de musique (fct uniqid()) => fork icon
+
+/*************************************************************************************************************************/
+
+Ajouter le bloquage des accès non-amis pour les pages friends, songs ...
+
+Password strength in Javascript / JQuery + convert md5 ou sha-1
+
+Ajouter "accepter une invitation"
+
+
+
+Vérifications des formulaires en JavaScript / JQuery
+
 
 Update PHP structure
 	Autoloader with namespaces and use
@@ -57,7 +55,8 @@ Update PHP structure
 
 	add userErrorHandler function
 	add "throw" at right points
-	DBManager: avoid insert, update and delete after reloading a page
+	DBManager: avoid insert, update and delete after reloading a page: by using a uniqueid token => https://arjunphp.com/prevent-multiple-form-submissions-php/
+	unset chaque formulaire après utilisation
 
 Validate each functionnality
 
@@ -74,7 +73,5 @@ Validate the version 1
 Development of the Music Editor
 	Design and CSS
 	Script of the Music Editor interface to edit easily music note and send to the server via AJAX
-
-Development of PHP MIDI CLASS
 
 Edit the final report

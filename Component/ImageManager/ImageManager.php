@@ -1,5 +1,9 @@
 <?php
 
+require_once('Gregwar/Image/autoload.php');
+require_once('Gregwar/Cache/autoload.php');
+
+use Gregwar\Image\Image;
 
 /*
 Form to upload an image
@@ -30,16 +34,16 @@ class ImageManager
 		}
 	}
 
-	public function rename() {
-
-	}
-
-	public function convertToPNG() {
-
-	}
-
-	public function crop() {
-
+	public function convertInProfilePic($file) {
+		$source_file = $this->filepath;
+		$target_file = $file;
+		if (rename($source_file, $target_file)) {
+			$this->filepath = $file;
+			$this->filename = pathinfo($file, PATHINFO_BASENAME);
+		}
+		Image::open($this->filepath)
+		    ->resize(73, 73, "#346A85")
+    		->save($this->filepath, 'png');
 	}
 }
 

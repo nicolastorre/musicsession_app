@@ -9,6 +9,8 @@ class Tune
 	private $category;
 	private $datetune;
 	private $pdf;
+	private $forkedusers;
+	private $forkedpdf;
 
 	public function __construct($idtune, $iduser, $title, $composer, $category, $datetune, $pdf) {
 		$this->idtune = $idtune;

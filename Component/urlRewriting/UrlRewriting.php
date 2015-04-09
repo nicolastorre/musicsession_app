@@ -25,25 +25,16 @@ class UrlRewriting
 		return self::$url[$urlname]["controller"]."/".self::$url[$urlname]["action"]."/".$par;
 	}
         
-        public static function generateSRC($srcname, $folder, $file) {
-            if ($folder != "") {
+        public static function generateSRC($srcname, $folder, $file, $default = "") {
+            if (($folder != "") && (file_exists(self::$src[$srcname].$folder."/".$file)  || $default == "")) {
 		return self::$src[$srcname].$folder."/".$file;
-            } else {
+            } 
+            elseif (file_exists(self::$src[$srcname].$file) || $default == "") {
                 return self::$src[$srcname].$file;
+            } else {
+                return self::$src[$srcname].$default;
             }
 	}
-
-//	public static function generateSrcUser($userfolder, $file) {
-//		return self::srcUser.$userfolder."/".$file;
-//	}
-//
-//	public static function generateSrcApp($file) {
-//		return self::srcApp.$file;
-//	}
-//
-//	public static function generateSrcPDFScores($file) {
-//		return self::srcPDFScores.$file;
-//	}
 
 }
 

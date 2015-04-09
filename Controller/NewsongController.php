@@ -29,17 +29,33 @@ class NewsongController extends BaseController
 		if ($f->validate($request)) {
 			$dataform = $f->getValues();
 
-                        $datetune = date("y-m-d H-i-s");
-			$tune = new Tune(null,$_SESSION['iduser'],$dataform['title'], $dataform['composer'], $dataform['category'][0], $datetune, $dataform['pdf']['name']);
-			$tunerep = new TuneRepository();
-			$tunerep->addTune($tune);
-                        
-                        $filepath = UrlRewriting::generateSRC("tmp","",$dataform['pdf']['name']);
-                        $img = new ImageManager($filepath);
-                        $img->renameMove(UrlRewriting::generateSRC("userfolder", $_SESSION['pseudo'], $dataform['pdf']['name']));
-                
-			$this->indexAction($request);
+                        $tunerep = new TuneRepository();
+                        if (preg_match('/[^-_a-z0-9.]/iu', $dataform['title'])) // http://stackoverflow.com/questions/18851116/php-regex-for-matching-all-special-characters-included-accented-characters
+                        {
+                            $this->indexAction($request, $f , "Special char not allowed in title!");
+                        } else {
+                            if ($tunerep->isTitleTuneuniq($dataform['title'])) {
+                                $datetune = date("y-m-d H-i-s");
 
+                                if ($dataform['category'][0] == "other" || $dataform['category'][0] == "autre") {
+                                    if (!empty($request->getParameter("addcategory")) && strlen($request->getParameter("addcategory")) < 255) {
+                                        $dataform['category'][0] = htmlspecialchars($request->getParameter("addcategory"));
+                                    }
+                                }
+
+                                $tune = new Tune(null,$_SESSION['iduser'],$dataform['title'], $dataform['composer'], $dataform['category'][0], $datetune, $dataform['pdf']['name']);
+                                $tunerep = new TuneRepository();
+                                $tunerep->addTune($tune);
+
+                                $filepath = UrlRewriting::generateSRC("tmp","",$dataform['pdf']['name']);
+                                $img = new ImageManager($filepath);
+                                $img->renameMove(UrlRewriting::generateSRC("userfolder", $_SESSION['pseudo'], $dataform['pdf']['name']));
+
+                                $this->indexAction($request);
+                            } else {
+                                $this->indexAction($request, $f , "This title is already existing!");
+                            }
+                        }
 		} else {
 			$this->indexAction($request, $f);
 		}
@@ -55,7 +71,7 @@ class NewsongController extends BaseController
      * @param FormManager $f optional. contain a form object, default is null.
      * @return void .
      */
-	public function indexAction(Request &$request, FormManager $f = null) {
+	public function indexAction(Request &$request, FormManager $f = null, $flashbag = null) {
 		/*
 		* Initialization of the page variables
 		*/
@@ -67,16 +83,18 @@ class NewsongController extends BaseController
 		$data['profilcard'] = ProfilController::ProfilCard($pseudo); // init the Profile Card module
 		$data['tunelistwidget'] = SongslistController::songlistwidgetAction();
 
+                $data['flashbag'] = $flashbag;
 		/*
 		* Create the form to add a new song
 		*/
 		if ($f == null) {
 			$f = new FormManager("importsongform","importsongform",UrlRewriting::generateURL("addNewSong",""));
 			$f->addField("Title: ","title","text","");
-                        $f->addField("Composer: ","composer","text","");
-                        $f->addField("Category: ","category","select",array(array('v' => 'classique','s' => false),array('v' => 'rock','s' => true),array('v' => 'trad','s' => false)));
+            $f->addField("Composer: ","composer","text","");
+            $f->addField("Category: ","category","select",array(array('v' => 'classique','s' => false),array('v' => 'rock','s' => true),array('v' => 'trad','s' => false),array('v' => 'other','s' => false)),array('id' => 'category'));
+            $f->addField(" ","addcategory","text","",array('id' => 'other'),true);
 			$f->addField("pdf score: ","pdf","file","");
-			$f->addField("Submit ","submit","submit","Import song");	
+			$f->addField("Submit ","submit","submit","Import song",array('id' => 'submit'));	
 		}
 		$data['importsongform'] = $f->createView();
 

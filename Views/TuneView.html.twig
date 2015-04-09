@@ -3,9 +3,9 @@
 {% block timeline %}
 	<div id="tunepage">
 		<a href="{{ data.tune.url }}" target="_blank"><h2>{{ data.tune.title }}</h2></a>
-		<h3>{{ data.tune.composer }}</h3>
-		<h3>{{ data.tune.category }}</h3>
-		<h3>{{ data.tune.datetune }}</h3>
+		<h3 class="composer">{{ data.tune.composer }}</h3>
+		<h3 class="category">{{ data.tune.category }}</h3>
+		<h4 class="datetune">{{ data.tune.datetune }}</h4>
 		 <iframe src="{{ data.tune.url }}"></iframe> 
 	</div>
 {% endblock %}

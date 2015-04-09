@@ -15,12 +15,16 @@ class MessageRepository extends DBManager
 	public function getLastDiscussion($idusera) {
 		$discussion = array();
 		$lastdiscu = $this->query("SELECT fk_sender, fk_receiver from message WHERE date_msg = (SELECT max(date_msg) FROM message WHERE (fk_sender = (?) OR fk_receiver = (?))) AND (fk_sender = (?) OR fk_receiver = (?))  ORDER BY date_msg DESC;",array($idusera,$idusera,$idusera,$idusera));
-		if ($idusera != $lastdiscu[0]['fk_sender']) {
-			$iduserb = $lastdiscu[0]['fk_sender'];
+		if ($lastdiscu != null) {
+			if ($idusera != $lastdiscu[0]['fk_sender']) {
+				$iduserb = $lastdiscu[0]['fk_sender'];
+			} else {
+				$iduserb = $lastdiscu[0]['fk_receiver'];
+			}
+			return $iduserb;
 		} else {
-			$iduserb = $lastdiscu[0]['fk_receiver'];
+			return false;
 		}
-		return $iduserb;
 	}
 
 	public function sendMsg(Message $msg) {

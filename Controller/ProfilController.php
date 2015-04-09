@@ -14,7 +14,7 @@ class ProfilController extends BaseController
 		$iduser = $userrep->getUserIdByPseudo($pseudo);
 		$data['pseudo'] = $pseudo;
 		$data['pseudourl'] = UrlRewriting::generateURL("Profil",$pseudo);
-		$data['profilephoto'] = UrlRewriting::generateSRC("userfolder", $pseudo,"profile_pic.png");
+		$data['profilephoto'] = UrlRewriting::generateSRC("userfolder", $pseudo,"profile_pic.png", "../default/profile_pic.png");
 		$data['songsurl'] = UrlRewriting::generateURL("Songslist",$pseudo);
 		$data['friendsurl'] = UrlRewriting::generateURL("Friends",$pseudo);
 		
@@ -62,22 +62,31 @@ class ProfilController extends BaseController
 		$pseudo = $request->getParameter("par")[0];
 		$userrep = new UserRepository();
 		$iduser = $userrep->getUserIdByPseudo($pseudo);
+                
+//                Controle if user > ami >>> autorisation de l'accès au profile sinon bloque
+		$fdrep = new FriendshipRepository();
+		$fdstatus = $fdrep->getFriendship($_SESSION['iduser'], $iduser)->getStatus();
+		if ($_SESSION['iduser'] != $iduser &&  $fdstatus != 1){
+		   $ctrler = new BlockedprofilController();
+		   $ctrler->indexAction($request);
+		} else {
 
-		$data['profilcard'] = self::ProfilCard($pseudo);
-		$data['tunelistwidget'] = SongslistController::songlistwidgetAction();
+			$data['profilcard'] = self::ProfilCard($pseudo);
+			$data['tunelistwidget'] = SongslistController::songlistwidgetAction();
 
-		$newsrep = new NewsRepository();
-		$newslist = $newsrep->findAllNewsUser($iduser);
-		foreach ($newslist as $news) {
-			$data['newslist'][] = array("url" => UrlRewriting::generateURL("Profil",$news->getUserpseudo()), "user" => $news->getUserpseudo(),
-					"profilephoto" => UrlRewriting::generateSRC("userfolder", $news->getUserpseudo(),"profile_pic.png"),
-					"pubdate" => $news->getPubdate(),
-					"content" => $news->getContent());
+			$newsrep = new NewsRepository();
+			$newslist = $newsrep->findAllNewsUser($iduser);
+			foreach ($newslist as $news) {
+				$data['newslist'][] = array("url" => UrlRewriting::generateURL("Profil",$news->getUserpseudo()), "pseudo" => $news->getUserpseudo(),
+						"profilephoto" => UrlRewriting::generateSRC("userfolder", $news->getUserpseudo(),"profile_pic.png", "../default/profile_pic.png"),
+						"pubdate" => $news->getPubdate(),
+						"content" => $news->getContent());
+			}
+
+			$data['suggestedfriends'] = FriendsController::suggestedFriends(3);
+
+			$this->render("ProfilView.html.twig",$data);
 		}
-
-		$data['suggestedfriends'] = FriendsController::suggestedFriends(3);
-
-		$this->render("ProfilView.html.twig",$data);
 	}
 
 }

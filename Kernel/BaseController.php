@@ -30,12 +30,12 @@ class BaseController
 		}
 		else {
 			$e = new ErrorController("Not found $template template");
-          	$e->indexAction();
+                        $e->indexAction();
 		}
 	}
 
 	private function clean(&$value) {
-    	$value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8', false);
+            $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8', false);
   	}
 }
 

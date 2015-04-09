@@ -1,0 +1,11 @@
+{% extends "GeneralLayoutView/GeneralSectionView.html.twig" %}
+
+{% block timeline %}
+        {{ data.error }}
+	{% for itemsearch in data.search %}
+	<div class="friends">
+		<a href="{{ itemsearch.url }}"><img class="profil-pic" src="{{ itemsearch.profilephoto }}" alt="photo profil"></a>
+		<div class="profile"><a href="{{ itemsearch.url }}">{{ itemsearch.pseudo }}</a></div>
+	</div>
+	{% endfor %}
+{% endblock %}

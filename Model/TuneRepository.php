@@ -65,13 +65,42 @@ class TuneRepository extends DBManager
                 }
 	}
 
+	public function findTuneByTitle($title) {
+		$tunedata = $this->query("SELECT * from tune WHERE title_tune = (?) limit 1;",array($title));
+        if (!empty($tunedata)) {
+            $tuple = $tunedata[0];
+            $tune =  new Tune($tuple['id_tune'],$tuple['fk_user_tune'],$tuple['title_tune'],$tuple['composer'],$tuple['category_tune'],$tuple['date_tune'],$tuple['pdf_tune']);
+            return $tune;
+        } else {
+            return false;
+        }
+	}
+        
+    public function findTitleTuneById($idtune) {
+            $tunedata = $this->query("SELECT title_tune from tune WHERE id_tune = (?) limit 1;",array($idtune));
+            if (!empty($tunedata)) {
+                return $tunedata[0]['title_tune'];
+            } else {
+                return false;
+            }
+    }
+    
+    public function isTitleTuneuniq($titletune) {
+            $tunedata = $this->query("SELECT count(*) as nb from tune WHERE title_tune = (?);",array($titletune));
+            if ($tunedata[0]['nb'] > 0) {
+                return false;
+            } else {
+                return true;
+            }
+    }
+
 	public function deleteTuneForUser($iduser, $idtune) {
 		return $this->query("DELETE from likedtune  WHERE fk_user_lt = (?) AND fk_tune_lt = (?);",array($iduser, $idtune));
 	}
         
-        public function deleteTuneForAll($idtune) {
-                $this->query("DELETE from likedtune  WHERE fk_tune_lt = (?);",array($idtune));
-                return $this->query("DELETE from tune  WHERE id_tune = (?);",array($idtune));      
+    public function deleteTuneForAll($idtune) {
+            $this->query("DELETE from likedtune  WHERE fk_tune_lt = (?);",array($idtune));
+            return $this->query("DELETE from tune  WHERE id_tune = (?);",array($idtune));      
 	}
 
 	public function shareTune($iduser, $idtune) {

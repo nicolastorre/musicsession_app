@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 12 Mars 2015 à 23:43
--- Version du serveur :  5.6.17-log
+-- Généré le :  Mer 08 Avril 2015 à 08:55
+-- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `dico` (
   `fr` varchar(255) NOT NULL,
   `en` varchar(255) NOT NULL,
   PRIMARY KEY (`id_dico`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- Contenu de la table `dico`
@@ -46,7 +46,14 @@ INSERT INTO `dico` (`id_dico`, `key_dico`, `fr`, `en`) VALUES
 (2, 'Notifications', 'Notifications', 'Notifications'),
 (3, 'Messages', 'Messages', 'Messages'),
 (4, 'NewSong', 'Nouvelle musique', 'New song'),
-(5, 'error', 'Erreur', 'Error');
+(5, 'error', 'Erreur', 'Error'),
+(6, 'Pseudo: ', 'Identifiant: ', 'Pseudo: '),
+(7, 'Password: ', 'Mot de passe: ', 'Password: '),
+(8, 'Firstname: ', 'Prénom: ', 'Firstname: '),
+(9, 'Sign in', 'Se connecter', 'Sign in'),
+(10, 'Name: ', 'Nom: ', 'Name: '),
+(11, 'Sign up', 'S''inscrire', 'Sign up'),
+(12, 'Forgotten password?', 'Mot de passe oublié?', 'Forgotten password?');
 
 -- --------------------------------------------------------
 
@@ -63,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `friendship` (
   PRIMARY KEY (`id_fdshp`),
   KEY `fk_userfriendship_a` (`fk_user_a`),
   KEY `fk_userfriendship_b` (`fk_user_b`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
 
 --
 -- Contenu de la table `friendship`
@@ -71,8 +78,8 @@ CREATE TABLE IF NOT EXISTS `friendship` (
 
 INSERT INTO `friendship` (`id_fdshp`, `fk_user_a`, `fk_user_b`, `date_fdshp`) VALUES
 (13, 1, 2, '2015-03-05 06:12:51'),
-(14, 1, 3, '2015-03-05 06:33:00'),
-(15, 3, 2, '2015-03-05 06:41:51');
+(15, 3, 2, '2015-03-05 06:41:51'),
+(22, 1, 3, '2015-04-02 15:11:24');
 
 -- --------------------------------------------------------
 
@@ -88,14 +95,16 @@ CREATE TABLE IF NOT EXISTS `likedtune` (
   PRIMARY KEY (`id_likedtune`),
   KEY `fk_likedtune_tune` (`fk_tune_lt`),
   KEY `fk_likedtune_user` (`fk_user_lt`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=55 ;
 
 --
 -- Contenu de la table `likedtune`
 --
 
 INSERT INTO `likedtune` (`id_likedtune`, `fk_tune_lt`, `fk_user_lt`) VALUES
-(2, 1, 1);
+(2, 1, 1),
+(49, 53, 1),
+(54, 54, 1);
 
 -- --------------------------------------------------------
 
@@ -113,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `message` (
   PRIMARY KEY (`id_msg`),
   KEY `fk_msg_sender` (`fk_sender`),
   KEY `fk_msg_receiver` (`fk_receiver`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
 
 --
 -- Contenu de la table `message`
@@ -133,7 +142,8 @@ INSERT INTO `message` (`id_msg`, `fk_sender`, `fk_receiver`, `date_msg`, `conten
 (13, 1, 3, '2015-03-11 17:03:57', 'OOOOoooo'),
 (14, 1, 2, '2015-03-11 17:04:07', 'how re u?'),
 (16, 2, 1, '2015-03-11 17:18:05', 're'),
-(17, 1, 3, '2015-03-11 22:34:50', 'Bonjour');
+(17, 1, 3, '2015-03-11 22:34:50', 'Bonjour'),
+(18, 1, 2, '2015-03-20 10:38:16', 'ytrytyr');
 
 -- --------------------------------------------------------
 
@@ -149,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   `content_news` varchar(255) NOT NULL,
   PRIMARY KEY (`id_news`),
   KEY `fk_news` (`fk_user_news`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Contenu de la table `news`
@@ -161,7 +171,8 @@ INSERT INTO `news` (`id_news`, `fk_user_news`, `date_news`, `content_news`) VALU
 (3, 2, '2015-03-04 10:19:30', 'Bonjour'),
 (4, 3, '2015-03-05 07:33:50', 'Helllo I&#039;m Astérix!!!'),
 (5, 1, '2015-03-06 20:24:15', 'CouCOu'),
-(6, 3, '2015-03-06 20:28:01', 'Je suis un gaulois!!!');
+(6, 3, '2015-03-06 20:28:01', 'Je suis un gaulois!!!'),
+(7, 1, '2015-03-20 10:35:18', 'Cooucou');
 
 -- --------------------------------------------------------
 
@@ -180,14 +191,16 @@ CREATE TABLE IF NOT EXISTS `tune` (
   `pdf_tune` varchar(255) NOT NULL,
   PRIMARY KEY (`id_tune`),
   KEY `fk_tune_user` (`fk_user_tune`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=55 ;
 
 --
 -- Contenu de la table `tune`
 --
 
 INSERT INTO `tune` (`id_tune`, `fk_user_tune`, `title_tune`, `composer`, `category_tune`, `date_tune`, `pdf_tune`) VALUES
-(1, 1, 'Nissa la bella', 'Menica Rondelly', 'trad', '2015-03-12 17:59:06', 'NissaLaBella.pdf');
+(1, 1, 'Nissa la bella', 'Menica Rondelly', 'trad', '2015-03-12 17:59:06', 'NissaLaBella.pdf'),
+(53, 1, 'test3', 'test3', 'classique', '2015-04-02 16:18:37', 'NissaLaBella.pdf'),
+(54, 1, 'test4', 'test4', 'rock', '2015-04-02 16:32:56', 'NissaLaBella.pdf');
 
 -- --------------------------------------------------------
 
@@ -212,7 +225,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id_user`, `pseudo`, `pwdhashed`, `firstname`, `name`, `email`, `lang`) VALUES
-(1, 'Nicowez', '1234', 'Nicolas', 'Torre', 'nico@gmail.com', 'fr'),
+(1, 'Nicowez', '1234', 'Nicolas', 'Torre', 'nico@gmail.com', 'en'),
 (2, 'Asterix', '1234', 'Nicolas', 'Torre', 'nico@gmail.com', 'fr'),
 (3, 'Obelix', '1234', 'Nicolas', 'Torre', 'nico@gmail.com', 'fr'),
 (5, 'Mickey', '1234', 'Nicolas', 'Torre', 'nico@gmail.com', 'fr');
@@ -232,8 +245,8 @@ ALTER TABLE `friendship`
 -- Contraintes pour la table `likedtune`
 --
 ALTER TABLE `likedtune`
-  ADD CONSTRAINT `fk_likedtune_user` FOREIGN KEY (`fk_user_lt`) REFERENCES `user` (`id_user`),
-  ADD CONSTRAINT `fk_likedtune_tune` FOREIGN KEY (`fk_tune_lt`) REFERENCES `tune` (`id_tune`);
+  ADD CONSTRAINT `fk_likedtune_tune` FOREIGN KEY (`fk_tune_lt`) REFERENCES `tune` (`id_tune`),
+  ADD CONSTRAINT `fk_likedtune_user` FOREIGN KEY (`fk_user_lt`) REFERENCES `user` (`id_user`);
 
 --
 -- Contraintes pour la table `message`

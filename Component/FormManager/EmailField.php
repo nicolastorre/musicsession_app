@@ -8,8 +8,8 @@ class EmailField extends Field
 {
 
 	//CONSTRUCTOR
-	public function __construct($label,$name,$type,array $attr, $value) {
-		PARENT::__construct($label,$name,$type,$attr,$value);
+	public function __construct($label,$name,$type,array $attr, $value, $raw) {
+		PARENT::__construct($label,$name,$type,$attr,$value,$raw);
 	}
 
 	//SPECIFIC METHODS

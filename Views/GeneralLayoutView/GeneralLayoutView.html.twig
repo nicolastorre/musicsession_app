@@ -14,16 +14,22 @@
 		<nav>
 			<ul>
 				{% set menu = menuAction() %}
-				{% for menuitem in 0..2 %}
+				{% for menuitem in 0..3 %}
 				<li><a href='{{ menu[menuitem].url }}'>{{ menu[menuitem].name }}</a></li>
 				{% endfor %}
 			</ul>
 			<ul>
-				<li><a href='{{ menu[3].url }}'>{{ menu[3].name }}</a></li>
-				<li><a href='{{ menu[4].url }}' id="parameters"><img src="Ressources/public/images/cog.png" alt="parameters"></a></li>
+                                <li>
+                                    {{ menu.searchform.formstart | raw}}
+                                    {{ menu.searchform.search | raw}}
+                                    {{ menu.searchform.submit | raw}}
+                                    {{ menu.searchform.formend | raw}}
+                                </li>
+				<li><a href='{{ menu[4].url }}' id="parameters"><img src="Ressources/public/images/app/parameters.png" alt="parameters"></a></li>
 			</ul>
 		</nav>
 		<section>
+                    <div id="flashbag">{{ data.flashbag }}</div>
 			{% block section %}
 			{% endblock %}
 		</section>

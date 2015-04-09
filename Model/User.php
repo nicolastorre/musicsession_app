@@ -9,8 +9,9 @@ class User
 	private $name;
 	private $email;
 	private $lang;
+	private $key;
 
-	public function __construct($iduser,$pseudo,$pwdhashed,$firstname,$name,$email,$lang) {
+	public function __construct($iduser,$pseudo,$pwdhashed,$firstname,$name,$email,$lang,$key = null) {
 		$this->id_user = $iduser;
 		$this->pseudo = $pseudo;
 		$this->pwdhashed = $pwdhashed;
@@ -18,6 +19,7 @@ class User
 		$this->name = $name;
 		$this->email = $email;
 		$this->lang = $lang;
+		$this->key = $key;
 	}
 
 	public function getIduser() {
@@ -62,6 +64,14 @@ class User
 
 	public function setLang($lang) {
 		return $this->lang = $lang;
+	}
+
+	public function getKey() {
+		return $this->key;
+	}
+
+	public function setKey() {
+		$this->key = $key;
 	}
 }
 

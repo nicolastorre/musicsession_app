@@ -28,10 +28,17 @@ class DefaultController extends baseController
      * and its url.
      */
 	public static function menuAction() {
+		if (isset($_SESSION['access']) and $_SESSION['access']) {
+			self::$menuitem[3] = "Backoffice";
+		}
 		$menulist = array();
 		foreach (self::$menuitem as $i) {
 			$menulist[] = array("name" => Translator::translate($i), "url" => UrlRewriting::generateURL($i,""));
 		}
+                $f = new FormManager("searchform","searchform",UrlRewriting::generateURL("Search",""));
+                $f->addField("","search","text","");
+                $f->addField("Submit ","submit","submit","?");
+                $menulist['searchform'] = $f->createView();
 		return $menulist;
 	}
 }

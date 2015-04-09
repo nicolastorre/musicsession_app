@@ -4,14 +4,15 @@ class ImageField extends Field
 {
 	private $target_dir;
 	//CONSTRUCTOR
-	public function __construct($label,$name,$type,array $attr, $value) {
-                $this->target_dir = UrlRewriting::generateSRC("tmp","","");
+	public function __construct($label,$name,$type,array $attr, $value,$raw) {
+        $this->target_dir = UrlRewriting::generateSRC("tmp","","");
 		$this->label = $label;
 		$this->name = $name;
 		$this->type = $type;
 		$this->attr = $attr;
 		$this->value = $value;
 		$this->error = "";
+		$this->raw = $raw;
 	}
 
 	public function display() {
@@ -65,7 +66,7 @@ class ImageField extends Field
 			$value = $request->getParameter($this->getName());
 			$this->setValue($value);
 
-                        if ($this->notEmpty() && $this->notOverflow(500000) && $this->notFakeFile() && $this->checkFormatAllowed()) {
+                        if ($this->notEmpty() && $this->notOverflow(700000) && $this->notFakeFile() && $this->checkFormatAllowed()) {
 				$this->error = "";
 				$target_file = $this->target_dir . basename($this->value["name"]);
 				 if (move_uploaded_file($this->value["tmp_name"], $target_file)) {

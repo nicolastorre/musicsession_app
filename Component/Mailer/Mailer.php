@@ -40,6 +40,7 @@ class Mailer
 		  ->setFrom(array($sendermail => $senderid))
 		  ->setTo(array($receivermail, $receivermail => $receiverid))
 		  ->setBody($msg)
+		  ->addPart($msg, 'text/html')
 		  ;
 
 		// Send the message

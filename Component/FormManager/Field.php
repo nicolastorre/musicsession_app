@@ -11,15 +11,17 @@ abstract class Field {
 	protected $attr;
 	protected $value;
 	protected $error;
+	protected $raw;
 
 	//CONSTRUCTOR
-	public function __construct($label,$name,$type,array $attr, $value) {
+	public function __construct($label,$name,$type,array $attr, $value, $raw) {
 		$this->label = $label;
 		$this->name = $name;
 		$this->type = $type;
 		$this->attr = $attr;
 		$this->value = $value;
 		$this->error = "";
+		$this->raw = $raw;
 	}
 	//SPECIFIC METHODS
 	abstract public function display(); //display the field in HTML
@@ -37,19 +39,23 @@ abstract class Field {
 	}
 
 	public function validate(Request &$request) {
-		if ($request->existsParameter($this->getName())) {
-			$value = $request->getParameter($this->getName());
-			$this->setValue($value);
-			if ($this->notEmpty() && $this->notOverflow(255)) {
-				$this->error = "";
-				return true;
+		if (!$this->raw) {
+			if ($request->existsParameter($this->getName())) {
+				$value = $request->getParameter($this->getName());
+				$this->setValue($value);
+				if ($this->notEmpty() && $this->notOverflow(255)) {
+					$this->error = "";
+					return true;
+				} else {
+					$this->error = "error";
+					return false;
+				}
 			} else {
 				$this->error = "error";
 				return false;
 			}
 		} else {
-			$this->error = "error";
-			return false;
+			return true;
 		}
 	}
 
