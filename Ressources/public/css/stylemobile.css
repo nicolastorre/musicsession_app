@@ -79,88 +79,25 @@ input[type="submit"], input[type="button"]
 }*/
 
 /* 1. Menu principale */
-nav
+/*nav
 {
 	position: fixed:
 	top: 0;
 	height: 50px;
 	min-width: 1000px;
 	background-color: #96281B;
-}
+}*/
 
-#mobile-menu
+.menu
 {
 	display: none;
 }
 
-nav > ul
-{
-	margin-left: 5%;
-	float: left;
-}
-
-nav > ul + ul
-{
-	position: absolute;
-	top: 0;
-	right: 0;
-	margin-right: 5%;
-}
-
-nav li
-{
-	list-style: none;
-	margin: 0 10px 0 10px;
-	display: inline-block;
-	line-height: 50px;
-	font-size: 18px;
-	padding: 0 5px 0 5px;
-}
-
-nav li.on:hover, nav li.off:hover
-{
-	background-color: #E74C3C;
-}
-
-nav .on
-{
-	background-color: #E74C3C;
-}
-
 nav li > form
 {
-	display: inline-block;
-	position: relative;
+
 }
 
-nav li > form div
-{
-	position: relative;
-	display: inline;
-	height: 25px;
-}
-
-#inputsearch
-{
-	width: 170px;
-	height: 20px;
-	margin: 0;
-	padding: 0;
-	border: none;
-	height: 25px;
-}
-
-#submitsearch
-{
-	position: absolute;
-	top: 0px;
-	right: 0px;
-	margin: 0;
-	padding: 0.2em;
-	border: none;
-	border-radius: 0px;
-	height: 25px;
-}
 
 nav a
 {
@@ -168,80 +105,35 @@ nav a
 	color: rgba(255, 255, 204, 0.9);
 }
 
-li.icon
-{
-	line-height: 49px;
-}
 
-#parameters
-{
-	display: block;
-}
-
-nav li #parameters > img
-{
-	position: relative;
-	top: 8px;
-}
-
-nav li > img
-{
-	position: relative;
-	top: 4px;
-	margin-right: 5px;
-}
 
 /* 2. Section (contenu du site) */
 section
 {
 	margin: 10px 3%;
-	min-width: 1000px;
+	/*min-width: 1000px;*/
 }
 
 #dashboard-left > *, #dashboard-right > *, #timeline, #footer
 {
 	position: relative;
 	background-color: #FFECBF;
+	margin: 1% 5%;
 	padding: 10px;
+	width: 90%;
 	border-radius: 5px;
 }
 
-#dashboard-left
+#songlist
 {
-	float: left;
-	width: 22%;
-}
-
-#timeline
-{
-	float: left;
-	margin: 0px 2%;
-	width: 50%;
-	border-radius: 5px;
-	padding: 5px;
-	min-height: 500px;
-}
-
-#dashboard-right
-{
-	float: left;
-	width: 22%;
-}
-
-#footer
-{
-	border-radius: 5px;
-	margin-top: 10px;
-	padding: 10px;
+	display: none;
 }
 
 #footer .footer-item
 {
 	display: inline;
 	margin-right: 10px;
-	color: #8899A6;
 	font-size: 15px;
-	line-height: 18px;
 }
 
 /* 3. Pseudo et photo de profile */
@@ -280,6 +172,7 @@ section
 }
 
 /* 4. Module profilcard */
+
 #profilCard h1
 {
 	position: absolute;
@@ -428,26 +321,7 @@ section
 /* 10. Suggested friends module */
 #suggestedfriends
 {
-	background-color: #FFECBF;
-	border-radius: 5px;
-	padding: 10px;
-}
-
-#suggestedfriends h2
-{
-  font-family: 'Arial';
-  font-weight: normal;
-  font-size: 30px;
-  text-align: center;
-  color: #96281B;
-  margin-bottom: 15px;
-}
-
-#suggestedfriends li
-{
-	margin-bottom: 5px;
-	line-height: 30px;
-	min-height: 35px;
+	display: none;
 }
 
 /* 11. Parameters timeline */

@@ -3,33 +3,47 @@
 	<head>
 		{% block head %}
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
 		<base href="{{ webroot }}" >
 		<link rel='stylesheet' href='Ressources/public/css/CSSReset.css' type='text/css'>
-		<link rel='stylesheet' href='Ressources/public/css/main.css' type='text/css'>
-		<link rel='stylesheet' href='Ressources/public/css/TuneListModule.css' type='text/css'>
+		<link rel='stylesheet' media='screen and (min-width: 1050px)' href='Ressources/public/css/main.css' type='text/css'>
+                <link rel='stylesheet' media='screen and (max-width: 1050px)' href='Ressources/public/css/stylemobile.css' type='text/css'>
+		<link rel='stylesheet' media='screen and (min-width: 1050px)' href='Ressources/public/css/TuneListModule.css' type='text/css'>
+                <link rel='stylesheet' media='screen and (max-width: 1050px)' href='Ressources/public/css/Mobilemenu.css' type='text/css'>
 		<title>Music Score Writer</title>
 		{% endblock %}
 	</head>
 
 	<body>
 		<nav>
-			<ul>
+			<ul class="menu">
 				{% set menu = menuAction() %}
 				{% for menuitem in 0..3 %}
 				<li class="{{ menu[menuitem].class }}"><img src="{{ menu[menuitem].icon }}" alt=""><a href='{{ menu[menuitem].url }}'>{{ menu[menuitem].name }}</a></li>
 				{% endfor %}
 			</ul>
-			<ul>
-                <li>
-                    {{ menu.searchform.formstart | raw}}
-                    <div>
-                        {{ menu.searchform.search | raw}}
-                        {{ menu.searchform.submit | raw}}
-                    </div>
-                    {{ menu.searchform.formend | raw}}
-                </li>
+			<ul class="menu">
+                                <li>
+                                    {{ menu.searchform.formstart | raw}}
+                                    <div>
+                                        {{ menu.searchform.search | raw}}
+                                        {{ menu.searchform.submit | raw}}
+                                    </div>
+                                    {{ menu.searchform.formend | raw}}
+                                </li>
 				<li class="{{ menu[4].class }} icon"><a href='{{ menu[4].url }}' id="parameters"><img src="Ressources/public/images/app/parameters.png" alt="parameters"></a></li>
 			</ul>
+                        
+                        <ul id="mobile-menu">
+                        <li class="dropdown">
+                            <a href="#" data-toggle="dropdown"> Menu <i class="icon-arrow"></i></a>
+                            <ul class="dropdown-menu">
+                                    {% for menuitem in menu %}
+                                    <li><a href='{{ menuitem.url }}'>{{ menuitem.name }}</a></li>
+                                    {% endfor %}
+                            </ul>
+                        </li>
+                        </ul>
 		</nav>
 		<section>
                     <div class="flashbag">{{ data.flashbag }}</div>
