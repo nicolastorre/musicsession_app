@@ -577,29 +577,38 @@ section
 
 .add
 {
-  display: inline-block;
-  background-image: url("../images/app/add.png");
-  background-size: 20px 20px;
-  width: 20px;
-  height: 20px;
+	display: inline-block;
+	background-image: url("../images/app/add.png");
+	background-size: 20px 20px;
+	width: 20px;
+	height: 20px;
+}
+
+.addscore
+{
+	display: inline-block;
+	background-image: url("../images/app/addscore.png");
+	background-size: 20px 20px;
+	width: 20px;
+	height: 20px;
 }
 
 .delete
 {
-  display: inline-block;
-  background-image: url("../images/app/delete.png");
-  background-size: 20px 20px;
-  width: 20px;
-  height: 20px;
+	display: inline-block;
+	background-image: url("../images/app/delete.png");
+	background-size: 20px 20px;
+	width: 20px;
+	height: 20px;
 }
 
 .viewtune
 {
-  display: inline-block;
-  background-image: url("../images/app/filemusic.png");
-  background-size: 20px 20px;
-  width: 20px;
-  height: 20px;
+	display: inline-block;
+	background-image: url("../images/app/filemusic.png");
+	background-size: 20px 20px;
+	width: 20px;
+	height: 20px;
 }
 
 /* 14. Tune timeline */

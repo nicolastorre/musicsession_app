@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Sam 11 Avril 2015 à 10:15
--- Version du serveur :  5.6.17-log
+-- Généré le :  Mar 14 Avril 2015 à 18:56
+-- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `friendship` (
   PRIMARY KEY (`id_fdshp`),
   KEY `fk_userfriendship_a` (`fk_user_a`),
   KEY `fk_userfriendship_b` (`fk_user_b`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
 
 --
 -- Contenu de la table `friendship`
@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `likedtune` (
   PRIMARY KEY (`id_likedtune`),
   KEY `fk_likedtune_tune` (`fk_tune_lt`),
   KEY `fk_likedtune_user` (`fk_user_lt`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=62 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=77 ;
 
 --
 -- Contenu de la table `likedtune`
@@ -106,7 +106,9 @@ INSERT INTO `likedtune` (`id_likedtune`, `fk_tune_lt`, `fk_user_lt`) VALUES
 (58, 58, 1),
 (59, 59, 1),
 (60, 60, 21),
-(61, 58, 21);
+(61, 58, 21),
+(62, 56, 20),
+(76, 74, 1);
 
 -- --------------------------------------------------------
 
@@ -145,20 +147,52 @@ DROP TABLE IF EXISTS `news`;
 CREATE TABLE IF NOT EXISTS `news` (
   `id_news` int(11) NOT NULL AUTO_INCREMENT,
   `fk_user_news` int(11) NOT NULL,
-  `date_news` datetime NOT NULL,
+  `date_news` timestamp NOT NULL,
   `content_news` varchar(255) NOT NULL,
   PRIMARY KEY (`id_news`),
   KEY `fk_news` (`fk_user_news`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=56 ;
 
 --
 -- Contenu de la table `news`
 --
 
 INSERT INTO `news` (`id_news`, `fk_user_news`, `date_news`, `content_news`) VALUES
-(1, 20, '2015-04-09 16:32:29', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque lacinia libero in quam cursus, ut sodales leo molestie. Curabitur urna ligula, pretium eget eros a, maximus efficitur tortor. Aliquam sodales sodales tortor vel venenatis. Cras pharetra blan'),
-(2, 1, '2015-04-09 16:32:58', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque lacinia libero in quam cursus, ut sodales leo molestie. Curabitur urna ligula, pretium eget eros a, maximus efficitur tortor. Aliquam sodales sodales tortor vel venenatis. Cras pharetra blan'),
-(3, 1, '2015-04-09 16:54:57', '<a href=''Tune/index/56'' class=''hashtag''>#StairwayToHeaven</a>');
+(1, 20, '2015-04-09 14:32:29', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque lacinia libero in quam cursus, ut sodales leo molestie. Curabitur urna ligula, pretium eget eros a, maximus efficitur tortor. Aliquam sodales sodales tortor vel venenatis. Cras pharetra blan'),
+(2, 1, '2015-04-09 14:32:58', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque lacinia libero in quam cursus, ut sodales leo molestie. Curabitur urna ligula, pretium eget eros a, maximus efficitur tortor. Aliquam sodales sodales tortor vel venenatis. Cras pharetra blan'),
+(3, 1, '2015-04-09 14:54:57', '<a href=''Tune/index/56'' class=''hashtag''>#StairwayToHeaven</a>'),
+(54, 1, '2015-04-14 09:07:58', 'Test'),
+(55, 1, '2015-04-14 14:30:48', '<a href=''Tune/index/59'' class=''hashtag''>#ScottishDelGatto</a>');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `score`
+--
+
+DROP TABLE IF EXISTS `score`;
+CREATE TABLE IF NOT EXISTS `score` (
+  `id_score` int(11) NOT NULL AUTO_INCREMENT,
+  `fk_tune_score` int(11) NOT NULL,
+  `fk_user_score` int(11) NOT NULL,
+  `pdf_score` varchar(255) NOT NULL,
+  `date_score` datetime NOT NULL,
+  PRIMARY KEY (`id_score`),
+  KEY `fk_tune_score_ref` (`fk_tune_score`),
+  KEY `fk_user_score_ref` (`fk_user_score`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=38 ;
+
+--
+-- Contenu de la table `score`
+--
+
+INSERT INTO `score` (`id_score`, `fk_tune_score`, `fk_user_score`, `pdf_score`, `date_score`) VALUES
+(3, 56, 1, 'led_zeppelin-stairway_to_heaven.pdf', '0000-00-00 00:00:00'),
+(4, 57, 1, 'NissaLaBella.pdf', '0000-00-00 00:00:00'),
+(5, 58, 1, '[Free-scores.com]_beethoven-ludwig-van-for-elise-549.pdf', '0000-00-00 00:00:00'),
+(6, 59, 1, '27-Scottish_gatto.pdf', '0000-00-00 00:00:00'),
+(36, 74, 1, 'NicolasTorre_LettreDeMotivation552d45fb07a49.pdf', '2015-04-14 18:53:15'),
+(37, 74, 1, 'NicolasTorre_LettreDeMotivation552d460520713.pdf', '2015-04-14 18:53:25');
 
 -- --------------------------------------------------------
 
@@ -174,21 +208,21 @@ CREATE TABLE IF NOT EXISTS `tune` (
   `composer` varchar(255) NOT NULL,
   `category_tune` varchar(255) NOT NULL,
   `date_tune` datetime NOT NULL,
-  `pdf_tune` varchar(255) NOT NULL,
   PRIMARY KEY (`id_tune`),
   KEY `fk_tune_user` (`fk_user_tune`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=61 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=75 ;
 
 --
 -- Contenu de la table `tune`
 --
 
-INSERT INTO `tune` (`id_tune`, `fk_user_tune`, `title_tune`, `composer`, `category_tune`, `date_tune`, `pdf_tune`) VALUES
-(56, 1, 'StairwayToHeaven', 'led Zeppelin', 'rock', '2015-04-09 16:38:19', 'led_zeppelin-stairway_to_heaven.pdf'),
-(57, 1, 'NissaLaBella', 'Menica Rondelly', 'trad', '2015-04-09 16:40:00', 'NissaLaBella.pdf'),
-(58, 1, 'LettreaElise', 'Ludwig van Beethoven', 'classique', '2015-04-09 16:42:49', '[Free-scores.com]_beethoven-ludwig-van-for-elise-549.pdf'),
-(59, 1, 'ScottishDelGatto', 'Sergio Berardo', 'trad', '2015-04-09 16:44:30', '27-Scottish_gatto.pdf'),
-(60, 21, 'AuClairDelaLune', 'anonyme', 'chanson populaire', '2015-04-09 16:54:01', 'partition-au-clair-de-la-lune.pdf');
+INSERT INTO `tune` (`id_tune`, `fk_user_tune`, `title_tune`, `composer`, `category_tune`, `date_tune`) VALUES
+(56, 1, 'StairwayToHeaven', 'led Zeppelin', 'rock', '2015-04-09 16:38:19'),
+(57, 1, 'NissaLaBella', 'Menica Rondelly', 'trad', '2015-04-09 16:40:00'),
+(58, 1, 'LettreaElise', 'Ludwig van Beethoven', 'classique', '2015-04-09 16:42:49'),
+(59, 1, 'ScottishDelGatto', 'Sergio Berardo', 'trad', '2015-04-09 16:44:30'),
+(60, 21, 'AuClairDelaLune', 'anonyme', 'chanson populaire', '2015-04-09 16:54:01'),
+(74, 1, 'test', 'test', 'rock', '2015-04-14 18:53:15');
 
 -- --------------------------------------------------------
 
@@ -251,6 +285,13 @@ ALTER TABLE `message`
 --
 ALTER TABLE `news`
   ADD CONSTRAINT `fk_news` FOREIGN KEY (`fk_user_news`) REFERENCES `user` (`id_user`);
+
+--
+-- Contraintes pour la table `score`
+--
+ALTER TABLE `score`
+  ADD CONSTRAINT `fk_user_score_ref` FOREIGN KEY (`fk_user_score`) REFERENCES `user` (`id_user`),
+  ADD CONSTRAINT `fk_tune_score_ref` FOREIGN KEY (`fk_tune_score`) REFERENCES `tune` (`id_tune`);
 
 --
 -- Contraintes pour la table `tune`

@@ -28,9 +28,12 @@ class Routing
 		url::addURL("Songslist","Songslist","index");
 			url::addURL("Delete","Songslist","delete");
 			url::addURL("Add","Songslist","add");
-            url::addURL("Share","Songslist","share");
+                        url::addURL("Share","Songslist","share");
 
 		url::addURL("Tune","Tune","index");
+                    url::addURL("Addscore","Tune","addscore");
+                    url::addURL("Savescore","Tune","savescore");
+                    url::addURL("Deletescore","Tune","deletescore");
 
 		url::addURL("Friends","Friends","index");
 

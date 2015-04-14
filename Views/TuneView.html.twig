@@ -6,6 +6,10 @@
 		<h3 class="composer">{{ data.tune.composer }}</h3>
 		<h3 class="category">{{ data.tune.category }}</h3>
 		<h4 class="datetune">{{ data.tune.datetune }}</h4>
-		 <iframe src="{{ data.tune.url }}"></iframe> 
+                {% for score in data.tune.forked %}
+                    <a href="{{ score.delete }}">Delete</a>
+                <div class="datescore">{{ score.date }}</div>
+                <iframe src="{{ score.pdfurl }}"></iframe> 
+                {% endfor %}
 	</div>
 {% endblock %}

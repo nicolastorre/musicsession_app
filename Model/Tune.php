@@ -8,19 +8,22 @@ class Tune
 	private $composer;
 	private $category;
 	private $datetune;
-	private $pdf;
 	private $forkedusers;
-	private $forkedpdf;
+	private $pdfscore;
+        private $datescore;
+        private $idscorelist;
 
-	public function __construct($idtune, $iduser, $title, $composer, $category, $datetune, $pdf) {
+	public function __construct($idtune, $iduser, $title, $composer, $category, $datetune, $pdfscore = "", $forkedusers = "", $datescore = "",$idscorelist = "") {
 		$this->idtune = $idtune;
 		$this->iduser = $iduser;
 		$this->title = $title;
 		$this->composer = $composer;
 		$this->category = $category;
 		$this->datetune = $datetune;
-		$this->pdf = $pdf;
-
+                $this->forkedusers = $forkedusers;
+                $this->pdfscore = $pdfscore;
+                $this->datescore = $datescore;
+                $this->idscorelist = $idscorelist;
 	}
 
 	public function getIdtune() {
@@ -46,10 +49,22 @@ class Tune
 	public function getDatetune() {
 		return $this->datetune;
 	}
-
-	public function getPdf() {
-		return $this->pdf;
-	}
+        
+        public function getForkedusers() {
+                return $this->forkedusers;
+        }
+        
+        public function getPdfscore() {
+                return $this->pdfscore;
+        }
+        
+        public function getDatescore() {
+                return $this->datescore;
+        }
+        
+        public function getIdscorelist() {
+                return $this->idscorelist;
+        }
 }
 
 ?>

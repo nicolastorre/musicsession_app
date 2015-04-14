@@ -41,9 +41,12 @@ class SongslistController extends BaseController
                 if ($tune != false) {
                     if ($tune->getIduser() == $_SESSION['iduser']) {
                         // delete the pdf file
-                        $file = UrlRewriting::generateSRC("userfolder", $_SESSION['pseudo'], $tune->getPdf());
-                        if (file_exists($file)) {
-                            unlink($file);
+                        $pdfscore = $tune->getPdfscore();
+                        foreach ($pdfscore as $pdf) {
+                            $file = UrlRewriting::generateSRC("userfolder", $_SESSION['pseudo'],$pdf);
+                            if (file_exists($file)) {
+                                unlink($file);
+                            }
                         }
                         // delete each tuple with fk_tune in the likedtune table
                         $tunerep->deleteTuneForAll($idtune);
@@ -99,7 +102,7 @@ class SongslistController extends BaseController
 				$class = "item-odd";
 			}
                         
-            $tuneaction = array();
+                        $tuneaction = array();
 			if ($_SESSION['pseudo'] == $pseudo && $tunerep->checkTuneLikedByUser($_SESSION['iduser'], $tune->getIdtune())) {
 				$tuneaction['deleteadd'] = array('class' => 'delete', 'url' => UrlRewriting::generateURL("Delete",$pseudo."/".$tune->getIdtune()));
 			} 
@@ -118,8 +121,9 @@ class SongslistController extends BaseController
 				"composer" => $tune->getComposer(), 
 				"category" => $tune->getCategory(), 
 				"datetune" => Pubdate::printDate($tune->getDatetune()),  
-				"pdftune" => $tune->getPdf(),
+				"pdftune" => $tune->getPdfscore(),
 				"urltune" => UrlRewriting::generateURL("Tune",$tune->getIdtune()),
+                                "addscore" => UrlRewriting::generateURL("Addscore",$tune->getIdtune()),
                                 "sharetune" => UrlRewriting::generateURL("Share",$tune->getIdtune()),
 				"deleteadd" => $tuneaction['deleteadd']);
 			$i++;

@@ -29,7 +29,8 @@ class NewsongController extends BaseController
 		if ($f->validate($request)) {
                         unset($_SESSION["importsongform"]);
 			$dataform = $f->getValues();
-
+                        $salt = uniqid();
+                        
                         $tunerep = new TuneRepository();
                         if (preg_match('/[^-_a-z0-9.]/iu', $dataform['title'])) // http://stackoverflow.com/questions/18851116/php-regex-for-matching-all-special-characters-included-accented-characters
                         {
@@ -44,13 +45,13 @@ class NewsongController extends BaseController
                                     }
                                 }
 
-                                $tune = new Tune(null,$_SESSION['iduser'],$dataform['title'], $dataform['composer'], $dataform['category'][0], $datetune, $dataform['pdf']['name']);
+                                $tune = new Tune(null,$_SESSION['iduser'],$dataform['title'], $dataform['composer'], $dataform['category'][0],$datetune, basename($dataform['pdf']['name'],".pdf").$salt.".pdf");
                                 $tunerep = new TuneRepository();
                                 $tunerep->addTune($tune);
 
                                 $filepath = UrlRewriting::generateSRC("tmp","",$dataform['pdf']['name']);
                                 $img = new ImageManager($filepath);
-                                $img->renameMove(UrlRewriting::generateSRC("userfolder", $_SESSION['pseudo'], $dataform['pdf']['name']));
+                                $img->renameMove(UrlRewriting::generateSRC("userfolder", $_SESSION['pseudo'], basename($dataform['pdf']['name'],".pdf").$salt.".pdf"));
 
                                 $this->indexAction($request);
                             } else {
@@ -91,9 +92,9 @@ class NewsongController extends BaseController
 		if ($f == null) {
 			$f = new FormManager("importsongform","importsongform",UrlRewriting::generateURL("addNewSong",""));
 			$f->addField("Title: ","title","text","");
-            $f->addField("Composer: ","composer","text","");
-            $f->addField("Category: ","category","select",array(array('v' => 'classique','s' => false),array('v' => 'rock','s' => true),array('v' => 'trad','s' => false),array('v' => 'other','s' => false)),"Error",array('id' => 'category'));
-            $f->addField(" ","addcategory","text","","Error",array('id' => 'other'),true);
+                        $f->addField("Composer: ","composer","text","");
+                        $f->addField("Category: ","category","select",array(array('v' => 'classique','s' => false),array('v' => 'rock','s' => true),array('v' => 'trad','s' => false),array('v' => 'other','s' => false)),"Error",array('id' => 'category'));
+                        $f->addField(" ","addcategory","text","","Error",array('id' => 'other'),true);
 			$f->addField("pdf score: ","pdf","file","");
 			$f->addField("Submit ","submit","submit","Import song","Error",array('id' => 'submit'));	
 		}
