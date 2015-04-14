@@ -4,10 +4,14 @@
 	<ul>
 		{% for itemfriends in data.friends %}
 		<li class="item-notif">
-			<div>{{ itemfriends.datefd }}</div>
-			<span>You are friend with </span>
-			<div class="profile"><a href="{{ itemfriends.url }}">{{ itemfriends.pseudo }}</a></div>
-			<a href="{{ itemfriends.url }}"><img class="profil-pic" src="{{ itemfriends.profilephoto }}" alt="photo profil"></a>
+			<div class="notif">
+				<div>{{ itemfriends.datefd }}</div>
+				<a href="{{ itemfriends.url }}"><img class="profil-pic-m" src="{{ itemfriends.profilephoto }}" alt="photo profil"></a>
+				<div>
+					<div class="profile"><a href="{{ itemfriends.url }}">{{ itemfriends.pseudo }}</a></div>
+					is friend with you!
+				</div>
+			</div>
 		</li>
 		{% endfor %}
 	</ul>

@@ -2,6 +2,7 @@
 
 {% block head %}
 	{{ parent() }}
+        <link rel='stylesheet' href='Ressources/public/css/TableSorter/style.css' type='text/css'>
 	<script src="Ressources/public/js/jquery-2.1.3.min.js"></script>
 	<script src="Ressources/public/js/jquery.tablesorter/jquery.tablesorter.js"></script>
 	<script src="Ressources/public/js/tabletunes.js"></script>
@@ -11,11 +12,13 @@
 	<div id="tuneslist">
 		<table id="tabletunes" class="tablesorter">
 			<thead>
+                            <tr>
 				<th>Title</th>
 				<th>Composer</th>
 				<th>Category</th>
 				<th>Date</th>
-				<th></th>
+				<th class="{sorter: false}"></th>
+                            </tr>
 			</thead>
 			<tbody>
 				{% for itemtune in data.tunelist %}

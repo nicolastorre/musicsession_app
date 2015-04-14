@@ -1,5 +1,57 @@
 ToDo List
 
+	Message pour spécifier qu'il n'y a pas de messages ou qu'il n'y a pas de news pour cette utilisateur
+	Recherche utilisateur sur les catégories des liked tune
+	Laisser ouvert la catégorie sélectionnée dans le module Songs list
+
+	Bouton "signaler" dans la page parameters avec un champs
+	"Suggested friends" => utiliser les cétégories des liked tunes
+	Icône "nouveau message"
+	Vérifications des formulaires en JavaScript / JQuery
+
+Backoffice
+Multiversionning de partitions de musique (fct uniqid()) => fork icon
+Modifier les dates (done)
+Bouton déconnexion => unset($_SESSION['iduser']) et unset($_SESSION['pseudo']) (done)
+Blocked profil => créer la pagen (done)
+
+Update PHP structure
+	FormManager: 
+		Add error message in parameters of the field constructor (done)
+		Password field in FormManager and avoid resend the value of password input (done)
+	add userErrorHandler function
+	add "throw" at right points (done)
+	unset chaque formulaire après utilisation (done)
+	add comments
+
+Translate and error message
+
+Validate each functionnality
+
+Update CSS code
+
+Refresh design
+
+Development of responsive design
+
+Edit terms, privacy, cookies
+
+Validate the version 1
+
+Development of the Music Editor
+	Design and CSS
+	Script of the Music Editor interface to edit easily music note and send to the server via AJAX
+
+Edit the final report
+
+
+
+
+
+
+/*************************************************************************************************************************/
+
+
 Search profile page (done)
 
 Image de profile par défaut si pas d'image de profile existe (done)
@@ -40,38 +92,3 @@ Ajouter le bloquage des accès non-amis pour les pages friends, songs ...
 Password strength in Javascript / JQuery + convert md5 ou sha-1
 
 Ajouter "accepter une invitation"
-
-
-
-Vérifications des formulaires en JavaScript / JQuery
-
-
-Update PHP structure
-	Autoloader with namespaces and use
-	FormManager: 
-		Add error message in parameters of the field constructor
-		Password field in FormManager and avoid resend the value of password input
-		file input with uploading method for pdf and musicxml
-
-	add userErrorHandler function
-	add "throw" at right points
-	DBManager: avoid insert, update and delete after reloading a page: by using a uniqueid token => https://arjunphp.com/prevent-multiple-form-submissions-php/
-	unset chaque formulaire après utilisation
-
-Validate each functionnality
-
-Update CSS code
-
-Refresh design
-
-Development of responsive design
-
-Edit terms, privacy, cookies
-
-Validate the version 1
-
-Development of the Music Editor
-	Design and CSS
-	Script of the Music Editor interface to edit easily music note and send to the server via AJAX
-
-Edit the final report

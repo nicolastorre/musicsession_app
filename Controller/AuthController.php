@@ -54,15 +54,15 @@ class AuthController extends BaseController
     //     $this->render("PwdView.html.twig",$data); // create the view
     // }
 
-    public function confirmmailAction(Request &$request) {
-        $key = $request->getParameter("par")[0];
-        $userrep = new UserRepository();
-        if ($userrep->confirmmail($key)) {
-            $this->indexAction($request, $f = null, $insc = null, "Your account is registered!");
-        } else {
-            $this->indexAction($request, $f = null, $insc = null, "Error during confirmation!");
+        public function confirmmailAction(Request &$request) {
+                $key = $request->getParameter("par")[0];
+                $userrep = new UserRepository();
+                if ($userrep->confirmmail($key)) {
+                    $this->indexAction($request, $f = null, $insc = null, "Your account is registered!");
+                } else {
+                    $this->indexAction($request, $f = null, $insc = null, "Error during confirmation!");
+                }
         }
-    }
 
 	/**
      * Inscription of a new user
@@ -76,6 +76,8 @@ class AuthController extends BaseController
 	public function inscuserAction(Request &$request) {
 		$insc = unserialize($_SESSION["inscform"]);
 		if ($insc->validate($request)) {
+                        unset($_SESSION["langform"]);
+                        unset($_SESSION["inscform"]);
 			$dataform = $insc->getValues();
                         if (preg_match('/[^-_a-z0-9.]/iu', $dataform['pseudo'])) // http://stackoverflow.com/questions/18851116/php-regex-for-matching-all-special-characters-included-accented-characters
                         {
@@ -123,23 +125,28 @@ class AuthController extends BaseController
 	public function authuserAction(Request &$request) {
 		$f = unserialize($_SESSION["authform"]);
 		if ($f->validate($request)) {
-			$dataform = $f->getValues();
+                        unset($_SESSION["langform"]);
+                        unset($_SESSION["authform"]);
+
+                        $dataform = $f->getValues();
 			$userrep = new UserRepository();
 			$authdata = $userrep->authUser($dataform['pseudo'],$dataform['pwd']);
 			if ($authdata != false) {
 				$_SESSION['iduser'] = $authdata['id_user'];
 				$_SESSION['pseudo'] = $authdata['pseudo'];
-                $_SESSION['lang'] = $authdata['lang'];
+                                $_SESSION['lang'] = $authdata['lang'];
 
-                if ($authdata['access'] == "admin") {
-                    $_SESSION['access'] = true;
-                }
+                                if ($authdata['access'] == "admin") {
+                                    $_SESSION['access'] = true;
+                                }
 
 				$ctrl = new HomeController();
 				$ctrl->indexAction($request);
 
 			} else {
-				$this->indexAction($request, $f);
+                                $f->resetPwd();
+                                $flashbag = "Error: invalid pseudo or password!";
+				$this->indexAction($request, $f, $insc = null, $flashbag);
 			}
 		} else {
 			$this->indexAction($request, $f);
@@ -158,21 +165,21 @@ class AuthController extends BaseController
      */
 	public function indexAction(Request &$request, FormManager $f = null, FormManager $insc = null, $flashbag = null) {
             
-        if ($request->existsParameter("lang_fr")) {
-            $_SESSION['lang'] = "fr";
-        } else {
-            $_SESSION['lang'] = "en";
-        }
+                if ($request->existsParameter("lang_fr")) {
+                    $_SESSION['lang'] = "fr";
+                } else {
+                    $_SESSION['lang'] = "en";
+                }
 
-        $langform = new FormManager("langform","langform",UrlRewriting::generateURL("authpage",""));
-        $langform->addField("Lang_fr ","lang_fr","submit","Fr");
-        $langform->addField("Lang_en","lang_en","submit","En");
+                $langform = new FormManager("langform","langform",UrlRewriting::generateURL("authpage",""));
+                $langform->addField("Lang_fr ","lang_fr","submit","Fr","Error");
+                $langform->addField("Lang_en","lang_en","submit","En","Error");
 
 		// the authentification form
 		if ($f == null) {
 			$f = new FormManager("authform","authform",UrlRewriting::generateURL("authuser",""));
-			$f->addField(Translator::translate("Pseudo: "),"pseudo","text","");
-			$f->addField(Translator::translate("Password: "),"pwd","text","");
+			$f->addField(Translator::translate("Pseudo: "),"pseudo","text","","Invalid pseudo or password!");
+			$f->addField(Translator::translate("Password: "),"pwd","password","","Invalid pseudo or password!");
 			$f->addField("Sign in ","submit","submit",Translator::translate("Sign in"));	
 		}
 
@@ -180,7 +187,7 @@ class AuthController extends BaseController
 		if ($insc == null) {
 			$insc = new FormManager("inscform","inscform",UrlRewriting::generateURL("inscuser",""));
 			$insc->addField(Translator::translate("Pseudo: "),"pseudo","text","");
-			$insc->addField(Translator::translate("Password: "),"pwdhashed","text","");
+			$insc->addField(Translator::translate("Password: "),"pwdhashed","password","");
 			$insc->addField(Translator::translate("Firstname: "),"firstname","text","");
 			$insc->addField(Translator::translate("Name: "),"name","text","");
 			$insc->addField(Translator::translate("E-mail: "),"email","email","");
@@ -188,11 +195,11 @@ class AuthController extends BaseController
 		}
 
 		$data = array(); // $data contains all page view data
-        $data['flashbag'] = $flashbag;
-        $data['langform'] = $langform->createView(); // the authentification form
+                $data['flashbag'] = $flashbag;
+                $data['langform'] = $langform->createView(); // the authentification form
 		$data['authform'] = $f->createView(); // the authentification form
 		$data['inscform'] = $insc->createView(); // the inscription form
-        $data['forgottenpwd'] = array('url' => UrlRewriting::generateURL("sendmail",""), 'name' => Translator::translate("Forgotten password?"));
+                $data['forgottenpwd'] = array('url' => UrlRewriting::generateURL("sendmail",""), 'name' => Translator::translate("Forgotten password?"));
 
 		$this->render("AuthView.html.twig",$data); // create the view
 	}

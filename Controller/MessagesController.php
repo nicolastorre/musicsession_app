@@ -76,6 +76,8 @@ class MessagesController extends BaseController
 		$userrep = new UserRepository();
 		$iduserb = $userrep->getUserIdByPseudo($request->getParameter("par")[0]);
 		if ($f->validate($request)) {
+                        unset($_SESSION["sendmsgform"]);
+                        
 			$dataform = $f->getValues();
 			$dataform['msg'] = $this->replaceHashtag($dataform['msg']);
 
@@ -104,7 +106,7 @@ class MessagesController extends BaseController
 				$msglist[] = array("idmsg" => $msg->getIdmsg(),"url" => UrlRewriting::generateURL("Profil",$userrep->getUserPseudoById($msg->getSender())), 
 					"pseudo" => $userrep->getUserPseudoById($msg->getSender()),
 					"profilephoto" => UrlRewriting::generateSRC("userfolder", $userrep->getUserPseudoById($msg->getSender()),"profile_pic.png", "../default/profile_pic.png"),
-					"date" => $msg->getDate(), 
+					"date" => Pubdate::printDate($msg->getDate()), 
 					"content" => $msg->getContent());
 			}    
 		}
@@ -185,7 +187,7 @@ class MessagesController extends BaseController
 					$data['msglist'][] = array("idmsg" => $msg->getIdmsg(),"url" => UrlRewriting::generateURL("Profil",$userrep->getUserPseudoById($msg->getSender())), 
 						"pseudo" => $userrep->getUserPseudoById($msg->getSender()),
 						"profilephoto" => UrlRewriting::generateSRC("userfolder", $userrep->getUserPseudoById($msg->getSender()),"profile_pic.png", "../default/profile_pic.png"),
-						"date" => $msg->getDate(), 
+						"date" => Pubdate::printDate($msg->getDate()), 
 						"content" => $msg->getContent());
 									$data['iduser'] = $iduserb;
 	                                $data['lastmsg'] = $msg->getIdmsg();

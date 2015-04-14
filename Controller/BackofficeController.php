@@ -35,7 +35,7 @@ class BackofficeController extends BaseController
 		$userrep = new UserRepository();
 		$iduser = $userrep->getUserIdByPseudo($pseudo);
 
-        $data['profilcard'] = ProfilController::ProfilCard($pseudo); // init the Profile Card module
+                $data['profilcard'] = ProfilController::ProfilCard($pseudo); // init the Profile Card module
 
 
 		$this->render("BackofficeView.html.twig",$data); // create the view

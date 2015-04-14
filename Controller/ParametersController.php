@@ -7,9 +7,17 @@
 /******************************************************************************/
 class ParametersController extends BaseController
 {
+        public function logoutAction(Request &$request) {
+            unset($_SESSION['iduser']);
+            unset($_SESSION['pseudo']);
+            $ctrl = new AuthController();
+            $ctrl->indexAction($request);
+        }
+        
         public function updatepwdAction(Request &$request) {
             $h = unserialize($_SESSION["updatepwd"]);
             if ($h->validate($request)) {
+                unset($_SESSION["updatepwd"]);
                 $dataform = $h->getValues();
                 if ($dataform['pwd'] == $dataform['confirmpwd']) {
                 
@@ -31,13 +39,14 @@ class ParametersController extends BaseController
         public function updatephotoAction(Request &$request) {
             $g = unserialize($_SESSION["updatephoto"]);
             if ($g->validate($request)) {
+                unset($_SESSION["updatephoto"]);
                 $dataform = $g->getValues();
 
                 $filepath = UrlRewriting::generateSRC("tmp","",$dataform['pic']['name']);
                 $img = new ImageManager($filepath);
                 $img->convertInProfilePic(UrlRewriting::generateSRC("userfolder", $_SESSION['pseudo'],"profile_pic.png"));
                 
-                // header('Content-Type: text/html; charset=utf-8');
+                header('Content-Type: text/html; charset=utf-8');
                 $this->indexAction($request);
             } else {
 				$this->indexAction($request, $f = null, $g);
@@ -47,6 +56,7 @@ class ParametersController extends BaseController
 	public function updateparametersAction(Request &$request) {
 		$f = unserialize($_SESSION["parametersform"]);
 		if ($f->validate($request)) {
+                        unset($_SESSION["parametersform"]);
 			$dataform = $f->getValues();
 			
 			// test if pseudo is unique in the DB
@@ -75,7 +85,7 @@ class ParametersController extends BaseController
 	}
 	
 	// Principal action of the HomeController 
-	public function indexAction(Request &$request, FormManager $f = null, FormManager $g = null, FormManager $h = null, $flashbag = null) {
+	public function indexAction(Request &$request, FormManager $f = null, FormManager $g = null, FormManager $h = null, $flashbag = null, FormManager $i = null) {
 		$data = array();
 		$pseudo = $_SESSION['pseudo'];
 		$userrep = new UserRepository();
@@ -108,7 +118,7 @@ class ParametersController extends BaseController
 		if ($g == null) {
 			$g = new FormManager("updatephoto","updatephoto",UrlRewriting::generateURL("updatephoto",""));
                         $g->addField("Profile photo: ","pic","file","");
-			$g->addField("Submitphoto","submit","submit","Update");	
+			$g->addField("Submitphoto","submit","submit","Upload your photo");	
 		}
 		$data['updatephoto'] = $g->createView();
                 
@@ -119,6 +129,8 @@ class ParametersController extends BaseController
 			$h->addField("Submitphoto","submit","submit","Update");	
 		}
 		$data['updatepwd'] = $h->createView();
+                
+                $data['logout'] = array('url' => UrlRewriting::generateURL("logout", ""), 'value' => Translator::translate("log out"));
                 
 		$data['suggestedfriends'] = FriendsController::suggestedFriends(3);
 

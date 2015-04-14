@@ -7,8 +7,8 @@
 class SelectField extends MultiValuesField
 {
 	//CONSTRUCTOR
-	public function __construct($label,$name,$type,array $attr, array $value,$raw) {
-		PARENT::__construct($label,$name,$type,$attr,$value,$raw);
+	public function __construct($label,$name,$type,array $attr, array $value, $error,$raw) {
+		PARENT::__construct($label,$name,$type,$attr,$value,$error,$raw);
 	}
 
 	//SPECIFIC METHODS
@@ -27,7 +27,7 @@ class SelectField extends MultiValuesField
 			}
 			$options .= "<option value=".$v['v']." ".$v['s'].">".$v['v']."</option>";
 		}
-		return "\n\t<div class='error'>$this->error</div><label for=\"$this->name\">$this->label</label><select name='$this->name' $attrview >$options</select>";
+		return "\n\t<div class='error'>$this->errormsg</div><label for=\"$this->name\">$this->label</label><select name='$this->name' $attrview >$options</select>";
 	}
 
 	public function getValue() {
@@ -76,16 +76,15 @@ class SelectField extends MultiValuesField
 			$value = $request->getParameter(str_replace("[]", "", $this->getName()));
 			$this->setValue($value);
 			if ($this->notEmpty() && $this->notOverflow(255)) {
-				$this->error = "";
 				return true;
 			} else {
-				$this->error = "error";
+                                $this->errormsg = $this->error;
 				return false;
 			}
 		} else {
 			$value = array();
 			$this->setValue($value);
-			$this->error = "error";
+                        $this->errormsg = $this->error;
 			return false;
 		}
 	}

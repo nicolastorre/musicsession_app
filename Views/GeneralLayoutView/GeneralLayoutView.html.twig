@@ -6,6 +6,7 @@
 		<base href="{{ webroot }}" >
 		<link rel='stylesheet' href='Ressources/public/css/CSSReset.css' type='text/css'>
 		<link rel='stylesheet' href='Ressources/public/css/main.css' type='text/css'>
+		<link rel='stylesheet' href='Ressources/public/css/TuneListModule.css' type='text/css'>
 		<title>Music Score Writer</title>
 		{% endblock %}
 	</head>
@@ -15,21 +16,23 @@
 			<ul>
 				{% set menu = menuAction() %}
 				{% for menuitem in 0..3 %}
-				<li><a href='{{ menu[menuitem].url }}'>{{ menu[menuitem].name }}</a></li>
+				<li class="{{ menu[menuitem].class }}"><img src="{{ menu[menuitem].icon }}" alt=""><a href='{{ menu[menuitem].url }}'>{{ menu[menuitem].name }}</a></li>
 				{% endfor %}
 			</ul>
 			<ul>
-                                <li>
-                                    {{ menu.searchform.formstart | raw}}
-                                    {{ menu.searchform.search | raw}}
-                                    {{ menu.searchform.submit | raw}}
-                                    {{ menu.searchform.formend | raw}}
-                                </li>
-				<li><a href='{{ menu[4].url }}' id="parameters"><img src="Ressources/public/images/app/parameters.png" alt="parameters"></a></li>
+                <li>
+                    {{ menu.searchform.formstart | raw}}
+                    <div>
+                        {{ menu.searchform.search | raw}}
+                        {{ menu.searchform.submit | raw}}
+                    </div>
+                    {{ menu.searchform.formend | raw}}
+                </li>
+				<li class="{{ menu[4].class }} icon"><a href='{{ menu[4].url }}' id="parameters"><img src="Ressources/public/images/app/parameters.png" alt="parameters"></a></li>
 			</ul>
 		</nav>
 		<section>
-                    <div id="flashbag">{{ data.flashbag }}</div>
+                    <div class="flashbag">{{ data.flashbag }}</div>
 			{% block section %}
 			{% endblock %}
 		</section>

@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 08 Avril 2015 à 08:55
--- Version du serveur :  5.6.17
+-- Généré le :  Sam 11 Avril 2015 à 10:15
+-- Version du serveur :  5.6.17-log
 -- Version de PHP :  5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -70,16 +70,15 @@ CREATE TABLE IF NOT EXISTS `friendship` (
   PRIMARY KEY (`id_fdshp`),
   KEY `fk_userfriendship_a` (`fk_user_a`),
   KEY `fk_userfriendship_b` (`fk_user_b`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
 
 --
 -- Contenu de la table `friendship`
 --
 
 INSERT INTO `friendship` (`id_fdshp`, `fk_user_a`, `fk_user_b`, `date_fdshp`) VALUES
-(13, 1, 2, '2015-03-05 06:12:51'),
-(15, 3, 2, '2015-03-05 06:41:51'),
-(22, 1, 3, '2015-04-02 15:11:24');
+(27, 20, 1, '2015-04-09 14:31:54'),
+(28, 21, 20, '2015-04-09 14:52:48');
 
 -- --------------------------------------------------------
 
@@ -95,16 +94,19 @@ CREATE TABLE IF NOT EXISTS `likedtune` (
   PRIMARY KEY (`id_likedtune`),
   KEY `fk_likedtune_tune` (`fk_tune_lt`),
   KEY `fk_likedtune_user` (`fk_user_lt`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=55 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=62 ;
 
 --
 -- Contenu de la table `likedtune`
 --
 
 INSERT INTO `likedtune` (`id_likedtune`, `fk_tune_lt`, `fk_user_lt`) VALUES
-(2, 1, 1),
-(49, 53, 1),
-(54, 54, 1);
+(56, 56, 1),
+(57, 57, 1),
+(58, 58, 1),
+(59, 59, 1),
+(60, 60, 21),
+(61, 58, 21);
 
 -- --------------------------------------------------------
 
@@ -122,28 +124,16 @@ CREATE TABLE IF NOT EXISTS `message` (
   PRIMARY KEY (`id_msg`),
   KEY `fk_msg_sender` (`fk_sender`),
   KEY `fk_msg_receiver` (`fk_receiver`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Contenu de la table `message`
 --
 
 INSERT INTO `message` (`id_msg`, `fk_sender`, `fk_receiver`, `date_msg`, `content_msg`) VALUES
-(1, 1, 2, '2015-03-11 14:48:30', 'Bonjour\r\nCeci est un test!!!'),
-(2, 1, 2, '2015-03-11 16:03:59', 'My first send of message!!!'),
-(4, 1, 2, '2015-03-11 16:05:20', 'My first send of message!!!'),
-(5, 1, 2, '2015-03-11 16:14:26', 'My first send of message!!!'),
-(6, 3, 5, '2015-03-11 16:14:48', 'Test'),
-(7, 1, 3, '2015-03-11 16:41:03', 'Bonjour Mickey'),
-(8, 1, 3, '2015-03-11 16:42:33', 'Bonjour Astérix!!!'),
-(9, 1, 3, '2015-03-11 16:42:43', 'Comment vas tu?'),
-(11, 1, 3, '2015-03-11 17:00:20', 're'),
-(12, 1, 2, '2015-03-11 17:03:43', 're'),
-(13, 1, 3, '2015-03-11 17:03:57', 'OOOOoooo'),
-(14, 1, 2, '2015-03-11 17:04:07', 'how re u?'),
-(16, 2, 1, '2015-03-11 17:18:05', 're'),
-(17, 1, 3, '2015-03-11 22:34:50', 'Bonjour'),
-(18, 1, 2, '2015-03-20 10:38:16', 'ytrytyr');
+(1, 1, 20, '2015-04-09 16:48:50', 'Hi\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla turpis duis. '),
+(2, 20, 1, '2015-04-09 16:49:06', 'Hi\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla turpis duis. '),
+(3, 1, 20, '2015-04-09 16:55:35', 'To discover <a href=''Tune/index/56'' class=''hashtag''>#StairwayToHeaven</a> :)');
 
 -- --------------------------------------------------------
 
@@ -159,20 +149,16 @@ CREATE TABLE IF NOT EXISTS `news` (
   `content_news` varchar(255) NOT NULL,
   PRIMARY KEY (`id_news`),
   KEY `fk_news` (`fk_user_news`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Contenu de la table `news`
 --
 
 INSERT INTO `news` (`id_news`, `fk_user_news`, `date_news`, `content_news`) VALUES
-(1, 1, '2015-03-04 09:20:00', 'This is a test!!!'),
-(2, 2, '2015-03-04 09:20:34', 'This a mickey news!!!'),
-(3, 2, '2015-03-04 10:19:30', 'Bonjour'),
-(4, 3, '2015-03-05 07:33:50', 'Helllo I&#039;m Astérix!!!'),
-(5, 1, '2015-03-06 20:24:15', 'CouCOu'),
-(6, 3, '2015-03-06 20:28:01', 'Je suis un gaulois!!!'),
-(7, 1, '2015-03-20 10:35:18', 'Cooucou');
+(1, 20, '2015-04-09 16:32:29', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque lacinia libero in quam cursus, ut sodales leo molestie. Curabitur urna ligula, pretium eget eros a, maximus efficitur tortor. Aliquam sodales sodales tortor vel venenatis. Cras pharetra blan'),
+(2, 1, '2015-04-09 16:32:58', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque lacinia libero in quam cursus, ut sodales leo molestie. Curabitur urna ligula, pretium eget eros a, maximus efficitur tortor. Aliquam sodales sodales tortor vel venenatis. Cras pharetra blan'),
+(3, 1, '2015-04-09 16:54:57', '<a href=''Tune/index/56'' class=''hashtag''>#StairwayToHeaven</a>');
 
 -- --------------------------------------------------------
 
@@ -191,16 +177,18 @@ CREATE TABLE IF NOT EXISTS `tune` (
   `pdf_tune` varchar(255) NOT NULL,
   PRIMARY KEY (`id_tune`),
   KEY `fk_tune_user` (`fk_user_tune`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=55 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=61 ;
 
 --
 -- Contenu de la table `tune`
 --
 
 INSERT INTO `tune` (`id_tune`, `fk_user_tune`, `title_tune`, `composer`, `category_tune`, `date_tune`, `pdf_tune`) VALUES
-(1, 1, 'Nissa la bella', 'Menica Rondelly', 'trad', '2015-03-12 17:59:06', 'NissaLaBella.pdf'),
-(53, 1, 'test3', 'test3', 'classique', '2015-04-02 16:18:37', 'NissaLaBella.pdf'),
-(54, 1, 'test4', 'test4', 'rock', '2015-04-02 16:32:56', 'NissaLaBella.pdf');
+(56, 1, 'StairwayToHeaven', 'led Zeppelin', 'rock', '2015-04-09 16:38:19', 'led_zeppelin-stairway_to_heaven.pdf'),
+(57, 1, 'NissaLaBella', 'Menica Rondelly', 'trad', '2015-04-09 16:40:00', 'NissaLaBella.pdf'),
+(58, 1, 'LettreaElise', 'Ludwig van Beethoven', 'classique', '2015-04-09 16:42:49', '[Free-scores.com]_beethoven-ludwig-van-for-elise-549.pdf'),
+(59, 1, 'ScottishDelGatto', 'Sergio Berardo', 'trad', '2015-04-09 16:44:30', '27-Scottish_gatto.pdf'),
+(60, 21, 'AuClairDelaLune', 'anonyme', 'chanson populaire', '2015-04-09 16:54:01', 'partition-au-clair-de-la-lune.pdf');
 
 -- --------------------------------------------------------
 
@@ -217,18 +205,21 @@ CREATE TABLE IF NOT EXISTS `user` (
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `lang` enum('fr','en') NOT NULL,
+  `key_user` varchar(255) NOT NULL,
+  `confirmmail` tinyint(1) NOT NULL,
+  `access` enum('admin','user') NOT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
 
 --
 -- Contenu de la table `user`
 --
 
-INSERT INTO `user` (`id_user`, `pseudo`, `pwdhashed`, `firstname`, `name`, `email`, `lang`) VALUES
-(1, 'Nicowez', '1234', 'Nicolas', 'Torre', 'nico@gmail.com', 'en'),
-(2, 'Asterix', '1234', 'Nicolas', 'Torre', 'nico@gmail.com', 'fr'),
-(3, 'Obelix', '1234', 'Nicolas', 'Torre', 'nico@gmail.com', 'fr'),
-(5, 'Mickey', '1234', 'Nicolas', 'Torre', 'nico@gmail.com', 'fr');
+INSERT INTO `user` (`id_user`, `pseudo`, `pwdhashed`, `firstname`, `name`, `email`, `lang`, `key_user`, `confirmmail`, `access`) VALUES
+(1, 'Nico', '1234', 'Nicolas', 'Torre', 'nico@gmail.com', 'fr', '0', 1, 'user'),
+(6, 'Admin', '1234', 'Admin', 'Admin', 'admin@gmail.com', 'en', '2587', 1, 'admin'),
+(20, 'GreenDay', '1234', 'Green', 'Day', 'greenday@gmailtest.com', 'en', '55268d00308ff', 0, 'user'),
+(21, 'Jean', '1234', 'jean', 'Dupont', 'jeandupont@gmailtest.com', 'fr', '5526922a7c662', 0, 'user');
 
 --
 -- Contraintes pour les tables exportées

@@ -26,37 +26,41 @@ class FormManager
 		$_SESSION[$this->idform] = serialize($this);
 	}
 
-	public function addField($label,$name,$type, $values, array $attr = array(), $raw = false) {
+	public function addField($label,$name,$type, $values, $error = "error", array $attr = array(), $raw = false) {
 		switch ($type) { //according to the type of the input
 			case 'radio':
 			case 'checkbox':
 				//create CheckBoxRadioField object
-				$this->fieldlist[] = new CheckBoxRadioField($label,$name,$type,$attr,$values,$raw);
+				$this->fieldlist[] = new CheckBoxRadioField($label,$name,$type,$attr,$values, $error,$raw);
 				break;
 			case 'select':
 				//create SelectField object
-				$this->fieldlist[] = new SelectField($label,$name,$type,$attr,$values,$raw);
+				$this->fieldlist[] = new SelectField($label,$name,$type,$attr,$values, $error,$raw);
 				break;
 			case 'textarea':
 				//create TextareaField object
-				$this->fieldlist[] = new TextareaField($label,$name,$type,$attr,$values,$raw);
+				$this->fieldlist[] = new TextareaField($label,$name,$type,$attr,$values, $error,$raw);
 				break;
 			case 'email':
 				//create EmailField object
-				$this->fieldlist[] = new EmailField($label,$name,$type,$attr,$values,$raw);
+				$this->fieldlist[] = new EmailField($label,$name,$type,$attr,$values, $error,$raw);
+				break;
+                        case 'password':
+				//create EmailField object
+				$this->fieldlist[] = new PasswordField($label,$name,$type,$attr,$values, $error,$raw);
 				break;
 			case 'file':
 				$type = "file";
 				//create EmailField object
-				$this->fieldlist[] = new ImageField($label,$name,$type,$attr,$values,$raw);
+				$this->fieldlist[] = new ImageField($label,$name,$type,$attr,$values, $error,$raw);
 				break;
 			case 'submit':
 				//create SubmitField object
-				$this->fieldlist[] = new SubmitField($label,$name,$type,$attr,$values,$raw);
+				$this->fieldlist[] = new SubmitField($label,$name,$type,$attr,$values, $error,$raw);
 				break;
 			default:
 				//create InputField object
-				$this->fieldlist[] = new InputField($label,$name,$type,$attr,$values,$raw);
+				$this->fieldlist[] = new InputField($label,$name,$type,$attr,$values, $error,$raw);
 				break;
 		}
 	}
@@ -78,20 +82,36 @@ class FormManager
 	public function validate(Request &$request) {
 		$out = true;
 		foreach ($this->fieldlist as $field) {
-			if (!$field->validate($request)) {
-				$out = false;
-			}
+                    if (!$field->validate($request)) {
+			$out = false;
+                    }
 		}
+                if(!$out) {
+                    foreach ($this->fieldlist as $field) {
+                    if ($field->get("type") == "password") {
+			$field->setValue("");
+                    }
+		}
+                }
+                
 		return $out;
 	}
 
 	public function getValues() {
 		$data = array();
 		foreach ($this->fieldlist as $field) {
-			$data[$field->getName()] = $field->getValue();
+                    $data[$field->getName()] = $field->getValue();
 		}
 		return $data;
 	}
+        
+        public function resetPwd() {
+            foreach ($this->fieldlist as $field) {
+                    if ($field->get("type") == "password") {
+			$field->setValue("");
+                    }
+            }
+        }
 
 }
 

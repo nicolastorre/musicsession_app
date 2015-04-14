@@ -77,9 +77,9 @@ class ProfilController extends BaseController
 			$newsrep = new NewsRepository();
 			$newslist = $newsrep->findAllNewsUser($iduser);
 			foreach ($newslist as $news) {
-				$data['newslist'][] = array("url" => UrlRewriting::generateURL("Profil",$news->getUserpseudo()), "pseudo" => $news->getUserpseudo(),
+				$data['newslist'][] = array("url" => UrlRewriting::generateURL("Profil",$news->getUserpseudo()), "user" => $news->getUserpseudo(),
 						"profilephoto" => UrlRewriting::generateSRC("userfolder", $news->getUserpseudo(),"profile_pic.png", "../default/profile_pic.png"),
-						"pubdate" => $news->getPubdate(),
+						"pubdate" => Pubdate::printDate($news->getPubdate()),
 						"content" => $news->getContent());
 			}
 

@@ -27,6 +27,7 @@ class NewsongController extends BaseController
 	public function addnewsongAction(Request &$request) {
 		$f = unserialize($_SESSION["importsongform"]);
 		if ($f->validate($request)) {
+                        unset($_SESSION["importsongform"]);
 			$dataform = $f->getValues();
 
                         $tunerep = new TuneRepository();
@@ -91,10 +92,10 @@ class NewsongController extends BaseController
 			$f = new FormManager("importsongform","importsongform",UrlRewriting::generateURL("addNewSong",""));
 			$f->addField("Title: ","title","text","");
             $f->addField("Composer: ","composer","text","");
-            $f->addField("Category: ","category","select",array(array('v' => 'classique','s' => false),array('v' => 'rock','s' => true),array('v' => 'trad','s' => false),array('v' => 'other','s' => false)),array('id' => 'category'));
-            $f->addField(" ","addcategory","text","",array('id' => 'other'),true);
+            $f->addField("Category: ","category","select",array(array('v' => 'classique','s' => false),array('v' => 'rock','s' => true),array('v' => 'trad','s' => false),array('v' => 'other','s' => false)),"Error",array('id' => 'category'));
+            $f->addField(" ","addcategory","text","","Error",array('id' => 'other'),true);
 			$f->addField("pdf score: ","pdf","file","");
-			$f->addField("Submit ","submit","submit","Import song",array('id' => 'submit'));	
+			$f->addField("Submit ","submit","submit","Import song","Error",array('id' => 'submit'));	
 		}
 		$data['importsongform'] = $f->createView();
 

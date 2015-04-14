@@ -27,7 +27,7 @@ class NotificationsController extends BaseController
 				$userfriends = $userrep->findUserById($i->getIduserb());
 			}
 			$data['friends'][] = array("url" => UrlRewriting::generateURL("Profil",$userfriends->getPseudo()), "pseudo" => $userfriends->getPseudo(),
-				"datefd" => $i->getDate(),
+				"datefd" => Pubdate::printDate($i->getDate()),
 				"profilephoto" => UrlRewriting::generateSRC("userfolder", $userfriends->getPseudo(),"profile_pic.png", "../default/profile_pic.png"),);
 		}
 

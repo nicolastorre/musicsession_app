@@ -33,8 +33,8 @@ class DBManager
 		catch (PDOException $e)
 		{
 			$error = $e->getMessage();
-		    $e = new ErrorController("SQL error: ".$error);
-          	$e->indexAction();
+                        $e = new ErrorController("SQL error: ".$error);
+                        $e->indexAction();
 			die();
 		}
 	}
@@ -59,8 +59,8 @@ class DBManager
 		catch(PDOException $e)
 		{
 			$error = $e->getMessage()." ".$sql;
-		    $e = new ErrorController("SQL error: ".$error);
-          	$e->indexAction();
+                        $e = new ErrorController("SQL error: ".$error);
+                        $e->indexAction();
 			die();
 		}
 	}

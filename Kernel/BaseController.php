@@ -29,8 +29,7 @@ class BaseController
 			ob_get_flush();
 		}
 		else {
-			$e = new ErrorController("Not found $template template");
-                        $e->indexAction();
+                        throw new Exception("Not found $template template");
 		}
 	}
 

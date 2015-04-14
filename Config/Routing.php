@@ -51,6 +51,7 @@ class Routing
             url::addURL("updateparameters","Parameters","updateparameters");
             url::addURL("updatephoto","Parameters","updatephoto");
             url::addURL("updatepassword","Parameters","updatepwd");
+            url::addURL("logout","Parameters","logout");
 
         url::addURL("Backoffice","Backoffice","index");
 	}
@@ -58,6 +59,7 @@ class Routing
         public static function srcList() {
                 url::addSRC("tmp", "Ressources/public/tmp/");
                 url::addSRC("userfolder", "Ressources/public/data/Users/");
+                url::addSRC("imgapp", "Ressources/public/images/app/");
         }
 }
 

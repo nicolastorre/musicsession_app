@@ -13,10 +13,13 @@ class Router
       // configuration of every routes with their parameters
       Routing::routingList();
       Routing::srcList();
-      
+
       // get request
       $request = new Request();
       $request->getSession();
+      
+      // error_reporting(0);
+      // $error_handler = set_error_handler("ErrorController::userErrorHandler");
 
       $controllerName = $this->getControllerName($request);
       $actionName = $this->getActionName($request);
@@ -33,16 +36,12 @@ class Router
         } else {
           // replace with throw
           $error = "Not exist $actionName action for $controllerName controller";
-          $e = new ErrorController($error);
-          $e->indexAction();
-          exit(1);
+          throw new Exception($error);
         } 
       } else {
           // replace with throw
           $error = "Not exist $controllerName controller";
-          $e = new ErrorController($error);
-          $e->indexAction();
-          exit(1);
+          throw new Exception($error);
       }
     }
     catch (Exception $e) {

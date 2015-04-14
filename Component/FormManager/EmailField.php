@@ -8,8 +8,8 @@ class EmailField extends Field
 {
 
 	//CONSTRUCTOR
-	public function __construct($label,$name,$type,array $attr, $value, $raw) {
-		PARENT::__construct($label,$name,$type,$attr,$value,$raw);
+	public function __construct($label,$name,$type,array $attr, $value, $error, $raw) {
+		PARENT::__construct($label,$name,$type,$attr,$value,$error,$raw);
 	}
 
 	//SPECIFIC METHODS
@@ -19,7 +19,7 @@ class EmailField extends Field
 		foreach ($this->attr as $key => $value) {
 			$attrview .= $key."=".$value." ";
 		}
-		return "\n\t<div class='error'>$this->error</div><label for=\"$this->name\">$this->label</label><input name='$this->name' type='$this->type' $attrview value='".$this->value."'>";
+		return "\n\t<div class='error'>$this->errormsg</div><label for=\"$this->name\">$this->label</label><input name='$this->name' type='$this->type' $attrview value='".$this->value."'>";
 	}
 
 	public function isEmail() {
@@ -35,14 +35,13 @@ class EmailField extends Field
 			$value = $request->getParameter($this->getName());
 			$this->setValue($value);
 			if ($this->notEmpty() && $this->notOverflow(255) && $this->isEmail()) {
-				$this->error = "";
 				return true;
 			} else {
-				$this->error = "error";
+                                $this->errormsg = $this->error;
 				return false;
 			}
 		} else {
-			$this->error = "error";
+                        $this->errormsg = $this->error;
 			return false;
 		}
 	}

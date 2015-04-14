@@ -18,6 +18,8 @@ class BlockedprofilController extends BaseController
 
 		$data['profilcard'] = ProfilController::ProfilCard($pseudo);
 		$data['tunelistwidget'] = SongslistController::songlistwidgetAction();
+                
+                $data['flashbag'] = "You're not allowed to view this profile";
 
 		$data['suggestedfriends'] = FriendsController::suggestedFriends(3);
 

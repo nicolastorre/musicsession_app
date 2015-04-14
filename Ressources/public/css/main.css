@@ -1,9 +1,84 @@
+
+/*
+
+1. Menu principal
+2. Section (contenu du site)
+3. Pseudo et photo de profile
+4. Module profilcard
+5. News timeline
+6. Notifications timeline
+7. Discussion list module
+8. Messagews timeline
+9. Friends timeline
+10. Suggested friends module
+11. Parameters timeline
+12. NewSong timeline
+13. Tuneslist timeline
+14. Tune timeline
+
+
+*/
+
 body
 {
-	background-color: #F39C12; //#3498DB; // #FF8823;
-	font-family: Arial, verdana, sans-serif;
+	background-color: #F39C12;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
+/* Boutons, hashtag et messages */
+.flashbag
+{
+	/*background-color: #96281B;
+	color: rgba(255, 255, 204, 0.9);*/
+	font-size: 20px;
+	font-weight: bold;
+	margin: auto;
+	width: 60%;
+	border-radius: 5px;
+	padding: 5px;
+	text-align: center;
+}
+
+.error
+{
+	color: red;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.hashtag
+{
+    color: blue;
+}
+
+input[type="submit"], input[type="button"]
+{
+	background-color: #F39C12;
+	border: medium none;
+	padding: 8px;
+	border-radius: 7px;
+	font-size: 14px;
+	line-height: 18px;
+	font-weight: bold;
+	cursor: pointer;
+	margin-top: 5px;
+}
+
+/*.file 
+{
+	position: relative;
+}
+
+.file input[type="file"]
+{
+	position: absolute;
+	display: inline-block;
+	left: 0;
+	top: 0;
+	opacity: 0.01;
+	cursor: pointer;
+}*/
+
+/* 1. Menu principale */
 nav
 {
 	position: fixed:
@@ -34,35 +109,96 @@ nav li
 	display: inline-block;
 	line-height: 50px;
 	font-size: 18px;
+	padding: 0 5px 0 5px;
+}
+
+nav li.on:hover, nav li.off:hover
+{
+	background-color: #E74C3C;
+}
+
+nav .on
+{
+	background-color: #E74C3C;
 }
 
 nav li > form
 {
 	display: inline-block;
+	position: relative;
+}
+
+nav li > form div
+{
+	position: relative;
+	display: inline;
+	height: 25px;
+}
+
+#inputsearch
+{
+	width: 170px;
+	height: 20px;
+	margin: 0;
+	padding: 0;
+	border: none;
+	height: 25px;
+}
+
+#submitsearch
+{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	margin: 0;
+	padding: 0.2em;
+	border: none;
+	border-radius: 0px;
+	height: 25px;
 }
 
 nav a
 {
-	color: rgba(255, 255, 204, 0.9) !important;
+	display: inherit !important;
+	color: rgba(255, 255, 204, 0.9);
+}
+
+li.icon
+{
+	line-height: 49px;
 }
 
 #parameters
 {
-	position: absolute;
-	top: 0;
 	display: block;
-	margin-top: 10px;
+}
+
+nav li #parameters > img
+{
+	position: relative;
+	top: 8px;
 }
 
 nav li > img
 {
-	height: 25px;
+	position: relative;
+	top: 4px;
+	margin-right: 5px;
 }
 
+/* 2. Section (contenu du site) */
 section
 {
 	margin: 10px 3%;
 	min-width: 1000px;
+}
+
+#dashboard-left > *, #dashboard-right > *, #timeline, #footer
+{
+	position: relative;
+	background-color: #FFECBF;
+	padding: 10px;
+	border-radius: 5px;
 }
 
 #dashboard-left
@@ -73,12 +209,12 @@ section
 
 #timeline
 {
-	background-color: #FFECBF;
 	float: left;
 	margin: 0px 2%;
 	width: 50%;
 	border-radius: 5px;
 	padding: 5px;
+	min-height: 500px;
 }
 
 #dashboard-right
@@ -89,7 +225,6 @@ section
 
 #footer
 {
-	background-color: #FFECBF;
 	border-radius: 5px;
 	margin-top: 10px;
 	padding: 10px;
@@ -102,4 +237,404 @@ section
 	color: #8899A6;
 	font-size: 15px;
 	line-height: 18px;
+}
+
+/* 3. Pseudo et photo de profile */
+.profile
+{
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.profil-pic-s
+{
+	float: left;
+	margin-right: 20px;
+	width: 30px;
+	height: 30px;
+	border: 1px solid black;
+	border-radius: 5px;
+}
+
+.profil-pic-m
+{
+	float: left;
+	margin-right: 20px;
+	width: 40px;
+	height: 40px;
+	border: 2px solid black;
+	border-radius: 5px;
+}
+
+.profil-pic-l
+{
+	width: 72px;
+	height: 72px;
+	border: 2px solid black;
+	border-radius: 5px;
+}
+
+/* 4. Module profilcard */
+#profilCard h1
+{
+	position: absolute;
+	top: 35%;
+	left: 100px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#profilCard ul
+{
+	position:absolute;
+	top: 60%;
+	left: 100px;
+}
+
+#profilCard li
+{
+	float: left;
+	margin: 10px;
+}
+
+/* 5. News timeline */
+.item-news, #edit-news
+{
+	border-bottom: 1px solid #E1E8ED;
+	min-height: 51px;
+	padding: 3%;
+}
+
+.item-news .profile, .item-news .pubdate
+{
+	display: inline;
+	margin-right: 10px;
+}
+
+.item-news .content
+{
+	margin-top: 10px;
+	text-align: justify;
+}
+
+#edit-news textarea
+{
+	margin: auto;
+	width: 99%;
+}
+
+/* 6. Notifications timeline */
+.item-notif
+{
+	border-bottom: 1px solid #E1E8ED;
+	min-height: 51px;
+	padding: 1em;
+}
+
+.item-notif .profil-pic-m, .item-notif .profile
+{
+	display: inline-block;
+}
+
+.item-notif .notif, .item-notif .notif > div
+{
+	margin-bottom: 1em;
+}
+
+.notif a + div
+{
+	position: relative;
+	top: 1em;
+}
+
+/* 7. Discussion list module */
+#discussionlist
+{
+	margin-top: 10px;
+}
+
+.item-discu
+{
+  border-bottom: 1px solid #E1E8ED;
+  min-height: 20px;
+  padding: 1em;
+  padding-bottom: 1.5em;
+}
+
+#discussionlist .profile
+{
+	margin-top: 1em;
+}
+
+/* 8. Messages timeline */
+#msglist
+{
+  max-height: 500px;
+  /*overflow-y: scroll;*/
+  overflow: auto;
+}
+
+.item-msg
+{
+  border-bottom: 1px solid #E1E8ED;
+  min-height: 51px;
+  padding: 1em;
+}
+
+#sendmsg
+{
+  min-height: 81px;
+  padding: 3%;
+}
+
+#sendmsg textarea
+{
+  margin: auto;
+  width: 99%;
+  height: 70px;
+}
+
+.item-msg .profile, .item-msg .pubdate
+{
+	display: inline;
+	margin-right: 10px;
+}
+
+.item-msg .msg
+{
+	margin-top: 10px;
+	text-align: justify;
+}
+
+/* 9. Friends timeline */
+.friends
+{
+  float: left;
+  margin: 10px;
+  padding: 10px;
+}
+
+.friends .profile
+{
+  display: inline-block;
+  margin-top: 1em;
+}
+
+/* 10. Suggested friends module */
+#suggestedfriends
+{
+	background-color: #FFECBF;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+#suggestedfriends h2
+{
+  font-family: 'Arial';
+  font-weight: normal;
+  font-size: 30px;
+  text-align: center;
+  color: #96281B;
+  margin-bottom: 15px;
+}
+
+#suggestedfriends li
+{
+	margin-bottom: 5px;
+	line-height: 30px;
+	min-height: 35px;
+}
+
+/* 11. Parameters timeline */
+#parameterspage
+{
+	position: relative;
+	width: 60%;
+	margin: auto;
+	padding: 1em;
+}
+
+#parameterspage h2
+{
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+#parameterspage h3
+{
+  font-size: 14px;
+  margin-bottom: 2em;
+}
+
+#parameterspage label
+{
+  float: left;
+  width: 100px;
+  margin-bottom: 1em;
+}
+
+#parameterspage input, select
+{
+  display: block;
+  margin-left: 120px;
+  margin-bottom: 1em;
+}
+
+#parameterspage #logout
+{
+	position: absolute;
+	top: 10%;
+	right: 0;
+	background-color: #96281B;
+	color: rgba(255, 255, 204, 0.9);
+	border-radius: 5px;
+	padding: 1em;
+	font-weight: bold;
+}
+
+/* 12. NewSong timeline */
+#newsong
+{
+  width: 60%;
+  margin:auto;
+  padding: 1em;
+}
+
+#newsong h2
+{
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 2em;
+}
+
+#newsong label
+{
+  float: left;
+  width: 150px;
+  margin-bottom: 1em;
+}
+
+#newsong input, select
+{
+  display: block;
+  margin-left: 150px;
+  margin-bottom: 1em;
+}
+
+/* 13. Tuneslist timeline */
+#tuneslist
+{
+  padding: 4%;
+}
+
+#tuneslist > table
+{
+  width: 95%;
+  margin: auto;
+}
+
+#tuneslist > table
+{
+  margin-top: 0.5em;
+}
+
+#tuneslist table tr th
+{
+	font-weight: bold;
+}
+
+#tuneslist table tr td, #tuneslist table tr th
+{
+	width: 100px;
+	overflow:hidden;
+	margin-right: 0.2em;
+	text-align: center;
+	border: 1px solid #66757F;
+	height: 2em;
+	vertical-align: middle;
+	padding: 0.2em;
+}
+
+#tuneslist table .item-even
+{
+  background-color: #FFC76D;
+}
+
+.share
+{
+  display: inline-block;
+  background-image: url("../images/app/share.png");
+  background-size: 20px 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.add
+{
+  display: inline-block;
+  background-image: url("../images/app/add.png");
+  background-size: 20px 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.delete
+{
+  display: inline-block;
+  background-image: url("../images/app/delete.png");
+  background-size: 20px 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.viewtune
+{
+  display: inline-block;
+  background-image: url("../images/app/filemusic.png");
+  background-size: 20px 20px;
+  width: 20px;
+  height: 20px;
+}
+
+/* 14. Tune timeline */
+#tunepage
+{
+  padding: 2em;
+}
+
+#tunepage h2
+{
+	font-size: 30px;
+	font-weight: bold;
+	margin-bottom: 40px;
+	text-align: center;
+}
+
+#tunepage h3
+{
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+.composer
+{
+	float: left;
+}
+.category
+{
+	float: right;
+}
+.datetune
+{
+	float: right;
+	clear: both;
+}
+
+#tunepage iframe
+{
+  margin-top: 2em;
+  width: 100%;
+  height: 800px;
+  border: 1px solid #000;
 }

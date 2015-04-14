@@ -117,7 +117,7 @@ class SongslistController extends BaseController
 				"title" => $tune->getTitle(), 
 				"composer" => $tune->getComposer(), 
 				"category" => $tune->getCategory(), 
-				"datetune" => $tune->getDatetune(),  
+				"datetune" => Pubdate::printDate($tune->getDatetune()),  
 				"pdftune" => $tune->getPdf(),
 				"urltune" => UrlRewriting::generateURL("Tune",$tune->getIdtune()),
                                 "sharetune" => UrlRewriting::generateURL("Share",$tune->getIdtune()),

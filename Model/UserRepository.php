@@ -18,10 +18,8 @@ class UserRepository  extends DBManager
 			return new User($userdata[0]['id_user'],$userdata[0]['pseudo'],$userdata[0]['pwdhashed'],$userdata[0]['firstname'],$userdata[0]['name'],$userdata[0]['email'],$userdata[0]['lang']);
 		} else {
 			$error = "findUserById => Not exist user";
-			$e = new ErrorController($error);
-			$e->indexAction();
-			exit(1);
-		}
+			throw new Exception($error);
+                    }
 	}
 
 	public function getUserIdByPseudo($pseudo) {
@@ -30,9 +28,7 @@ class UserRepository  extends DBManager
 			return intval($userdata[0]['id_user']);
 		} else {
 			$error = "getUserIdByPseudo => Not exist user";
-			$e = new ErrorController($error);
-			$e->indexAction();
-			exit(1);
+			throw new Exception($error);
 		}
 	}
         
@@ -51,9 +47,7 @@ class UserRepository  extends DBManager
 			return $userdata[0]['pseudo'];
 		} else {
 			$error = "getUserPseudoById => Not exist user";
-			$e = new ErrorController($error);
-			$e->indexAction();
-			exit(1);
+			throw new Exception($error);
 		}
 	}
 

@@ -4,15 +4,9 @@ class ImageField extends Field
 {
 	private $target_dir;
 	//CONSTRUCTOR
-	public function __construct($label,$name,$type,array $attr, $value,$raw) {
-        $this->target_dir = UrlRewriting::generateSRC("tmp","","");
-		$this->label = $label;
-		$this->name = $name;
-		$this->type = $type;
-		$this->attr = $attr;
-		$this->value = $value;
-		$this->error = "";
-		$this->raw = $raw;
+	public function __construct($label,$name,$type,array $attr, $value, $error, $raw) {
+                PARENT::__construct($label,$name,$type,$attr,$value,$error,$raw);
+                $this->target_dir = UrlRewriting::generateSRC("tmp","","");
 	}
 
 	public function display() {
@@ -20,7 +14,7 @@ class ImageField extends Field
 		foreach ($this->attr as $key => $value) {
 			$attrview .= $key."=".$value." ";
 		}
-		return "\n\t<div class='error'>$this->error</div><label for=\"$this->name\">$this->label</label><input name='$this->name' type='$this->type' $attrview>";
+		return "\n\t<div class='error'>$this->errormsg</div><label for=\"$this->name\">$this->label</label><input name='$this->name' type='$this->type' $attrview>";
 	}
 
 	public function notFakeFile() {
@@ -70,18 +64,17 @@ class ImageField extends Field
 				$this->error = "";
 				$target_file = $this->target_dir . basename($this->value["name"]);
 				 if (move_uploaded_file($this->value["tmp_name"], $target_file)) {
-				 	$this->error = "";
 			  	} else {
-			        $this->error = "Sorry, there was an error uploading your file.";
+                                $this->errormsg = $this->error;
 			        return false;
 			    }
 				return true;
 			} else {
-				$this->error = "Sorry, there was an error uploading your file.2";
+                                $this->errormsg = $this->error;
 				return false;
 			}
 		} else {
-			$this->error = "error";
+                        $this->errormsg = $this->error;
 			return false;
 		}
 	}

@@ -12,16 +12,18 @@ abstract class Field {
 	protected $value;
 	protected $error;
 	protected $raw;
+        protected $errormsg;
 
 	//CONSTRUCTOR
-	public function __construct($label,$name,$type,array $attr, $value, $raw) {
+	public function __construct($label,$name,$type,array $attr, $value, $error, $raw) {
 		$this->label = $label;
 		$this->name = $name;
 		$this->type = $type;
 		$this->attr = $attr;
 		$this->value = $value;
-		$this->error = "";
+		$this->error = $error;
 		$this->raw = $raw;
+                $this->errormsg = "";
 	}
 	//SPECIFIC METHODS
 	abstract public function display(); //display the field in HTML
@@ -44,14 +46,13 @@ abstract class Field {
 				$value = $request->getParameter($this->getName());
 				$this->setValue($value);
 				if ($this->notEmpty() && $this->notOverflow(255)) {
-					$this->error = "";
 					return true;
 				} else {
-					$this->error = "error";
+                                        $this->errormsg = $this->error;
 					return false;
 				}
 			} else {
-				$this->error = "error";
+                                $this->errormsg = $this->error;
 				return false;
 			}
 		} else {

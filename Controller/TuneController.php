@@ -22,7 +22,7 @@ class TuneController extends BaseController
             $data['tune']['title'] = $tune->getTitle();
             $data['tune']['composer'] = $tune->getComposer();
             $data['tune']['category'] = $tune->getCategory();
-            $data['tune']['datetune'] = $tune->getDatetune();
+            $data['tune']['datetune'] = Pubdate::printDate($tune->getDatetune());
             $data['tune']['url'] = UrlRewriting::generateSRC("userfolder", $pseudoowner, $tune->getPdf());
         } else {
             throw new Exception('Not existing tune!');

@@ -7,8 +7,8 @@
 class TextareaField extends Field 
 {
 	//CONSTRUCTOR
-	public function __construct($label,$name,$type,array $attr, $value,$raw) {
-		PARENT::__construct($label,$name,$type,$attr,$value,$raw);
+	public function __construct($label,$name,$type,array $attr, $value, $error,$raw) {
+		PARENT::__construct($label,$name,$type,$attr,$value,$error,$raw);
 	}
 
 	//SPECIFIC METHODS
@@ -18,7 +18,7 @@ class TextareaField extends Field
 		foreach ($this->attr as $key => $value) {
 			$attrview .= $key."=".$value." ";
 		}
-		return "\n\t<div class='error'>$this->error</div><label for=\"$this->name\">$this->label</label><textarea name='$this->name' $attrview>".$this->value."</textarea>";
+		return "\n\t<div class='error'>$this->errormsg</div><label for=\"$this->name\">$this->label</label><textarea name='$this->name' $attrview>".$this->value."</textarea>";
 	}
 
 	public function validate(Request &$request) {
@@ -26,14 +26,13 @@ class TextareaField extends Field
 			$value = $request->getParameter($this->getName());
 			$this->setValue($value);
 			if ($this->notEmpty() && $this->notOverflow(2000)) {
-				$this->error = "";
 				return true;
 			} else {
-				$this->error = Translator::translate("error");
+                                $this->errormsg = $this->error;
 				return false;
 			}
 		} else {
-			$this->error = "error";
+			$this->errormsg = $this->error;
 			return false;
 		}
 	}

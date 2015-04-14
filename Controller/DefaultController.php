@@ -32,12 +32,18 @@ class DefaultController extends baseController
 			self::$menuitem[3] = "Backoffice";
 		}
 		$menulist = array();
+
 		foreach (self::$menuitem as $i) {
-			$menulist[] = array("name" => Translator::translate($i), "url" => UrlRewriting::generateURL($i,""));
+			if ($_GET['controller'] == $i) {
+				$class = "on";
+			} else {
+				$class = "off";
+			}
+			$menulist[] = array("name" => Translator::translate($i), "url" => UrlRewriting::generateURL($i,""), "class" => $class, "icon" => UrlRewriting::generateSRC("imgapp","",$i).".png");
 		}
                 $f = new FormManager("searchform","searchform",UrlRewriting::generateURL("Search",""));
-                $f->addField("","search","text","");
-                $f->addField("Submit ","submit","submit","?");
+                $f->addField("","search","text","","Error",array("id" => "inputsearch"));
+                $f->addField("Submit ","submit","submit","?","Error",array("id" => "submitsearch"));
                 $menulist['searchform'] = $f->createView();
 		return $menulist;
 	}
