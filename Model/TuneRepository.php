@@ -176,7 +176,6 @@ class TuneRepository extends DBManager
                 $idtunelist = $this->query("SELECT fk_tune_score from score WHERE fk_user_score = (?);",array($iduser));
                 foreach ($idtunelist as $tuple) {
                     if($this->nbLikedTune($tuple['fk_tune_score']) == 0) {
-                        var_dump("ok");
                         $this->query("DELETE from score WHERE fk_user_score = (?);",array($iduser));
                         $this->deleteTuneForAll($tuple['fk_tune_score']);
                     } else {

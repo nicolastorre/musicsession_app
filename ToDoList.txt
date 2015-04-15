@@ -12,14 +12,18 @@ Features
 	Refresh the page: Display a tune (done)
 	processus de suppression des scores (done)
 	Trigger the deleting of all for a tune when just no more user will have the tune as liked (done)
-	Check resize for profile photo
-	Bouton "signaler" dans la page parameters avec un champs
-	Bouton "supprimer son compte"
+	Check resize for profile photo (done)
+	Bouton "supprimer son compte" (done)
+	Bouton "signaler" dans la page parameters avec un champs (done)
+	
 
 PHP
 	Add userErrorHandler function
+	Group the global twig variables
 
 Translate and error message
+
+Design des pages d'authentification et 404
 
 Responsive design
 
@@ -37,9 +41,8 @@ Edit the final report
 
 	Message pour spécifier qu'il n'y a pas de messages ou qu'il n'y a pas de news pour cette utilisateur
 	Recherche utilisateur sur les catégories des liked tune
-
-
 	"Suggested friends" => utiliser les cétégories des liked tunes
+
 	Icône "nouveau message"
 	Vérifications des formulaires en JavaScript / JQuery
 

@@ -498,6 +498,18 @@ section
 	font-weight: bold;
 }
 
+#parameterspage textarea
+{
+	margin: auto;
+	width: 99%;
+	height: 70px;
+}
+
+#parameterspage textarea + input[type="submit"]
+{
+	margin-left: 0;
+}
+
 /* 12. NewSong timeline */
 #newsong
 {
@@ -619,6 +631,7 @@ section
 
 #headertune
 {
+	padding: 1em;
 	overflow: hidden;
 }
 

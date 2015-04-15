@@ -38,6 +38,10 @@ class FriendshipRepository extends DBManager
 			$this->query("INSERT INTO friendship (fk_user_a ,fk_user_b, date_fdshp) VALUES (?, ?, ?);",array($idusera,$iduserb,$datefdshp));
 		}
 	}
+
+	public function deleteAllFdUser($iduser) {
+		$this->query("DELETE from friendship WHERE fk_user_a = (?) OR fk_user_b = (?);",array($iduser,$iduser));
+	}
 }
 
 ?>

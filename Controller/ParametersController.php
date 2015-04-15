@@ -7,6 +7,62 @@
 /******************************************************************************/
 class ParametersController extends BaseController
 {
+        public function signalAction(Request &$request) {
+            $j = unserialize($_SESSION["signalform"]); // get back the form object with the submitted news
+                    
+            if ($j->validate($request)) { // check for valide data.
+                unset($_SESSION["signalform"]);
+                            
+                $dataform = $j->getValues(); // extract the data from the form
+                $date_report = date("y-m-d H-i-s");
+
+                $report = new report($_SESSION['iduser'],$_SESSION['pseudo'],$date_report,$dataform['signal']); // create the news object
+                $reportrep = new ReportRepository();
+                $reportrep->addReport($report); // add the submitted news
+                $this->indexAction($request, $f = null, $g = null, $h = null, $flashbag = "Success"); // reload the default home page
+            } else {
+                $this->indexAction($request, $f = null, $g = null, $h = null, $flashbag = null, $i = null, $j);
+            }
+        }
+
+        public function askdeleteaccountAction(Request &$request, FormManager $f = null) {
+            $data = array();
+            $data['ask'] = "Are you sure to remove your account?";
+            $data['deleteaccount'] = array('url' => UrlRewriting::generateURL("deleteaccount", ""), 'name' => Translator::translate("Yes"));
+            $data['redirect'] = array('url' => UrlRewriting::generateURL("Parameters", ""), 'name' => Translator::translate("No"));
+            $this->render("AskDeleteAccountView.html.twig",$data);
+        }
+
+        public function deleteaccountAction(Request &$request) {
+            $userrep = new UserRepository();
+            $iduser = $userrep->getUserIdByPseudo($_SESSION['pseudo']);
+            $dir = UrlRewriting::generateSRC("userfolder", $_SESSION['pseudo'],"");
+            chmod($dir,0755);
+            $files = scandir($dir);                       
+            foreach ($files as $i) {
+                if ($i != "." && $i != "..") {
+                    chmod($dir.$i,0755);
+                    unlink($dir.$i);    
+                }
+            }
+            rmdir($dir);
+            $tunerep = new TuneRepository();
+            $tunerep->deleteAllTuneUser($iduser);
+
+            $newsrep = new NewsRepository();
+            $newsrep->deleteAllNewsUser($iduser);
+
+            $fdrep = new FriendshipRepository();
+            $fdrep->deleteAllFdUser($iduser);
+
+            if ($userrep->deleteuser($iduser)) {
+                $ctrl = new AuthController();
+                $ctrl->indexAction($request);
+            } else {
+                $this->indexAction($request, $f = null, $g = null, $h = null, "Error");
+            }
+        }
+
         public function logoutAction(Request &$request) {
             unset($_SESSION['iduser']);
             unset($_SESSION['pseudo']);
@@ -85,7 +141,7 @@ class ParametersController extends BaseController
 	}
 	
 	// Principal action of the HomeController 
-	public function indexAction(Request &$request, FormManager $f = null, FormManager $g = null, FormManager $h = null, $flashbag = null, FormManager $i = null) {
+	public function indexAction(Request &$request, FormManager $f = null, FormManager $g = null, FormManager $h = null, $flashbag = null, FormManager $i = null, FormManager $j = null) {
 		$data = array();
 		$pseudo = $_SESSION['pseudo'];
 		$userrep = new UserRepository();
@@ -117,20 +173,29 @@ class ParametersController extends BaseController
 
 		if ($g == null) {
 			$g = new FormManager("updatephoto","updatephoto",UrlRewriting::generateURL("updatephoto",""));
-                        $g->addField("Profile photo: ","pic","file","");
+            $g->addField("Profile photo: ","pic","file","");
 			$g->addField("Submitphoto","submit","submit","Upload your photo");	
 		}
 		$data['updatephoto'] = $g->createView();
                 
-                if ($h == null) {
+        if ($h == null) {
 			$h = new FormManager("updatepwd","updatepwd",UrlRewriting::generateURL("updatepassword",""));
-                        $h->addField("Password: ","pwd","text","");
-                        $h->addField("Confirm your password: ","confirmpwd","text","");
+            $h->addField("Password: ","pwd","text","");
+            $h->addField("Confirm your password: ","confirmpwd","text","");
 			$h->addField("Submitphoto","submit","submit","Update");	
 		}
 		$data['updatepwd'] = $h->createView();
+
+        if ($j == null) {
+            $j = new FormManager("signalform","signalform",UrlRewriting::generateURL("signal","")); // Form to edit and publish a news
+            $j->addField("","signal","textarea","","Error");
+            $j->addField("Submit ","submit","submit","Send");   
+        }
+        $data['signalform'] = $j->createView(); // add the form view in the data page
                 
-                $data['logout'] = array('url' => UrlRewriting::generateURL("logout", ""), 'value' => Translator::translate("log out"));
+        $data['logout'] = array('url' => UrlRewriting::generateURL("logout", ""), 'value' => Translator::translate("log out"));
+
+        $data['deleteaccount'] = array('url' => UrlRewriting::generateURL("askdeleteaccount", ""), 'value' => Translator::translate("Delete account"));
                 
 		$data['suggestedfriends'] = FriendsController::suggestedFriends(3);
 

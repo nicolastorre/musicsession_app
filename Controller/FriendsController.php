@@ -48,7 +48,7 @@ class FriendsController extends BaseController
 			for ($i=0;$i<$nbsuggestion;$i++) {
 				do {
 					$iduserrand = $alliduser[rand(0,$nbuser-1)];
-				} while (($iduserrand == $iduser ) || in_array($iduserrand,$idfriends));
+				} while (($iduserrand == $iduser ) || in_array($iduserrand,$idfriends)); //|| ($userrep->getUserPseudoById($iduserrand) == "Admin")
 				$userrand = $userrep->findUserById($iduserrand);
 				$userrand_pseudo = $userrand->getPseudo();
 				$suggestedFriends[] = array('iduser' => $iduserrand, 'pseudo' => $userrand_pseudo, 'url' => UrlRewriting::generateURL("Profil",$userrand_pseudo),

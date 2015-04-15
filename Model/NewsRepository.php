@@ -39,4 +39,8 @@ class NewsRepository extends DBManager
 		$this->query("INSERT INTO news (fk_user_news, date_news, content_news) VALUES (?, ?, ?)",array($user, $pubdate, $content));
 	}
 
+	public function deleteAllNewsUser($iduser) {
+		$this->query("DELETE from news WHERE fk_user_news = (?);",array($iduser));
+	}
+
 }

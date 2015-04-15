@@ -42,7 +42,7 @@ class ImageManager
 			$this->filename = pathinfo($file, PATHINFO_BASENAME);
 		}
 		Image::open($this->filepath)
-		    ->resize(73, 73, "#346A85")
+		    ->zoomCrop(73, 73, "#346A85","center","center")
     		->save($this->filepath, 'png');
 	}
 }

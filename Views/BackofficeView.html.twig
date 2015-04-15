@@ -7,5 +7,16 @@
         {{ data.deleteuserform.userpseudo | raw }}
         {{ data.deleteuserform.submit | raw }}
         {{ data.deleteuserform.formend | raw }}
+
+    <h2>{{ data.reporttitle }}</h2>
+    <ul>
+		{% for itemreport in data.reportlist %}
+		<li class="item-news">
+			<img class="profil-pic-m" src="{{ itemreport.profilephoto }}" alt="photo profil">
+			<div class="profile"><a href="{{ itemreport.url }}">{{ itemreport.user }}</a></div><div class="pubdate">{{ itemreport.pubdate }}</div>
+            <div class="content">{{ itemreport.content | raw}}</div>
+		</li>
+		{% endfor %}
+	</ul>
 </div>
 {% endblock %}
