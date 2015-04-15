@@ -7,11 +7,13 @@ class TuneController extends BaseController
             $idscore = intval($request->getParameter("par")[1]);
             $userrep = new UserRepository();
             $tunerep = new TuneRepository();
-            $file = UrlRewriting::generateSRC("userfolder", $userrep->getUserPseudoById($tunerep->getScoreUser($idscore)),$tunerep->getScorePdfName($idscore));
-            if (file_exists($file)) {
-                unlink($file);
+            if ($_SESSION['iduser'] == $tunerep->getScoreUser($idscore)) {
+                $file = UrlRewriting::generateSRC("userfolder", $userrep->getUserPseudoById($tunerep->getScoreUser($idscore)),$tunerep->getScorePdfName($idscore));
+                if (file_exists($file)) {
+                    unlink($file);
+                }
+                $tunerep->deleteScore($idscore);
             }
-            $tunerep->deleteScore($idscore);
             $this->indexAction($request);
         }
         
@@ -90,7 +92,12 @@ class TuneController extends BaseController
                     $idscorelist = $tune->getIdscorelist();
                     if ($forkedusers[0] != "") {
                         for ($i=0; $i<count($forkedusers); $i++) {
-                            $data['tune']['forked'][] = array("delete" => UrlRewriting::generateURL("Deletescore",$idtune."/".$idscorelist[$i]),"pdfurl" => UrlRewriting::generateSRC("userfolder", $userrep->getUserPseudoById($forkedusers[$i]), $pdfscore[$i]), "date" => $datescore[$i]);
+                            if ($_SESSION['iduser'] == $forkedusers[$i]) {
+                                $deletebutton = UrlRewriting::generateURL("Deletescore",$idtune."/".$idscorelist[$i]);
+                            } else {
+                                $deletebutton = "#";
+                            }
+                            $data['tune']['forked'][] = array("delete" => $deletebutton,"pdfurl" => UrlRewriting::generateSRC("userfolder", $userrep->getUserPseudoById($forkedusers[$i]), $pdfscore[$i]), "date" => $datescore[$i]);
                         }
                     } else {
                         $data['tune']['forked'][] = array("delete" => "", "pdfurl" => "", "date" => "");

@@ -1,20 +1,47 @@
 ToDo List
 
+Features
+	Backoffice
+	Limit the delete button to the owner of the score (done)
+	Trigger the deleting of all for a tune when just no more user will have the tune as liked
+	Refresh the page: Display a tune
+	Check resize for profile photo
+	Bouton "signaler" dans la page parameters avec un champs
+	Replace by hashtag in edit news
+	Bouton "supprimer son compte"
+
+PHP
+	Add userErrorHandler function
+
+Translate and error message
+
+Responsive design
+
+Edit terms, privacy, accessibility
+
+Validate the version 1
+
+Music Editor
+	Export in midi file
+	Add html5 audio player to listen the music from midi file
+
+Edit the final report
+
+/*************************************************************************************************************************/
+
 	Message pour spécifier qu'il n'y a pas de messages ou qu'il n'y a pas de news pour cette utilisateur
 	Recherche utilisateur sur les catégories des liked tune
-	Laisser ouvert la catégorie sélectionnée dans le module Songs list
 
-	Bouton "signaler" dans la page parameters avec un champs
 	"Suggested friends" => utiliser les cétégories des liked tunes
 	Icône "nouveau message"
 	Vérifications des formulaires en JavaScript / JQuery
 
-Backoffice
 Multiversionning de partitions de musique (fct uniqid()) => fork icon (done)
 Modifier les dates (done)
 Bouton déconnexion => unset($_SESSION['iduser']) et unset($_SESSION['pseudo']) (done)
-Blocked profil => créer la pagen (done)
-Refresh the page: Display a tune
+Blocked profil => créer la page (done)
+
+
 
 Update PHP structure
 	FormManager: 
@@ -24,31 +51,6 @@ Update PHP structure
 	add "throw" at right points (done)
 	unset chaque formulaire après utilisation (done)
 	add comments
-
-
-Translate and error message
-
-Validate each functionnality
-
-Update CSS code
-
-Refresh design
-
-Development of responsive design
-
-Edit terms, privacy, cookies
-
-Validate the version 1
-
-Development of the Music Editor
-	Design and CSS
-	Script of the Music Editor interface to edit easily music note and send to the server via AJAX
-
-Edit the final report
-
-
-
-
 
 
 /*************************************************************************************************************************/
