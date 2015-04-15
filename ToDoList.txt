@@ -1,5 +1,11 @@
 ToDo List
 
+$dbHost = getenv('IP');
+		$user = getenv('C9_USER');
+    	$pwd = "";
+    	//$dbName = "c9";
+    	$dbport = 3306;
+
 Features
 	Backoffice (done)
 	Limit the delete button to the owner of the score (done)
