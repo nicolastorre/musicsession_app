@@ -3,5 +3,9 @@
 {% block timeline %}
 <div>
 	Backoffice
+        {{ data.deleteuserform.formstart | raw }}
+        {{ data.deleteuserform.userpseudo | raw }}
+        {{ data.deleteuserform.submit | raw }}
+        {{ data.deleteuserform.formend | raw }}
 </div>
 {% endblock %}

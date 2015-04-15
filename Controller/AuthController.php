@@ -97,7 +97,9 @@ class AuthController extends BaseController
                                 // create user directory
                                 $userpath = UrlRewriting::generateSRC('userfolder',$dataform['pseudo'],"");
                                 if (!is_dir($userpath)) {
-                                        mkdir($userpath);
+                                        if(!mkdir($userpath)) {
+                                            $this->indexAction($request, $f = null, $insc = null, "Error");
+                                        }
                                 }
 
                                 //send mail to confirm inscription

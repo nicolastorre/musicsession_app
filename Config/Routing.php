@@ -57,6 +57,7 @@ class Routing
             url::addURL("logout","Parameters","logout");
 
         url::addURL("Backoffice","Backoffice","index");
+            url::addURL("Deleteuser","Backoffice","deleteuser");
 	}
         
         public static function srcList() {

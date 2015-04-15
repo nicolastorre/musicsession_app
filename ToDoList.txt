@@ -1,9 +1,8 @@
 ToDo List
 
 Features
-	Backoffice
+	Backoffice (done)
 	Limit the delete button to the owner of the score (done)
-	Trigger the deleting of all for a tune when just no more user will have the tune as liked
 	Refresh the page: Display a tune
 	Check resize for profile photo
 	Bouton "signaler" dans la page parameters avec un champs
@@ -31,6 +30,8 @@ Edit the final report
 
 	Message pour spécifier qu'il n'y a pas de messages ou qu'il n'y a pas de news pour cette utilisateur
 	Recherche utilisateur sur les catégories des liked tune
+	Trigger the deleting of all for a tune when just no more user will have the tune as liked
+
 
 	"Suggested friends" => utiliser les cétégories des liked tunes
 	Icône "nouveau message"

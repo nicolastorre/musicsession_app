@@ -31,6 +31,7 @@ class UrlRewriting
             } 
             elseif (file_exists(self::$src[$srcname].$file) || $default == "") {
                 return self::$src[$srcname].$file;
+                
             } else {
                 return self::$src[$srcname].$default;
             }
