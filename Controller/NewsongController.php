@@ -45,7 +45,7 @@ class NewsongController extends BaseController
                                     }
                                 }
 
-                                $tune = new Tune(null,$_SESSION['iduser'],$dataform['title'], $dataform['composer'], $dataform['category'][0],$datetune, basename($dataform['pdf']['name'],".pdf").$salt.".pdf");
+                                $tune = new Tune(null,$dataform['title'], $dataform['composer'], $dataform['category'][0],$datetune, basename($dataform['pdf']['name'],".pdf").$salt.".pdf",$_SESSION['iduser']);
                                 $tunerep = new TuneRepository();
                                 $tunerep->addTune($tune);
 

@@ -34,6 +34,8 @@ class BackofficeController extends BaseController
                             }
                         }
                         rmdir($dir);
+                        $tunerep = new TuneRepository();
+                        $tunerep->deleteAllTuneUser($iduser);
                         if ($userrep->deleteuser($iduser)) {
                             $this->indexAction($request,$f = null, "Success");
                         } else {

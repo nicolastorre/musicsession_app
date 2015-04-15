@@ -35,44 +35,53 @@ class SongslistController extends BaseController
 	}
 
 	public function deleteAction(Request &$request) {
+		$pseudo = $request->getParameter("par")[0];
 		$idtune = $request->getParameter("par")[1];
 		$tunerep = new TuneRepository();
-                $tune = $tunerep->findTuneById($idtune);
-                if ($tune != false) {
-                    if ($tune->getIduser() == $_SESSION['iduser']) {
-                        // delete the pdf file
-                        $pdfscore = $tune->getPdfscore();
-                        foreach ($pdfscore as $pdf) {
-                            $file = UrlRewriting::generateSRC("userfolder", $_SESSION['pseudo'],$pdf);
-                            if (file_exists($file)) {
-                                unlink($file);
-                            }
+		$tune = $tunerep->findTuneById($idtune);
+		if ($tune != false) {
+			// the user has shared some versions of the tune so ...
+			if (is_array($tune->getForkedusers()) && (in_array($_SESSION['iduser'],$tune->getForkedusers()))) {
+				$forkedusers = $tune->getForkedusers();
+                $pdfscore = $tune->getPdfscore();
+				for ($i=0; $i<count($forkedusers); $i++) {
+					if($forkedusers[$i] == $_SESSION['iduser']) {
+						$file = UrlRewriting::generateSRC("userfolder", $_SESSION['pseudo'],$pdfscore[$i]);
+                        if (file_exists($file)) {
+                        	chmod($file,0755);
+                            unlink($file);
                         }
-                        // delete each tuple with fk_tune in the likedtune table
-                        $tunerep->deleteTuneForAll($idtune);
-                    } else {
-                        $tunerep->deleteTuneForUser($_SESSION['iduser'], $idtune);
-                    }
-                }
-//                $request->setParameter($par[0], $pseudo);
+					}
+				}
+				$tunerep->deleteScoreTuneByUser($idtune,$_SESSION['iduser']);
+			}
+			// remove from likedtube for the current user
+			$tunerep->deleteTuneForUser($_SESSION['iduser'], $idtune);
+			// the user is the last to have this tune so deleteAll ...
+			if($tunerep->nbLikedTune($idtune) == 0) {
+				$tunerep->deleteTuneForAll($idtune);
+			}			
+		}
+		$request->setParameter("par", array($pseudo));
 		$this->indexAction($request);
 	}
 
 	public function addAction(Request &$request) {
+		$pseudo = $request->getParameter("par")[0];
 		$idtune = $request->getParameter("par")[1];
 		$tunerep = new TuneRepository();
 		$tunerep->shareTune($_SESSION['iduser'], $idtune);
-//                $request->setParameter($par[0], $pseudo);
+//      $request->setParameter($par[0], $pseudo);
 		$this->indexAction($request);
 	}
 
 	public function shareAction(Request &$request) {
 		$idtune = $request->getParameter("par")[0];
 		
-                $tunerep = new TuneRepository();
-                $titletune = $tunerep->findTitleTuneById($idtune);
+        $tunerep = new TuneRepository();
+        $titletune = $tunerep->findTitleTuneById($idtune);
 
-                $date_news = date("y-m-d H-i-s");
+        $date_news = date("y-m-d H-i-s");
 		$datanews = "<a href='Tune/index/".$idtune."' class='hashtag'>#".$titletune."</a>";
 		$news = new News($_SESSION['iduser'],$_SESSION['pseudo'],$date_news,$datanews); // create the news object
 		$newsrep = new NewsRepository();
@@ -102,7 +111,7 @@ class SongslistController extends BaseController
 				$class = "item-odd";
 			}
                         
-                        $tuneaction = array();
+            $tuneaction = array();
 			if ($_SESSION['pseudo'] == $pseudo && $tunerep->checkTuneLikedByUser($_SESSION['iduser'], $tune->getIdtune())) {
 				$tuneaction['deleteadd'] = array('class' => 'delete', 'url' => UrlRewriting::generateURL("Delete",$pseudo."/".$tune->getIdtune()));
 			} 
@@ -112,19 +121,17 @@ class SongslistController extends BaseController
 				$tuneaction['deleteadd'] = array('class' => '', 'url' => "#");
 			}
                         
-                        $tuneaction['share'] = array();
-
 			$data['tunelist'][] = array("class" => $class,
 				"idtune" => $tune->getIdtune(), 
-				"iduser" => $tune->getIduser(), 
+				// "iduser" => $tune->getForkedusers(), 
 				"title" => $tune->getTitle(), 
 				"composer" => $tune->getComposer(), 
 				"category" => $tune->getCategory(), 
 				"datetune" => Pubdate::printDate($tune->getDatetune()),  
 				"pdftune" => $tune->getPdfscore(),
-				"urltune" => UrlRewriting::generateURL("Tune",$tune->getIdtune()),
-                                "addscore" => UrlRewriting::generateURL("Addscore",$tune->getIdtune()),
-                                "sharetune" => UrlRewriting::generateURL("Share",$tune->getIdtune()),
+				"urltune" => UrlRewriting::generateURL("Tune",$pseudo."/".$tune->getIdtune()),
+                "addscore" => UrlRewriting::generateURL("Addscore",$tune->getIdtune()),
+                "sharetune" => UrlRewriting::generateURL("Share",$tune->getIdtune()),
 				"deleteadd" => $tuneaction['deleteadd']);
 			$i++;
 		}

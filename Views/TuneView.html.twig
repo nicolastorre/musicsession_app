@@ -2,16 +2,28 @@
 
 {% block timeline %}
 	<div id="tunepage">
-		<a href="{{ data.tune.url }}" target="_blank"><h2>{{ data.tune.title }}</h2></a>
-		<h3 class="composer">{{ data.tune.composer }}</h3>
-		<h3 class="category">{{ data.tune.category }}</h3>
-		<h4 class="datetune">{{ data.tune.datetune }}</h4>
-                {% for score in data.tune.forked %}
-                    {% if score.delete != "#" %}
-                    <a href="{{ score.delete }}">Delete</a>
-                    {% endif %}
+        <div id="headertune">
+    		<a href="{{ data.tune.url }}" target="_blank"><h2>{{ data.tune.title }}</h2></a>
+    		<h3 class="composer">{{ data.tune.composer }}</h3>
+    		<h3 class="category">{{ data.tune.category }}</h3>
+    		<h4 class="datetune">{{ data.tune.datetune }}</h4>
+        </div>
+        <div class="actionpanel">
+            <a class="button action" href="{{ data.tune.addscore.url }}"><div class="addscore"></div>{{ data.tune.addscore.name }}</a>
+            <a class="button action" href="{{ data.tune.sharetune.url }}"><div class="share"></div>{{ data.tune.sharetune.name }}</a>
+            <a class="button action" href="{{ data.tune.deleteadd.url }}"><div id="sharedel" class="{{ data.tune.deleteadd.class }}"></div>{{ data.tune.deleteadd.name }}</a>
+        </div>
+        <hr>
+            {% for score in data.tune.forked %}
+            <div class="version">
+                <h3>version {{ score.num }} </h3>
+                <h4 class="forkeduser">{{ score.forkeduser }}</h4>
                 <div class="datescore">{{ score.date }}</div>
+                {% if score.delete != "#" %}
+                <a class="button deletescore" href="{{ score.delete }}">{{ data.tune.deletescorename }}</a>
+                {% endif %}
                 <iframe src="{{ score.pdfurl }}"></iframe> 
-                {% endfor %}
+            </div>
+            {% endfor %}
 	</div>
 {% endblock %}

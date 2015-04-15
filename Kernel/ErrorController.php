@@ -64,8 +64,8 @@ class ErrorController extends BaseController
 	public function indexAction() {
 		// get request
 		$request = new Request();
-                unset($_SESSION['iduser']);
-                unset($_SESSION['pseudo']);
+                // unset($_SESSION['iduser']);
+                // unset($_SESSION['pseudo']);
 		if ($request->existsParameter('controller') && $request->notEmptyParameter('controller')) {
     		$controller = $request->getParameter('controller')."Controller";
  		} else {

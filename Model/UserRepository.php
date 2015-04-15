@@ -104,22 +104,11 @@ class UserRepository  extends DBManager
         }
         
         public function deleteuser($iduser) {
-            $result = true;
-            if (is_null($this->query("DELETE from friendship WHERE fk_user_a = (?) OR fk_user_B = (?);",array($iduser,$iduser)))) {$result = false;}
-            if (is_null($this->query("DELETE from likedtune WHERE fk_user_lt = (?);",array($iduser)))) {$result = false;}
-            if (is_null($this->query("DELETE from message WHERE fk_sender = (?) OR fk_receiver = (?);",array($iduser,$iduser)))) {$result = false;}
-            if (is_null($this->query("DELETE from news WHERE fk_user_news = (?);",array($iduser)))) {$result = false;}
-            if (is_null($this->query("DELETE from score WHERE fk_user_score = (?);",array($iduser)))) {$result = false;}
-            if (is_null($this->query("DELETE from tune WHERE fk_user_tune = (?);",array($iduser)))) {$result = false;}
-            if($result) {
-                if(!is_null($this->query("DELETE from user WHERE id_user = (?);",array($iduser)))) {
-                    return true;
-                } else {
-                    return false;
-                }
-            } else {
-                return false;
-            }
+	        if(!is_null($this->query("DELETE from user WHERE id_user = (?);",array($iduser)))) {
+	            return true;
+	        } else {
+	            return false;
+	        }
         }
 }
 

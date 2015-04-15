@@ -50,7 +50,7 @@ body
     color: blue;
 }
 
-input[type="submit"], input[type="button"]
+input[type="submit"], input[type="button"], .button
 {
 	background-color: #F39C12;
 	border: medium none;
@@ -617,6 +617,11 @@ section
   padding: 2em;
 }
 
+#headertune
+{
+	overflow: hidden;
+}
+
 #tunepage h2
 {
 	font-size: 30px;
@@ -651,4 +656,33 @@ section
   width: 100%;
   height: 800px;
   border: 1px solid #000;
+}
+
+#tunepage .actionpanel
+{
+	margin: 20px 0;
+	clear: both;
+}
+
+#tunepage .action
+{
+	display: inline-block;
+	width: 15em;
+
+}
+
+#tunepage .version
+{
+	margin: 25px 0;
+	clear: both;
+}
+
+.forkeduser, .datescore
+{
+	display: inline;
+}
+
+.deletescore
+{
+	float: right;
 }
