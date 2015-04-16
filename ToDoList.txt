@@ -20,6 +20,7 @@ Features
 PHP
 	Add userErrorHandler function
 	Group the global twig variables
+	printDate => add month and year
 
 Translate and error message
 

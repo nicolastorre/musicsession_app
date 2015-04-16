@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 15 Avril 2015 à 18:45
+-- Généré le :  Mer 15 Avril 2015 à 22:32
 -- Version du serveur :  5.6.17-log
 -- Version de PHP :  5.5.12
 
@@ -79,8 +79,7 @@ CREATE TABLE IF NOT EXISTS `friendship` (
 INSERT INTO `friendship` (`id_fdshp`, `fk_user_a`, `fk_user_b`, `date_fdshp`) VALUES
 (28, 21, 20, '2015-04-09 14:52:48'),
 (30, 20, 1, '2015-04-14 19:36:48'),
-(31, 1, 21, '2015-04-15 13:31:40'),
-(32, 1, 24, '2015-04-15 16:18:05');
+(31, 1, 21, '2015-04-15 13:31:40');
 
 -- --------------------------------------------------------
 
@@ -109,8 +108,7 @@ INSERT INTO `likedtune` (`id_likedtune`, `fk_tune_lt`, `fk_user_lt`) VALUES
 (59, 59, 1),
 (60, 60, 21),
 (61, 58, 21),
-(62, 56, 20),
-(76, 67, 24);
+(62, 56, 20);
 
 -- --------------------------------------------------------
 
@@ -170,9 +168,29 @@ INSERT INTO `news` (`id_news`, `fk_user_news`, `date_news`, `content_news`) VALU
 (58, 1, '2015-04-14 21:03:48', '<a href=''Tune/index/59'' class=''hashtag''>#ScottishDelGatto</a>'),
 (59, 1, '2015-04-15 13:24:45', '<a href=''Tune/index/59'' class=''hashtag''>#ScottishDelGatto</a>'),
 (60, 1, '2015-04-15 13:31:20', '<a href=''Tune/index/59'' class=''hashtag''>#ScottishDelGatto</a>'),
-(61, 1, '2015-04-15 14:41:45', '<a href=''Tune/index/60'' class=''hashtag''>#AuClairDelaLune</a>'),
-(62, 24, '2015-04-15 16:16:15', '<a href=''Tune/index/66'' class=''hashtag''>#test2</a>'),
-(63, 24, '2015-04-15 16:19:46', '<a href=''Tune/index/66'' class=''hashtag''>#test2</a>');
+(61, 1, '2015-04-15 14:41:45', '<a href=''Tune/index/60'' class=''hashtag''>#AuClairDelaLune</a>');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `report`
+--
+
+DROP TABLE IF EXISTS `report`;
+CREATE TABLE IF NOT EXISTS `report` (
+  `id_report` int(11) NOT NULL AUTO_INCREMENT,
+  `fk_user_report` int(11) NOT NULL,
+  `date_report` datetime NOT NULL,
+  `content_report` text NOT NULL,
+  PRIMARY KEY (`id_report`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `report`
+--
+
+INSERT INTO `report` (`id_report`, `fk_user_report`, `date_report`, `content_report`) VALUES
+(1, 1, '2015-04-15 22:15:11', 'Test');
 
 -- --------------------------------------------------------
 
@@ -201,8 +219,7 @@ INSERT INTO `score` (`id_score`, `fk_tune_score`, `fk_user_score`, `pdf_score`, 
 (4, 57, 1, 'NissaLaBella.pdf', '0000-00-00 00:00:00'),
 (5, 58, 1, '[Free-scores.com]_beethoven-ludwig-van-for-elise-549.pdf', '0000-00-00 00:00:00'),
 (6, 59, 1, '27-Scottish_gatto.pdf', '0000-00-00 00:00:00'),
-(7, 59, 1, '27-Scottish_gatto552e5ebd21e3c.pdf', '2015-04-15 14:51:09'),
-(25, 67, 24, 'partition-au-clair-de-la-lune552e91ea0c882.pdf', '2015-04-15 18:29:30');
+(7, 59, 1, '27-Scottish_gatto552e5ebd21e3c.pdf', '2015-04-15 14:51:09');
 
 -- --------------------------------------------------------
 
@@ -229,8 +246,7 @@ INSERT INTO `tune` (`id_tune`, `title_tune`, `composer`, `category_tune`, `date_
 (57, 'NissaLaBella', 'Menica Rondelly', 'trad', '2015-04-09 16:40:00'),
 (58, 'LettreaElise', 'Ludwig van Beethoven', 'classique', '2015-04-09 16:42:49'),
 (59, 'ScottishDelGatto', 'Sergio Berardo', 'trad', '2015-04-09 16:44:30'),
-(60, 'AuClairDelaLune', 'anonyme', 'chanson populaire', '2015-04-09 16:54:01'),
-(67, 'test2', 'test2', 'rock', '2015-04-15 18:24:17');
+(60, 'AuClairDelaLune', 'anonyme', 'chanson populaire', '2015-04-09 16:54:01');
 
 -- --------------------------------------------------------
 
@@ -251,7 +267,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `confirmmail` tinyint(1) NOT NULL,
   `access` enum('admin','user') NOT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
 
 --
 -- Contenu de la table `user`
@@ -261,8 +277,7 @@ INSERT INTO `user` (`id_user`, `pseudo`, `pwdhashed`, `firstname`, `name`, `emai
 (1, 'Nico', '1234', 'Nicolas', 'Torre', 'nico@gmail.com', 'fr', '0', 1, 'user'),
 (6, 'Admin', '1234', 'Admin', 'Admin', 'admin@gmail.com', 'en', '2587', 1, 'admin'),
 (20, 'GreenDay', '1234', 'Green', 'Day', 'greenday@gmailtest.com', 'en', '55268d00308ff', 0, 'user'),
-(21, 'Jean', '1234', 'jean', 'Dupont', 'jeandupont@gmailtest.com', 'fr', '5526922a7c662', 0, 'user'),
-(24, 'test', 'test', 'test', 'test', 'test@gfdsgf.com', 'en', '552e8e80cabb0', 0, 'user');
+(21, 'Jean', '1234', 'jean', 'Dupont', 'jeandupont@gmailtest.com', 'fr', '5526922a7c662', 0, 'user');
 
 --
 -- Contraintes pour les tables exportées
