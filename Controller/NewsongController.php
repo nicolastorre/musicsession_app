@@ -89,6 +89,7 @@ class NewsongController extends BaseController
 		/*
 		* Create the form to add a new song
 		*/
+                $data['newsongtitle'] = Translator::translate("Add a new song");
 		if ($f == null) {
 			$f = new FormManager("importsongform","importsongform",UrlRewriting::generateURL("addNewSong",""));
 			$f->addField("Title: ","title","text","");
@@ -96,7 +97,7 @@ class NewsongController extends BaseController
                         $f->addField("Category: ","category","select",array(array('v' => 'classique','s' => false),array('v' => 'rock','s' => true),array('v' => 'trad','s' => false),array('v' => 'other','s' => false)),"Error",array('id' => 'category'));
                         $f->addField(" ","addcategory","text","","Error",array('id' => 'other'),true);
 			$f->addField("pdf score: ","pdf","file","");
-			$f->addField("Submit ","submit","submit","Import song","Error",array('id' => 'submit'));	
+			$f->addField("Submit ","submit","submit",Translator::translate("Import song"),"Error",array('id' => 'submit'));	
 		}
 		$data['importsongform'] = $f->createView();
 

@@ -92,15 +92,15 @@ class TuneController extends BaseController
 
                     $tuneaction = array();
                     if ($_SESSION['pseudo'] == $pseudo && $tunerep->checkTuneLikedByUser($_SESSION['iduser'], $tune->getIdtune())) {
-                        $tuneaction['deleteadd'] = array('name' => "Delete from your tunebook", 'class' => 'delete', 'url' => UrlRewriting::generateURL("Delete",$pseudo."/".$tune->getIdtune()));
+                        $tuneaction['deleteadd'] = array('name' => Translator::translate("Delete from your tunebook"), 'class' => 'delete', 'url' => UrlRewriting::generateURL("Delete",$pseudo."/".$tune->getIdtune()));
                     } 
                     elseif (!$tunerep->checkTuneLikedByUser($_SESSION['iduser'], $tune->getIdtune())) {
-                        $tuneaction['deleteadd'] = array('name' => "Add to your tunebook", 'class' => 'add', 'url' => UrlRewriting::generateURL("Add",$pseudo."/".$tune->getIdtune()));
+                        $tuneaction['deleteadd'] = array('name' => Translator::translate("Add to your tunebook"), 'class' => 'add', 'url' => UrlRewriting::generateURL("Add",$pseudo."/".$tune->getIdtune()));
                     } else {
                         $tuneaction['deleteadd'] = array('name' => '', 'class' => '', 'url' => "#");
                     }
-                    $data['tune']["addscore"] = array("name" => "Add a new version", "url" => UrlRewriting::generateURL("Addscore",$pseudo."/".$tune->getIdtune()));
-                    $data['tune']["sharetune"] = array("name" => "Share this tune", "url" =>UrlRewriting::generateURL("Share",$tune->getIdtune()));
+                    $data['tune']["addscore"] = array("name" => Translator::translate("Add a new version"), "url" => UrlRewriting::generateURL("Addscore",$pseudo."/".$tune->getIdtune()));
+                    $data['tune']["sharetune"] = array("name" => Translator::translate("Share this tune"), "url" =>UrlRewriting::generateURL("Share",$tune->getIdtune()));
                     $data['tune']["deleteadd"] = $tuneaction['deleteadd'];
 
                     $data['tune']['deletescorename'] = Translator::translate('Delete this score');

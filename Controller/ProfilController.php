@@ -12,6 +12,8 @@ class ProfilController extends BaseController
 		$data = array();
 		$userrep = new UserRepository();
 		$iduser = $userrep->getUserIdByPseudo($pseudo);
+                $data['friends'] = Translator::translate("Friends");
+                $data['songs'] = Translator::translate("Tunes");
 		$data['pseudo'] = $pseudo;
 		$data['pseudourl'] = UrlRewriting::generateURL("Profil",$pseudo);
 		$data['profilephoto'] = UrlRewriting::generateSRC("userfolder", $pseudo,"profile_pic.png", "../default/profile_pic.png");
@@ -26,10 +28,10 @@ class ProfilController extends BaseController
 			$status = $friendship->getStatus();
 			if ($status == 0) {
 				$data['statusurl'] = UrlRewriting::generateURL("Friendship",$pseudo);
-				$data['status'] = "Follow";
+				$data['status'] = Translator::translate("Follow");
 			} elseif ($status == 1) {
 				$data['statusurl'] = UrlRewriting::generateURL("Friendship",$pseudo);
-				$data['status'] = "Block";
+				$data['status'] = Translator::translate("Block");
 			} else {
 				$data['statusurl'] = "";
 				$data['status'] = "";
@@ -76,12 +78,16 @@ class ProfilController extends BaseController
 
 			$newsrep = new NewsRepository();
 			$newslist = $newsrep->findAllNewsUser($iduser);
-			foreach ($newslist as $news) {
-				$data['newslist'][] = array("url" => UrlRewriting::generateURL("Profil",$news->getUserpseudo()), "user" => $news->getUserpseudo(),
-						"profilephoto" => UrlRewriting::generateSRC("userfolder", $news->getUserpseudo(),"profile_pic.png", "../default/profile_pic.png"),
-						"pubdate" => Pubdate::printDate($news->getPubdate()),
-						"content" => $news->getContent());
-			}
+			if (!empty($newslist[0])) {
+                            foreach ($newslist as $news) {
+                                    $data['newslist'][] = array("url" => UrlRewriting::generateURL("Profil",$news->getUserpseudo()), "user" => $news->getUserpseudo(),
+                                                    "profilephoto" => UrlRewriting::generateSRC("userfolder", $news->getUserpseudo(),"profile_pic.png", "../default/profile_pic.png"),
+                                                    "pubdate" => Pubdate::printDate($news->getPubdate()),
+                                                    "content" => $news->getContent());
+                            }
+                        } else {
+                            $data['flashbag']= "No news";
+                        }
 
 			$data['suggestedfriends'] = FriendsController::suggestedFriends(3);
 

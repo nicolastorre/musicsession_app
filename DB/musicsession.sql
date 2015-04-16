@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 15 Avril 2015 à 22:32
--- Version du serveur :  5.6.17-log
+-- Généré le :  Jeu 16 Avril 2015 à 17:15
+-- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `dico` (
   `fr` varchar(255) NOT NULL,
   `en` varchar(255) NOT NULL,
   PRIMARY KEY (`id_dico`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=56 ;
 
 --
 -- Contenu de la table `dico`
@@ -53,7 +53,50 @@ INSERT INTO `dico` (`id_dico`, `key_dico`, `fr`, `en`) VALUES
 (9, 'Sign in', 'Se connecter', 'Sign in'),
 (10, 'Name: ', 'Nom: ', 'Name: '),
 (11, 'Sign up', 'S''inscrire', 'Sign up'),
-(12, 'Forgotten password?', 'Mot de passe oublié?', 'Forgotten password?');
+(12, 'Forgotten password?', 'Mot de passe oublié?', 'Forgotten password?'),
+(13, 'Share your music with your friends!', 'Partager votre musique avec vos amis!', 'Share your music with your friends!'),
+(14, 'Authentification', 'Authntification', 'Authentification'),
+(15, 'Inscription', 'Inscription', 'Inscription'),
+(16, 'min', 'min', 'min'),
+(17, 'h', 'h', 'h'),
+(18, 'd', 'j', 'd'),
+(19, 'm', 'm', 'm'),
+(20, 'y', 'a', 'y'),
+(21, 'Tunes list', 'Liste musiques', 'Tunes list'),
+(22, 'Suggested friends', 'Suggestion d''amis', 'Suggested friends'),
+(23, 'Friends', 'Amis', 'Friends'),
+(24, 'Tunes', 'Musiques', 'Tunes'),
+(25, 'Send', 'Envoyer', 'Send'),
+(26, 'Add a new song', 'Créer une musique', 'Add a new tune'),
+(27, 'Import song', 'Créer musique', 'Import tune'),
+(28, 'Account', 'Compte', 'Account'),
+(29, 'Change your basic settings.', 'Modifier vos paramètres.', 'Change your basic settings.'),
+(30, 'Profile photo', 'Photo de profile', 'Profile photo'),
+(31, 'Change your profile photo.', 'Modifier votre photo de profile', 'Change your profile photo.'),
+(32, 'Password', 'Mot de passe', 'Password'),
+(33, 'Change your password settings.', 'Modifier votre mot de passe.', 'Change your password settings.'),
+(34, 'Reporting', 'Signaler', 'Reporting'),
+(35, 'Reporting abusive behavior.', 'Signaler un usage abusif.', 'Reporting abusive behavior.'),
+(36, 'Remove your account', 'Suuprimer votre compte', 'Remove your account'),
+(37, 'Delete definitely your account and your informations.', 'Suuprimer définitevement votre compte et toutes vos informations.', 'Delete definitely your account and your informations.'),
+(38, 'Update', 'Mettre à jour', 'Update'),
+(39, 'Upload your photo', 'Télécharger votre photo', 'Upload your photo'),
+(40, 'Language', 'Langue', 'Language'),
+(41, 'Profile photo: ', 'Photo de profile: ', 'Profile photo: '),
+(42, 'Confirm your password: ', 'Confirmer votre mot de passe: ', 'Confirm your password: '),
+(43, 'Delete account', 'Supprimer votre compte', 'Delete account'),
+(44, 'log out', 'Déconnexion', 'Log out'),
+(45, 'Title', 'Titre', 'Title'),
+(46, 'Composer', 'Compositeur', 'Composer'),
+(47, 'Category', 'Catégorie', 'Category'),
+(48, 'Date', 'Date', 'Date'),
+(49, 'Delete from your tunebook', 'Supprimer de vos musiques', 'Delete from your tunebook'),
+(50, 'Add to your tunebook', 'Ajouter à vos musiques', 'Add to your tunebook'),
+(51, 'Add a new version', 'Ajouter une nouvelle version', 'Add a new version'),
+(52, 'Share this tune', 'Partager cette musique', 'Share this tune'),
+(53, 'Delete this score', 'Supprimer cette partition', 'Delete this score'),
+(54, 'Follow', 'Suivre', 'Follow'),
+(55, 'Block', 'Bloquer', 'Block');
 
 -- --------------------------------------------------------
 
@@ -70,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `friendship` (
   PRIMARY KEY (`id_fdshp`),
   KEY `fk_userfriendship_a` (`fk_user_a`),
   KEY `fk_userfriendship_b` (`fk_user_b`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=39 ;
 
 --
 -- Contenu de la table `friendship`
@@ -78,8 +121,7 @@ CREATE TABLE IF NOT EXISTS `friendship` (
 
 INSERT INTO `friendship` (`id_fdshp`, `fk_user_a`, `fk_user_b`, `date_fdshp`) VALUES
 (28, 21, 20, '2015-04-09 14:52:48'),
-(30, 20, 1, '2015-04-14 19:36:48'),
-(31, 1, 21, '2015-04-15 13:31:40');
+(30, 20, 1, '2015-04-14 19:36:48');
 
 -- --------------------------------------------------------
 
@@ -126,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `message` (
   PRIMARY KEY (`id_msg`),
   KEY `fk_msg_sender` (`fk_sender`),
   KEY `fk_msg_receiver` (`fk_receiver`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Contenu de la table `message`

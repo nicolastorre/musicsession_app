@@ -7,7 +7,7 @@
 /******************************************************************************/
 class SongslistController extends BaseController
 {
-	public static function lasttunewidgetAction() {
+	/*public static function lasttunewidgetAction() {
 		$data = array();
 		$tunerep = new TuneRepository();
 		$tunelist = $tunerep->FindLastTune(2);
@@ -17,19 +17,20 @@ class SongslistController extends BaseController
 				"urltune" => UrlRewriting::generateURL("Tune",$tune->getIdtune()));
 		}
 		return $data;
-	}
+	}*/
 
 	public static function songlistwidgetAction() {
 		$data = array();
 		$tunerep = new TuneRepository();
 		$tunedata = $tunerep->FindUserLikedtuneGroupByCategory($_SESSION['iduser']);
+                $data["title"] = Translator::translate("Tunes list");
 		foreach($tunedata as $category => $tunelist) {
 			
 			$tmp_tunelist = array();
 			foreach ($tunelist as $tune) {
 				$tmp_tunelist[] = array('title' => $tune->getTitle(), 'url' => UrlRewriting::generateURL("Tune",$tune->getIdtune()));
 			}
-			$data[] = array("category" => $category, "tunelist" => $tmp_tunelist);
+			$data['tune'][] = array("category" => $category, "tunelist" => $tmp_tunelist);
 		}
 		return $data;
 	}
@@ -100,6 +101,11 @@ class SongslistController extends BaseController
 		$data['profilcard'] = ProfilController::ProfilCard($pseudo);
 		$data['tunelistwidget'] = self::songlistwidgetAction();
 		// $data['lasttune'] = self::lasttunewidgetAction();
+                
+                $data['tunelistheader']['title'] = Translator::translate("Title");
+                $data['tunelistheader']['composer'] = Translator::translate("Composer");
+                $data['tunelistheader']['category'] = Translator::translate("Category");
+                $data['tunelistheader']['date'] = Translator::translate("Date");
 
 		$tunerep = new TuneRepository();
 		$tunelist = $tunerep->FindUserLikedtune($iduser);
@@ -111,7 +117,7 @@ class SongslistController extends BaseController
 				$class = "item-odd";
 			}
                         
-            $tuneaction = array();
+                        $tuneaction = array();
 			if ($_SESSION['pseudo'] == $pseudo && $tunerep->checkTuneLikedByUser($_SESSION['iduser'], $tune->getIdtune())) {
 				$tuneaction['deleteadd'] = array('class' => 'delete', 'url' => UrlRewriting::generateURL("Delete",$pseudo."/".$tune->getIdtune()));
 			} 
@@ -130,8 +136,8 @@ class SongslistController extends BaseController
 				"datetune" => Pubdate::printDate($tune->getDatetune()),  
 				"pdftune" => $tune->getPdfscore(),
 				"urltune" => UrlRewriting::generateURL("Tune",$pseudo."/".$tune->getIdtune()),
-                "addscore" => UrlRewriting::generateURL("Addscore",$tune->getIdtune()),
-                "sharetune" => UrlRewriting::generateURL("Share",$tune->getIdtune()),
+                                "addscore" => UrlRewriting::generateURL("Addscore",$tune->getIdtune()),
+                                "sharetune" => UrlRewriting::generateURL("Share",$tune->getIdtune()),
 				"deleteadd" => $tuneaction['deleteadd']);
 			$i++;
 		}

@@ -197,6 +197,10 @@ class AuthController extends BaseController
 		}
 
 		$data = array(); // $data contains all page view data
+                $data['title'] = "Music session";
+                $data['desc'] = Translator::translate("Share your music with your friends!");
+                $data['authtitle'] = Translator::translate("Authentification");
+                $data['insctitle'] = Translator::translate("Inscription");
                 $data['flashbag'] = $flashbag;
                 $data['langform'] = $langform->createView(); // the authentification form
 		$data['authform'] = $f->createView(); // the authentification form

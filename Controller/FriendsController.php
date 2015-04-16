@@ -26,37 +26,27 @@ class FriendsController extends BaseController
      * @param int $nbsuggestion number of suggested friends to display.
      * @return array $suggestedfriends array containing array referencing suggested friends
      * with  iduser, pseudo and url of each suggested friends.
-     */
-	public static function suggestedFriends($nbsuggestion) {
-		$suggestedFriends = array();
-		$userrep = new UserRepository();
-		$alliduser = $userrep->allIdUser();
-		$nbuser = count($alliduser);
-		$friendshiprep = new FriendshipRepository();
-		$iduser = $userrep->getUserIdByPseudo($_SESSION['pseudo']);
-		$friends = $friendshiprep->getFriends($iduser);
-		$idfriends = array();
-		foreach ($friends as $i) {
-			if ($i->getIdusera() != $iduser) {
-				$userfriends = $userrep->findUserById($i->getIdusera());
-			} elseif ($i->getIduserb() != $iduser) {
-				$userfriends = $userrep->findUserById($i->getIduserb());
-			}
-			$idfriends[] = $userfriends->getIduser();		
-		}
-		if ($nbuser>count($idfriends)+1) {
-			for ($i=0;$i<$nbsuggestion;$i++) {
-				do {
-					$iduserrand = $alliduser[rand(0,$nbuser-1)];
-				} while (($iduserrand == $iduser ) || in_array($iduserrand,$idfriends)); //|| ($userrep->getUserPseudoById($iduserrand) == "Admin")
-				$userrand = $userrep->findUserById($iduserrand);
-				$userrand_pseudo = $userrand->getPseudo();
-				$suggestedFriends[] = array('iduser' => $iduserrand, 'pseudo' => $userrand_pseudo, 'url' => UrlRewriting::generateURL("Profil",$userrand_pseudo),
+     */       
+        public static function suggestedFriends($nbsuggestion) {
+            $iduser = $_SESSION['iduser'];
+            
+            $suggestedFriends = array();
+            $userrep = new UserRepository();
+            $friendshiprep = new FriendshipRepository();
+            $suggestedfdlist = $friendshiprep->suggestFriends($iduser);
+            $suggestedFriends['title'] = Translator::translate("Suggested friends");
+            for ($i=0; $i<$nbsuggestion; $i++) {
+                $k = rand(0,count($suggestedfdlist)-1);
+                if (isset($suggestedfdlist[$k])) {
+                $userrand = $userrep->findUserById($suggestedfdlist[$k]['id_user']);
+                $userrand_pseudo = $userrand->getPseudo();
+                $suggestedFriends['user'][] = array('iduser' => $suggestedfdlist[$k]['id_user'], 'pseudo' => $userrand_pseudo, 'url' => UrlRewriting::generateURL("Profil",$userrand_pseudo),
 					"profilephoto" => UrlRewriting::generateSRC("userfolder", $userrand_pseudo,"profile_pic.png", "../default/profile_pic.png"));
-			}
-		}
-		return $suggestedFriends;
-	}
+                unset($suggestedfdlist[$k]);
+                }
+            }
+            return $suggestedFriends;
+        }
 	
 	/**
      * Create the default friends page view

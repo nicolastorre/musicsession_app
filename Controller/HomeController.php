@@ -76,12 +76,16 @@ class HomeController extends BaseController
 		*/
 		$newsrep = new NewsRepository();
 		$newslist = $newsrep->findAllNewsFriendsUser($iduser);
-		foreach ($newslist as $news) {
-			$data['newslist'][] = array("url" => UrlRewriting::generateURL("Profil",$news->getUserpseudo()), "user" => $news->getUserpseudo(),
-					"profilephoto" => UrlRewriting::generateSRC("userfolder", $news->getUserpseudo(),"profile_pic.png", "../default/profile_pic.png"),
-					"pubdate" => Pubdate::printDate($news->getPubdate()),
-					"content" => $news->getContent());
-		}
+                if (!empty($newslist[0])) {
+                    foreach ($newslist as $news) {
+                            $data['newslist'][] = array("url" => UrlRewriting::generateURL("Profil",$news->getUserpseudo()), "user" => $news->getUserpseudo(),
+                                            "profilephoto" => UrlRewriting::generateSRC("userfolder", $news->getUserpseudo(),"profile_pic.png", "../default/profile_pic.png"),
+                                            "pubdate" => Pubdate::printDate($news->getPubdate()),
+                                            "content" => $news->getContent());
+                    }
+                } else {
+                    $data['flashbag'] = "No news";
+                }
 
 		$data['suggestedfriends'] = FriendsController::suggestedFriends(3); // init the Suggested Friends module
 

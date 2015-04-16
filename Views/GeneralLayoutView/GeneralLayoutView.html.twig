@@ -25,13 +25,13 @@
 			<ul class="menu">
                                 <li>
                                     {{ menu.searchform.formstart | raw}}
-                                    <div>
+                                    <div id="search-container">
                                         {{ menu.searchform.search | raw}}
                                         {{ menu.searchform.submit | raw}}
                                     </div>
                                     {{ menu.searchform.formend | raw}}
                                 </li>
-				<li class="{{ menu[4].class }} icon"><a href='{{ menu[4].url }}' id="parameters"><img src="Ressources/public/images/app/parameters.png" alt="parameters"></a></li>
+				<li id="parameters-container" class="{{ menu[4].class }} icon"><a href='{{ menu[4].url }}' id="parameters"><img src="Ressources/public/images/app/parameters.png" alt="parameters"></a></li>
 			</ul>
                         
                         <ul id="mobile-menu">

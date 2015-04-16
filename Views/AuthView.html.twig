@@ -12,40 +12,43 @@
 
 	<body>
 		<header>
-			<h1>Music Session</h1>
-		</header>
-		<section>
-                        <div id="flashbag">{{ data.flashbag }}</div>
-			<div id="lang" class="box">
+                        <div id="lang">
 				{{ data.langform.formstart | raw }}
                                 {{ data.langform.lang_fr | raw }}
                                 {{ data.langform.lang_en | raw }}
                                 {{ data.langform.formend | raw }}
-                                
 			</div>
-			<div>
-				<div id="auth" class="box">
-					<h2>Authentification</h2>
-					{{ data.authform.formstart | raw }}
-					{{ data.authform.pseudo | raw }}
-					{{ data.authform.pwd | raw }}
-					{{ data.authform.submit | raw }}
-					{{ data.authform.formend | raw }}
-					<a href="{{ data.forgottenpwd.url }}">{{ data.forgottenpwd.name }}</a>
-				</div>
+		</header>
+		<section>
+                        
+                        
+                    <div id="flashbag">{{ data.flashbag }}</div>
+                    <div>
+                            <div id="desc">
+                                <h1>{{ data.title }}</h1>
+                                <p>{{ data.desc }}</p>
+                            </div>
+                            <div id="auth" class="box">
+                                    <h2>{{ data.authtitle }}</h2>
+                                    {{ data.authform.formstart | raw }}
+                                    {{ data.authform.pseudo | raw }}
+                                    {{ data.authform.pwd | raw }}
+                                    {{ data.authform.submit | raw }}
+                                    {{ data.authform.formend | raw }}
+                            </div>
 
-				<div id="inscription" class="box">
-					<h2>Inscription</h2>
-					{{ data.inscform.formstart | raw }}
-					{{ data.inscform.pseudo | raw }}
-					{{ data.inscform.pwdhashed | raw }}
-					{{ data.inscform.firstname | raw }}
-					{{ data.inscform.name | raw }}
-					{{ data.inscform.email | raw }}
-					{{ data.inscform.submit | raw }}
-					{{ data.inscform.formend | raw }}
-				</div>
-			</div>
+                            <div id="inscription" class="box">
+                                    <h2>{{ data.insctitle }}</h2>
+                                    {{ data.inscform.formstart | raw }}
+                                    {{ data.inscform.pseudo | raw }}
+                                    {{ data.inscform.pwdhashed | raw }}
+                                    {{ data.inscform.firstname | raw }}
+                                    {{ data.inscform.name | raw }}
+                                    {{ data.inscform.email | raw }}
+                                    {{ data.inscform.submit | raw }}
+                                    {{ data.inscform.formend | raw }}
+                            </div>
+                    </div>
 		</section>
 
 	</body>

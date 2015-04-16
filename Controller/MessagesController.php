@@ -194,17 +194,20 @@ class MessagesController extends BaseController
 				}    
 			} else {
 				$data['iduser'] = $iduserb;
-	            $data['lastmsg'] = 0;
+                                $data['lastmsg'] = 0;
+                                $data['flashbag'] = "No messages";
 			}
 
 	                // form to send a message
 			if ($f == null) {
 				$f = new FormManager("sendmsgform","sendmsgform",UrlRewriting::generateURL("SendMsg",$userrep->getUserPseudoById($iduserb)));
 				$f->addField("","msg","textarea","", array("id" => "msg"));
-				$f->addField("Submit ","submit","submit","Send", array("id" => "submitmsg"));
+				$f->addField("Submit ","submit","submit",Translator::translate("Send"), array("id" => "submitmsg"));
 			}
 			$data['sendmsgform'] = $f->createView(); // add the form view in the data page
-		}
+		} else {
+                    $data['flashbag'] = "No messages";
+                }
 
 		$data['suggestedfriends'] = FriendsController::suggestedFriends(3); // init the Suggested Friends module
 

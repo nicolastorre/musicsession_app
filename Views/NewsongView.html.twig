@@ -2,7 +2,7 @@
 
 {% block timeline %}
 	<div id="newsong">
-		<h2>Add a new song</h2>
+		<h2>{{ data.newsongtitle }}</h2>
 		{{ data.importsongform.formstart | raw }}
 		{{ data.importsongform.title | raw }}
 		{{ data.importsongform.composer | raw }}

@@ -151,12 +151,22 @@ class ParametersController extends BaseController
 		$data['tunelistwidget'] = SongslistController::songlistwidgetAction();
                 
                 $data['flashbag'] = $flashbag;
+                $data['accounttitle'] = Translator::translate("Account");
+                $data['accountdesc'] = Translator::translate("Change your basic settings.");
+                $data['profilephototitle'] = Translator::translate("Profile photo");
+                $data['profilephotodesc'] = Translator::translate("Change your profile photo.");
+                $data['passwordtitle'] = Translator::translate("Password");
+                $data['passworddesc'] = Translator::translate("Change your password settings.");
+                $data['reportingtitle'] = Translator::translate("Reporting");
+                $data['reportingdesc'] = Translator::translate("Reporting abusive behavior.");
+                $data['removetitle'] = Translator::translate("Remove your account");
+                $data['removedesc'] = Translator::translate("Delete definitely your account and your informations.");
 
 		if ($f == null) {
 			$user = $userrep->findUserById($iduser);
 			$f = new FormManager("parametersform","parametersform",UrlRewriting::generateURL("updateparameters",""));
-			$f->addField("Pseudo: ","pseudo","text",$user->getPseudo());
-			$f->addField("E-mail: ","email","email",$user->getEmail());
+			$f->addField(Translator::translate("Pseudo: "),"pseudo","text",$user->getPseudo());
+			$f->addField(Translator::translate("E-mail: "),"email","email",$user->getEmail());
 			$languser = $user->getLang();
 			$langvalues = array(array('v' => "fr",'s' => false),array('v' => "en",'s' => false));
 			for ($i=0; $i<count($langvalues);$i++) {
@@ -165,31 +175,30 @@ class ParametersController extends BaseController
 				}
 			}
 
-			$f->addField("Language: ","lang","select",$langvalues);
-			
-			$f->addField("Submit ","submit","submit","Update");	
+			$f->addField(Translator::translate("Language: "),"lang","select",$langvalues);
+			$f->addField("Submit ","submit","submit",Translator::translate("Update"));	
 		}
 		$data['parametersform'] = $f->createView();
 
 		if ($g == null) {
 			$g = new FormManager("updatephoto","updatephoto",UrlRewriting::generateURL("updatephoto",""));
-            $g->addField("Profile photo: ","pic","file","");
-			$g->addField("Submitphoto","submit","submit","Upload your photo");	
+            $g->addField(Translator::translate("Profile photo: "),"pic","file","");
+			$g->addField("Submitphoto","submit","submit",Translator::translate("Upload your photo"));	
 		}
 		$data['updatephoto'] = $g->createView();
                 
         if ($h == null) {
 			$h = new FormManager("updatepwd","updatepwd",UrlRewriting::generateURL("updatepassword",""));
-            $h->addField("Password: ","pwd","text","");
-            $h->addField("Confirm your password: ","confirmpwd","text","");
-			$h->addField("Submitphoto","submit","submit","Update");	
+            $h->addField(Translator::translate("Password: "),"pwd","text","");
+            $h->addField(Translator::translate("Confirm your password: "),"confirmpwd","text","");
+			$h->addField("Submitphoto","submit","submit",Translator::translate("Update"));	
 		}
 		$data['updatepwd'] = $h->createView();
 
         if ($j == null) {
             $j = new FormManager("signalform","signalform",UrlRewriting::generateURL("signal","")); // Form to edit and publish a news
             $j->addField("","signal","textarea","","Error");
-            $j->addField("Submit ","submit","submit","Send");   
+            $j->addField("Submit ","submit","submit",Translator::translate("Send"));   
         }
         $data['signalform'] = $j->createView(); // add the form view in the data page
                 

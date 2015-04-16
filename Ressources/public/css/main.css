@@ -63,20 +63,15 @@ input[type="submit"], input[type="button"], .button
 	margin-top: 5px;
 }
 
-/*.file 
+h2
 {
-	position: relative;
+  color: #96281B;
+  font-family: 'Arial';
+  font-weight: normal;
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 15px;
 }
-
-.file input[type="file"]
-{
-	position: absolute;
-	display: inline-block;
-	left: 0;
-	top: 0;
-	opacity: 0.01;
-	cursor: pointer;
-}*/
 
 /* 1. Menu principale */
 nav
@@ -129,19 +124,21 @@ nav .on
 
 nav li > form
 {
-	display: inline-block;
-	position: relative;
+	width: 170px;
 }
 
-nav li > form div
+#search-container
 {
 	position: relative;
-	display: inline;
+	display: block;
 	height: 25px;
 }
 
 #inputsearch
 {
+	position: absolute;
+	top: 5px;
+	right: 0px;
 	width: 170px;
 	height: 20px;
 	margin: 0;
@@ -153,7 +150,7 @@ nav li > form div
 #submitsearch
 {
 	position: absolute;
-	top: 0px;
+	top: 5px;
 	right: 0px;
 	margin: 0;
 	padding: 0.2em;
@@ -170,12 +167,17 @@ nav a
 
 li.icon
 {
-	line-height: 49px;
+	line-height: 50px;
 }
 
-#parameters
+#parameters-container
 {
-	display: block;
+	height: 50px;
+}
+
+#parameters a
+{
+	display: inherit;
 }
 
 nav li #parameters > img
@@ -222,6 +224,11 @@ section
 	min-height: 500px;
 }
 
+#timeline h2
+{
+	text-align: left;
+}
+
 #dashboard-right
 {
 	float: left;
@@ -242,6 +249,15 @@ section
 	color: #8899A6;
 	font-size: 15px;
 	line-height: 18px;
+}
+
+#error404
+{
+	color: #96281B;
+	font-size: 70px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 150px;
 }
 
 /* 3. Pseudo et photo de profile */
@@ -346,6 +362,11 @@ section
 	margin-bottom: 1em;
 }
 
+.notif > div:first-child
+{
+	text-align: right;
+}
+
 .notif a + div
 {
 	position: relative;
@@ -364,6 +385,11 @@ section
   min-height: 20px;
   padding: 1em;
   padding-bottom: 1.5em;
+}
+
+.item-discu a
+{
+	display: inherit;
 }
 
 #discussionlist .profile
@@ -520,7 +546,6 @@ section
 
 #newsong h2
 {
-  font-size: 22px;
   font-weight: bold;
   margin-bottom: 2em;
 }
