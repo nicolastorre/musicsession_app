@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 16 Avril 2015 à 17:15
--- Version du serveur :  5.6.17
+-- Généré le :  Ven 17 Avril 2015 à 12:12
+-- Version du serveur :  5.6.17-log
 -- Version de PHP :  5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `dico` (
   `fr` varchar(255) NOT NULL,
   `en` varchar(255) NOT NULL,
   PRIMARY KEY (`id_dico`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=56 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=87 ;
 
 --
 -- Contenu de la table `dico`
@@ -77,8 +77,8 @@ INSERT INTO `dico` (`id_dico`, `key_dico`, `fr`, `en`) VALUES
 (33, 'Change your password settings.', 'Modifier votre mot de passe.', 'Change your password settings.'),
 (34, 'Reporting', 'Signaler', 'Reporting'),
 (35, 'Reporting abusive behavior.', 'Signaler un usage abusif.', 'Reporting abusive behavior.'),
-(36, 'Remove your account', 'Suuprimer votre compte', 'Remove your account'),
-(37, 'Delete definitely your account and your informations.', 'Suuprimer définitevement votre compte et toutes vos informations.', 'Delete definitely your account and your informations.'),
+(36, 'Remove your account', 'Supprimer votre compte', 'Remove your account'),
+(37, 'Delete definitely your account and your informations.', 'Supprimer définitevement votre compte et toutes vos informations.', 'Delete definitely your account and your informations.'),
 (38, 'Update', 'Mettre à jour', 'Update'),
 (39, 'Upload your photo', 'Télécharger votre photo', 'Upload your photo'),
 (40, 'Language', 'Langue', 'Language'),
@@ -96,7 +96,38 @@ INSERT INTO `dico` (`id_dico`, `key_dico`, `fr`, `en`) VALUES
 (52, 'Share this tune', 'Partager cette musique', 'Share this tune'),
 (53, 'Delete this score', 'Supprimer cette partition', 'Delete this score'),
 (54, 'Follow', 'Suivre', 'Follow'),
-(55, 'Block', 'Bloquer', 'Block');
+(55, 'Block', 'Bloquer', 'Block'),
+(56, 'Invalid news', 'News incorrect', 'Invalid news'),
+(57, 'Your account is registered!', 'Votre compte est confirmé!', 'Your account is registered!'),
+(58, 'Error during account confirmation!', 'Erreur pendant la confirmation de votre compte', 'Error during account confirmation!'),
+(59, 'Special char not allowed in pseudo!', 'Les caractères spéciaux ne sont pas autorisés!', 'Special char not allowed in pseudo!'),
+(60, 'Hello \\n Confirm your inscription here: ', 'Bonjour \\ Confirmer votre inscription ici: ', 'Hello \\n Confirm your inscription here: '),
+(61, 'Confirm', 'Confirmer', 'Confirm'),
+(62, 'Thanks to sign in on Music Score Writer, an e-mail had been sent to you: please confirm your e-mail adress!', 'Merci de votre inscription, un e-mail vous a été envoyé pour confirmer votre compte!', 'Thanks to sign in on Music Score Writer, an e-mail had been sent to you: please confirm your e-mail adress!'),
+(63, 'Pseudo already exists!', 'Ce pseudo existe déjà!', 'Pseudo already exists!'),
+(64, 'Error: invalid pseudo or password!', 'Erreur: identifiant ou mot de passe incorrect!', 'Error: invalid pseudo or password!'),
+(65, 'Invalid pseudo!', 'Identifiant incorrect!', 'Invalid pseudo!'),
+(66, 'Invalid password!', 'Mot de passe incorrect!', 'Invalid password!'),
+(67, 'Error', 'Erreur!', 'Error!'),
+(68, 'Invalid', 'Incorrect', 'Invalid'),
+(69, 'Invalid e-mail', 'E-mail incorrect', 'Invalid e-mail'),
+(70, 'Deleting succeded!', 'Suppression réussi!', 'Deleting succeded!'),
+(71, 'Delete', 'Supprimer', 'Delete'),
+(72, 'Reporting abusive behavior', 'Signalement des usages abusifs', 'Reporting abusive behavior'),
+(73, 'Language: ', 'Langue: ', 'Language: '),
+(74, 'No messages!', 'Pas de messages!', 'No messages!'),
+(75, 'This title is already existing!', 'Ce titre existe déjà!', 'This title is already existing!'),
+(76, 'Send with success!', 'Envoi réussi!', 'Send with success!'),
+(77, 'Are you sure to remove your account?', 'Voulez-vous supprimer définitivement votre compte?', 'Are you sure to remove your account?'),
+(78, 'Yes', 'Oui', 'Yes'),
+(79, 'No', 'Non', 'No'),
+(80, 'Error during deleting your accounts!', 'Erreur pendant la suppression de votre compte!', 'Error during deleting your accounts!'),
+(81, 'No matching results!', 'Pas de résultats correspondants!', 'No matching results!'),
+(82, ' is friend with you!', ' est ami avec vous!', ' is friend with you!'),
+(83, ' send you an invitation!', ' vous a envoyé une invitation!', ' send you an invitation!'),
+(84, 'Accept the invitation', 'Accepter l''invitation', 'Accept the invitation'),
+(85, 'An invitation has already been sent!', 'Une invitation a déjà été envoyée!', 'An invitation has already been sent!'),
+(86, 'The invitation has been sent!', 'L''invitation a été envoyée!', 'The invitation has been sent!');
 
 -- --------------------------------------------------------
 
@@ -113,7 +144,7 @@ CREATE TABLE IF NOT EXISTS `friendship` (
   PRIMARY KEY (`id_fdshp`),
   KEY `fk_userfriendship_a` (`fk_user_a`),
   KEY `fk_userfriendship_b` (`fk_user_b`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=39 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=38 ;
 
 --
 -- Contenu de la table `friendship`
@@ -122,6 +153,30 @@ CREATE TABLE IF NOT EXISTS `friendship` (
 INSERT INTO `friendship` (`id_fdshp`, `fk_user_a`, `fk_user_b`, `date_fdshp`) VALUES
 (28, 21, 20, '2015-04-09 14:52:48'),
 (30, 20, 1, '2015-04-14 19:36:48');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `invitation`
+--
+
+DROP TABLE IF EXISTS `invitation`;
+CREATE TABLE IF NOT EXISTS `invitation` (
+  `id_fdshp` int(11) NOT NULL AUTO_INCREMENT,
+  `fk_user_a` int(11) NOT NULL,
+  `fk_user_b` int(11) NOT NULL,
+  `date_fdshp` timestamp NOT NULL,
+  PRIMARY KEY (`id_fdshp`),
+  KEY `fk_userfriendship_a` (`fk_user_a`),
+  KEY `fk_userfriendship_b` (`fk_user_b`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=42 ;
+
+--
+-- Contenu de la table `invitation`
+--
+
+INSERT INTO `invitation` (`id_fdshp`, `fk_user_a`, `fk_user_b`, `date_fdshp`) VALUES
+(41, 1, 21, '2015-04-17 10:09:24');
 
 -- --------------------------------------------------------
 
@@ -137,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `likedtune` (
   PRIMARY KEY (`id_likedtune`),
   KEY `fk_likedtune_tune` (`fk_tune_lt`),
   KEY `fk_likedtune_user` (`fk_user_lt`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=77 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=63 ;
 
 --
 -- Contenu de la table `likedtune`
@@ -168,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `message` (
   PRIMARY KEY (`id_msg`),
   KEY `fk_msg_sender` (`fk_sender`),
   KEY `fk_msg_receiver` (`fk_receiver`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- Contenu de la table `message`
@@ -177,7 +232,13 @@ CREATE TABLE IF NOT EXISTS `message` (
 INSERT INTO `message` (`id_msg`, `fk_sender`, `fk_receiver`, `date_msg`, `content_msg`) VALUES
 (1, 1, 20, '2015-04-09 16:48:50', 'Hi\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla turpis duis. '),
 (2, 20, 1, '2015-04-09 16:49:06', 'Hi\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla turpis duis. '),
-(3, 1, 20, '2015-04-09 16:55:35', 'To discover <a href=''Tune/index/56'' class=''hashtag''>#StairwayToHeaven</a> :)');
+(3, 1, 20, '2015-04-09 16:55:35', 'To discover <a href=''Tune/index/56'' class=''hashtag''>#StairwayToHeaven</a> :)'),
+(4, 1, 20, '2015-04-16 21:02:03', 'Test'),
+(5, 20, 1, '2015-04-16 21:02:37', 'ok'),
+(6, 1, 20, '2015-04-17 08:29:38', 'test'),
+(7, 1, 20, '2015-04-17 08:30:40', 'test'),
+(8, 1, 20, '2015-04-17 08:31:01', 'test'),
+(9, 1, 20, '2015-04-17 08:32:02', 'test');
 
 -- --------------------------------------------------------
 
@@ -193,7 +254,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   `content_news` varchar(255) NOT NULL,
   PRIMARY KEY (`id_news`),
   KEY `fk_news` (`fk_user_news`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=64 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=62 ;
 
 --
 -- Contenu de la table `news`
@@ -250,7 +311,7 @@ CREATE TABLE IF NOT EXISTS `score` (
   PRIMARY KEY (`id_score`),
   KEY `fk_tune_score_ref` (`fk_tune_score`),
   KEY `fk_user_score_ref` (`fk_user_score`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Contenu de la table `score`
@@ -277,7 +338,7 @@ CREATE TABLE IF NOT EXISTS `tune` (
   `category_tune` varchar(255) NOT NULL,
   `date_tune` datetime NOT NULL,
   PRIMARY KEY (`id_tune`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=68 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=61 ;
 
 --
 -- Contenu de la table `tune`
@@ -309,7 +370,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `confirmmail` tinyint(1) NOT NULL,
   `access` enum('admin','user') NOT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
 
 --
 -- Contenu de la table `user`
@@ -319,7 +380,8 @@ INSERT INTO `user` (`id_user`, `pseudo`, `pwdhashed`, `firstname`, `name`, `emai
 (1, 'Nico', '1234', 'Nicolas', 'Torre', 'nico@gmail.com', 'fr', '0', 1, 'user'),
 (6, 'Admin', '1234', 'Admin', 'Admin', 'admin@gmail.com', 'en', '2587', 1, 'admin'),
 (20, 'GreenDay', '1234', 'Green', 'Day', 'greenday@gmailtest.com', 'en', '55268d00308ff', 0, 'user'),
-(21, 'Jean', '1234', 'jean', 'Dupont', 'jeandupont@gmailtest.com', 'fr', '5526922a7c662', 0, 'user');
+(21, 'Jean', '1234', 'jean', 'Dupont', 'jeandupont@gmailtest.com', 'fr', '5526922a7c662', 0, 'user'),
+(22, 'test', 'test', 'test', 'test', 'test@gmail.com', 'en', '5530b50b81fd3', 0, 'user');
 
 --
 -- Contraintes pour les tables exportées
@@ -331,6 +393,13 @@ INSERT INTO `user` (`id_user`, `pseudo`, `pwdhashed`, `firstname`, `name`, `emai
 ALTER TABLE `friendship`
   ADD CONSTRAINT `fk_userfriendship_a` FOREIGN KEY (`fk_user_a`) REFERENCES `user` (`id_user`),
   ADD CONSTRAINT `fk_userfriendship_b` FOREIGN KEY (`fk_user_b`) REFERENCES `user` (`id_user`);
+
+--
+-- Contraintes pour la table `invitation`
+--
+ALTER TABLE `invitation`
+  ADD CONSTRAINT `fk_userinvitation_a` FOREIGN KEY (`fk_user_a`) REFERENCES `user` (`id_user`),
+  ADD CONSTRAINT `fk_userinvitation_b` FOREIGN KEY (`fk_user_b`) REFERENCES `user` (`id_user`);
 
 --
 -- Contraintes pour la table `likedtune`

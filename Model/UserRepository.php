@@ -83,7 +83,7 @@ class UserRepository  extends DBManager
 	}
         
         public function searchUser($search) {
-            $userdata = $this->query("SELECT pseudo from user INNER JOIN likedtune on id_user = fk_user_lt INNER JOIN tune on fk_tune_lt = id_tune WHERE pseudo LIKE (?) OR category_tune LIKE (?);",array("%$search%","%$search%"));
+            $userdata = $this->query("SELECT DISTINCT pseudo from user INNER JOIN likedtune on id_user = fk_user_lt INNER JOIN tune on fk_tune_lt = id_tune WHERE pseudo LIKE (?) OR category_tune LIKE (?);",array("%$search%","%$search%"));
             $userpseudolist = array();
             if (!empty($userdata)) {
                     foreach($userdata as $user) {

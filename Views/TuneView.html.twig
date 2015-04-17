@@ -16,6 +16,7 @@
         <hr>
             {% for score in data.tune.forked %}
             <div class="version">
+                {% if score.pdfurl != "" %}
                 <h3>version {{ score.num }} </h3>
                 <h4 class="forkeduser">{{ score.forkeduser }}</h4>
                 <div class="datescore">{{ score.date }}</div>
@@ -23,6 +24,7 @@
                 <a class="button deletescore" href="{{ score.delete }}">{{ data.tune.deletescorename }}</a>
                 {% endif %}
                 <iframe src="{{ score.pdfurl }}"></iframe> 
+                {% endif %}
             </div>
             {% endfor %}
 	</div>

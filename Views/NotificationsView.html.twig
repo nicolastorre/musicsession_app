@@ -9,7 +9,10 @@
 				<a href="{{ itemfriends.url }}"><img class="profil-pic-m" src="{{ itemfriends.profilephoto }}" alt="photo profil"></a>
 				<div>
 					<div class="profile"><a href="{{ itemfriends.url }}">{{ itemfriends.pseudo }}</a></div>
-					is friend with you!
+					{{ itemfriends.desc }}
+					{% if itemfriends.invitationurl is defined %}
+					<a class="button" href="{{ itemfriends.invitationurl }}">{{ data.invitationlink | raw}}</a>
+					{% endif %}
 				</div>
 			</div>
 		</li>

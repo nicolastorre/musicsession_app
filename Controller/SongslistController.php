@@ -1,31 +1,35 @@
 <?php
+/**
+ * File containing the SongslistController Class
+ *
+ */
 
-/******************************************************************************/
-// Class HomeController -> manage the home page
-// $rss => url du flux rss
-// $journal => nom du journal correspondant au flux rss
-/******************************************************************************/
+/**
+* SongslistController
+*
+* SongslistController class display a table listing the user's tunes with different button actions
+* The BaseController parent manages the creation of the view
+*
+*
+* @package    MusicSessionApp
+* @author     Nicolas Torre <nico.torre.06@gmail.com>
+*/
 class SongslistController extends BaseController
 {
-	/*public static function lasttunewidgetAction() {
-		$data = array();
-		$tunerep = new TuneRepository();
-		$tunelist = $tunerep->FindLastTune(2);
-		foreach ($tunelist as $tune) {
-			$data[] = array("title" => $tune->getTitle(), 
-				"composer" => $tune->getComposer(),
-				"urltune" => UrlRewriting::generateURL("Tune",$tune->getIdtune()));
-		}
-		return $data;
-	}*/
 
+	/**
+	* SongListWidget Module
+	* Display a list by category of tunes for the session user
+	* Get all informations needed by the songlistwidget template
+	*
+	* @return array $data elements contain needed informations for the songlistwidget template.
+	*/
 	public static function songlistwidgetAction() {
 		$data = array();
 		$tunerep = new TuneRepository();
 		$tunedata = $tunerep->FindUserLikedtuneGroupByCategory($_SESSION['iduser']);
                 $data["title"] = Translator::translate("Tunes list");
 		foreach($tunedata as $category => $tunelist) {
-			
 			$tmp_tunelist = array();
 			foreach ($tunelist as $tune) {
 				$tmp_tunelist[] = array('title' => $tune->getTitle(), 'url' => UrlRewriting::generateURL("Tune",$tune->getIdtune()));
@@ -35,6 +39,15 @@ class SongslistController extends BaseController
 		return $data;
 	}
 
+	/**
+	* delete a tune from the user tunebook
+	* delete the likedtune tuple in the DB for the current user
+	* delete the pdf file if the user has contributed to a version of this tune
+	* delete the tune tuple in the DB if the tune is no more liked by any users
+	*
+	* @param Request &$request Request object.
+	* @return void .
+	*/
 	public function deleteAction(Request &$request) {
 		$pseudo = $request->getParameter("par")[0];
 		$idtune = $request->getParameter("par")[1];
@@ -67,6 +80,12 @@ class SongslistController extends BaseController
 		$this->indexAction($request);
 	}
 
+	/**
+	* Add action to add a tune to the tunebook of a user 
+	*
+	* @param Request &$request Request object.
+	* @return void .
+	*/
 	public function addAction(Request &$request) {
 		$pseudo = $request->getParameter("par")[0];
 		$idtune = $request->getParameter("par")[1];
@@ -76,6 +95,12 @@ class SongslistController extends BaseController
 		$this->indexAction($request);
 	}
 
+	/**
+	* Share action to share a hashtag of the tune on the user news timeline 
+	*
+	* @param Request &$request Request object.
+	* @return void .
+	*/
 	public function shareAction(Request &$request) {
 		$idtune = $request->getParameter("par")[0];
 		
@@ -91,21 +116,27 @@ class SongslistController extends BaseController
 		$ctrl->indexAction($request); // reload the default home page
 	}
 
-	// Principal action of the HomeController 
-	public function indexAction(Request &$request, FormManager $f = null) {
-		$data = array();
+	/**
+    * Create the default Songslist page view (tunebook)
+    *
+    * Display a timeline of the session user, the Profile Card module and the Suggested friends module
+    *
+    * @param Request &$request Request object.
+    * @return void .
+    */
+	public function indexAction(Request &$request) {
 		$pseudo = $request->getParameter("par")[0];
 		$userrep = new UserRepository();
 		$iduser = $userrep->getUserIdByPseudo($pseudo);
 
-		$data['profilcard'] = ProfilController::ProfilCard($pseudo);
-		$data['tunelistwidget'] = self::songlistwidgetAction();
-		// $data['lasttune'] = self::lasttunewidgetAction();
+		ProfilController::checkAllowedProfileUser($request, $iduser); // protection user profile
+
+		$data = DefaultController::initModule($pseudo);
                 
-                $data['tunelistheader']['title'] = Translator::translate("Title");
-                $data['tunelistheader']['composer'] = Translator::translate("Composer");
-                $data['tunelistheader']['category'] = Translator::translate("Category");
-                $data['tunelistheader']['date'] = Translator::translate("Date");
+        $data['tunelistheader']['title'] = Translator::translate("Title");
+        $data['tunelistheader']['composer'] = Translator::translate("Composer");
+        $data['tunelistheader']['category'] = Translator::translate("Category");
+        $data['tunelistheader']['date'] = Translator::translate("Date");
 
 		$tunerep = new TuneRepository();
 		$tunelist = $tunerep->FindUserLikedtune($iduser);
@@ -117,7 +148,7 @@ class SongslistController extends BaseController
 				$class = "item-odd";
 			}
                         
-                        $tuneaction = array();
+            $tuneaction = array();
 			if ($_SESSION['pseudo'] == $pseudo && $tunerep->checkTuneLikedByUser($_SESSION['iduser'], $tune->getIdtune())) {
 				$tuneaction['deleteadd'] = array('class' => 'delete', 'url' => UrlRewriting::generateURL("Delete",$pseudo."/".$tune->getIdtune()));
 			} 
@@ -136,17 +167,14 @@ class SongslistController extends BaseController
 				"datetune" => Pubdate::printDate($tune->getDatetune()),  
 				"pdftune" => $tune->getPdfscore(),
 				"urltune" => UrlRewriting::generateURL("Tune",$pseudo."/".$tune->getIdtune()),
-                                "addscore" => UrlRewriting::generateURL("Addscore",$tune->getIdtune()),
-                                "sharetune" => UrlRewriting::generateURL("Share",$tune->getIdtune()),
+                "addscore" => UrlRewriting::generateURL("Addscore",$pseudo."/".$tune->getIdtune()),
+                "sharetune" => UrlRewriting::generateURL("Share",$tune->getIdtune()),
 				"deleteadd" => $tuneaction['deleteadd']);
 			$i++;
 		}
-
-		$data['suggestedfriends'] = FriendsController::suggestedFriends(3);
 		
 		$this->render("SongslistView.html.twig",$data);
 	}
-
 }
 
 ?>

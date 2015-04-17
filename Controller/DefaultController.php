@@ -19,14 +19,29 @@ class DefaultController extends baseController
 	 * @static
 	 * @var array $menuitem contains the key name of each menu elements.
 	 */
-	private static $menuitem = array("Home","Notifications","Messages","NewSong","Parameters");
+	private static $menuitem = array("Home","Notifications","Messages","NewSong","Parameters","logout");
+
+	/**
+    * generate the general menu item from self::$menuitem containing the key name of each menu elements
+    *
+    * @param String $pseudo pseudo of the concerning user.
+    * @return array $data each elements contain the data of its corresponding module
+    * and ths required array item for the twig template
+    */
+	public static function initModule($pseudo) {
+		$data = array();
+		$data['profilcard'] = ProfilController::ProfilCard($pseudo); // init the Profile Card module
+		$data['tunelistwidget'] = SongslistController::songlistwidgetAction();
+		$data['suggestedfriends'] = FriendsController::suggestedFriends(3); // init the Suggested Friends module
+		return $data;
+	}
 	
 	/**
-     * generate the general menu item from self::$menuitem containing the key name of each menu elements
-     *
-     * @return array $menulist foreach menu elements contain an array with the translated name of the menu item
-     * and its url.
-     */
+    * generate the general menu item from self::$menuitem containing the key name of each menu elements
+    *
+    * @return array $menulist foreach menu elements contain an array with the translated name of the menu item
+    * and its url.
+    */
 	public static function menuAction() {
 		if (isset($_SESSION['access']) and $_SESSION['access']) {
 			self::$menuitem[3] = "Backoffice";
@@ -41,10 +56,10 @@ class DefaultController extends baseController
 			}
 			$menulist[] = array("name" => Translator::translate($i), "url" => UrlRewriting::generateURL($i,""), "class" => $class, "icon" => UrlRewriting::generateSRC("imgapp","",$i).".png");
 		}
-                $f = new FormManager("searchform","searchform",UrlRewriting::generateURL("Search",""));
-                $f->addField("","search","text","","Error",array("id" => "inputsearch"));
-                $f->addField("Submit ","submit","submit","?","Error",array("id" => "submitsearch"));
-                $menulist['searchform'] = $f->createView();
+        $f = new FormManager("searchform","searchform",UrlRewriting::generateURL("Search",""));
+        $f->addField("","search","text","","Error",array("id" => "inputsearch"));
+        $f->addField("Submit ","submit","submit","?","Error",array("id" => "submitsearch"));
+        $menulist['searchform'] = $f->createView();
 		return $menulist;
 	}
 }

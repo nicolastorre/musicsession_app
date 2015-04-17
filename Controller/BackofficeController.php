@@ -1,13 +1,13 @@
 <?php
 /**
- * File containing the HomeController Class
+ * File containing the BackofficeController Class
  *
  */
 
 /**
- * HomeController
+ * BackofficeController
  *
- * HomeController class manage the Home page features
+ * BackofficeController class manage the Backoffice features
  * The BaseController parent manages the creation of the view
  *
  *
@@ -16,73 +16,82 @@
  */
 class BackofficeController extends BaseController
 {
-        public function deleteuserAction(Request &$request) {
-                $f = unserialize($_SESSION["deleteuserform"]); // get back the form object with the submitted news
-		        if ($f->validate($request)) { // check for valide data.
-                        unset($_SESSION["deleteuserform"]);
-                        $dataform = $f->getValues(); // extract the data from the form
-                        
-                        $userrep = new UserRepository();
-                        $iduser = $userrep->getUserIdByPseudo($dataform['userpseudo']);
-                        $dir = UrlRewriting::generateSRC("userfolder", $dataform['userpseudo'],"");
-                        chmod($dir,0755);
-                        $files = scandir($dir);                       
-                        foreach ($files as $i) {
-                            if ($i != "." && $i != "..") {
-                                chmod($dir.$i,0755);
-                                unlink($dir.$i);    
-                            }
-                        }
-                        rmdir($dir);
-                        $tunerep = new TuneRepository();
-                        $tunerep->deleteAllTuneUser($iduser);
+    /**
+    * Get, treat the form with an input text containing a username 
+    * if the form is valid => delete account and all informations about the corresponding user
+    *
+    * @param Request &$request Request object.
+    * @return void .
+    */
+    public function deleteuserAction(Request &$request) {
+        if (!isset($_SESSION["deleteuserform"])) throw new Exception("\$_SESSION['deleteuserform'] doesn't exist!");
 
-                        $newsrep = new NewsRepository();
-                        $newsrep->deleteAllNewsUser($iduser);
+        $f = unserialize($_SESSION["deleteuserform"]); // get back the form object with the submitted news
+        if ($f->validate($request)) { // check for valide data.
+                unset($_SESSION["deleteuserform"]);
+                $dataform = $f->getValues(); // extract the data from the form
+                
+                $userrep = new UserRepository();
+                $iduser = $userrep->getUserIdByPseudo($dataform['userpseudo']);
 
-                        $fdrep = new FriendshipRepository();
-                        $fdrep->deleteAllFdUser($iduser);
-
-                        if ($userrep->deleteuser($iduser)) {
-                            $this->indexAction($request,$f = null, "Success");
-                        } else {
-                            $this->indexAction($request, $f, "Error");
-                        }
-                } else {
-                    $this->indexAction($request, $f, "Error");
+                // delete the user directory
+                $dir = UrlRewriting::generateSRC("userfolder", $dataform['userpseudo'],"");
+                chmod($dir,0755);
+                $files = scandir($dir);                       
+                foreach ($files as $i) {
+                    if ($i != "." && $i != "..") {
+                        chmod($dir.$i,0755);
+                        unlink($dir.$i);    
+                    }
                 }
+                rmdir($dir);
+
+                // delete all the user's tune
+                $tunerep = new TuneRepository();
+                $tunerep->deleteAllTuneUser($iduser);
+
+                // delete all the user's news
+                $newsrep = new NewsRepository();
+                $newsrep->deleteAllNewsUser($iduser);
+
+                // delete all the user's friendship
+                $fdrep = new FriendshipRepository();
+                $fdrep->deleteAllFdUser($iduser);
+
+                // Finish the action by deleting the user
+                if ($userrep->deleteuser($iduser)) {
+                    $this->indexAction($request,$f = null, Translator::translate("Deleting succeded!"));
+                } else {
+                    $this->indexAction($request, $f, Translator::translate("Error"));
+                }
+        } else {
+            $this->indexAction($request, $f, Translator::translate("Error"));
         }
+    }
 
 	/**
-     * Create the default home page view
+     * Create the default backoffice page view
      *
-     * Display a timeline of the session user, the Profile Card module and the Suggested friends module
+     * Display a form to delete user's account and a timeline with all abusive behavior reports
      *
      * @param Request &$request Request object.
-     * @param FormManager $f optional. contain a form object, default is null.
+     * @param FormManager $f optional. contain a form to delete user's account, default is null.
+     * @param String $flashbag return error message.
      * @return void .
      */
 	public function indexAction(Request &$request, FormManager $f = null, $flashbag = null) {
-		/*
-		* Initialization of the page variables
-		*/
-		$data = array(); // $data contains all page view data
-		$pseudo = $_SESSION['pseudo'];
-		$userrep = new UserRepository();
-		$iduser = $userrep->getUserIdByPseudo($pseudo);
-
-        $data['profilcard'] = ProfilController::ProfilCard($pseudo); // init the Profile Card module
+        $data = DefaultController::initModule($_SESSION['pseudo']);
         
         $data['flashbag'] = $flashbag;
                 
         if ($f == null) {
-			$f = new FormManager("deleteuserform","deleteuserform",UrlRewriting::generateURL("Deleteuser","")); // Form to edit and publish a news
-			$f->addField("User pseudo: ","userpseudo","text","","Error");
-			$f->addField("Submit ","submit","submit","Delete");	
+			$f = new FormManager("deleteuserform","deleteuserform",UrlRewriting::generateURL("Deleteuser",""));
+			$f->addField("User pseudo: ","userpseudo","text","",Translator::translate("Invalid"));
+			$f->addField("Submit ","submit","submit",Translator::translate("Delete"));	
 		}
 		$data['deleteuserform'] = $f->createView(); // add the form view in the data page
 
-        $data['reporttitle'] = Translator::translate("Reportin abusive behavior");
+        $data['reporttitle'] = Translator::translate("Reporting abusive behavior");
         $reportrep = new ReportRepository();
         $reportlist = $reportrep->findAllReport();
 
@@ -96,7 +105,6 @@ class BackofficeController extends BaseController
 
 		$this->render("BackofficeView.html.twig",$data); // create the view
 	}
-
 }
 
 ?>

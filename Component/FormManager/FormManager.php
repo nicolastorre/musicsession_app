@@ -52,7 +52,7 @@ class FormManager
 			case 'file':
 				$type = "file";
 				//create EmailField object
-				$this->fieldlist[] = new ImageField($label,$name,$type,$attr,$values, $error,$raw);
+				$this->fieldlist[] = new FileField($label,$name,$type,$attr,$values, $error,$raw);
 				break;
 			case 'submit':
 				//create SubmitField object

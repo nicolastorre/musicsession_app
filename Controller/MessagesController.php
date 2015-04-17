@@ -7,7 +7,7 @@
 /**
  * MessagesController
  *
- * MessageseController class manage the Messages page features
+ * MessageseController class display a list of discussion and the messages of the last discussion or the selected discussion
  * The BaseController parent manages the creation of the view
  *
  *
@@ -16,7 +16,15 @@
  */
 class MessagesController extends BaseController
 {
-    
+	/**
+    * Search for hashtag in sending message 
+    * if a word (without whitespace) is preceding by # so the method will check if a tune with this word exist
+    * then replace the hashtag by a link to the tune
+    *
+    * @param Request &$request Request object.
+    * @param String $msg any sending message.
+    * @return void .
+    */
     private function replaceHashtag($msg) {
         $matches = array();
         $toFind = "#";
@@ -49,29 +57,28 @@ class MessagesController extends BaseController
     }
 
 	/**
-     * Get, treat and save a submitted news 
-     * then if no errors => reload the default home  page 
-     * else => reload the home page with the previous form
-     *
-     * @param Request &$request Request object.
-     * @return void .
-     */
+    * Get and display the messages corresponding to the selected discussion
+    *
+    * @param Request &$request Request object.
+    * @return void .
+    */
 	public function getdiscussionAction(Request &$request) {
 		$userrep = new UserRepository();
 		$iduserb = $userrep->getUserIdByPseudo($request->getParameter("par")[0]);
 		$this->indexAction($request, $f = null, $iduserb);
-
 	}
 
 	/**
-     * Get, treat and save a submitted news 
-     * then if no errors => reload the default home  page 
-     * else => reload the home page with the previous form
-     *
-     * @param Request &$request Request object.
-     * @return void .
-     */
+    * Send the message 
+    * if the form is valid => save the message in the DB
+    * display the messages of the current discussion
+    *
+    * @param Request &$request Request object.
+    * @return void .
+    */
 	public function sendmsgAction(Request &$request) {
+		if(!isset($_SESSION["sendmsgform"])) throw new Exception("\$_SESSION['sendmsgform'] doesn't exist!");
+
 		$f = unserialize($_SESSION["sendmsgform"]);
 		$userrep = new UserRepository();
 		$iduserb = $userrep->getUserIdByPseudo($request->getParameter("par")[0]);
@@ -91,7 +98,16 @@ class MessagesController extends BaseController
 			$this->indexAction($request, $f);
 		}
 	}
-        
+
+	/**
+    * Load the newest messages using AJAX
+    * the script use the $iduser to get the selected discussion and
+    * $lastmsg to get the messages from this last message
+    * the script send the results in JSON format to be get by the JS script
+    *
+    * @param Request &$request Request object.
+    * @return void .
+    */
     public function loaderAction(Request &$request) {
     	$iduser = intval($request->getParameter("par")[0]);
     	$lastmsg = intval($request->getParameter("par")[1]);
@@ -110,12 +126,20 @@ class MessagesController extends BaseController
 					"content" => $msg->getContent());
 			}    
 		}
-
         header('Content-type: application/json');
         echo json_encode($msglist);
     }
 
+	/**
+    * Send the message using AJAX
+    * if the form is valid => save the message in the DB
+    *
+    * @param Request &$request Request object.
+    * @return void .
+    */
     public function sendmsgajaxAction(Request &$request) {
+    	if(!isset($_SESSION["sendmsgform"])) throw new Exception("\$_SESSION['sendmsgform'] doesn't exist!");
+
 		$f = unserialize($_SESSION["sendmsgform"]);
 		$userrep = new UserRepository();
 		$iduserb = intval($request->getParameter("par")[0]);
@@ -130,41 +154,31 @@ class MessagesController extends BaseController
 			$msgrep->sendMsg($msg);
 		} 
 	}
-	
-	// Principal action of the HomeController 
+	 
 	/**
-     * Create the default messages page view
-     *
-     * Display a timeline of the current discussion, the list of user's friends to start a discussion, 
-     * the Profile Card module and the Suggested friends module
-     *
-     * @param Request &$request Request object.
-     * @param FormManager $f optional. contain a form object, default is null.
-     * @return void .
-     */
+    * Create the default messages page view
+    *
+    * Display a timeline of the current discussion, the list of user's friends to start a discussion, 
+    * the Profile Card module and the Suggested friends module
+    *
+    * @param Request &$request Request object.
+    * @param FormManager $f optional. contain a form object, textarea to send message with submit button, default is null.
+    * @param int $iduserb optional. id of the user corresponding to the selected discussion with submit button, default is null.
+    * @return void .
+    */
 	public function indexAction(Request &$request, FormManager $f = null, $iduserb = null) {
-		/*
-		* Initialization of the page variables
-		*/
-		$data = array();
-		$pseudo = $_SESSION['pseudo'];
-		$userrep = new UserRepository();
-		$iduser = $userrep->getUserIdByPseudo($pseudo);
-                
-		$data['profilcard'] = ProfilController::ProfilCard($pseudo); // init the Profile Card module
-		$data['tunelistwidget'] = SongslistController::songlistwidgetAction();
+		$data = DefaultController::initModule($_SESSION['pseudo']);
 
 		/*
-		* Create the the list of user's friends to start a discussion
+		* Create the list of user's friends to start a discussion
 		*/
 		$userrep = new Userrepository();
 		$friendshiprep = new FriendshipRepository();
-		$friends = $friendshiprep->getFriends($iduser);
-
+		$friends = $friendshiprep->getFriends($_SESSION['iduser']);
 		foreach ($friends as $i) {
-			if ($i->getIdusera() != $iduser) {
+			if ($i->getIdusera() != $_SESSION['iduser']) {
 				$userfriends = $userrep->findUserById($i->getIdusera());
-			} elseif ($i->getIduserb() != $iduser) {
+			} elseif ($i->getIduserb() != $_SESSION['iduser']) {
 				$userfriends = $userrep->findUserById($i->getIduserb());
 			}
 			$data['discussion'][] = array("url" => UrlRewriting::generateURL("Discussion",$userfriends->getPseudo()), "pseudo" => $userfriends->getPseudo(),
@@ -175,12 +189,13 @@ class MessagesController extends BaseController
 		* Display the timeline of the current discussion
 		*/
 		$msgrep = new MessageRepository();
-		
 		if ($iduserb == null) {
-			$iduserb = $msgrep->getLastDiscussion($iduser); // get the ID user corresponding to the last discussion
+			$iduserb = $msgrep->getLastDiscussion($_SESSION['iduser']); // get the ID user corresponding to the last discussion
+		} else {
+			ProfilController::checkAllowedProfileUser($request, $iduserb);  // protection user profile
 		}
 		if ($iduserb != false) {
-			$discussion = $msgrep->getDiscussion($iduser,$iduserb);
+			$discussion = $msgrep->getDiscussion($_SESSION['iduser'],$iduserb);
 			$data['msglist'] = array(); // list of message of the current discussion
 			if (!empty($discussion)) {
 				foreach ($discussion as $msg) {
@@ -195,25 +210,24 @@ class MessagesController extends BaseController
 			} else {
 				$data['iduser'] = $iduserb;
                                 $data['lastmsg'] = 0;
-                                $data['flashbag'] = "No messages";
+                                $data['flashbag'] = Translator::translate("No messages!");
 			}
 
-	                // form to send a message
+	        /*
+			* form to send a message with a textarea and a submit button
+			*/
 			if ($f == null) {
 				$f = new FormManager("sendmsgform","sendmsgform",UrlRewriting::generateURL("SendMsg",$userrep->getUserPseudoById($iduserb)));
-				$f->addField("","msg","textarea","", array("id" => "msg"));
-				$f->addField("Submit ","submit","submit",Translator::translate("Send"), array("id" => "submitmsg"));
+				$f->addField("","msg","textarea","",Translator::translate("Invalid"), array("id" => "msg"));
+				$f->addField("Submit ","submitmsg","submit",Translator::translate("Send"),Translator::translate("Invalid"), array("id" => "submitmsg"));
 			}
 			$data['sendmsgform'] = $f->createView(); // add the form view in the data page
 		} else {
-                    $data['flashbag'] = "No messages";
+                    $data['flashbag'] = Translator::translate("No messages!");
                 }
-
-		$data['suggestedfriends'] = FriendsController::suggestedFriends(3); // init the Suggested Friends module
 
 		$this->render("MessagesView.html.twig",$data); // create the view
 	}
-
 }
 
 ?>

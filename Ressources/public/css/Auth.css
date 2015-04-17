@@ -26,6 +26,26 @@ header
 	margin: 0 1em;
 }
 
+#lang input[value="Fr"], #lang input[value="En"]
+{
+	background-image: url("../images/app/fr.png");
+	background-repeat: no-repeat;
+	width: 30px;
+	height: 20px;
+	border-radius: 0px;
+	color: transparent;
+}
+
+#lang input[value="Fr"]
+{
+	background-image: url("../images/app/fr.png");
+}
+
+#lang input[value="En"]
+{
+	background-image: url("../images/app/en.png");
+}
+
 section
 {
 	width: 100%;

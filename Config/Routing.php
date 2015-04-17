@@ -24,6 +24,7 @@ class Routing
 
 		url::addURL("Profil","Profil","index");
 			url::addURL("Friendship","Profil","friendshipstatus");
+            url::addURL("askfriendship","Profil","askfriendship");
 
 		url::addURL("Songslist","Songslist","index");
 			url::addURL("Delete","Songslist","delete");
@@ -38,6 +39,7 @@ class Routing
 		url::addURL("Friends","Friends","index");
 
     	url::addURL("Notifications","Notifications","index");
+            url::addURL("confirminvitation","Notifications","confirminvitation");
 
     	url::addURL("Messages","Messages","index");
             url::addURL("Discussion","Messages","getdiscussion");

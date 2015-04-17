@@ -1,31 +1,40 @@
 <?php
+/**
+ * File containing the BlockedprofilController Class
+ *
+ */
 
-/******************************************************************************/
-// Class HomeController -> manage the home page
-// $rss => url du flux rss
-// $journal => nom du journal correspondant au flux rss
-/******************************************************************************/
+/**
+* BlockedprofilController
+*
+* BlockedprofilController class is instanciated when a user try to access to an not allowed user profile
+* The BaseController parent manages the creation of the view
+*
+*
+* @package    MusicSessionApp
+* @author     Nicolas Torre <nico.torre.06@gmail.com>
+*/
 class BlockedprofilController extends BaseController
 {
 	
-	// Principal action of the HomeController 
+	/**
+    * Create the default blockedprofil page view
+    *
+    * Display the main module, so just the profilCardModule of the user profile will be display
+    *
+    * @param Request &$request Request object.
+    * @return void .
+    */
 	public function indexAction(Request &$request) {
-		$data = array();
 		$pseudo = $request->getParameter("par")[0];
 		$userrep = new UserRepository();
 		$iduser = $userrep->getUserIdByPseudo($pseudo);
-//                Controle if user > ami >>> autorisation de l'accès au profile sinon bloque
+		$data = DefaultController::initModule($pseudo);
 
-		$data['profilcard'] = ProfilController::ProfilCard($pseudo);
-		$data['tunelistwidget'] = SongslistController::songlistwidgetAction();
-                
-                $data['flashbag'] = "You're not allowed to view this profile";
-
-		$data['suggestedfriends'] = FriendsController::suggestedFriends(3);
+        $data['flashbag'] = "You're not allowed to view this profile";
 
 		$this->render("ProfilView.html.twig",$data);
 	}
-
 }
 
 ?>

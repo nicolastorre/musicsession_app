@@ -12,7 +12,7 @@ abstract class Field {
 	protected $value;
 	protected $error;
 	protected $raw;
-        protected $errormsg;
+    protected $errormsg;
 
 	//CONSTRUCTOR
 	public function __construct($label,$name,$type,array $attr, $value, $error, $raw) {
@@ -23,7 +23,7 @@ abstract class Field {
 		$this->value = $value;
 		$this->error = $error;
 		$this->raw = $raw;
-                $this->errormsg = "";
+        $this->errormsg = "";
 	}
 	//SPECIFIC METHODS
 	abstract public function display(); //display the field in HTML

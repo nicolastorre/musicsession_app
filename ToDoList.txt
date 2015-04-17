@@ -7,31 +7,23 @@ $dbHost = getenv('IP');
     	$dbport = 3306;
 
 Features
-	Backoffice (done)
-	Limit the delete button to the owner of the score (done)
-	Refresh the page: Display a tune (done)
-	processus de suppression des scores (done)
-	Trigger the deleting of all for a tune when just no more user will have the tune as liked (done)
-	Check resize for profile photo (done)
-	Bouton "supprimer son compte" (done)
-	Bouton "signaler" dans la page parameters avec un champs (done)
-
-	Block profile method => check "par"[0] => static method to redirect to BlockedprofilController if $_GET['par'][0] not in the friend list of the current user ($_SESSION['iduser']) => use this method to all method of Friends/Profil/SongsController
+	# invite by e-mail friends that don't know music session
+	# Icons "New message non-read" and "New notifications non-read"
 
 PHP
 	Add userErrorHandler function
-	Group the global twig variables
 	password with md5
 
-Translate and error message
+Accessibility
 
-Responsive design
+Responsive design (profilCard => float Follow / Block, bouton input file)
 
 Edit terms, privacy, accessibility
 
 Validate the version 1
 
 Music Editor
+	Integrate the music editor to music session
 	Export in midi file
 	Add html5 audio player to listen the music from midi file
 
@@ -39,8 +31,24 @@ Edit the final report
 
 /*************************************************************************************************************************/
 
-	Icône "nouveau message"
-	Vérifications des formulaires en JavaScript / JQuery
+Backoffice (done)
+Limit the delete button to the owner of the score (done)
+Refresh the page: Display a tune (done)
+processus de suppression des scores (done)
+Trigger the deleting of all for a tune when just no more user will have the tune as liked (done)
+Check resize for profile photo (done)
+Bouton "supprimer son compte" (done)
+Bouton "signaler" dans la page parameters avec un champs (done)
+
+# Block profile method => check "par"[0] => static method to redirect to BlockedprofilController if $_GET['par'][0] not in the friend list of the current user ($_SESSION['iduser']) => use this method to all method of Friends/Profil/SongsController (done)
+# Accept to be follow by a user => create a table to stock the futur friendship
+
+Translate and error message (done)
+
+	
+Vérifications des formulaires en JavaScript / JQuery
+
+Group the global twig variables (done)
 
 Message pour spécifier qu'il n'y a pas de messages ou qu'il n'y a pas de news pour cette utilisateur (add flashbag)
 Recherche utilisateur sur les catégories des liked tune (done)

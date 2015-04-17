@@ -23,15 +23,21 @@
 				{% endfor %}
 			</ul>
 			<ul class="menu">
-                                <li>
-                                    {{ menu.searchform.formstart | raw}}
-                                    <div id="search-container">
-                                        {{ menu.searchform.search | raw}}
-                                        {{ menu.searchform.submit | raw}}
-                                    </div>
-                                    {{ menu.searchform.formend | raw}}
-                                </li>
-				<li id="parameters-container" class="{{ menu[4].class }} icon"><a href='{{ menu[4].url }}' id="parameters"><img src="Ressources/public/images/app/parameters.png" alt="parameters"></a></li>
+                        <li>
+                            {{ menu.searchform.formstart | raw}}
+                            <div id="search-container">
+                                {{ menu.searchform.search | raw}}
+                                {{ menu.searchform.submit | raw}}
+                            </div>
+                            {{ menu.searchform.formend | raw}}
+                        </li>
+				<li id="parameters-container" class="{{ menu[4].class }} icon">
+					<a href='{{ menu[4].url }}' id="parameters"><img src="Ressources/public/images/app/parameters.png" alt="parameters"></a>
+					<ul>
+						<li class="{{ menu[4].class }}"><a href='{{ menu[4].url }}'>{{ menu[4].name }}</a></li>
+						<li class="{{ menu[5].class }}"><a href='{{ menu[5].url }}'>{{ menu[5].name }}</a></li>
+					</ul>
+				</li>
 			</ul>
                         
                         <ul id="mobile-menu">
@@ -46,7 +52,7 @@
                         </ul>
 		</nav>
 		<section>
-                    <div class="flashbag">{{ data.flashbag }}</div>
+                    <div class="flashbag">{{ data.flashbag | raw}}</div>
 			{% block section %}
 			{% endblock %}
 		</section>

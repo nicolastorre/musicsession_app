@@ -2,7 +2,6 @@
 
 {% block timeline %}
 	<div id="parameterspage">
-        <a href="{{ data.logout.url }}" id="logout">{{ data.logout.value }}</a>
 		<h2>{{ data.accounttitle }}<h2>
 		<h3>{{ data.accountdesc }}</h3>
 		{{ data.parametersform.formstart | raw }}
@@ -14,23 +13,23 @@
 		<hr>
 		<h2>{{ data.profilephototitle }}<h2>
 		<h3>{{data.profilephotodesc }}</h3>
-                {{ data.updatephoto.formstart | raw}}
-                {{ data.updatephoto.pic | raw }}
+        {{ data.updatephoto.formstart | raw}}
+        {{ data.updatephoto.pic | raw }}
 		{{ data.updatephoto.submit | raw }}
 		{{ data.updatephoto.formend | raw}}
 		<hr>
 		<h2>{{ data.passwordtitle }}<h2>
 		<h3>{{ data.passworddesc }}</h3>
-                {{ data.updatepwd.formstart | raw}}
-                {{ data.updatepwd.pwd | raw }}
+        {{ data.updatepwd.formstart | raw}}
+        {{ data.updatepwd.pwd | raw }}
 		{{ data.updatepwd.confirmpwd | raw }}
 		{{ data.updatepwd.submit | raw }}
 		{{ data.updatepwd.formend | raw}}
 		<hr>
 		<h2>{{ data.reportingtitle }}<h2>
 		<h3>{{ data.reportingdesc }}</h3>
-                {{ data.signalform.formstart | raw}}
-                {{ data.signalform.signal | raw }}
+        {{ data.signalform.formstart | raw}}
+        {{ data.signalform.signal | raw }}
 		{{ data.signalform.submit | raw }}
 		{{ data.updatepwd.formend | raw}}
 		<hr>
