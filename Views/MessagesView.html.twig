@@ -2,7 +2,6 @@
 
 {% block head %}
 	{{ parent() }}
-        <script src="Ressources/public/js/jquery-2.1.3.min.js"></script>
         <script src="Ressources/public/js/MsgLoader.js"></script>
         <script src="Ressources/public/js/handlebars-v3.0.0.js"></script>
         
@@ -11,9 +10,10 @@
 {% block dashboardright %}
 	{{ parent() }}
 	<div id="discussionlist">
+		<h2>{{ data.discutitle }}</h2>
 		<ul>
 			{% for itemdiscu in data.discussion %}
-			<li class="item-discu">
+			<li class="item-discu {{ itemdiscu.state }}">
 				<img class="profil-pic-m" src="{{ itemdiscu.profilephoto }}" alt="photo profil">
 				<div class="profile"><a href="{{ itemdiscu.url }}">{{ itemdiscu.pseudo }}</a></div>
 			</li>
@@ -46,8 +46,8 @@
                 
                 
                 <script> 
-                	var pseudo = {{ data.iduser }};
-                	var lastmsg = {{ data.lastmsg }};
+                	var pseudo = {{ data.iduser | raw}};
+                	var lastmsg = {{ data.lastmsg | raw}};
                  </script>
 	</div>
 

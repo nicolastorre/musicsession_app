@@ -1,5 +1,10 @@
 {% extends "GeneralLayoutView/GeneralSectionView.html.twig" %}
 
+{% block head %}
+    {{ parent() }}
+    <script src="Ressources/public/js/Expand.js"></script>
+{% endblock %}
+
 {% block timeline %}
 	<div id="tunepage">
         <div id="headertune">
@@ -9,21 +14,23 @@
     		<h4 class="datetune">{{ data.tune.datetune }}</h4>
         </div>
         <div class="actionpanel">
-            <a class="button action" href="{{ data.tune.addscore.url }}"><div class="addscore"></div>{{ data.tune.addscore.name }}</a>
-            <a class="button action" href="{{ data.tune.sharetune.url }}"><div class="share"></div>{{ data.tune.sharetune.name }}</a>
-            <a class="button action" href="{{ data.tune.deleteadd.url }}"><div id="sharedel" class="{{ data.tune.deleteadd.class }}"></div>{{ data.tune.deleteadd.name }}</a>
+            <a class="button action" href="{{ data.tune.addscore.url }}"><div class="addscore" title=">{{ data.tune.addscore.name }}"></div>{{ data.tune.addscore.name }}</a>
+            <a class="button action" href="{{ data.tune.sharetune.url }}"><div class="share" title="{{ data.tune.sharetune.name }}"></div>{{ data.tune.sharetune.name }}</a>
+            <a class="button action" href="{{ data.tune.deleteadd.url }}"><div id="sharedel" title="{{ data.tune.deleteadd.name }}" class="{{ data.tune.deleteadd.class }}"></div>{{ data.tune.deleteadd.name }}</a>
         </div>
         <hr>
             {% for score in data.tune.forked %}
             <div class="version">
                 {% if score.pdfurl != "" %}
+                <div class="button expand" id="{{ score.num }}"></div>
                 <h3>version {{ score.num }} </h3>
                 <h4 class="forkeduser">{{ score.forkeduser }}</h4>
                 <div class="datescore">{{ score.date }}</div>
+                <a class="button downloadscore" href="{{ score.download }}"><div class="download" title="{{ data.tune.downloadscorename }}"></div></a>
                 {% if score.delete != "#" %}
-                <a class="button deletescore" href="{{ score.delete }}">{{ data.tune.deletescorename }}</a>
+                <a class="button deletescore" href="{{ score.delete }}"><div class="delete" title="{{ data.tune.deletescorename }}"></div></a>
                 {% endif %}
-                <iframe src="{{ score.pdfurl }}"></iframe> 
+                <iframe id="iframe_{{ score.num }}" src="{{ score.pdfurl }}"></iframe> 
                 {% endif %}
             </div>
             {% endfor %}

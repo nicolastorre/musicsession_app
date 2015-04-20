@@ -1,0 +1,616 @@
+<errorentry>
+	<datetime>2015-04-18 11:44:50 (CEST)</datetime>
+	<errornum>8</errornum>
+	<errortype>Note</errortype>
+	<errormsg>Use of undefined constant fgdfg - assumed 'fgdfg'</errormsg>
+	<scriptname>C:\Users\Nicolas_\Dropbox\PHP\www\ProjetTut\musicsession_app\Kernel\Router.php</scriptname>
+	<scriptlinenum>23</scriptlinenum>
+</errorentry>
+
+
+<errorentry>
+	<datetime>18/04/15 11:50:45</datetime>
+	<errormsg>URL: HomffgeController/indexAction////	Error: Not exist HomffgeController controller</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>18/04/15 11:51:47</datetime>
+	<errormsg>URL: HomffgeController/indexAction////	Error: Not exist HomffgeController controller</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>2015-04-18 11:53:59 (CEST)</datetime>
+	<errornum>8</errornum>
+	<errortype>Note</errortype>
+	<errormsg>Use of undefined constant gfh - assumed 'gfh'</errormsg>
+	<scriptname>C:\Users\Nicolas_\Dropbox\PHP\www\ProjetTut\musicsession_app\Kernel\Router.php</scriptname>
+	<scriptlinenum>23</scriptlinenum>
+</errorentry>
+
+<errorentry>
+	<datetime>2015-04-18 11:54:39 (CEST)</datetime>
+	<errornum>8</errornum>
+	<errortype>Note</errortype>
+	<errormsg>Use of undefined constant dsfdsf - assumed 'dsfdsf'</errormsg>
+	<scriptname>C:\Users\Nicolas_\Dropbox\PHP\www\ProjetTut\musicsession_app\Kernel\Router.php</scriptname>
+	<scriptlinenum>23</scriptlinenum>
+</errorentry>
+
+<errorentry>
+	<datetime>2015-04-18 11:55:21 (CEST)</datetime>
+	<errornum>8</errornum>
+	<errortype>Note</errortype>
+	<errormsg>Undefined variable: flashbaga</errormsg>
+	<scriptname>C:\Users\Nicolas_\Dropbox\PHP\www\ProjetTut\musicsession_app\Controller\HomeController.php</scriptname>
+	<scriptlinenum>60</scriptlinenum>
+</errorentry>
+
+<errorentry>
+	<datetime>2015-04-18 11:55:54 (CEST)</datetime>
+	<errornum>8</errornum>
+	<errortype>Note</errortype>
+	<errormsg>Undefined variable: flashbaga</errormsg>
+	<scriptname>C:\Users\Nicolas_\Dropbox\PHP\www\ProjetTut\musicsession_app\Controller\HomeController.php</scriptname>
+	<scriptlinenum>60</scriptlinenum>
+</errorentry>
+
+<errorentry>
+	<datetime>18/04/15 16:00:27</datetime>
+	<errormsg>URL: AuthController/inscuserAction////	Error: SQL error: SQLSTATE[23000]: Integrity constraint violation: 1048 Le champ 'pwdhashed' ne peut être vide (null) INSERT INTO user (pseudo, pwdhashed, firstname, name, email, lang, key_user,confirmmail,access) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>18/04/15 16:15:48</datetime>
+	<errormsg>URL: /////	Error: getUserIdByPseudo => Not exist user</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>18/04/15 16:15:52</datetime>
+	<errormsg>URL: /////	Error: getUserIdByPseudo => Not exist user</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>18/04/15 16:16:38</datetime>
+	<errormsg>URL: /////	Error: getUserIdByPseudo => Not exist user</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>18/04/15 16:16:43</datetime>
+	<errormsg>URL: NewSongController/indexAction////	Error: getUserIdByPseudo => Not exist user</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>18/04/15 16:16:45</datetime>
+	<errormsg>URL: MessagesController/indexAction////	Error: getUserIdByPseudo => Not exist user</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>18/04/15 16:16:46</datetime>
+	<errormsg>URL: NotificationsController/indexAction////	Error: getUserIdByPseudo => Not exist user</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>18/04/15 16:16:50</datetime>
+	<errormsg>URL: /////	Error: getUserIdByPseudo => Not exist user</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>18/04/15 16:16:57</datetime>
+	<errormsg>URL: /////	Error: getUserIdByPseudo => Not exist user</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>18/04/15 16:17:01</datetime>
+	<errormsg>URL: ParametersController/indexAction////	Error: getUserIdByPseudo => Not exist user</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>18/04/15 16:17:03</datetime>
+	<errormsg>URL: ParametersController/indexAction////	Error: getUserIdByPseudo => Not exist user</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>18/04/15 16:17:05</datetime>
+	<errormsg>URL: ParametersController/indexAction////	Error: getUserIdByPseudo => Not exist user</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>18/04/15 16:48:53</datetime>
+	<errormsg>URL: footerController/termsAction////	Error: Not found Terms_frView.html.twig template</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>18/04/15 16:57:09</datetime>
+	<errormsg>URL: footerController/accessibilityAction////	Error: Not found Accessibility_frView.html.twig template</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>18/04/15 19:09:58</datetime>
+	<errormsg>URL: TuneController/indexAction/59///	Error: getUserIdByPseudo => Not exist user</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>18/04/15 19:10:04</datetime>
+	<errormsg>URL: TuneController/indexAction/58///	Error: getUserIdByPseudo => Not exist user</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>18/04/15 19:30:24</datetime>
+	<errormsg>URL: TuneController/indexAction/61///	Error: getUserIdByPseudo => Not exist user</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>18/04/15 19:33:56</datetime>
+	<errormsg>URL: TuneController/indexAction/63///	Error: getUserIdByPseudo => Not exist user</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>18/04/15 19:49:05</datetime>
+	<errormsg>URL: TuneController/indexAction/65///	Error: getUserIdByPseudo => Not exist user</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>18/04/15 19:50:30</datetime>
+	<errormsg>URL: TuneController/indexAction/66///	Error: getUserIdByPseudo => Not exist user</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>18/04/15 21:05:45</datetime>
+	<errormsg>URL: AuthController/authuserAction////	Error: Unexpected token "number" of value "0" ("end of statement block" expected) in "GeneralLayoutView/GeneralLayoutView.html.twig" at line 51</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>18/04/15 21:57:11</datetime>
+	<errormsg>URL: TuneController/indexAction/59///	Error: getUserIdByPseudo => Not exist user</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>18/04/15 21:58:52</datetime>
+	<errormsg>URL: TuneController/indexAction/59///	Error: getUserIdByPseudo => Not exist user</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>19/04/15 11:10:34</datetime>
+	<errormsg>URL: TuneController/indexAction/Nico/59//	Error: The function "Parent" does not exist in "TuneView.html.twig" at line 4</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>19/04/15 11:10:44</datetime>
+	<errormsg>URL: TuneController/indexAction/Nico/59//	Error: The function "Parent" does not exist in "TuneView.html.twig" at line 4</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>19/04/15 13:50:26</datetime>
+	<errormsg>URL: NotificationsController/indexAction////	Error: DateTime::__construct(): Failed to parse time string (4jours) at position 0 (4): Unexpected character</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>19/04/15 13:50:26</datetime>
+	<errormsg>URL: NotificationsController/indexAction////	Error: DateTime::__construct(): Failed to parse time string (4jours) at position 0 (4): Unexpected character</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>19/04/15 19:13:18</datetime>
+	<errormsg>URL: musiceditorController/downloadscoreAction////	Error: Not exist downloadscoreAction action for MusiceditorController controller</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>19/04/15 22:16:46</datetime>
+	<errormsg>URL: RessourcesController/publicAction/data/Users/Nico/	Error: Not exist RessourcesController controller</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>19/04/15 22:18:04</datetime>
+	<errormsg>URL: RessourcesController/publicAction/data/Users/Nico/	Error: Not exist RessourcesController controller</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>19/04/15 22:38:20</datetime>
+	<errormsg>URL: RessourcesController/publicAction/data/Users/Nico/	Error: Not exist RessourcesController controller</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>19/04/15 23:03:33</datetime>
+	<errormsg>URL: musiceditorController/savepdftuneAction////	Error: getUserIdByPseudo => Not exist user</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:09:48</datetime>
+	<errormsg>URL: ProfilController/askfriendshipAction/Nico///	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'read) VALUES (?, ?, ?, 0)' at line 1 INSERT INTO invitation (fk_user_a ,fk_user_b, date_fdshp, read) VALUES (?, ?, ?, 0);</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:30:55</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:30:56</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:30:57</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:31:00</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:31:02</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:31:05</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:31:07</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:31:10</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:31:12</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:31:14</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:31:15</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:31:19</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:31:20</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:31:24</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:31:25</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:31:29</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:31:30</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:31:34</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:31:35</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:31:39</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:31:40</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:31:44</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:31:45</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:31:49</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:31:50</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:31:54</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:31:55</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:31:59</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:32:00</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:32:04</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:32:05</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:32:09</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:32:10</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:32:14</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:32:15</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:32:19</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:32:20</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:32:24</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:32:25</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:32:29</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:32:30</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:32:34</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:32:35</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:32:39</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:32:40</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:32:44</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:32:45</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:32:49</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:32:50</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:32:54</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:32:55</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:32:59</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:33:00</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as readd from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:33:04</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as nb from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:33:05</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as nb from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:33:09</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as nb from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:33:10</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as nb from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:33:14</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as nb from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:33:15</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 SELECT count(id_invitation) as nb from invitation WHERE (readd = 0) AND ((fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:33:19</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id_invitation' in 'field list' SELECT count(id_invitation) as nb from invitation WHERE (readd = 0) AND (fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:33:20</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id_invitation' in 'field list' SELECT count(id_invitation) as nb from invitation WHERE (readd = 0) AND (fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:33:24</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id_invitation' in 'field list' SELECT count(id_invitation) as nb from invitation WHERE (readd = 0) AND (fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:33:25</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id_invitation' in 'field list' SELECT count(id_invitation) as nb from invitation WHERE (readd = 0) AND (fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:33:28</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id_invitation' in 'field list' SELECT count(id_invitation) as nb from invitation WHERE (readd = 0) AND (fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:33:30</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id_invitation' in 'field list' SELECT count(id_invitation) as nb from invitation WHERE (readd = 0) AND (fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:33:33</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id_invitation' in 'field list' SELECT count(id_invitation) as nb from invitation WHERE (readd = 0) AND (fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:33:38</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id_invitation' in 'field list' SELECT count(id_invitation) as nb from invitation WHERE (readd = 0) AND (fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:33:38</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id_invitation' in 'field list' SELECT count(id_invitation) as nb from invitation WHERE (readd = 0) AND (fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:33:41</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id_invitation' in 'field list' SELECT count(id_invitation) as nb from invitation WHERE (readd = 0) AND (fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:33:46</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id_invitation' in 'field list' SELECT count(id_invitation) as nb from invitation WHERE (readd = 0) AND (fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:33:51</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id_invitation' in 'field list' SELECT count(id_invitation) as nb from invitation WHERE (readd = 0) AND (fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:33:56</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id_invitation' in 'field list' SELECT count(id_invitation) as nb from invitation WHERE (readd = 0) AND (fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:34:01</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id_invitation' in 'field list' SELECT count(id_invitation) as nb from invitation WHERE (readd = 0) AND (fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:34:06</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id_invitation' in 'field list' SELECT count(id_invitation) as nb from invitation WHERE (readd = 0) AND (fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:34:11</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id_invitation' in 'field list' SELECT count(id_invitation) as nb from invitation WHERE (readd = 0) AND (fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:34:16</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id_invitation' in 'field list' SELECT count(id_invitation) as nb from invitation WHERE (readd = 0) AND (fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:34:21</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id_invitation' in 'field list' SELECT count(id_invitation) as nb from invitation WHERE (readd = 0) AND (fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 15:34:26</datetime>
+	<errormsg>URL: NotificationsController/readerAction////	Error: SQL error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id_invitation' in 'field list' SELECT count(id_invitation) as nb from invitation WHERE (readd = 0) AND (fk_user_a = (?) OR fk_user_b = (?));</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>20/04/15 19:08:18</datetime>
+	<errormsg>URL: MessagesController/indexAction////	Error: getUserPseudoById => Not exist user</errormsg>
+</errorentry>
+

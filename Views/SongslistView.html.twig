@@ -2,22 +2,23 @@
 
 {% block head %}
 	{{ parent() }}
-        <link rel='stylesheet' href='Ressources/public/css/TableSorter/style.css' type='text/css'>
-	<script src="Ressources/public/js/jquery-2.1.3.min.js"></script>
+    <link rel='stylesheet' href='Ressources/public/css/TableSorter/style.css' type='text/css'>
+    <!--<script src="Ressources/public/js/jquery.tablesorter/jquery-latest.js"></script>-->
 	<script src="Ressources/public/js/jquery.tablesorter/jquery.tablesorter.js"></script>
 	<script src="Ressources/public/js/tabletunes.js"></script>
 {% endblock %}
 
 {% block timeline %}
 	<div id="tuneslist">
+		<h2>{{ data.songslisttitle }}</h2>
 		<table id="tabletunes" class="tablesorter">
 			<thead>
                             <tr>
-				<th>{{ data.tunelistheader.title }}</th>
-				<th>{{ data.tunelistheader.composer }}</th>
-				<th>{{ data.tunelistheader.category }}</th>
-				<th>{{ data.tunelistheader.date }}</th>
-				<th class="{sorter: false}"></th>
+				<th scope="col">{{ data.tunelistheader.title }}</th>
+				<th scope="col">{{ data.tunelistheader.composer }}</th>
+				<th scope="col">{{ data.tunelistheader.category }}</th>
+				<th scope="col">{{ data.tunelistheader.date }}</th>
+				<th scope="col" class="{sorter: false}">{{ data.tunelistheader.actions }}</th>
                             </tr>
 			</thead>
 			<tbody>
@@ -28,10 +29,10 @@
 					<td>{{ itemtune.category }}</td>
 					<td>{{ itemtune.datetune }}</td>
 					<td>
-                                                <a href="{{ itemtune.urltune }}"><div class="viewtune"></div></a>
-                                                <a href="{{ itemtune.addscore }}"><div class="addscore"></div></a>
-                                                <a href="{{ itemtune.sharetune }}"><div class="share"></div></a>
-						<a href="{{ itemtune.deleteadd.url }}"><div id="sharedel" class="{{ itemtune.deleteadd.class }}"></div></a>
+                        <a title="{{ data.viewicon }}" href="{{ itemtune.urltune }}"><div class="viewtune"></div></a>
+                        <a title="{{ data.addicon }}" href="{{ itemtune.addscore }}"><div class="addscore"></div></a>
+                        <a title="{{ data.shareicon }}" href="{{ itemtune.sharetune }}"><div class="share"></div></a>
+						<a title="{{ itemtune.deleteadd.icon }}" href="{{ itemtune.deleteadd.url }}"><div id="sharedel" class="{{ itemtune.deleteadd.class }}"></div></a>
 					</td>
 				</tr>
 				{% endfor %}

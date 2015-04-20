@@ -36,6 +36,8 @@ class HomeController extends BaseController
 			$dataform = $f->getValues(); // extract the data from the form
 			$date_news = date("y-m-d H-i-s");
 
+			$dataform['news'] = MessagesController::replaceHashtag($dataform['news']);
+
 			$news = new News($_SESSION['iduser'],$_SESSION['pseudo'],$date_news,$dataform['news']); // create the news object
 			$newsrep = new NewsRepository();
 			$newsrep->addNews($news); // add the submitted news
@@ -62,7 +64,7 @@ class HomeController extends BaseController
 		if ($f == null) {
 			$f = new FormManager("editnewsform","editnewsform",UrlRewriting::generateURL("addNews","")); // Form to edit and publish a news
 			$f->addField("","news","textarea","",Translator::translate("Invalid news"));
-			$f->addField("Submit ","submit","submit","News");	
+			$f->addField("Submit ","submitnews","submit","News");	
 		}
 		$data['newsform'] = $f->createView(); // add the form view in the data page
 
@@ -79,7 +81,7 @@ class HomeController extends BaseController
                                     "content" => $news->getContent());
             }
         } else {
-            $data['flashbag'] = "No news";
+            $data['flashbag'] = Translator::translate("No news");
         }
 
         $this->render("HomeView.html.twig",$data); // create the view

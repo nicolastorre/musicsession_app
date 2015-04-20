@@ -53,7 +53,7 @@ class ErrorController extends BaseController
             $err .= "</errorentry>\n\n";
 
             // sauvegarde de l'erreur, et mail si c'est critique
-            error_log($err, 3, "error.xml");
+            error_log($err, 3, "config/error.xml");
             //echo "<script>window.location='ErrorController.php'</script>";
             //  create ErrorController
             if ($errno == E_USER_ERROR) {

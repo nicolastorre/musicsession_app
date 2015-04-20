@@ -1,10 +1,15 @@
 {% extends "GeneralLayoutView/GeneralSectionView.html.twig" %}
 
+{% block head %}
+    {{ parent() }}
+    <script src="Ressources/public/js/Uploadfile.js"></script>
+{% endblock %}
+
 {% block timeline %}
 	<div id="newsong">
 		<h2>Add a new score</h2>
 		{{ data.addscoreform.formstart | raw }}	
-        {{ data.addscoreform.pdf | raw }}
+        <div class="upload-container">{{ data.addscoreform.pdf | raw }}</div>
 		{{ data.addscoreform.submit | raw }}
 		{{ data.addscoreform.formend | raw }}
 	</div>

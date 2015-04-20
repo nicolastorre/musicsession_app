@@ -1,0 +1,24 @@
+{% extends "GeneralLayoutView/GeneralLayoutView.html.twig" %}
+
+{% block head %}
+	{{ parent() }}
+	<link rel='stylesheet' href='Ressources/public/css/MusicEditor.css' type='text/css'>
+	<script src="Ressources/public/js/svg.js"></script>
+	<script src="Ressources/public/js/MusicEditor.js"></script>
+{% endblock %}
+
+{% block section %}
+	<div id="controlpanel">
+		<ul>
+			<li><input type="button" class="button" value="Eighth Note" id="eighthbut"></li>
+			<li><input type="button" value="Quarter Note" id="quarterbut"></li>
+			<li><input type="button" value="Half Note" id="halfbut"></li>
+			<li><input type="button" value="Whole Note" id="wholebut"></li>
+			<li><input type="button" value="Download" id="download"></li>
+			<li><input type="button" value="Save" id="save"></li>
+		</ul>
+	</div>
+	
+	{% block timeline %}
+	{% endblock %}
+{% endblock %}

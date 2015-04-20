@@ -31,7 +31,7 @@ class BlockedprofilController extends BaseController
 		$iduser = $userrep->getUserIdByPseudo($pseudo);
 		$data = DefaultController::initModule($pseudo);
 
-        $data['flashbag'] = "You're not allowed to view this profile";
+        $data['flashbag'] = Translator::translate("You're not friend with this user!");
 
 		$this->render("ProfilView.html.twig",$data);
 	}

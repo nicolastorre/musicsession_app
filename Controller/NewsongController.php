@@ -85,20 +85,30 @@ class NewsongController extends BaseController
 
         $data['flashbag'] = $flashbag;
         $data['newsongtitle'] = Translator::translate("Add a new song");
-
+        
 		/*
 		* Create the form to add a new song
 		*/
 		if ($f == null) {
 			$f = new FormManager("importsongform","importsongform",UrlRewriting::generateURL("addNewSong",""));
-			$f->addField("Title: ","title","text","",Translator::translate("Invalid"));
-            $f->addField("Composer: ","composer","text","",Translator::translate("Invalid"));
-            $f->addField("Category: ","category","select",array(array('v' => 'classique','s' => false),array('v' => 'rock','s' => true),array('v' => 'trad','s' => false),array('v' => 'other','s' => false)),"Error",array('id' => 'category'),Translator::translate("Invalid"));
-            $f->addField(" ","addcategory","text","",Translator::translate("Invalid"),array('id' => 'other'),true);
-			$f->addField("pdf score: ","pdf","file","",Translator::translate("Invalid"));
-			$f->addField("Submit ","submit","submit",Translator::translate("Import song"),"Error",array('id' => 'submit'));	
+			$f->addField(Translator::translate("Title: "),"title","text","",Translator::translate("Invalid"));
+            $f->addField(Translator::translate("Composer: "),"composer","text","",Translator::translate("Invalid"));
+            $f->addField(Translator::translate("Category: "),"category","select",array(array('v' => 'classique','s' => false),array('v' => 'rock','s' => true),array('v' => 'trad','s' => false),array('v' => 'other','s' => false)),"Error",array('id' => 'category'),Translator::translate("Invalid"));
+            $f->addField(" ","addcategory","text","",Translator::translate("Invalid"),array(),true);
+			$f->addField(Translator::translate("Music score (pdf): "),"pdf","file","",Translator::translate("Invalid"),$attr = array(),$raw = false,"pdf");
+			$f->addField("Submit ","submitnewsong","submit",Translator::translate("Import song"),Translator::translate("Error"));	
+
+
 		}
-		$data['importsongform'] = $f->createView();
+        $data['importsongform'] = $f->createView();
+
+        $g = new FormManager("musiceditornewsongform","musiceditornewsongform", UrlRewriting::generateURL("musiceditornewsong",""));
+        $g->addField(Translator::translate("Title: "),"title","text","",Translator::translate("Invalid"));
+        $g->addField(Translator::translate("Composer: "),"composer","text","",Translator::translate("Invalid"));
+        $g->addField(Translator::translate("Category: "),"category","select",array(array('v' => 'classique','s' => false),array('v' => 'rock','s' => true),array('v' => 'trad','s' => false),array('v' => 'other','s' => false)),"Error",array('id' => 'category'),Translator::translate("Invalid"));
+        $g->addField(" ","addcategory","text","",Translator::translate("Invalid"),array(),true);
+        $g->addField("Submit ","submitmusiceditor","submit",Translator::translate("Music editor"),Translator::translate("Error"));
+        $data['musiceditornewsongform'] = $g->createView();
 
 		$this->render("NewsongView.html.twig",$data); // create the view
 	}

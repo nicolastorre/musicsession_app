@@ -15,13 +15,28 @@ class Pubdate
                         return intval($interval->format("%H")).Translator::translate("h");   
                     }
                 } else {
-                    return intval($interval->format("%a")).Translator::translate("d");
+                    if (intval($interval->format("%a")) == 1){
+                        $day = Translator::translate("ds");
+                    } else {
+                        $day = Translator::translate("d");
+                    }
+                    return intval($interval->format("%a")).$day;
                 }
             } else {
-                return intval($interval->format("%n")).Translator::translate("m");
+                if (intval($interval->format("%n")) == 1){
+                    $month = Translator::translate("ms");
+                } else {
+                    $month = Translator::translate("m");
+                }
+                return intval($interval->format("%n")).$month;
             }
         } else {
-            return intval($interval->format("%y")).Translator::translate("y");
+            if (intval($interval->format("%y")) == 1){
+                $year = Translator::translate("ys");
+            } else {
+                $year = Translator::translate("y");
+            }
+            return intval($interval->format("%y")).$year;
         }
     }
 }

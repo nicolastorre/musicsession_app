@@ -33,6 +33,9 @@ class DefaultController extends baseController
 		$data['profilcard'] = ProfilController::ProfilCard($pseudo); // init the Profile Card module
 		$data['tunelistwidget'] = SongslistController::songlistwidgetAction();
 		$data['suggestedfriends'] = FriendsController::suggestedFriends(3); // init the Suggested Friends module
+		$data['terms'] = array('url' => UrlRewriting::generateURL("Terms",""), 'name' => Translator::translate("Terms"));
+		$data['privacy'] = array('url' => UrlRewriting::generateURL("Privacy",""), 'name' => Translator::translate("Privacy"));
+		$data['accessibility'] = array('url' => UrlRewriting::generateURL("Accessibility",""), 'name' => Translator::translate("Accessibility"));
 		return $data;
 	}
 	
@@ -43,22 +46,29 @@ class DefaultController extends baseController
     * and its url.
     */
 	public static function menuAction() {
+		$request = new Request();
+		if ($request->existsParameter('controller') && ($request->getParameter('controller') != '')) {
+			$ctrler = $request->getParameter('controller');
+		} else {
+			$ctrler = "Home";
+		}
 		if (isset($_SESSION['access']) and $_SESSION['access']) {
 			self::$menuitem[3] = "Backoffice";
 		}
 		$menulist = array();
-
+		$k = 1;
 		foreach (self::$menuitem as $i) {
-			if ($_GET['controller'] == $i) {
+			if ($ctrler == $i) {
 				$class = "on";
 			} else {
 				$class = "off";
 			}
-			$menulist[] = array("name" => Translator::translate($i), "url" => UrlRewriting::generateURL($i,""), "class" => $class, "icon" => UrlRewriting::generateSRC("imgapp","",$i).".png");
+			$menulist[] = array("id" => "menu-".$i, "index" => $k,"name" => Translator::translate($i), "url" => UrlRewriting::generateURL($i,""), "class" => $class, "icon" => UrlRewriting::generateSRC("imgapp","",$i).".png");
+			$k++;
 		}
         $f = new FormManager("searchform","searchform",UrlRewriting::generateURL("Search",""));
-        $f->addField("","search","text","","Error",array("id" => "inputsearch"));
-        $f->addField("Submit ","submit","submit","?","Error",array("id" => "submitsearch"));
+        $f->addField("","inputsearch","text","","Error");
+        $f->addField("Submit ","submitsearch","submit","?",Translator::translate("Invalid"));
         $menulist['searchform'] = $f->createView();
 		return $menulist;
 	}

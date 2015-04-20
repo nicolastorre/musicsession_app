@@ -9,8 +9,8 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 	<div class="footer-item">Copyright 2015 Nicolas Torre</div> 
-	<a href="#" class="footer-item">Terms</a>
-	<a href="#" class="footer-item">Privacy</a>
-	<a href="#" class="footer-item">Cookies</a>
+	<a href="{{ data.terms.url }}" class="footer-item">{{ data.terms.name }}</a>
+	<a href="{{ data.privacy.url }}" class="footer-item">{{ data.privacy.name }}</a>
+	<a href="{{ data.accessibility.url }}" class="footer-item">{{ data.accessibility.name }}</a>
 	<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
 </div>

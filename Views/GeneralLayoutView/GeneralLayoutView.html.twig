@@ -3,14 +3,17 @@
 	<head>
 		{% block head %}
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 		<base href="{{ webroot }}" >
+		<title>Music Session</title>
 		<link rel='stylesheet' href='Ressources/public/css/CSSReset.css' type='text/css'>
-		<link rel='stylesheet' media='screen and (min-width: 1050px)' href='Ressources/public/css/main.css' type='text/css'>
-                <link rel='stylesheet' media='screen and (max-width: 1050px)' href='Ressources/public/css/stylemobile.css' type='text/css'>
+		<link rel='stylesheet' href='Ressources/public/css/base.css' type='text/css'>
 		<link rel='stylesheet' media='screen and (min-width: 1050px)' href='Ressources/public/css/TuneListModule.css' type='text/css'>
-                <link rel='stylesheet' media='screen and (max-width: 1050px)' href='Ressources/public/css/Mobilemenu.css' type='text/css'>
-		<title>Music Score Writer</title>
+		<link rel='stylesheet' media='screen and (min-width: 1050px)' href='Ressources/public/css/main.css' type='text/css'>
+		<link rel='stylesheet' media='screen and (max-width: 1050px)' href='Ressources/public/css/Mobilemenu.css' type='text/css'>
+        <link rel='stylesheet' media='screen and (max-width: 1050px)' href='Ressources/public/css/stylemobile.css' type='text/css'>
+        <script src="Ressources/public/js/jquery-2.1.3.min.js"></script>
+        <script src="Ressources/public/js/readerNotifications.js"></script>
 		{% endblock %}
 	</head>
 
@@ -19,37 +22,37 @@
 			<ul class="menu">
 				{% set menu = menuAction() %}
 				{% for menuitem in 0..3 %}
-				<li class="{{ menu[menuitem].class }}"><img src="{{ menu[menuitem].icon }}" alt=""><a href='{{ menu[menuitem].url }}'>{{ menu[menuitem].name }}</a></li>
+				<li id="{{ menu[menuitem].id }}" title="{{ menu[menuitem].name }}" class="{{ menu[menuitem].class }}"><img src="{{ menu[menuitem].icon }}" alt=""><a tabindex="{{ menu[menuitem].index }}" href='{{ menu[menuitem].url }}'>{{ menu[menuitem].name }}</a></li>
 				{% endfor %}
 			</ul>
 			<ul class="menu">
                         <li>
                             {{ menu.searchform.formstart | raw}}
                             <div id="search-container">
-                                {{ menu.searchform.search | raw}}
-                                {{ menu.searchform.submit | raw}}
+                                {{ menu.searchform.inputsearch | raw}}
+                                {{ menu.searchform.submitsearch | raw}}
                             </div>
                             {{ menu.searchform.formend | raw}}
                         </li>
 				<li id="parameters-container" class="{{ menu[4].class }} icon">
-					<a href='{{ menu[4].url }}' id="parameters"><img src="Ressources/public/images/app/parameters.png" alt="parameters"></a>
+					<a title="{{ menu[4].name }}" href='{{ menu[4].url }}' id="parameters"><img src="Ressources/public/images/app/parameters.png" alt="{{ menu[4].name }}"></a>
 					<ul>
-						<li class="{{ menu[4].class }}"><a href='{{ menu[4].url }}'>{{ menu[4].name }}</a></li>
-						<li class="{{ menu[5].class }}"><a href='{{ menu[5].url }}'>{{ menu[5].name }}</a></li>
+						<li title="{{ menu[4].name }}" class="{{ menu[4].class }}"><a tabindex="{{ menu[4].index }}" href='{{ menu[4].url }}'>{{ menu[4].name }}</a></li>
+						<li title="{{ menu[5].name }}" class="{{ menu[5].class }}"><a tabindex="{{ menu[5].index }}" href='{{ menu[5].url }}'>{{ menu[5].name }}</a></li>
 					</ul>
 				</li>
 			</ul>
                         
-                        <ul id="mobile-menu">
-                        <li class="dropdown">
-                            <a href="#" data-toggle="dropdown"> Menu <i class="icon-arrow"></i></a>
-                            <ul class="dropdown-menu">
-                                    {% for menuitem in menu %}
-                                    <li><a href='{{ menuitem.url }}'>{{ menuitem.name }}</a></li>
-                                    {% endfor %}
-                            </ul>
-                        </li>
-                        </ul>
+            <ul id="mobile-menu">
+	            <li class="dropdown">
+	                <a href="#" data-toggle="dropdown"> Music session <i class="icon-arrow"></i></a>
+	                <ul class="dropdown-menu">
+	                        {% for menuitem in 0..5 %}
+	                        <li><a href='{{ menu[menuitem].url }}'>{{ menu[menuitem].name }}</a></li>
+	                        {% endfor %}
+	                </ul>
+	            </li>
+            </ul>
 		</nav>
 		<section>
                     <div class="flashbag">{{ data.flashbag | raw}}</div>

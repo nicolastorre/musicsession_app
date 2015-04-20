@@ -17,6 +17,19 @@
 class MessagesController extends BaseController
 {
 	/**
+    * Send number of non-read messages via AJAX
+    *
+    * @return void .
+    */
+	public function readerAction() {
+		$iduser = $_SESSION['iduser'];
+		$msgrep = new MessageRepository();
+		$readd = $msgrep->getNonReadMessages($iduser);
+		header('Content-type: application/json');
+        echo json_encode($readd);
+	}
+
+	/**
     * Search for hashtag in sending message 
     * if a word (without whitespace) is preceding by # so the method will check if a tune with this word exist
     * then replace the hashtag by a link to the tune
@@ -25,7 +38,7 @@ class MessagesController extends BaseController
     * @param String $msg any sending message.
     * @return void .
     */
-    private function replaceHashtag($msg) {
+    public static function replaceHashtag($msg) {
         $matches = array();
         $toFind = "#";
         $start = 0;
@@ -47,7 +60,7 @@ class MessagesController extends BaseController
 
         	if ($tune != false) {
         		$idtune = $tune->getIdtune();
-        		$url = UrlRewriting::generateURL("Tune", $idtune);
+        		$url = UrlRewriting::generateURL("Tune", $_SESSION['pseudo']."/".$idtune);
             	$replacement[$i] = "<a href='".$url."' class='hashtag'>".$matches[$i]."</a>";
         	} else {
         		$replacement[$i] = $matches[$i];
@@ -66,6 +79,7 @@ class MessagesController extends BaseController
 		$userrep = new UserRepository();
 		$iduserb = $userrep->getUserIdByPseudo($request->getParameter("par")[0]);
 		$this->indexAction($request, $f = null, $iduserb);
+		ProfilController::checkAllowedProfileUser($request, $iduserb);  // protection user profile
 	}
 
 	/**
@@ -86,7 +100,7 @@ class MessagesController extends BaseController
                         unset($_SESSION["sendmsgform"]);
                         
 			$dataform = $f->getValues();
-			$dataform['msg'] = $this->replaceHashtag($dataform['msg']);
+			$dataform['msg'] = self::replaceHashtag($dataform['msg']);
 
 			$date_msg = date("y-m-d H-i-s");
 			$msg = new Message(null,$_SESSION['iduser'],$iduserb,$date_msg,$dataform['msg']);
@@ -147,7 +161,7 @@ class MessagesController extends BaseController
 			$dataform = $f->getValues();
 			$date_msg = date("y-m-d H-i-s");
                         
-            $dataform['msg'] = $this->replaceHashtag($dataform['msg']);
+            $dataform['msg'] = self::replaceHashtag($dataform['msg']);
                         
 			$msg = new Message(null,$_SESSION['iduser'],$iduserb,$date_msg,$dataform['msg']);
 			$msgrep = new MessageRepository();
@@ -168,29 +182,20 @@ class MessagesController extends BaseController
     */
 	public function indexAction(Request &$request, FormManager $f = null, $iduserb = null) {
 		$data = DefaultController::initModule($_SESSION['pseudo']);
-
-		/*
-		* Create the list of user's friends to start a discussion
-		*/
-		$userrep = new Userrepository();
-		$friendshiprep = new FriendshipRepository();
-		$friends = $friendshiprep->getFriends($_SESSION['iduser']);
-		foreach ($friends as $i) {
-			if ($i->getIdusera() != $_SESSION['iduser']) {
-				$userfriends = $userrep->findUserById($i->getIdusera());
-			} elseif ($i->getIduserb() != $_SESSION['iduser']) {
-				$userfriends = $userrep->findUserById($i->getIduserb());
-			}
-			$data['discussion'][] = array("url" => UrlRewriting::generateURL("Discussion",$userfriends->getPseudo()), "pseudo" => $userfriends->getPseudo(),
-				"profilephoto" => UrlRewriting::generateSRC("userfolder", $userfriends->getPseudo(),"profile_pic.png", "../default/profile_pic.png"),);
-		}
+		$data['discutitle'] = Translator::translate("Discussion");
 
 		/*
 		* Display the timeline of the current discussion
 		*/
+		$userrep = new Userrepository();
 		$msgrep = new MessageRepository();
 		if ($iduserb == null) {
 			$iduserb = $msgrep->getLastDiscussion($_SESSION['iduser']); // get the ID user corresponding to the last discussion
+			$fdrep = new FriendshipRepository();
+			$fdshp = $fdrep->getFriendship($_SESSION['iduser'],$iduserb);
+			if($fdshp->getStatus() == 0) {
+				$iduserb = false;
+			}
 		} else {
 			ProfilController::checkAllowedProfileUser($request, $iduserb);  // protection user profile
 		}
@@ -204,13 +209,14 @@ class MessagesController extends BaseController
 						"profilephoto" => UrlRewriting::generateSRC("userfolder", $userrep->getUserPseudoById($msg->getSender()),"profile_pic.png", "../default/profile_pic.png"),
 						"date" => Pubdate::printDate($msg->getDate()), 
 						"content" => $msg->getContent());
-									$data['iduser'] = $iduserb;
-	                                $data['lastmsg'] = $msg->getIdmsg();
+					$data['iduser'] = $iduserb;
+                    $data['lastmsg'] = $msg->getIdmsg();
+                    $msgrep->readMessages($msg->getSender(),$msg->getReceiver());
 				}    
 			} else {
 				$data['iduser'] = $iduserb;
-                                $data['lastmsg'] = 0;
-                                $data['flashbag'] = Translator::translate("No messages!");
+                $data['lastmsg'] = 0;
+                $data['flashbag'] = Translator::translate("No messages!");
 			}
 
 	        /*
@@ -218,13 +224,43 @@ class MessagesController extends BaseController
 			*/
 			if ($f == null) {
 				$f = new FormManager("sendmsgform","sendmsgform",UrlRewriting::generateURL("SendMsg",$userrep->getUserPseudoById($iduserb)));
-				$f->addField("","msg","textarea","",Translator::translate("Invalid"), array("id" => "msg"));
-				$f->addField("Submit ","submitmsg","submit",Translator::translate("Send"),Translator::translate("Invalid"), array("id" => "submitmsg"));
+				$f->addField("","msg","textarea","",Translator::translate("Invalid"));
+				$f->addField("Submit ","submitmsg","submit",Translator::translate("Send"),Translator::translate("Invalid"));
 			}
 			$data['sendmsgform'] = $f->createView(); // add the form view in the data page
 		} else {
-                    $data['flashbag'] = Translator::translate("No messages!");
-                }
+            $data['flashbag'] = Translator::translate("No messages!");
+            $data['iduser'] = "''";
+            $data['lastmsg'] = 0;
+        }
+
+    	/*
+		* Create the list of user's friends to start a discussion
+		*/
+		$friendshiprep = new FriendshipRepository();
+		$friends = $friendshiprep->getFriends($_SESSION['iduser']);
+		if(!empty($friends)) {
+			foreach ($friends as $i) {
+				if ($i->getIdusera() != $_SESSION['iduser']) {
+					$iduserdiscu = $i->getIdusera();
+					$userfriends = $userrep->findUserById($i->getIdusera());
+				} elseif ($i->getIduserb() != $_SESSION['iduser']) {
+					$iduserdiscu = $i->getIduserb();
+					$userfriends = $userrep->findUserById($i->getIduserb());
+				}
+				if($iduserdiscu == $iduserb) {
+					$state = "discu-on";
+				} else {
+					$state = "discu-off";
+				}
+				$data['discussion'][] = array("state" => $state,"url" => UrlRewriting::generateURL("Discussion",$userfriends->getPseudo()), "pseudo" => $userfriends->getPseudo(),
+					"profilephoto" => UrlRewriting::generateSRC("userfolder", $userfriends->getPseudo(),"profile_pic.png", "../default/profile_pic.png"),);
+			}
+		} else {
+			$data['flashbag'] = Translator::translate("No messages!");
+            $data['iduser'] = "''";
+            $data['lastmsg'] = 0;
+		}
 
 		$this->render("MessagesView.html.twig",$data); // create the view
 	}

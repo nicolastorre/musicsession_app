@@ -17,6 +17,26 @@
 class TuneController extends BaseController
 {
     /**
+    * Download a score, only allowed for the user which is owning the concerning version
+    * download the pdf score file
+    *
+    * @param Request &$request Request object.
+    * @return void .
+    */
+    public function downloadscoreAction(Request &$request) {
+        $pseudo = $request->getParameter("par")[0];
+        $idtune = $request->getParameter("par")[1];
+        $idscore = intval($request->getParameter("par")[2]);
+        $userrep = new UserRepository();
+        $tunerep = new TuneRepository();
+        $file = UrlRewriting::generateSRC("userfolder", $userrep->getUserPseudoById($tunerep->getScoreUser($idscore)),$tunerep->getScorePdfName($idscore));
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="'.basename($file).'"'); 
+        header('Content-Length: ' . filesize($file));
+        readfile($file);
+    }
+
+    /**
     * Delete a score, only allowed for the user which is owning the concerning version
     * delete the pdf file and the version tuple in the DB 
     *
@@ -92,13 +112,15 @@ class TuneController extends BaseController
 		$userrep = new UserRepository();
 		$iduser = $userrep->getUserIdByPseudo($pseudo);
 
+        ProfilController::checkAllowedProfileUser($request, $iduser); // protection user profile
+
         $data = DefaultController::initModule($pseudo);
 
 		$idtune = $request->getParameter("par")[1];
 		if ($f == null) 
         {
             $f = new FormManager("addscoreform","addscoreform",UrlRewriting::generateURL("Savescore",$pseudo."/".$idtune)); // Form to edit and publish a news
-            $f->addField("pdf score: ","pdf","file","");
+            $f->addField(Translator::translate("Music score (pdf): "),"pdf","file","",Translator::translate("Invalid"),$attr = array(),$raw = false,"pdf");
             $f->addField("Submit ","submit","submit","Import score","Error",array('id' => 'submit'));
         }
         $data['addscoreform'] = $f->createView(); // add the form view in the data page
@@ -113,10 +135,9 @@ class TuneController extends BaseController
     * add a new version, share the tune on the user news timeline and delete each version of the tune
     *
     * @param Request &$request Request object.
-    * @param FormManager $f optional. contain a form object, default is null.
     * @return void .
     */
-	public function indexAction(Request &$request, FormManager $f = null) {
+	public function indexAction(Request &$request) {
         $pseudo = $request->getParameter("par")[0];
 		$userrep = new UserRepository();
 		$iduser = $userrep->getUserIdByPseudo($pseudo);
@@ -150,6 +171,7 @@ class TuneController extends BaseController
             $data['tune']["deleteadd"] = $tuneaction['deleteadd'];
 
             $data['tune']['deletescorename'] = Translator::translate('Delete this score');
+            $data['tune']['downloadscorename'] = Translator::translate('Download this score');
             $data['tune']['forked'] = array();
             $forkedusers = $tune->getForkedusers();
             $pdfscore = $tune->getPdfscore();
@@ -162,7 +184,8 @@ class TuneController extends BaseController
                     } else {
                         $deletebutton = "#";
                     }
-                    $data['tune']['forked'][] = array("num" => ($i+1),"forkeduser" => $userrep->getUserPseudoById($forkedusers[$i]),"delete" => $deletebutton,"pdfurl" => UrlRewriting::generateSRC("userfolder", $userrep->getUserPseudoById($forkedusers[$i]), $pdfscore[$i]), "date" => Pubdate::printDate($datescore[$i]));
+                    $downloadbutton = UrlRewriting::generateURL("Downloadscore",$pseudo."/".$idtune."/".$idscorelist[$i]);
+                    $data['tune']['forked'][] = array("num" => ($i+1),"forkeduser" => $userrep->getUserPseudoById($forkedusers[$i]),'download' => $downloadbutton,"delete" => $deletebutton,"pdfurl" => UrlRewriting::generateSRC("userfolder", $userrep->getUserPseudoById($forkedusers[$i]), $pdfscore[$i]), "date" => Pubdate::printDate($datescore[$i]));
                 }
             } else {
                 $data['tune']['forked'][] = array("delete" => "", "pdfurl" => "", "date" => "");

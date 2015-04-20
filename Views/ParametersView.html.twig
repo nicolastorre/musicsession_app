@@ -1,5 +1,10 @@
 {% extends "GeneralLayoutView/GeneralSectionView.html.twig" %}
 
+{% block head %}
+    {{ parent() }}
+    <script src="Ressources/public/js/Uploadfile.js"></script>
+{% endblock %}
+
 {% block timeline %}
 	<div id="parameterspage">
 		<h2>{{ data.accounttitle }}<h2>
@@ -14,7 +19,7 @@
 		<h2>{{ data.profilephototitle }}<h2>
 		<h3>{{data.profilephotodesc }}</h3>
         {{ data.updatephoto.formstart | raw}}
-        {{ data.updatephoto.pic | raw }}
+        <div class="upload-container">{{ data.updatephoto.pic | raw }}</div>
 		{{ data.updatephoto.submit | raw }}
 		{{ data.updatephoto.formend | raw}}
 		<hr>

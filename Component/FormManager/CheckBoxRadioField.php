@@ -15,6 +15,7 @@ class CheckBoxRadioField extends MultiValuesField
 
 	public function display() { //display the field in HTML
 		$attrview = "";
+		$attrview = "id='".$this->name."'";
 		foreach ($this->attr as $key => $value) {
 			$attrview .= $key."=".$value." ";
 		}

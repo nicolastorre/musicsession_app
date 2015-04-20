@@ -1,10 +1,13 @@
 {% extends "GeneralLayoutView/GeneralSectionView.html.twig" %}
 
 {% block timeline %}
-	{% for itemfriends in data.friends %}
-	<div class="friends">
-		<a href="{{ itemfriends.url }}"><img class="profil-pic-m" src="{{ itemfriends.profilephoto }}" alt="photo profil"></a>
-		<div class="profile"><a href="{{ itemfriends.url }}">{{ itemfriends.pseudo }}</a></div>
+	<div>
+		<h2>{{ data.friendstitle }}</h2>
+		{% for itemfriends in data.friends %}
+		<div class="friends">
+			<a href="{{ itemfriends.url }}"><img class="profil-pic-m" src="{{ itemfriends.profilephoto }}" alt="photo profil"></a>
+			<div class="profile"><a href="{{ itemfriends.url }}">{{ itemfriends.pseudo }}</a></div>
+		</div>
+		{% endfor %}
 	</div>
-	{% endfor %}
 {% endblock %}

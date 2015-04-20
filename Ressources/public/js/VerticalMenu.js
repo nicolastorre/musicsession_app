@@ -1,4 +1,4 @@
-window.onload = function() {
+$(document).ready(function() {
 	// Dropdown Menu
 	var dropdown = document.querySelectorAll('.dropdown');
 	var dropdownArray = Array.prototype.slice.call(dropdown,0);
@@ -28,4 +28,4 @@ window.onload = function() {
 	Element.prototype.hasClass = function(className) {
 	    return this.className && new RegExp("(^|\\s)" + className + "(\\s|$)").test(this.className);
 	};
-};
+});

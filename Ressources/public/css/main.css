@@ -15,92 +15,8 @@
 12. NewSong timeline
 13. Tuneslist timeline
 14. Tune timeline
+15. Footer content
 
-
-*/
-
-body
-{
-	background-color: #F39C12;
-	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-}
-
-/* Boutons, hashtag et messages */
-.flashbag
-{
-	/*background-color: #96281B;
-	color: rgba(255, 255, 204, 0.9);*/
-	font-size: 20px;
-	font-weight: bold;
-	margin: auto;
-	width: 60%;
-	border-radius: 5px;
-	padding: 5px;
-	text-align: center;
-}
-
-.error
-{
-	color: red;
-	margin-top: 5px;
-	margin-bottom: 5px;
-}
-.hashtag
-{
-    color: blue;
-}
-
-input[type="submit"], input[type="button"], .button
-{
-	background-color: #F39C12;
-	border: medium none;
-	padding: 8px;
-	border-radius: 7px;
-	font-size: 14px;
-	line-height: 18px;
-	font-weight: bold;
-	cursor: pointer;
-	margin-top: 5px;
-}
-
-h2
-{
-  color: #96281B;
-  font-family: 'Arial';
-  font-weight: normal;
-  font-size: 30px;
-  text-align: center;
-  margin-bottom: 15px;
-}
-
-div.upload 
-{
-	position: relative;
-    width: 127px;
-    height: 36px;
-    overflow: hidden;
-    background-image: url("../images/app/upload.png");
-    cursor: pointer;
-}
-
-#newsong div.upload input[type="file"], #parameterspage div.upload input[type="file"]
-{
-	position: absolute;
-	top: -1px;
-	left: -1px;
-	margin: 0;
-    display: block !important;
-    width: 127px !important;
-    height: 36px !important;
-    opacity: 0 !important;
-    overflow: hidden !important;
-}
-
-#parameterspage div.upload
-{
-	margin-left: 120px;
-	margin-bottom: 1em;
-}
 
 /* 1. Menu principale */
 nav
@@ -133,12 +49,27 @@ nav > ul + ul
 
 nav li
 {
+	position: relative;
 	list-style: none;
 	margin: 0 10px 0 10px;
 	display: inline-block;
 	line-height: 50px;
 	font-size: 18px;
 	padding: 0 5px 0 5px;
+}
+
+.minibox
+{
+	position: absolute;
+	top: 16px;
+	left: 100px;
+	width: 20px;
+	height: 20px;
+	background-color: #F39C12;
+	line-height: 20px;
+	display: block;
+	text-align: center;
+	border-radius: 5px;
 }
 
 nav li.on:hover, nav li.off:hover
@@ -171,7 +102,7 @@ nav li > form
 	width: 170px;
 	height: 20px;
 	margin: 0;
-	padding: 0;
+	padding: 0 0.3em;
 	border: none;
 	height: 25px;
 }
@@ -186,12 +117,6 @@ nav li > form
 	border: none;
 	border-radius: 0px;
 	height: 25px;
-}
-
-nav a
-{
-	display: inherit !important;
-	color: rgba(255, 255, 204, 0.9);
 }
 
 li.icon
@@ -256,353 +181,45 @@ nav li > img
 	width: inherit !important;
 }
 
+#footer a:hover, #profilCard a:hover
+{
+	text-decoration: underline;
+}
+
 /* 2. Section (contenu du site) */
-section
+section /*;)*/
 {
 	margin: 10px 3%;
-	min-width: 1000px;
+	min-width: 1050px;
 }
 
 #dashboard-left > *, #dashboard-right > *, #timeline, #footer
 {
-	position: relative;
-	background-color: #FFECBF;
-	padding: 10px;
-	border-radius: 5px;
+	padding: 10px; /* // ;) */
 }
 
-#dashboard-left
+#dashboard-left /*;)*/
 {
 	float: left;
 	width: 22%;
 }
 
-#timeline
+#timeline /*;)*/
 {
-	float: left;
-	margin: 0px 2%;
-	width: 50%;
+	margin: 0px 25%;
 	border-radius: 5px;
 	padding: 5px;
 	min-height: 500px;
 }
 
-#timeline h2
+#dashboard-right /*;)*/
 {
-	text-align: left;
-}
-
-#dashboard-right
-{
-	float: left;
+	float: right;
 	width: 22%;
-}
-
-#footer
-{
-	border-radius: 5px;
-	margin-top: 10px;
-	padding: 10px;
-}
-
-#footer .footer-item
-{
-	display: inline;
-	margin-right: 10px;
-	color: #8899A6;
-	font-size: 15px;
-	line-height: 18px;
-}
-
-#error404
-{
-	color: #96281B;
-	font-size: 70px;
-	font-weight: bold;
-	text-align: center;
-	margin-top: 150px;
-}
-
-/* 3. Pseudo et photo de profile */
-.profile
-{
-	font-weight: bold;
-	margin-bottom: 10px;
-}
-
-.profil-pic-s
-{
-	float: left;
-	margin-right: 20px;
-	width: 30px;
-	height: 30px;
-	border: 1px solid black;
-	border-radius: 5px;
-}
-
-.profil-pic-m
-{
-	float: left;
-	margin-right: 20px;
-	width: 40px;
-	height: 40px;
-	border: 2px solid black;
-	border-radius: 5px;
-}
-
-.profil-pic-l
-{
-	width: 72px;
-	height: 72px;
-	border: 2px solid black;
-	border-radius: 5px;
-}
-
-/* 4. Module profilcard */
-#profilCard
-{
-	overflow: hidden;
-}
-
-#profilCard h1
-{
-	position: absolute;
-	top: 35%;
-	left: 100px;
-	font-size: 20px;
-	font-weight: bold;
-}
-
-#profilCard ul
-{
-	position:absolute;
-	top: 60%;
-	left: 100px;
-}
-
-#profilCard li
-{
-	float: left;
-	margin: 5px;
-}
-
-/* 5. News timeline */
-.item-news, #edit-news
-{
-	border-bottom: 1px solid #E1E8ED;
-	min-height: 51px;
-	padding: 3%;
-}
-
-.item-news .profile, .item-news .pubdate
-{
-	display: inline;
-	margin-right: 10px;
-}
-
-.item-news .content
-{
-	margin-top: 10px;
-	text-align: justify;
-}
-
-#edit-news textarea
-{
-	margin: auto;
-	width: 99%;
-}
-
-/* 6. Notifications timeline */
-.item-notif
-{
-	border-bottom: 1px solid #E1E8ED;
-	min-height: 51px;
-	padding: 1em;
-}
-
-.item-notif .profil-pic-m, .item-notif .profile
-{
-	display: inline-block;
-}
-
-.item-notif .notif, .item-notif .notif > div
-{
-	margin-bottom: 1em;
-}
-
-.notif > div:first-child
-{
-	text-align: right;
-}
-
-.notif a + div
-{
-	position: relative;
-	top: 1em;
-}
-
-/* 7. Discussion list module */
-#discussionlist
-{
-	margin-top: 10px;
-}
-
-.item-discu
-{
-  border-bottom: 1px solid #E1E8ED;
-  min-height: 20px;
-  padding: 1em;
-  padding-bottom: 1.5em;
-}
-
-.item-discu a
-{
-	display: inherit;
-}
-
-#discussionlist .profile
-{
-	margin-top: 1em;
-}
-
-/* 8. Messages timeline */
-#msglist
-{
-  max-height: 500px;
-  /*overflow-y: scroll;*/
-  overflow: auto;
-}
-
-.item-msg
-{
-  border-bottom: 1px solid #E1E8ED;
-  min-height: 51px;
-  padding: 1em;
-}
-
-#sendmsg
-{
-  min-height: 81px;
-  padding: 3%;
-}
-
-#sendmsg textarea
-{
-  margin: auto;
-  width: 99%;
-  height: 70px;
-}
-
-.item-msg .profile, .item-msg .pubdate
-{
-	display: inline;
-	margin-right: 10px;
-}
-
-.item-msg .msg
-{
-	margin-top: 10px;
-	text-align: justify;
-}
-
-/* 9. Friends timeline */
-.friends
-{
-  float: left;
-  margin: 10px;
-  padding: 10px;
-}
-
-.friends .profile
-{
-  display: inline-block;
-  margin-top: 1em;
-}
-
-/* 10. Suggested friends module */
-#suggestedfriends
-{
-	background-color: #FFECBF;
-	border-radius: 5px;
-	padding: 10px;
-}
-
-#suggestedfriends h2
-{
-  font-family: 'Arial';
-  font-weight: normal;
-  font-size: 30px;
-  text-align: center;
-  color: #96281B;
-  margin-bottom: 15px;
-}
-
-#suggestedfriends li
-{
-	margin-bottom: 5px;
-	line-height: 30px;
-	min-height: 35px;
-}
-
-/* 11. Parameters timeline */
-#parameterspage
-{
-	position: relative;
-	width: 60%;
-	margin: auto;
-	padding: 1em;
-}
-
-#parameterspage h2
-{
-  font-size: 22px;
-  font-weight: bold;
-  margin-bottom: 0.5em;
-}
-
-#parameterspage h3
-{
-  font-size: 14px;
-  margin-bottom: 2em;
-}
-
-#parameterspage label
-{
-  float: left;
-  width: 100px;
-  margin-bottom: 1em;
-}
-
-#parameterspage input, select
-{
-  display: block;
-  margin-left: 120px;
-  margin-bottom: 1em;
-}
-
-#parameterspage textarea
-{
-	margin: auto;
-	width: 99%;
-	height: 70px;
-}
-
-#parameterspage textarea + input[type="submit"]
-{
-	margin-left: 0;
-}
-
-/* 12. NewSong timeline */
-#newsong
-{
-  width: 60%;
-  margin:auto;
-  padding: 1em;
 }
 
 #newsong h2
 {
-  font-weight: bold;
   margin-bottom: 2em;
 }
 
@@ -613,170 +230,14 @@ section
   margin-bottom: 1em;
 }
 
-#newsong input, select
+#newsong input, select, #musiceditor-button
 {
-  display: block;
-  margin-left: 150px;
-  margin-bottom: 1em;
+	max-width: 120px;
+	display: block;
+	margin: 1em 0 1em 150px;
 }
 
-/* 13. Tuneslist timeline */
-#tuneslist
+#musiceditor-button
 {
-  padding: 4%;
-}
-
-#tuneslist > table
-{
-  width: 95%;
-  margin: auto;
-}
-
-#tuneslist > table
-{
-  margin-top: 0.5em;
-}
-
-#tuneslist table tr th
-{
-	font-weight: bold;
-}
-
-#tuneslist table tr td, #tuneslist table tr th
-{
-	width: 100px;
-	overflow:hidden;
-	margin-right: 0.2em;
 	text-align: center;
-	border: 1px solid #66757F;
-	height: 2em;
-	vertical-align: middle;
-	padding: 0.2em;
-}
-
-#tuneslist table .item-even
-{
-  background-color: #FFC76D;
-}
-
-.share
-{
-  display: inline-block;
-  background-image: url("../images/app/share.png");
-  background-size: 20px 20px;
-  width: 20px;
-  height: 20px;
-}
-
-.add
-{
-	display: inline-block;
-	background-image: url("../images/app/add.png");
-	background-size: 20px 20px;
-	width: 20px;
-	height: 20px;
-}
-
-.addscore
-{
-	display: inline-block;
-	background-image: url("../images/app/addscore.png");
-	background-size: 20px 20px;
-	width: 20px;
-	height: 20px;
-}
-
-.delete
-{
-	display: inline-block;
-	background-image: url("../images/app/delete.png");
-	background-size: 20px 20px;
-	width: 20px;
-	height: 20px;
-}
-
-.viewtune
-{
-	display: inline-block;
-	background-image: url("../images/app/filemusic.png");
-	background-size: 20px 20px;
-	width: 20px;
-	height: 20px;
-}
-
-/* 14. Tune timeline */
-#tunepage
-{
-  padding: 2em;
-}
-
-#headertune
-{
-	padding: 1em;
-	overflow: hidden;
-}
-
-#tunepage h2
-{
-	font-size: 30px;
-	font-weight: bold;
-	margin-bottom: 40px;
-	text-align: center;
-}
-
-#tunepage h3
-{
-	font-size: 20px;
-	font-weight: bold;
-	margin-bottom: 15px;
-}
-.composer
-{
-	float: left;
-}
-.category
-{
-	float: right;
-}
-.datetune
-{
-	float: right;
-	clear: both;
-}
-
-#tunepage iframe
-{
-  margin-top: 2em;
-  width: 100%;
-  height: 800px;
-  border: 1px solid #000;
-}
-
-#tunepage .actionpanel
-{
-	margin: 20px 0;
-	clear: both;
-}
-
-#tunepage .action
-{
-	display: inline-block;
-	width: 15em;
-
-}
-
-#tunepage .version
-{
-	margin: 25px 0;
-	clear: both;
-}
-
-.forkeduser, .datescore
-{
-	display: inline;
-}
-
-.deletescore
-{
-	float: right;
 }

@@ -57,6 +57,14 @@ class ProfilController extends BaseController
 		return $data;
 	}
 
+	/**
+	* Add an invitation tuple between the two concerning users in the DB
+	* if the invitation already exist => error
+	* then redirect to the Home page
+	*
+	* @param Request &$request Request object.
+	* @return void .
+	*/
 	public function askfriendshipAction(Request &$request) {
 		$userrep = new UserRepository();
 		$iduser = intval($userrep->getUserIdByPseudo($request->getParameter("par")[0]));
@@ -69,7 +77,7 @@ class ProfilController extends BaseController
 			$flashbag = Translator::translate("The invitation has been sent!");
 		}
 		$ctrl = new HomeController();
-		$ctrl->indexAction($request, $f = null, $flashbag); // add a flashbag to confirm the invitation has been sent
+		$ctrl->indexAction($request, $f = null, $flashbag);
 		exit(1);
 	}
 
@@ -145,10 +153,10 @@ class ProfilController extends BaseController
 		$newslist = $newsrep->findAllNewsUser($iduser);
 		if (!empty($newslist[0])) {
             foreach ($newslist as $news) {
-                    $data['newslist'][] = array("url" => UrlRewriting::generateURL("Profil",$news->getUserpseudo()), "user" => $news->getUserpseudo(),
-                                    "profilephoto" => UrlRewriting::generateSRC("userfolder", $news->getUserpseudo(),"profile_pic.png", "../default/profile_pic.png"),
-                                    "pubdate" => Pubdate::printDate($news->getPubdate()),
-                                    "content" => $news->getContent());
+                $data['newslist'][] = array("url" => UrlRewriting::generateURL("Profil",$news->getUserpseudo()), "user" => $news->getUserpseudo(),
+                                "profilephoto" => UrlRewriting::generateSRC("userfolder", $news->getUserpseudo(),"profile_pic.png", "../default/profile_pic.png"),
+                                "pubdate" => Pubdate::printDate($news->getPubdate()),
+                                "content" => $news->getContent());
             }
         } else {
             $data['flashbag']= "No news";

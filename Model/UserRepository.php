@@ -3,8 +3,8 @@
 class UserRepository  extends DBManager
 {
 
-	public function authUser($pseudo,$pwdhashed)	 {
-		$userdata = $this->query("SELECT id_user, pseudo, lang, access from user WHERE pseudo = (?) AND pwdhashed = (?);",array($pseudo,$pwdhashed));
+	public function authUser($pseudo)	 {
+		$userdata = $this->query("SELECT id_user, pseudo, pwdhashed, lang, access from user WHERE pseudo = (?) limit 1;",array($pseudo));
 		if (!empty($userdata)) {
 			return $userdata[0];
 		} else {

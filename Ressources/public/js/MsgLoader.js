@@ -1,5 +1,4 @@
-
-window.onload = function() {
+$(document).ready(function() {
      
     var raw_template = $('#test-template').html();
     var template = Handlebars.compile(raw_template);
@@ -59,4 +58,4 @@ window.onload = function() {
         );
         $("#msg").val("");
     });
-};
+});

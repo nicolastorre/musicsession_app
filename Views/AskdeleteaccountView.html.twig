@@ -1,0 +1,12 @@
+{% extends "GeneralLayoutView/GeneralSectionView.html.twig" %}
+
+{% block timeline %}
+	<div id="parameterspage">
+
+		{{ data.ask }}
+		<a class="button" href="{{ data.deleteaccount.url }}">{{ data.deleteaccount.name }}</a>
+		<a class="button" href="{{ data.redirect.url }}">{{ data.redirect.name }}</a>
+		
+
+	</div>
+{% endblock %}

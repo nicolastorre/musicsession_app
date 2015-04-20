@@ -1,33 +1,66 @@
 ToDo List
 
+Features
+	# Sort the notifications by date using usort (done)
+	# invite by e-mail friends that don't know music session (done)
+	# Icons "New message non-read" and "New notifications non-read"
+	# Expand display in javascript for the version of a tune (done)
+	# Javascript to affiche a msg after upload change (done)
+	# Download pdf file (done)
+
+PHP
+	Add userErrorHandler function (done)
+	Password with password API (done)
+
+Accessibility
+	Add id corresponding to label in form and check bugs (done)
+	Add scope="col" in th tag (done)
+	Add title h2 "Friends" in friends page and "Tunebook" in tunes page (done)
+	add title attribute (done)
+	Add tabindex in navigation item (done)
+
+Music Editor
+	Integrate the music editor to music session (done)
+
+Footer
+	Edit terms, privacy, accessibility (done)
+
+Responsive design (done)
+
+Backoffice css (done)
+
+Music Editor
+	Export in midi file
+	Add html5 audio player to listen the music from midi file
+
+Edit the final report
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 $dbHost = getenv('IP');
 		$user = getenv('C9_USER');
     	$pwd = "";
     	//$dbName = "c9";
     	$dbport = 3306;
-
-Features
-	# invite by e-mail friends that don't know music session
-	# Icons "New message non-read" and "New notifications non-read"
-
-PHP
-	Add userErrorHandler function
-	password with md5
-
-Accessibility
-
-Responsive design (profilCard => float Follow / Block, bouton input file)
-
-Edit terms, privacy, accessibility
-
-Validate the version 1
-
-Music Editor
-	Integrate the music editor to music session
-	Export in midi file
-	Add html5 audio player to listen the music from midi file
-
-Edit the final report
 
 /*************************************************************************************************************************/
 

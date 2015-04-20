@@ -43,7 +43,10 @@ class Request {
   }
 
   public function getSession() {
-    session_start();
+    if(!isset($_SESSION))
+    {
+      session_start();
+    }
   }
 
   public function isGET() {

@@ -18,4 +18,12 @@
 		</li>
 		{% endfor %}
 	</ul>
+	<div id="invite-container">
+		<h3>{{ data.invitefriendtitle }}</h3>
+		{{ data.invitefriendform.formstart | raw }}
+		{{ data.invitefriendform.emailfriend | raw }}
+		{{ data.invitefriendform.invitingmsg | raw }}
+		{{ data.invitefriendform.submitinvitation | raw }}
+		{{ data.invitefriendform.formend | raw }}
+	</div>
 {% endblock %}

@@ -86,11 +86,12 @@ class BackofficeController extends BaseController
                 
         if ($f == null) {
 			$f = new FormManager("deleteuserform","deleteuserform",UrlRewriting::generateURL("Deleteuser",""));
-			$f->addField("User pseudo: ","userpseudo","text","",Translator::translate("Invalid"));
-			$f->addField("Submit ","submit","submit",Translator::translate("Delete"));	
+			$f->addField(Translator::translate("pseudo: "),"userpseudo","text","",Translator::translate("Invalid"));
+			$f->addField("Submit ","submituserpseudo","submit",Translator::translate("Delete"));	
 		}
 		$data['deleteuserform'] = $f->createView(); // add the form view in the data page
 
+        $data['deleteusertitle'] = Translator::translate("Remove user account and all user informations");
         $data['reporttitle'] = Translator::translate("Reporting abusive behavior");
         $reportrep = new ReportRepository();
         $reportlist = $reportrep->findAllReport();

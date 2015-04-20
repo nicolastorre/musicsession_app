@@ -33,7 +33,7 @@ class MessageRepository extends DBManager
 		$date_msg = $msg->getDate();
 		$content = $msg->getContent();
 
-		$this->query("INSERT INTO message (fk_sender, fk_receiver, date_msg, content_msg) VALUES (?, ?, ?, ?)",array($sender, $receiver, $date_msg, $content));
+		$this->query("INSERT INTO message (fk_sender, fk_receiver, date_msg, content_msg, readd) VALUES (?, ?, ?, ?, ?)",array($sender, $receiver, $date_msg, $content, 0));
 
 	}
 
@@ -44,6 +44,15 @@ class MessageRepository extends DBManager
 			$discussion[] = new Message($tuple['id_msg'],$tuple['fk_sender'],$tuple['fk_receiver'],$tuple['date_msg'],$tuple['content_msg']);
 		}
 		return $discussion;
+	}
+
+	public function readMessages($idusera,$iduserb) {
+		$this->query("UPDATE message SET readd = (?) WHERE fk_sender = (?) AND fk_receiver = (?);",array(1,$idusera,$iduserb));
+	}
+
+	public function getNonReadMessages($iduser) {
+		$readdata = $this->query("SELECT count(id_msg) as nb from message WHERE readd = 0 AND fk_receiver = (?);",array($iduser));
+		return $readdata[0];
 	}
 }
 

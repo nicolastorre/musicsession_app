@@ -14,6 +14,7 @@ class SubmitField extends Field
 
 	public function display() { //display the field in HTML
 		$attrview = "";
+		$attrview = "id='".$this->name."'";
 		foreach ($this->attr as $key => $value) {
 			$attrview .= $key."=".$value." ";
 		}

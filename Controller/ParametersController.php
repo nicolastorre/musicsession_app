@@ -136,7 +136,7 @@ class ParametersController extends BaseController
             if ($dataform['pwd'] == $dataform['confirmpwd']) {
                 $userrep = new UserRepository();
                 $user = $userrep->findUserById($_SESSION['iduser']);
-                $user->setPwdhashed($dataform['pwd']);
+                $user->setPwdhashed(password_hash($dataform['pwd']));
 
                 $userrep->updateUser($user);
                 
@@ -277,7 +277,7 @@ class ParametersController extends BaseController
 
         if ($j == null) {
             $j = new FormManager("signalform","signalform",UrlRewriting::generateURL("signal","")); // Form to edit and publish a news
-            $j->addField("","signal","textarea","","Error");
+            $j->addField("","signal","textarea","",Translator::translate("Invalid"));
             $j->addField("Submit ","submit","submit",Translator::translate("Send"));   
         }
         $data['signalform'] = $j->createView(); // add the form view in the data page

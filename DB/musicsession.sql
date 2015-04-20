@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 17 Avril 2015 à 12:12
--- Version du serveur :  5.6.17-log
+-- Généré le :  Lun 20 Avril 2015 à 19:18
+-- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `dico` (
   `fr` varchar(255) NOT NULL,
   `en` varchar(255) NOT NULL,
   PRIMARY KEY (`id_dico`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=87 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=116 ;
 
 --
 -- Contenu de la table `dico`
@@ -45,7 +45,7 @@ INSERT INTO `dico` (`id_dico`, `key_dico`, `fr`, `en`) VALUES
 (1, 'Home', 'Accueil', 'Home'),
 (2, 'Notifications', 'Notifications', 'Notifications'),
 (3, 'Messages', 'Messages', 'Messages'),
-(4, 'NewSong', 'Nouvelle musique', 'New song'),
+(4, 'NewSong', 'Ajouter musique', 'Add tune'),
 (5, 'error', 'Erreur', 'Error'),
 (6, 'Pseudo: ', 'Identifiant: ', 'Pseudo: '),
 (7, 'Password: ', 'Mot de passe: ', 'Password: '),
@@ -59,11 +59,11 @@ INSERT INTO `dico` (`id_dico`, `key_dico`, `fr`, `en`) VALUES
 (15, 'Inscription', 'Inscription', 'Inscription'),
 (16, 'min', 'min', 'min'),
 (17, 'h', 'h', 'h'),
-(18, 'd', 'j', 'd'),
-(19, 'm', 'm', 'm'),
-(20, 'y', 'a', 'y'),
-(21, 'Tunes list', 'Liste musiques', 'Tunes list'),
-(22, 'Suggested friends', 'Suggestion d''amis', 'Suggested friends'),
+(18, 'd', ' jours', ' days'),
+(19, 'm', 'mois', 'months'),
+(20, 'y', 'années', 'years'),
+(21, 'Tunes list', 'Musiques', 'Tunebook'),
+(22, 'Suggested friends', 'Suggestions', 'Who to follow'),
 (23, 'Friends', 'Amis', 'Friends'),
 (24, 'Tunes', 'Musiques', 'Tunes'),
 (25, 'Send', 'Envoyer', 'Send'),
@@ -90,10 +90,10 @@ INSERT INTO `dico` (`id_dico`, `key_dico`, `fr`, `en`) VALUES
 (46, 'Composer', 'Compositeur', 'Composer'),
 (47, 'Category', 'Catégorie', 'Category'),
 (48, 'Date', 'Date', 'Date'),
-(49, 'Delete from your tunebook', 'Supprimer de vos musiques', 'Delete from your tunebook'),
+(49, 'Delete from your tunebook', 'Supprimer musique', 'Delete tune'),
 (50, 'Add to your tunebook', 'Ajouter à vos musiques', 'Add to your tunebook'),
-(51, 'Add a new version', 'Ajouter une nouvelle version', 'Add a new version'),
-(52, 'Share this tune', 'Partager cette musique', 'Share this tune'),
+(51, 'Add a new version', 'Ajouter version', 'Add version'),
+(52, 'Share this tune', 'Partager musique', 'Share tune'),
 (53, 'Delete this score', 'Supprimer cette partition', 'Delete this score'),
 (54, 'Follow', 'Suivre', 'Follow'),
 (55, 'Block', 'Bloquer', 'Block'),
@@ -127,7 +127,36 @@ INSERT INTO `dico` (`id_dico`, `key_dico`, `fr`, `en`) VALUES
 (83, ' send you an invitation!', ' vous a envoyé une invitation!', ' send you an invitation!'),
 (84, 'Accept the invitation', 'Accepter l''invitation', 'Accept the invitation'),
 (85, 'An invitation has already been sent!', 'Une invitation a déjà été envoyée!', 'An invitation has already been sent!'),
-(86, 'The invitation has been sent!', 'L''invitation a été envoyée!', 'The invitation has been sent!');
+(86, 'The invitation has been sent!', 'L''invitation a été envoyée!', 'The invitation has been sent!'),
+(87, 'Tunebook', 'Musiques', 'Tunebook'),
+(88, 'logout', 'Déconnexion', 'Log out'),
+(89, 'Parameters', 'Paramètres', 'Settings'),
+(90, 'View tune', 'Afficher musique', 'View tune'),
+(91, 'Add score', 'Ajouter partition', 'Add score'),
+(92, 'Share tune', 'Partager musique', 'Share tune'),
+(93, 'Delete tune', 'Supprimer musique', 'Delete tune'),
+(94, 'Add tune', 'Ajouter musique', 'Add tune'),
+(95, 'Download this score', 'Télécharger cette partition', 'Download this score'),
+(96, 'Terms', 'Conditions', 'Terms'),
+(97, 'Privacy', 'Confidentialité', 'Privacy'),
+(98, 'Accessibility', 'Accessibilité', 'Accessibility'),
+(99, 'Title: ', 'Titre: ', 'Title: '),
+(100, 'Composer: ', 'Compositeur: ', 'Composer: '),
+(101, 'Category: ', 'Catégorie: ', 'Category: '),
+(102, 'Music score (pdf): ', 'Partition (pdf):', 'Music score (pdf): '),
+(103, 'ds', ' jour', ' day'),
+(104, 'ms', 'mois', 'month'),
+(105, 'ys', 'année', 'year'),
+(106, 'Remove user account and all user informations', 'Supprimer un compte utilisateur', 'Remove user''s account and all user''s informations'),
+(107, 'No notifications', 'Pas de notifications', 'No notifications'),
+(108, 'No news', 'Pas de news', 'No news'),
+(109, 'Invitation message: ', 'Message d''invitation: ', 'Invitation message: '),
+(110, 'E-mail friend: ', 'E-mail d''un ami: ', 'E-mail to a friend: '),
+(111, 'Invite your friends!', 'Inviter vos amis!', 'Invite your friends!'),
+(112, 'E-mail sent!', 'E-mail envoyé!', 'E-mail sent!'),
+(113, 'Discover Music session network here: ', 'Viens découvrir le réseau Music Session ici: ', 'Discover Music session network here: '),
+(114, 'Message of ', 'Message de ', 'Message of '),
+(115, 'Hello', 'Salut', 'Hello');
 
 -- --------------------------------------------------------
 
@@ -144,7 +173,7 @@ CREATE TABLE IF NOT EXISTS `friendship` (
   PRIMARY KEY (`id_fdshp`),
   KEY `fk_userfriendship_a` (`fk_user_a`),
   KEY `fk_userfriendship_b` (`fk_user_b`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=38 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=49 ;
 
 --
 -- Contenu de la table `friendship`
@@ -152,7 +181,8 @@ CREATE TABLE IF NOT EXISTS `friendship` (
 
 INSERT INTO `friendship` (`id_fdshp`, `fk_user_a`, `fk_user_b`, `date_fdshp`) VALUES
 (28, 21, 20, '2015-04-09 14:52:48'),
-(30, 20, 1, '2015-04-14 19:36:48');
+(46, 1, 21, '2015-04-20 17:12:58'),
+(48, 1, 20, '2015-04-20 17:16:20');
 
 -- --------------------------------------------------------
 
@@ -166,17 +196,11 @@ CREATE TABLE IF NOT EXISTS `invitation` (
   `fk_user_a` int(11) NOT NULL,
   `fk_user_b` int(11) NOT NULL,
   `date_fdshp` timestamp NOT NULL,
+  `readd` tinyint(4) NOT NULL,
   PRIMARY KEY (`id_fdshp`),
   KEY `fk_userfriendship_a` (`fk_user_a`),
   KEY `fk_userfriendship_b` (`fk_user_b`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=42 ;
-
---
--- Contenu de la table `invitation`
---
-
-INSERT INTO `invitation` (`id_fdshp`, `fk_user_a`, `fk_user_b`, `date_fdshp`) VALUES
-(41, 1, 21, '2015-04-17 10:09:24');
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 -- --------------------------------------------------------
 
@@ -192,7 +216,7 @@ CREATE TABLE IF NOT EXISTS `likedtune` (
   PRIMARY KEY (`id_likedtune`),
   KEY `fk_likedtune_tune` (`fk_tune_lt`),
   KEY `fk_likedtune_user` (`fk_user_lt`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=63 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=84 ;
 
 --
 -- Contenu de la table `likedtune`
@@ -220,25 +244,32 @@ CREATE TABLE IF NOT EXISTS `message` (
   `fk_receiver` int(11) NOT NULL,
   `date_msg` datetime NOT NULL,
   `content_msg` text NOT NULL,
+  `readd` tinyint(4) NOT NULL,
   PRIMARY KEY (`id_msg`),
   KEY `fk_msg_sender` (`fk_sender`),
   KEY `fk_msg_receiver` (`fk_receiver`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
 
 --
 -- Contenu de la table `message`
 --
 
-INSERT INTO `message` (`id_msg`, `fk_sender`, `fk_receiver`, `date_msg`, `content_msg`) VALUES
-(1, 1, 20, '2015-04-09 16:48:50', 'Hi\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla turpis duis. '),
-(2, 20, 1, '2015-04-09 16:49:06', 'Hi\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla turpis duis. '),
-(3, 1, 20, '2015-04-09 16:55:35', 'To discover <a href=''Tune/index/56'' class=''hashtag''>#StairwayToHeaven</a> :)'),
-(4, 1, 20, '2015-04-16 21:02:03', 'Test'),
-(5, 20, 1, '2015-04-16 21:02:37', 'ok'),
-(6, 1, 20, '2015-04-17 08:29:38', 'test'),
-(7, 1, 20, '2015-04-17 08:30:40', 'test'),
-(8, 1, 20, '2015-04-17 08:31:01', 'test'),
-(9, 1, 20, '2015-04-17 08:32:02', 'test');
+INSERT INTO `message` (`id_msg`, `fk_sender`, `fk_receiver`, `date_msg`, `content_msg`, `readd`) VALUES
+(1, 1, 20, '2015-04-09 16:48:50', 'Hi\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla turpis duis. ', 1),
+(2, 20, 1, '2015-04-09 16:49:06', 'Hi\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla turpis duis. ', 1),
+(3, 1, 20, '2015-04-09 16:55:35', 'To discover <a href=''Tune/index/56'' class=''hashtag''>#StairwayToHeaven</a> :)', 1),
+(4, 1, 20, '2015-04-16 21:02:03', 'Test', 1),
+(5, 20, 1, '2015-04-16 21:02:37', 'ok', 1),
+(6, 1, 20, '2015-04-17 08:29:38', 'test', 1),
+(7, 1, 20, '2015-04-17 08:30:40', 'test', 1),
+(8, 1, 20, '2015-04-17 08:31:01', 'test', 1),
+(9, 1, 20, '2015-04-17 08:32:02', 'test', 1),
+(10, 1, 20, '2015-04-18 21:57:06', '<a href=''Tune/index/59'' class=''hashtag''>#ScottishdelGatto</a>', 1),
+(11, 1, 20, '2015-04-18 21:58:09', '<a href=''Tune/index/Nico/59'' class=''hashtag''>#ScottishdelGatto</a>', 1),
+(12, 1, 21, '2015-04-20 19:12:12', 'gfdsgfgd', 1),
+(13, 21, 1, '2015-04-20 19:13:59', 'hello world', 0),
+(14, 20, 1, '2015-04-20 19:16:31', 'Hi', 0),
+(15, 20, 1, '2015-04-20 19:16:46', 'test', 0);
 
 -- --------------------------------------------------------
 
@@ -254,7 +285,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   `content_news` varchar(255) NOT NULL,
   PRIMARY KEY (`id_news`),
   KEY `fk_news` (`fk_user_news`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=62 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=67 ;
 
 --
 -- Contenu de la table `news`
@@ -271,7 +302,12 @@ INSERT INTO `news` (`id_news`, `fk_user_news`, `date_news`, `content_news`) VALU
 (58, 1, '2015-04-14 21:03:48', '<a href=''Tune/index/59'' class=''hashtag''>#ScottishDelGatto</a>'),
 (59, 1, '2015-04-15 13:24:45', '<a href=''Tune/index/59'' class=''hashtag''>#ScottishDelGatto</a>'),
 (60, 1, '2015-04-15 13:31:20', '<a href=''Tune/index/59'' class=''hashtag''>#ScottishDelGatto</a>'),
-(61, 1, '2015-04-15 14:41:45', '<a href=''Tune/index/60'' class=''hashtag''>#AuClairDelaLune</a>');
+(61, 1, '2015-04-15 14:41:45', '<a href=''Tune/index/60'' class=''hashtag''>#AuClairDelaLune</a>'),
+(62, 1, '2015-04-18 19:58:50', '<a href=''Tune/index/59'' class=''hashtag''>#ScottishDelGatto</a>'),
+(63, 1, '2015-04-18 19:58:54', '<a href=''Tune/index/59'' class=''hashtag''>#ScottishDelGatto</a>'),
+(64, 1, '2015-04-18 19:59:50', '<a href=''Tune/index/Nico/59'' class=''hashtag''>#ScottishDelGatto</a>'),
+(65, 1, '2015-04-18 20:00:54', '<a href=''Tune/index/Nico/59'' class=''hashtag''>#ScottishDelGatto</a>'),
+(66, 1, '2015-04-18 20:01:02', '<a href=''Tune/index/Nico/60'' class=''hashtag''>#AuClairDelaLune</a>');
 
 -- --------------------------------------------------------
 
@@ -311,7 +347,7 @@ CREATE TABLE IF NOT EXISTS `score` (
   PRIMARY KEY (`id_score`),
   KEY `fk_tune_score_ref` (`fk_tune_score`),
   KEY `fk_user_score_ref` (`fk_user_score`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
 
 --
 -- Contenu de la table `score`
@@ -338,7 +374,7 @@ CREATE TABLE IF NOT EXISTS `tune` (
   `category_tune` varchar(255) NOT NULL,
   `date_tune` datetime NOT NULL,
   PRIMARY KEY (`id_tune`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=61 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=81 ;
 
 --
 -- Contenu de la table `tune`
@@ -370,18 +406,17 @@ CREATE TABLE IF NOT EXISTS `user` (
   `confirmmail` tinyint(1) NOT NULL,
   `access` enum('admin','user') NOT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
 
 --
 -- Contenu de la table `user`
 --
 
 INSERT INTO `user` (`id_user`, `pseudo`, `pwdhashed`, `firstname`, `name`, `email`, `lang`, `key_user`, `confirmmail`, `access`) VALUES
-(1, 'Nico', '1234', 'Nicolas', 'Torre', 'nico@gmail.com', 'fr', '0', 1, 'user'),
-(6, 'Admin', '1234', 'Admin', 'Admin', 'admin@gmail.com', 'en', '2587', 1, 'admin'),
-(20, 'GreenDay', '1234', 'Green', 'Day', 'greenday@gmailtest.com', 'en', '55268d00308ff', 0, 'user'),
-(21, 'Jean', '1234', 'jean', 'Dupont', 'jeandupont@gmailtest.com', 'fr', '5526922a7c662', 0, 'user'),
-(22, 'test', 'test', 'test', 'test', 'test@gmail.com', 'en', '5530b50b81fd3', 0, 'user');
+(1, 'Nico', '$2y$10$GqY8ylgSapvUnIyktpV5Q.gdbAwE/1V88SBvYmz6TnpPDc9i9IpH6', 'Nicolas', 'Torre', 'nico@gmail.com', 'fr', '0', 1, 'user'),
+(6, 'Admin', '$2y$10$GqY8ylgSapvUnIyktpV5Q.gdbAwE/1V88SBvYmz6TnpPDc9i9IpH6', 'Admin', 'Admin', 'admin@gmail.com', 'fr', '2587', 1, 'admin'),
+(20, 'GreenDay', '$2y$10$GqY8ylgSapvUnIyktpV5Q.gdbAwE/1V88SBvYmz6TnpPDc9i9IpH6', 'Green', 'Day', 'greenday@gmailtest.com', 'en', '55268d00308ff', 0, 'user'),
+(21, 'Jean', '$2y$10$GqY8ylgSapvUnIyktpV5Q.gdbAwE/1V88SBvYmz6TnpPDc9i9IpH6', 'jean', 'Dupont', 'jeandupont@gmailtest.com', 'fr', '5526922a7c662', 0, 'user');
 
 --
 -- Contraintes pour les tables exportées

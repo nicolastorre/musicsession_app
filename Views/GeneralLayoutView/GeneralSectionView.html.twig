@@ -2,7 +2,6 @@
 
 {% block head %}
 	{{ parent() }}
-	<link rel='stylesheet' href='Ressources/public/css/Home.css' type='text/css'>
 	<script src="Ressources/public/js/VerticalMenu.js"></script>
 {% endblock %}
 
@@ -15,15 +14,17 @@
 
 	</div>
 
-	<div id="timeline">
-		{% block timeline %}
-		{% endblock %}
-	</div>
-
 	<div id="dashboard-right">
 		{% include ("ComponentView/SuggestedfriendsView.html.twig") %}
 			
 		{% include ("ComponentView/FooterView.html.twig") %}
 	</div>
+	
+	<div id="timeline">
+		{% block timeline %}
+		{% endblock %}
+	</div>
+
+
 		
 {% endblock %}

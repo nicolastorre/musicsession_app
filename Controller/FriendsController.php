@@ -62,7 +62,8 @@ class FriendsController extends BaseController
 
         ProfilController::checkAllowedProfileUser($request, $iduser);  // protection user profile
 
-        $data = DefaultController::initModule($pseudo);	
+        $data = DefaultController::initModule($pseudo);
+        $data['friendstitle'] = Translator::translate("Friends");
 
 		/*
 		* Create the list of friends for the session user

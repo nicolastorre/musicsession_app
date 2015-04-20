@@ -32,7 +32,7 @@ class SongslistController extends BaseController
 		foreach($tunedata as $category => $tunelist) {
 			$tmp_tunelist = array();
 			foreach ($tunelist as $tune) {
-				$tmp_tunelist[] = array('title' => $tune->getTitle(), 'url' => UrlRewriting::generateURL("Tune",$tune->getIdtune()));
+				$tmp_tunelist[] = array('title' => $tune->getTitle(), 'url' => UrlRewriting::generateURL("Tune",$_SESSION['pseudo']."/".$tune->getIdtune()));
 			}
 			$data['tune'][] = array("category" => $category, "tunelist" => $tmp_tunelist);
 		}
@@ -108,7 +108,7 @@ class SongslistController extends BaseController
         $titletune = $tunerep->findTitleTuneById($idtune);
 
         $date_news = date("y-m-d H-i-s");
-		$datanews = "<a href='Tune/index/".$idtune."' class='hashtag'>#".$titletune."</a>";
+		$datanews = "<a href='Tune/index/".$_SESSION['pseudo']."/".$idtune."' class='hashtag'>#".$titletune."</a>";
 		$news = new News($_SESSION['iduser'],$_SESSION['pseudo'],$date_news,$datanews); // create the news object
 		$newsrep = new NewsRepository();
 		$newsrep->addNews($news); // add the submitted news
@@ -132,11 +132,17 @@ class SongslistController extends BaseController
 		ProfilController::checkAllowedProfileUser($request, $iduser); // protection user profile
 
 		$data = DefaultController::initModule($pseudo);
+		$data['songslisttitle'] = Translator::translate("Tunebook");
+		$data['viewicon'] = Translator::translate("View tune");
+		$data['addicon'] = Translator::translate("Add score");
+		$data['shareicon'] = Translator::translate("Share tune");
+
                 
         $data['tunelistheader']['title'] = Translator::translate("Title");
         $data['tunelistheader']['composer'] = Translator::translate("Composer");
         $data['tunelistheader']['category'] = Translator::translate("Category");
         $data['tunelistheader']['date'] = Translator::translate("Date");
+        $data['tunelistheader']['actions'] = Translator::translate("Actions");
 
 		$tunerep = new TuneRepository();
 		$tunelist = $tunerep->FindUserLikedtune($iduser);
@@ -150,10 +156,10 @@ class SongslistController extends BaseController
                         
             $tuneaction = array();
 			if ($_SESSION['pseudo'] == $pseudo && $tunerep->checkTuneLikedByUser($_SESSION['iduser'], $tune->getIdtune())) {
-				$tuneaction['deleteadd'] = array('class' => 'delete', 'url' => UrlRewriting::generateURL("Delete",$pseudo."/".$tune->getIdtune()));
+				$tuneaction['deleteadd'] = array('icon' => Translator::translate('Delete tune'), 'class' => 'delete', 'url' => UrlRewriting::generateURL("Delete",$pseudo."/".$tune->getIdtune()));
 			} 
 			elseif (!$tunerep->checkTuneLikedByUser($_SESSION['iduser'], $tune->getIdtune())) {
-				$tuneaction['deleteadd'] = array('class' => 'add', 'url' => UrlRewriting::generateURL("Add",$pseudo."/".$tune->getIdtune()));
+				$tuneaction['deleteadd'] = array('icon' => Translator::translate('Add tune'), 'class' => 'add', 'url' => UrlRewriting::generateURL("Add",$pseudo."/".$tune->getIdtune()));
 			} else {
 				$tuneaction['deleteadd'] = array('class' => '', 'url' => "#");
 			}

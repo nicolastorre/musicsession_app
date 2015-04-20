@@ -1,0 +1,67 @@
+
+#popup-music 
+{
+    background-color: #FFF;
+    width: 900px;
+    height: 500px;
+    left: 5%;
+    overflow: visible;
+    position: absolute;
+    box-shadow: 0px 0px 64px #000;
+    top: 150px;
+    border: 0px solid;
+    text-align: left;
+    z-index: 10000;
+    padding: 2%;
+	font: 14px Arial,Georgia,serif;
+	color: #000;
+}
+
+#popup-music label, #popup-music input
+{
+	display: block;
+}
+
+#controlpanel
+{
+	position: relative;
+	background-color: #FFECBF;
+	padding: 10px;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+section div ul li
+{
+	display: inline-block;
+	margin: auto;
+}
+/*
+section input[type="button"]
+{
+	background-color: #96281B;
+	color: rgba(255, 255, 204, 0.9);
+}*/
+
+#score
+{
+	padding: 0;
+}
+
+#drawing
+{
+	margin:auto;
+	margin-top: 20px;
+	background:rgb(206,206,206);
+	box-shadow: 8px 8px 12px;
+	width:1050px;
+	overflow: scroll;
+}
+
+#note
+{
+	position: absolute;
+	top: 40%;
+	left: 50px;
+	font-size: 2em;
+}

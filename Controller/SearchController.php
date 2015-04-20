@@ -35,7 +35,7 @@ class SearchController extends BaseController
             $data['error'] = "";
             
             $userrep = new UserRepository();
-            $userpseudolist = $userrep->searchUser($dataform['search']);
+            $userpseudolist = $userrep->searchUser($dataform['inputsearch']);
             if ($userpseudolist) {
                 foreach ($userpseudolist as $userpseudo) {
                     if ($userpseudo != $_SESSION['pseudo']) {

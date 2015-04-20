@@ -16,11 +16,12 @@ class PasswordField extends Field
 
 	public function display() { //display the field in HTML
 		$attrview = "";
+		$attrview = "id='".$this->name."'";
 		foreach ($this->attr as $key => $value) {
 			$attrview .= $key."=".$value." ";
 		}
 		return "\n\t<div class='error'>$this->errormsg</div><label for=\"$this->name\">$this->label</label><input name='$this->name' type='$this->type' $attrview value='".$this->value."'>";
-	}        
+	}
 }
 
 ?>

@@ -26,7 +26,7 @@ class FormManager
 		$_SESSION[$this->idform] = serialize($this);
 	}
 
-	public function addField($label,$name,$type, $values, $error = "error", array $attr = array(), $raw = false) {
+	public function addField($label,$name,$type, $values, $error = "error", array $attr = array(), $raw = false, $ext = "") {
 		switch ($type) { //according to the type of the input
 			case 'radio':
 			case 'checkbox':
@@ -52,7 +52,7 @@ class FormManager
 			case 'file':
 				$type = "file";
 				//create EmailField object
-				$this->fieldlist[] = new FileField($label,$name,$type,$attr,$values, $error,$raw);
+				$this->fieldlist[] = new FileField($label,$name,$type,$attr,$values, $error,$raw,$ext);
 				break;
 			case 'submit':
 				//create SubmitField object
@@ -82,17 +82,17 @@ class FormManager
 	public function validate(Request &$request) {
 		$out = true;
 		foreach ($this->fieldlist as $field) {
-                    if (!$field->validate($request)) {
-			$out = false;
-                    }
+            if (!$field->validate($request)) {
+				$out = false;
+            }
 		}
-                if(!$out) {
-                    foreach ($this->fieldlist as $field) {
-                    if ($field->get("type") == "password") {
-			$field->setValue("");
-                    }
-		}
+        if(!$out) {
+            foreach ($this->fieldlist as $field) {
+                if ($field->get("type") == "password") {
+					$field->setValue("");
                 }
+			}
+        }
                 
 		return $out;
 	}

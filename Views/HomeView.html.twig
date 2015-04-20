@@ -4,7 +4,7 @@
 		<div id="edit-news">
 			{{ data.newsform.formstart | raw }}
 			{{ data.newsform.news | raw }}
-			{{ data.newsform.submit | raw }}
+			{{ data.newsform.submitnews | raw }}
 			{{ data.newsform.formend | raw }}
 		</div>
 		
@@ -13,7 +13,7 @@
 			<li class="item-news">
 				<img class="profil-pic-m" src="{{ itemnews.profilephoto }}" alt="photo profil">
 				<div class="profile"><a href="{{ itemnews.url }}">{{ itemnews.user }}</a></div><div class="pubdate">{{ itemnews.pubdate }}</div>
-                                <div class="content">{{ itemnews.content | raw}}</div>
+                <div class="content">{{ itemnews.content | raw}}</div>
 			</li>
 			{% endfor %}
 		</ul>

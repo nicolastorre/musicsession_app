@@ -31,6 +31,8 @@ class ImageManager
 		if (rename($source_file, $target_file)) {
 			$this->filepath = $file;
 			$this->filename = pathinfo($file, PATHINFO_BASENAME);
+		} else {
+			throw new Exception("Error rename!");
 		}
 	}
 
@@ -40,6 +42,8 @@ class ImageManager
 		if (rename($source_file, $target_file)) {
 			$this->filepath = $file;
 			$this->filename = pathinfo($file, PATHINFO_BASENAME);
+		} else {
+			throw new Exception("Error rename!");
 		}
 		Image::open($this->filepath)
 		    ->zoomCrop(73, 73, "#346A85","center","center")

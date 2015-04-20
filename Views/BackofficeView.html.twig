@@ -1,14 +1,15 @@
 {% extends "GeneralLayoutView/GeneralSectionView.html.twig" %}
 
 {% block timeline %}
-<div>
-	Backoffice
+<div id="backoffice">
+	<h2>Backoffice</h2>
+	<h3>{{ data.deleteusertitle | raw}}</h3>
         {{ data.deleteuserform.formstart | raw }}
         {{ data.deleteuserform.userpseudo | raw }}
         {{ data.deleteuserform.submit | raw }}
         {{ data.deleteuserform.formend | raw }}
 
-    <h2>{{ data.reporttitle }}</h2>
+    <h3>{{ data.reporttitle }}</h3>
     <ul>
 		{% for itemreport in data.reportlist %}
 		<li class="item-news">

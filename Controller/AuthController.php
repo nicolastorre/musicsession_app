@@ -65,7 +65,7 @@ class AuthController extends BaseController
                 $userrep = new UserRepository();
                 if (!$userrep->existUserPseudo($dataform['pseudo'])) {
                     $key = uniqid();
-                    $user = new User($iduser,$dataform['pseudo'],$dataform['pwdhashed'],$dataform['firstname'],$dataform['name'],$dataform['email'],$lang ,$key);
+                    $user = new User($iduser,$dataform['pseudo'],password_hash($dataform['pwdhashed'], PASSWORD_DEFAULT),$dataform['firstname'],$dataform['name'],$dataform['email'],$lang ,$key);
 
                     $userrep->addUser($user);
 
@@ -77,8 +77,8 @@ class AuthController extends BaseController
                         }
                     }
 
-                    //send mail to confirm inscription
-                    $msg = Translator::translate("Hello \n Confirm your inscription here: ")."<a href='".ConfigReader::get("webroot", "/").UrlRewriting::generateURL("Confirm", $key)."'>".Translator::translate("Confirm")."</a>";
+                    //send e-mail to confirm inscription
+                    $msg = Translator::translate("Hello <p>Confirm your inscription here: ")."<a href='".ConfigReader::get("webroot", "/").UrlRewriting::generateURL("Confirm", $key)."'>".Translator::translate("Confirm")."</a></p><br><br><h2>Music session</h2>";
                     $mail = new Mailer();
                     $mail->sendmail("Music session", "musicsession@gmail.com", "Music Session App", "nico.torre.06@gmail.com", "Nico", $msg); // put the e-mail user instead of my personal e-mail
 
@@ -108,8 +108,8 @@ class AuthController extends BaseController
 
             $dataform = $f->getValues();
 			$userrep = new UserRepository();
-			$authdata = $userrep->authUser($dataform['pseudo'],$dataform['pwd']);
-			if ($authdata != false) {
+			$authdata = $userrep->authUser($dataform['pseudo']);
+			if ($authdata != false && password_verify($dataform['pwd'],$authdata['pwdhashed'])) {
 				$_SESSION['iduser'] = $authdata['id_user'];
 				$_SESSION['pseudo'] = $authdata['pseudo'];
                 $_SESSION['lang'] = $authdata['lang'];

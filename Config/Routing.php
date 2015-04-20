@@ -35,11 +35,14 @@ class Routing
             url::addURL("Addscore","Tune","addscore");
             url::addURL("Savescore","Tune","savescore");
             url::addURL("Deletescore","Tune","deletescore");
+            url::addURL("Downloadscore","Tune","downloadscore");
 
 		url::addURL("Friends","Friends","index");
 
     	url::addURL("Notifications","Notifications","index");
             url::addURL("confirminvitation","Notifications","confirminvitation");
+            url::addURL("invitefriend","Notifications","invitefriend");
+            url::addURL("readernotif","Notifications","reader");
 
     	url::addURL("Messages","Messages","index");
             url::addURL("Discussion","Messages","getdiscussion");
@@ -49,6 +52,11 @@ class Routing
 
     	url::addURL("NewSong","NewSong","index");
             url::addURL("addNewSong","NewSong","addnewsong");
+
+        url::addURL("musiceditornewsong","Musiceditor","musiceditornewsong");
+            url::addURL("scorepdf","Musiceditor","scorepdf");
+            url::addURL("downloadscore","Musiceditor","downloadscore");
+            url::addURL("savepdftune","Musiceditor","savepdftune");
 
         url::addURL("Search","Search","index");
         
@@ -60,6 +68,10 @@ class Routing
             url::addURL("askdeleteaccount","Parameters","askdeleteaccount");
             url::addURL("deleteaccount","Parameters","deleteaccount");
             url::addURL("signal","Parameters","signal");
+
+        url::addURL("Terms","footer","terms");
+        url::addURL("Privacy","footer","privacy");
+        url::addURL("Accessibility","footer","accessibility");
 
         url::addURL("Backoffice","Backoffice","index");
             url::addURL("Deleteuser","Backoffice","deleteuser");

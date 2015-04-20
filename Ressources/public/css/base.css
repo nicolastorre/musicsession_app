@@ -1,0 +1,714 @@
+body
+{
+	background-color: #F39C12;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+/* Boutons, hashtag et messages */
+.flashbag
+{
+	/*background-color: #96281B;
+	color: rgba(255, 255, 204, 0.9);*/
+	font-size: 20px;
+	font-weight: bold;
+	margin: auto;
+	width: 60%;
+	border-radius: 5px;
+	padding: 5px;
+	text-align: center;
+}
+
+.error
+{
+	color: red;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.hashtag
+{
+    color: blue;
+}
+
+input[type="submit"], input[type="button"], .button
+{
+	background-color: #F39C12;
+	border: medium none;
+	padding: 8px;
+	border-radius: 7px;
+	font-size: 14px;
+	line-height: 18px;
+	font-weight: bold;
+	cursor: pointer;
+	margin-top: 5px;
+}
+
+input[type="submit"]:hover, input[type="button"]:hover, .button:hover
+{
+	background-color: #96281B;
+	color: #FDEDBE;
+}
+
+h2
+{
+  color: #96281B;
+  font-family: 'Arial';
+  font-weight: normal;
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+div.upload 
+{
+	position: relative;
+    width: 127px;
+    height: 36px;
+    overflow: hidden;
+    background-image: url("../images/app/upload.png");
+    cursor: pointer;
+}
+
+div.upload input[type="file"], #newsong div.upload input[type="file"], #parameterspage div.upload input[type="file"]
+{
+	position: absolute;
+	top: -1px;
+	left: -1px;
+	margin: 0;
+    display: block !important;
+    width: 127px !important;
+    height: 36px !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+}
+
+.upload-container
+{
+	overflow: hidden;
+}
+
+.upload-container > span
+{
+	display: block;
+	margin: 1em 0px 1em 150px
+}
+
+#parameterspage div.upload
+{
+	margin-left: 120px;
+	margin-bottom: 1em;
+}
+
+nav a
+{
+	display: inherit !important;
+	color: rgba(255, 255, 204, 0.9);
+}
+
+/* 2. Section (contenu du site) */
+#dashboard-left > *, #dashboard-right > *, #timeline, #footer
+{
+	position: relative;
+	background-color: #FFECBF;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+#timeline h2
+{
+	text-align: left;
+	margin: 0.5em 0.5em;
+}
+
+#footer
+{
+	border-radius: 5px;
+	margin-top: 10px;
+	padding: 10px;
+}
+
+#footer .footer-item
+{
+	display: inline;
+	margin-right: 10px;
+	color: #8899A6;
+	font-size: 15px;
+	line-height: 22px;
+}
+
+#error404
+{
+	color: #96281B;
+	font-size: 70px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 150px;
+}
+
+/* 3. Pseudo et photo de profile */
+.profile
+{
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.profil-pic-s
+{
+	float: left;
+	margin-right: 20px;
+	width: 30px;
+	height: 30px;
+	border: 1px solid black;
+	border-radius: 5px;
+}
+
+.profil-pic-m
+{
+	float: left;
+	margin-right: 20px;
+	width: 40px;
+	height: 40px;
+	border: 2px solid black;
+	border-radius: 5px;
+}
+
+.profil-pic-l
+{
+	width: 72px;
+	height: 72px;
+	border: 2px solid black;
+	border-radius: 5px;
+}
+
+/* 4. Module profilcard */
+#profilCard
+{
+	overflow: hidden;
+}
+
+#profilCard h1
+{
+	position: absolute;
+	top: 35%;
+	left: 100px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#profilCard h1:hover
+{
+	text-decoration: underline;
+}
+
+#profilCard ul
+{
+	position:absolute;
+	top: 60%;
+	left: 100px;
+}
+
+#profilCard li
+{
+	display: table-cell;
+	padding: 5px 5px;
+}
+
+/* 5. News timeline */
+.item-news, #edit-news
+{
+	border-bottom: 1px solid #E1E8ED;
+	min-height: 51px;
+	padding: 3%;
+}
+
+.item-news .profile, .item-news .pubdate
+{
+	display: inline;
+	margin-right: 10px;
+}
+
+.item-news .content
+{
+	margin-top: 10px;
+	text-align: justify;
+}
+
+#edit-news textarea
+{
+	margin: auto;
+	width: 99%;
+}
+
+/* 6. Notifications timeline */
+.item-notif
+{
+	border-bottom: 1px solid #E1E8ED;
+	min-height: 51px;
+	padding: 1em;
+}
+
+.item-notif .profil-pic-m, .item-notif .profile
+{
+	display: inline-block;
+}
+
+.item-notif .notif, .item-notif .notif > div
+{
+	margin-bottom: 1em;
+}
+
+.notif > div:first-child
+{
+	text-align: right;
+}
+
+.notif a + div
+{
+	position: relative;
+	top: 1em;
+}
+
+#invite-container
+{
+	margin: 1em 0;
+	padding: 0.5em 2em;
+}
+
+#invite-container h3
+{
+	font-size: 20px;
+	font-weight: bold;
+	color: #96281B;
+	margin: 1em 0;
+}
+
+#invite-container label, #invite-container input, #invite-container textarea
+{
+	display: block;
+	margin: 0.5em 0;
+}
+
+#invite-container textarea
+{
+	width: 99%;
+}
+
+/* 7. Discussion list module */
+#discussionlist
+{
+	margin-top: 10px;
+	max-height: 400px;
+	overflow: auto;
+}
+
+.item-discu
+{
+  border-bottom: 1px solid #E1E8ED;
+  min-height: 20px;
+  padding: 1em;
+  padding-bottom: 1.5em;
+}
+
+.discu-on
+{
+	background-color: #96281B;
+	border-radius: 5px;
+}
+
+.item-discu a
+{
+	display: inherit;
+}
+
+#discussionlist .profile
+{
+	margin-top: 1em;
+}
+
+/* 8. Messages timeline */
+#msglist
+{
+  max-height: 500px;
+  /*overflow-y: scroll;*/
+  overflow: auto;
+}
+
+.item-msg
+{
+  border-bottom: 1px solid #E1E8ED;
+  min-height: 51px;
+  padding: 1em;
+}
+
+#sendmsg
+{
+  min-height: 81px;
+  padding: 3%;
+}
+
+#sendmsg textarea
+{
+  margin: auto;
+  width: 99%;
+  height: 70px;
+}
+
+.item-msg .profile, .item-msg .pubdate
+{
+	display: inline;
+	margin-right: 10px;
+}
+
+.item-msg .msg
+{
+	margin-top: 10px;
+	text-align: justify;
+}
+
+/* 9. Friends timeline */
+.friends
+{
+  float: left;
+  margin: 10px;
+  padding: 10px;
+}
+
+.friends .profile
+{
+  display: inline-block;
+  margin-top: 1em;
+}
+
+/* 10. Suggested friends module */
+#suggestedfriends
+{
+	background-color: #FFECBF;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+#suggestedfriends h2
+{
+  font-family: 'Arial';
+  font-weight: normal;
+  font-size: 30px;
+  text-align: center;
+  color: #96281B;
+  margin-bottom: 15px;
+}
+
+#suggestedfriends li
+{
+	margin-bottom: 5px;
+	line-height: 30px;
+	min-height: 35px;
+}
+
+/* 11. Parameters timeline */
+#parameterspage
+{
+	position: relative;
+	width: 60%;
+	margin: auto;
+	padding: 1em;
+}
+
+#parameterspage h2
+{
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+#parameterspage h3
+{
+  font-size: 14px;
+  margin-bottom: 2em;
+}
+
+#parameterspage label
+{
+  float: left;
+  width: 100px;
+  margin-bottom: 1em;
+}
+
+#parameterspage input, select
+{
+  display: block;
+  margin-left: 120px;
+  margin-bottom: 1em;
+}
+
+#parameterspage textarea
+{
+	margin: auto;
+	width: 99%;
+	height: 70px;
+}
+
+#parameterspage textarea + input[type="submit"]
+{
+	margin-left: 0;
+}
+
+/* 12. NewSong timeline */
+#newsong
+{
+  width: 60%;
+  margin:auto;
+  padding: 1em;
+}
+
+#newsong h2
+{
+  font-weight: bold;
+}
+
+/* 13. Tuneslist timeline */
+#tuneslist
+{
+  padding: 4%;
+}
+
+#tuneslist > table
+{
+  width: 95%;
+  margin: auto;
+}
+
+#tuneslist > table
+{
+  margin-top: 0.5em;
+}
+
+#tuneslist table tr th
+{
+	font-weight: bold;
+}
+
+#tuneslist table tr td, #tuneslist table tr th
+{
+	width: 170px;
+	overflow:hidden;
+	margin-right: 0.2em;
+	text-align: center;
+	border: 1px solid #66757F;
+	height: 2em;
+	vertical-align: middle;
+	padding: 0.2em;
+}
+
+#tuneslist table .item-even
+{
+  background-color: #FFC76D;
+}
+
+.share
+{
+  display: inline-block;
+  background-image: url("../images/app/share.png");
+  background-size: 20px 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.add
+{
+	display: inline-block;
+	background-image: url("../images/app/add.png");
+	background-size: 20px 20px;
+	width: 20px;
+	height: 20px;
+}
+
+.addscore
+{
+	display: inline-block;
+	background-image: url("../images/app/addscore.png");
+	background-size: 20px 20px;
+	width: 20px;
+	height: 20px;
+}
+
+.delete
+{
+	display: inline-block;
+	background-image: url("../images/app/delete.png");
+	background-size: 20px 20px;
+	width: 20px;
+	height: 20px;
+}
+
+.viewtune
+{
+	display: inline-block;
+	background-image: url("../images/app/filemusic.png");
+	background-size: 20px 20px;
+	width: 20px;
+	height: 20px;
+}
+
+/* 14. Tune timeline */
+#tunepage
+{
+  padding: 0em 2em;
+}
+
+#headertune
+{
+	padding: 1em;
+	overflow: hidden;
+}
+
+#tunepage h2
+{
+	font-size: 30px;
+	font-weight: bold;
+	margin-bottom: 40px;
+	text-align: center;
+}
+
+.expand
+{
+	position: relative;
+	top: 4px;
+	display: inline-block;
+	background-image: url("../images/app/expand.png");
+	background-size: 20px 21px;
+	background-repeat: no-repeat;
+	background-position: center; 
+	width: 5px;
+	height: 5px;
+	border-radius: 0px
+}
+
+#tunepage h3
+{
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+
+#tunepage .version h3
+{
+	display: inline-block;
+	width: 10em;
+}
+
+.composer
+{
+	float: left;
+}
+.category
+{
+	float: right;
+	text-align: right;
+}
+.datetune
+{
+	float: right;
+	text-align: right;
+	clear: both;
+}
+
+#tunepage iframe
+{
+  margin-top: 2em;
+  width: 100%;
+  height: 800px;
+  border: 1px solid #000;
+}
+
+#tunepage .actionpanel
+{
+	margin: 20px 0;
+	clear: both;
+}
+
+#tunepage .action
+{
+	display: inline-block;
+	width: 14em;
+	height: 2em;
+}
+
+#tunepage .action > div
+{
+	position: relative;
+	top: 4px;
+	margin-right: 7px;
+}
+
+#tunepage .version
+{
+	margin: 25px 0;
+	clear: both;
+}
+
+#tunepage iframe
+{
+	display: none;
+}
+
+.forkeduser, .datescore
+{
+	display: inline;
+	margin-right: 10px;
+}
+
+.download
+{
+	display: inline-block;
+	background-image: url("../images/app/download.png");
+	background-size: 20px 20px;
+	width: 20px;
+	height: 20px;
+}
+
+.deletescore, .downloadscore
+{
+	float: right;
+	margin-right: 1em;
+}
+
+/* 15. Footer content */
+.footer-content
+{
+	padding: 1em;
+}
+
+.footer-content h3
+{
+	margin: 1em 0;
+}
+
+.footer-content p
+{
+	margin: 1em 0;
+	text-align: justify;
+}
+
+/* backoffice */
+
+#backoffice
+{
+	padding: 0 2em 0 2em;
+}
+
+#backoffice form
+{
+	margin-top: 2em;
+}
+
+#backoffice label
+{
+	font-weight: bold;
+}
+
+#backoffice h3
+{
+	font-size: 20px;
+	font-weight: bold;
+	color: #96281B;
+	margin: 2em 0 1em 0;
+}
