@@ -16,6 +16,30 @@
  */
 class MessagesController extends BaseController
 {
+
+	/**
+    * Send number of non-read messages for each friend discussion via AJAX
+    *
+    * @return void .
+    */
+	public function readerfdAction() {
+		$iduser = $_SESSION['iduser'];
+		$msgrep = new MessageRepository();
+		$friendshiprep = new FriendshipRepository();
+		$friendslist = $friendshiprep->getFriends($_SESSION['iduser']);
+		$readd = array();
+		foreach($friendslist as $friend) {
+			if ($friend->getIdusera() != $_SESSION['iduser']) {
+				$iduserdiscu = $friend->getIdusera();
+			} elseif ($friend->getIduserb() != $_SESSION['iduser']) {
+				$iduserdiscu = $friend->getIduserb();
+			}
+			$readd[] = array("pseudo" => $iduserdiscu,"nb" => $msgrep->getNonReadMessagesByFriend($_SESSION['iduser'],$iduserdiscu)['nb']);
+		}
+		header('Content-type: application/json');
+        echo json_encode($readd);
+	}
+
 	/**
     * Send number of non-read messages via AJAX
     *
@@ -253,13 +277,15 @@ class MessagesController extends BaseController
 				} else {
 					$state = "discu-off";
 				}
-				$data['discussion'][] = array("state" => $state,"url" => UrlRewriting::generateURL("Discussion",$userfriends->getPseudo()), "pseudo" => $userfriends->getPseudo(),
+				$data['discussion'][] = array("minibox" => $msgrep->getNonReadMessagesByFriend($_SESSION['iduser'],$iduserdiscu)['nb'],"state" => $state,"url" => UrlRewriting::generateURL("Discussion",$userfriends->getPseudo()), "pseudo" => $userfriends->getPseudo(),
 					"profilephoto" => UrlRewriting::generateSRC("userfolder", $userfriends->getPseudo(),"profile_pic.png", "../default/profile_pic.png"),);
+
 			}
 		} else {
 			$data['flashbag'] = Translator::translate("No messages!");
             $data['iduser'] = "''";
             $data['lastmsg'] = 0;
+            $data['discussion'][] = array("minibox" => 0);
 		}
 
 		$this->render("MessagesView.html.twig",$data); // create the view

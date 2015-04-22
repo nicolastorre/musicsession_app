@@ -17,6 +17,73 @@
 class MusiceditorController extends BaseController
 {
     /**
+    * launch the downloading of the midi score
+    *
+    * @return void .
+    */
+    public function downloadmidiAction() {
+        $request = new Request();
+        $title = $request->getParameter("par")[0];
+        $file = UrlRewriting::generateSRC("tmp","",$title.".mid");
+        header("Content-Type: audio/midi");
+        header('Content-Disposition: attachment; filename="'.basename($file).'"');
+        header("Content-Transfer-Encoding: binary");
+        header('Content-Length: ' . filesize($file));
+        readfile($file);
+        chmod($file,0755);
+        unlink($file);
+        exit;
+    }
+
+    /**
+    * Check the tune form
+    * If the form is valid => redirect to Music editor
+    * else redirect to the tune form
+    *
+    * @param Request &$request Request object.
+    * @return void .
+    */
+    public function createmidiAction() {
+        $score = json_decode($_POST['score'],true);
+        $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+        $file = UrlRewriting::generateSRC("tmp","",$_POST["title"]);
+$miditxt = "
+MFile 1 5 480
+MTrk
+0 SeqSpec 00 00 41
+0 Meta Text 'Sequence'
+0 SMPTE 96 0 10 0 0
+0 TimeSig 4/4 24 8
+0 Tempo 500000
+0 Meta TrkEnd
+TrkEnd
+MTrk
+0 Meta Text 'Acoustic Grand Piano'
+0 Par ch=13 c=6 v=0
+0 Par ch=13 c=7 v=100
+0 Par ch=13 c=64 v=0
+0 Pb ch=13 v=8192
+0 PrCh ch=13 p=16\n";
+        $delay = 0;
+        $t="";
+        foreach($score as $note) {
+            $miditxt .= $delay." On ch=13 n=".$note['midi']." v=100 \n";
+            $delay += $note['duration']*120*4;
+            $miditxt .= $delay." Off ch=13 n=".$note['midi']." v=100 \n";
+        }
+        $miditxt .= "$delay Meta TrkEnd \nTrkEnd";
+        // fwrite($myfile, print_r($score,true));
+        // fwrite($myfile, print_r($score["note_0"]["midi"],true));
+        fwrite($myfile, $miditxt);
+        fclose($myfile);
+
+        $midi = new Midi();
+        $midi->importTxt($miditxt);
+        $midi->saveMidFile($file.'.mid');
+
+    }
+
+    /**
     * Check the tune form
     * If the form is valid => redirect to Music editor
     * else redirect to the tune form
@@ -123,8 +190,7 @@ class MusiceditorController extends BaseController
     *
     * @return void .
     */
-    public function downloadscoreAction() {
-        $request = new Request();
+    public function downloadscoreAction(Request &$request) {
         $title = $request->getParameter("par")[0];
         $file = UrlRewriting::generateSRC("tmp","",$title.".pdf");
         header('Content-Type: application/octet-stream');
@@ -132,7 +198,8 @@ class MusiceditorController extends BaseController
         header('Content-Length: ' . filesize($file));
         readfile($file);
         chmod($file,0755);
-        unlink($file); 
+        unlink($file);
+        exit;
     }
 
     /**
@@ -142,7 +209,7 @@ class MusiceditorController extends BaseController
     * @return void .
     */
     public function scorepdfAction() {
-        $file = UrlRewriting::generateSRC("tmp","",$_POST['title']);
+        $file = UrlRewriting::generateSRC("tmp","",$_POST["title"]);
         $pdf = new mPDF();
         $pdf->WriteHTML("<!DOCTYPE html><html><body>".$_POST['score']."</body></html>");
         $pdf->Output($file,"F");
@@ -158,6 +225,13 @@ class MusiceditorController extends BaseController
     */
 	public function indexAction(Request &$request) {
 		$data = array();
+        $pseudo = $_SESSION['pseudo'];
+        $userrep = new UserRepository();
+        $iduser = $userrep->getUserIdByPseudo($pseudo);
+        $invitationrep = new InvitationRepository();
+        $data['minibox']['notification'] = $invitationrep->getNonReadInvitation($iduser)['nb'];
+        $msgrep = new MessageRepository();
+        $data['minibox']['messages'] = $msgrep->getNonReadMessages($iduser)['nb'];
 
         $data['scoretitle'] = $request->getParameter("par")[0];
         $data['scorecomposer'] = $request->getParameter("par")[1];

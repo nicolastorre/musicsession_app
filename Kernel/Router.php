@@ -1,12 +1,29 @@
 <?php 
+/**
+* File containing the RouterController Class
+*
+*/
 
-/******************************************************************************/
-// Class Router routing the query to the right Controller
-/******************************************************************************/
+/**
+* RouterController
+*
+* RouterController class is used by the fronController (index.php) to redirect to the requesting Controller
+* The BaseController parent manages the creation of the view
+*
+*
+* @package    MusicSessionApp
+* @author     Nicolas Torre <nico.torre.06@gmail.com>
+*/
 class Router 
 {
 
-  // Routing of the query
+  /**
+  * Route the query
+  *
+  * Initialize the services (routing list, request object, session,), get the requesting controller and action then call them
+  *
+  * @return void .
+  */
   public function queryRouter() {
     try {
 
@@ -19,7 +36,7 @@ class Router
       $request->getSession();
       
       // error_reporting(0);
-      // $error_handler = set_error_handler("ErrorController::userErrorHandler");
+      $error_handler = set_error_handler("ErrorController::userErrorHandler");
 
       $controllerName = $this->getControllerName($request);
       $actionName = $this->getActionName($request);
@@ -50,7 +67,12 @@ class Router
     }
   }
 
-  // create the Controller name from the url parameters
+  /**
+  * Create the requesting Controller name from the request object
+  *
+  * @param Request &$request Request object.
+  * @return void .
+  */
   public function getControllerName(Request $request) {
     $controller = "Home";
     if ($request->existsParameter('controller') && $request->notEmptyParameter('controller')) {
@@ -60,7 +82,12 @@ class Router
     return $controller."Controller";
   }
 
-  // create the action name from the url parameters
+  /**
+  * Create the requesting Action name from the request object
+  *
+  * @param Request &$request Request object.
+  * @return void .
+  */
   public function getActionName(Request $request) {
     $action = "index";
     if ($request->existsParameter('action') && $request->notEmptyParameter('action')) {

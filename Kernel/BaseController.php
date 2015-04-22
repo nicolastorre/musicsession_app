@@ -1,6 +1,6 @@
 <?php
 
-require_once('Twig/lib/Twig/Autoloader.php');
+require_once('Component/Twig/lib/Twig/Autoloader.php');
 
 /******************************************************************************/
 // Class BaseController to generate the view by using the right template

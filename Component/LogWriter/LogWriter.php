@@ -24,7 +24,7 @@ class LogWriter {
             $err .= "\t<datetime>" . $date->format('d/m/y H:i:s') . "</datetime>\n";
             $err .= "\t<errormsg>" . $message . "</errormsg>\n";
             $err .= "</errorentry>\n\n";
-            error_log($err, 3, "config/error.xml");
+            error_log($err, 3, $this->path.$this->file);
 		}
 		else {}
 	}

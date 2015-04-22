@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 20 Avril 2015 à 19:18
+-- Généré le :  Mar 21 Avril 2015 à 17:47
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `dico` (
   `fr` varchar(255) NOT NULL,
   `en` varchar(255) NOT NULL,
   PRIMARY KEY (`id_dico`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=116 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=117 ;
 
 --
 -- Contenu de la table `dico`
@@ -156,7 +156,8 @@ INSERT INTO `dico` (`id_dico`, `key_dico`, `fr`, `en`) VALUES
 (112, 'E-mail sent!', 'E-mail envoyé!', 'E-mail sent!'),
 (113, 'Discover Music session network here: ', 'Viens découvrir le réseau Music Session ici: ', 'Discover Music session network here: '),
 (114, 'Message of ', 'Message de ', 'Message of '),
-(115, 'Hello', 'Salut', 'Hello');
+(115, 'Hello', 'Salut', 'Hello'),
+(116, 'You are not friend with this user!', 'Vous n''êtes pas amis avec cet utilisateur!', 'You are not friend with this user!');
 
 -- --------------------------------------------------------
 
@@ -173,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `friendship` (
   PRIMARY KEY (`id_fdshp`),
   KEY `fk_userfriendship_a` (`fk_user_a`),
   KEY `fk_userfriendship_b` (`fk_user_b`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=49 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
 
 --
 -- Contenu de la table `friendship`
@@ -181,8 +182,8 @@ CREATE TABLE IF NOT EXISTS `friendship` (
 
 INSERT INTO `friendship` (`id_fdshp`, `fk_user_a`, `fk_user_b`, `date_fdshp`) VALUES
 (28, 21, 20, '2015-04-09 14:52:48'),
-(46, 1, 21, '2015-04-20 17:12:58'),
-(48, 1, 20, '2015-04-20 17:16:20');
+(48, 1, 20, '2015-04-20 17:16:20'),
+(52, 1, 21, '2015-04-21 13:44:16');
 
 -- --------------------------------------------------------
 
@@ -200,7 +201,7 @@ CREATE TABLE IF NOT EXISTS `invitation` (
   PRIMARY KEY (`id_fdshp`),
   KEY `fk_userfriendship_a` (`fk_user_a`),
   KEY `fk_userfriendship_b` (`fk_user_b`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 -- --------------------------------------------------------
 
@@ -248,7 +249,7 @@ CREATE TABLE IF NOT EXISTS `message` (
   PRIMARY KEY (`id_msg`),
   KEY `fk_msg_sender` (`fk_sender`),
   KEY `fk_msg_receiver` (`fk_receiver`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=32 ;
 
 --
 -- Contenu de la table `message`
@@ -267,9 +268,25 @@ INSERT INTO `message` (`id_msg`, `fk_sender`, `fk_receiver`, `date_msg`, `conten
 (10, 1, 20, '2015-04-18 21:57:06', '<a href=''Tune/index/59'' class=''hashtag''>#ScottishdelGatto</a>', 1),
 (11, 1, 20, '2015-04-18 21:58:09', '<a href=''Tune/index/Nico/59'' class=''hashtag''>#ScottishdelGatto</a>', 1),
 (12, 1, 21, '2015-04-20 19:12:12', 'gfdsgfgd', 1),
-(13, 21, 1, '2015-04-20 19:13:59', 'hello world', 0),
-(14, 20, 1, '2015-04-20 19:16:31', 'Hi', 0),
-(15, 20, 1, '2015-04-20 19:16:46', 'test', 0);
+(13, 21, 1, '2015-04-20 19:13:59', 'hello world', 1),
+(14, 20, 1, '2015-04-20 19:16:31', 'Hi', 1),
+(15, 20, 1, '2015-04-20 19:16:46', 'test', 1),
+(16, 21, 1, '2015-04-21 14:57:22', 'Hi', 1),
+(17, 21, 1, '2015-04-21 14:57:25', 'test', 1),
+(18, 20, 1, '2015-04-21 14:59:08', 'hi', 1),
+(19, 21, 1, '2015-04-21 14:59:12', 'hi', 1),
+(20, 20, 1, '2015-04-21 15:15:35', 'hi', 1),
+(21, 21, 1, '2015-04-21 15:15:52', 'test', 1),
+(22, 21, 1, '2015-04-21 15:21:39', 'test', 1),
+(23, 21, 1, '2015-04-21 15:28:36', 'test', 1),
+(24, 21, 1, '2015-04-21 15:30:26', 'test', 1),
+(25, 21, 1, '2015-04-21 15:32:48', 'test', 1),
+(26, 21, 1, '2015-04-21 15:33:03', 'test', 1),
+(27, 20, 1, '2015-04-21 15:34:56', 'test', 1),
+(28, 20, 1, '2015-04-21 15:41:57', 'fdsgsfdgfdg', 1),
+(29, 21, 1, '2015-04-21 15:42:38', 'test', 1),
+(30, 20, 1, '2015-04-21 15:45:31', 'fdsfsfsdf', 1),
+(31, 21, 1, '2015-04-21 17:43:16', 'fdsdsfs', 0);
 
 -- --------------------------------------------------------
 

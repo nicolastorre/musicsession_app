@@ -14,6 +14,10 @@
         <link rel='stylesheet' media='screen and (max-width: 1050px)' href='Ressources/public/css/stylemobile.css' type='text/css'>
         <script src="Ressources/public/js/jquery-2.1.3.min.js"></script>
         <script src="Ressources/public/js/readerNotifications.js"></script>
+        <script>
+        	nbminiboxnotif = {{ data.minibox.notification }};
+        	nbminiboxmessages = {{ data.minibox.messages }};
+        </script>
 		{% endblock %}
 	</head>
 
@@ -22,7 +26,10 @@
 			<ul class="menu">
 				{% set menu = menuAction() %}
 				{% for menuitem in 0..3 %}
-				<li id="{{ menu[menuitem].id }}" title="{{ menu[menuitem].name }}" class="{{ menu[menuitem].class }}"><img src="{{ menu[menuitem].icon }}" alt=""><a tabindex="{{ menu[menuitem].index }}" href='{{ menu[menuitem].url }}'>{{ menu[menuitem].name }}</a></li>
+				<li id="{{ menu[menuitem].id }}" title="{{ menu[menuitem].name }}" class="{{ menu[menuitem].class }}">
+					<img src="{{ menu[menuitem].icon }}" alt="">
+					<a tabindex="{{ menu[menuitem].index }}" href='{{ menu[menuitem].url }}'>{{ menu[menuitem].name }}</a>
+				</li>
 				{% endfor %}
 			</ul>
 			<ul class="menu">

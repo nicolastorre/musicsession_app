@@ -4,7 +4,7 @@
     background-color: #FFF;
     width: 900px;
     height: 500px;
-    left: 5%;
+    left: 15%;
     overflow: visible;
     position: absolute;
     box-shadow: 0px 0px 64px #000;
@@ -17,18 +17,40 @@
 	color: #000;
 }
 
-#popup-music label, #popup-music input
+#popup-music label
 {
 	display: block;
+	margin-top: 1em;
 }
 
-#controlpanel
+#popup-music input
+{
+	display: block;
+	margin-top: 0.5em;
+}
+
+#popup-music form
+{
+	width: 50%;
+	margin: auto;
+}
+
+h3
+{
+	font-size: 20px;
+	font-weight: bold;
+	color: #96281B;
+	margin: 1em 0;
+}
+
+.controlpanel
 {
 	position: relative;
 	background-color: #FFECBF;
 	padding: 10px;
 	border-radius: 5px;
 	overflow: hidden;
+	margin-bottom: 1em;
 }
 
 section div ul li

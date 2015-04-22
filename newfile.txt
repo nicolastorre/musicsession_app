@@ -1,0 +1,25 @@
+
+MFile 1 5 480
+MTrk
+0 SeqSpec 00 00 41
+0 Meta Text 'Sequence'
+0 SMPTE 96 0 10 0 0
+0 TimeSig 4/4 24 8
+0 Tempo 500000
+0 Meta TrkEnd
+TrkEnd
+MTrk
+0 Meta Text 'Acoustic Grand Piano'
+0 Par ch=13 c=6 v=0
+0 Par ch=13 c=7 v=100
+0 Par ch=13 c=64 v=0
+0 Pb ch=13 v=8192
+0 PrCh ch=13 p=16
+0 On ch=13 n=55 v=100 
+480 Off ch=13 n=55 v=100 
+480 On ch=13 n=59 v=100 
+960 Off ch=13 n=59 v=100 
+960 On ch=13 n=62 v=100 
+1440 Off ch=13 n=62 v=100 
+1440 Meta TrkEnd 
+TrkEnd

@@ -54,6 +54,11 @@ class MessageRepository extends DBManager
 		$readdata = $this->query("SELECT count(id_msg) as nb from message WHERE readd = 0 AND fk_receiver = (?);",array($iduser));
 		return $readdata[0];
 	}
+
+	public function getNonReadMessagesByFriend($iduser,$idfriend) {
+		$readdata = $this->query("SELECT count(id_msg) as nb from message WHERE readd = 0 AND fk_sender = (?) AND fk_receiver = (?);",array($idfriend,$iduser));
+		return $readdata[0];
+	}
 }
 
 ?>

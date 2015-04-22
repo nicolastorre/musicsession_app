@@ -36,6 +36,14 @@ class DefaultController extends baseController
 		$data['terms'] = array('url' => UrlRewriting::generateURL("Terms",""), 'name' => Translator::translate("Terms"));
 		$data['privacy'] = array('url' => UrlRewriting::generateURL("Privacy",""), 'name' => Translator::translate("Privacy"));
 		$data['accessibility'] = array('url' => UrlRewriting::generateURL("Accessibility",""), 'name' => Translator::translate("Accessibility"));
+
+		$userrep = new UserRepository();
+		$iduser = $userrep->getUserIdByPseudo($pseudo);
+		$invitationrep = new InvitationRepository();
+		$data['minibox']['notification'] = $invitationrep->getNonReadInvitation($iduser)['nb'];
+		$msgrep = new MessageRepository();
+		$data['minibox']['messages'] = $msgrep->getNonReadMessages($iduser)['nb'];
+
 		return $data;
 	}
 	

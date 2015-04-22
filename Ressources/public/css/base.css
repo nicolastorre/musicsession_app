@@ -203,7 +203,7 @@ nav a
 {
 	position:absolute;
 	top: 60%;
-	left: 100px;
+	left: 31%;
 }
 
 #profilCard li
@@ -302,10 +302,25 @@ nav a
 
 .item-discu
 {
-  border-bottom: 1px solid #E1E8ED;
-  min-height: 20px;
-  padding: 1em;
-  padding-bottom: 1.5em;
+	position: relative;
+	border-bottom: 1px solid #E1E8ED;
+	min-height: 20px;
+	padding: 1em;
+	padding-bottom: 1.5em;
+}
+
+.miniboxdiscu
+{
+	position: absolute;
+	top: 16px;
+	right: 10px;
+	width: 20px;
+	height: 20px;
+	background-color: #F39C12;
+	line-height: 20px;
+	display: block;
+	text-align: center;
+	border-radius: 5px;
 }
 
 .discu-on
@@ -399,6 +414,7 @@ nav a
 #suggestedfriends li
 {
 	margin-bottom: 5px;
+	margin-left: 20%;
 	line-height: 30px;
 	min-height: 35px;
 }
@@ -428,7 +444,7 @@ nav a
 #parameterspage label
 {
   float: left;
-  width: 100px;
+  width: 160px;
   margin-bottom: 1em;
 }
 

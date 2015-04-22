@@ -3,7 +3,7 @@ ToDo List
 Features
 	# Sort the notifications by date using usort (done)
 	# invite by e-mail friends that don't know music session (done)
-	# Icons "New message non-read" and "New notifications non-read"
+	# Icons "New message non-read" and "New notifications non-read" (done)
 	# Expand display in javascript for the version of a tune (done)
 	# Javascript to affiche a msg after upload change (done)
 	# Download pdf file (done)

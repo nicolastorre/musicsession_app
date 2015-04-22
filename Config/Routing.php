@@ -49,6 +49,7 @@ class Routing
             url::addURL("SendMsg","Messages","sendmsg");
             url::addURL("MsgLoader","Messages","loader");
             url::addURL("Msgsender","Messages","sendmsgajax");
+            url::addURL("readerdiscu","Messages","readerfd");
 
     	url::addURL("NewSong","NewSong","index");
             url::addURL("addNewSong","NewSong","addnewsong");
@@ -57,6 +58,8 @@ class Routing
             url::addURL("scorepdf","Musiceditor","scorepdf");
             url::addURL("downloadscore","Musiceditor","downloadscore");
             url::addURL("savepdftune","Musiceditor","savepdftune");
+            url::addURL("createmidi","Musiceditor","createmidi");
+            url::addURL("downloadmidi","Musiceditor","downloadmidi");
 
         url::addURL("Search","Search","index");
         

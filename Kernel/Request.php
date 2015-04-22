@@ -1,12 +1,23 @@
 <?php
+/**
+* File containing the Request Class
+*
+*/
 
-/******************************************************************************/
-// Class Request to handle the $_GET and $_POST in the same array (class to improve!)
-// $parameters => array
-/******************************************************************************/
+/**
+* Request
+*
+* Request class is used to manage the GET, POST FILES variables and initialize session
+*
+*
+* @package    MusicSessionApp
+* @author     Nicolas Torre <nico.torre.06@gmail.com>
+*/
 class Request {
 
-  // paramètres de la requête
+  /**
+  * @var Array $parameters array which contains GET, POST and FILES variables
+  */
   private $parameters;
 
   public function __construct() {
@@ -14,7 +25,12 @@ class Request {
     array_walk_recursive( $this->parameters, array($this,"clean"));
   }
 
-  // Renvoie vrai si le paramètre existe dans la requête
+  /**
+  * Test if the parameter exist
+  *
+  * @param String $nom nom is the name of the testing parameters.
+  * @return boolean.
+  */
   public function existsParameter($nom) {
     return (isset($this->parameters[$nom])); // && $this->parameters[$nom] != "");
   }
