@@ -1,4 +1,4 @@
-var score, totalnote;
+var score, totalnote, draw, svgGraph;
 
 $(document).ready(function() {
 
@@ -6,13 +6,11 @@ document.getElementById('title').value = scoretitle;
 document.getElementById('composer').value = scorecomposer;
 document.getElementById('category').value = scorecategory;
 
-var nbbeats, beatunit, draw, svgGraph, totalbar, nstaff, noteduration, type, typeunit, currentBar, type, noteref;
+var nbbeats, beatunit, totalbar, nstaff, noteduration, type, typeunit, currentBar, type, noteref;
 
 $('#next').on('click', function(event) {
 	event.preventDefault();
-	var popup = document.getElementById('popup-music');
-	// control of the form
-	
+	var popup = document.getElementById('popup-music');	
 
 	nbbeats = parseInt(document.getElementById('nbbeats').value);
 	beatunit  = parseInt(document.getElementById('beats').value);
@@ -158,8 +156,17 @@ function drawNote(type ,mouseX ,mouseY,id ) {
 		case "whole":
 			group.add(draw.circle(11).attr({ cx: mouseX, cy: mouseY }).fill({ color: '#f06', opacity: 0.0 }).stroke({color: '#000', width: 2}));
 	}
+	if (score["note_"+totalnote].pos >= 0 && score["note_"+totalnote].pos <= 40) {
+		for (var i = 40; i >= score["note_"+totalnote].pos; i -= 10) {
+			group.add(draw.line(mouseX - 7, i + stafflimittop, mouseX + 7, i+stafflimittop).stroke({ width: 2 }));
+		}
+	}
+	if (score["note_"+totalnote].pos >= 100 && score["note_"+totalnote].pos <= 195) {
+		for (var i = 100; i <= score["note_"+totalnote].pos; i += 10) {
+			group.add(draw.line(mouseX - 7, i + stafflimittop, mouseX + 7, i+stafflimittop).stroke({ width: 2 }));
+		}
+	}
 	group.attr("id","note_"+id);
-	
 }
 
 function setTypeNote(val) {
@@ -183,16 +190,14 @@ function addNote(evt) {
 			alert('beats over!');
 			return false;
 		}
-		// console.log(newpos);
-		// console.log(refStep[n%7]);
-		// console.log(refOctave[n]);
 
-		drawNote(type, mouseX, mouseY, totalnote);
 		idnote = "note_"+totalnote;
 		score[idnote] = {pos:newpos, step: refStep[n%7], octave: refOctave[n], duration: noteduration[type], type: type, midi: noteref[refStep[n%7]+refOctave[n]]};
+		drawNote(type, mouseX, mouseY, totalnote);
 		totalnote++;
 		totalnotestaff++;
 		currentBar += score[idnote].duration;
+		staffnew = 0;
 
 		//tmp
 		console.log(score[idnote]);
@@ -202,7 +207,6 @@ function addNote(evt) {
 			drawBarLine(mouseX+10,nstaff);
 			currentBar = 0;
 			//resizeStaff();
-			staffnew = 0;
 		}
 
 		if(mouseX>950) {
@@ -212,36 +216,45 @@ function addNote(evt) {
 			totalnotestaff = 0;
 		} 
 	}
-	console.log(currentBar+":"+totalbar);
+	console.log("currentBar: "+currentBar);
 }
 
 function removeNote() {
-	totalnote--;
-	var currentnote = SVG.get("note_"+totalnote);
-	if (staffnew == 1 && nstaff > 0) {
-		SVG.get("staff_"+nstaff).remove();
-		SVG.get("key_"+nstaff).remove();
-		SVG.get("time_"+nstaff).remove();
-		nstaff--;
-		SVG.get("bar_"+totalbar).remove();
-		currentBar = nbbeats-score["note_"+totalnote].duration;
-		totalbar--;
-		currentnote.remove();
-		stafflimittop -= 200;
-		stafflimitbot -= 200;
-		totalnotestaff = totalnote;
+	if(totalnote>0) {
+		if(totalnote>0) {
+			totalnote--;
+		}
+		if (totalnotestaff>0) {
+			totalnotestaff--;
+		}
+		var currentnote = SVG.get("note_"+totalnote);
+		if (staffnew == 1 && totalnotestaff == 0 && nstaff > 0) {
+			SVG.get("staff_"+nstaff).remove();
+			SVG.get("key_"+nstaff).remove();
+			SVG.get("time_"+nstaff).remove();
+			nstaff--;
+			SVG.get("bar_"+totalbar).remove();
+			currentBar = nbbeats-score["note_"+totalnote].duration;
+			totalbar--;
+			currentnote.remove();
+			stafflimittop -= 200;
+			stafflimitbot -= 200;
+			totalnotestaff = totalnote;
+		}
+		else if(currentBar == 0 && totalnote > 0) {
+			SVG.get("bar_"+totalbar).remove();
+			currentBar = nbbeats-score["note_"+totalnote].duration;
+			totalbar--;
+			currentnote.remove();
+		} 
+		else if (totalnote >= 0) {
+			currentBar -= score["note_"+totalnote].duration;
+			currentnote.remove();
+		}
+		if (totalnotestaff == 0){
+			staffnew = 1;
+		}
 	}
-	else if(currentBar == 0 && totalnote > 0) {
-		SVG.get("bar_"+totalbar).remove();
-		currentBar = nbbeats-score["note_"+totalnote].duration;
-		totalbar--;
-		currentnote.remove();
-	} 
-	else if (totalnote >= 0) {
-		currentBar -= score["note_"+totalnote].duration;
-		currentnote.remove();
-	}
-	console.log(currentBar+":"+totalbar);
 }
 
 // Init the variable to analyse the note add in the score
@@ -272,6 +285,22 @@ function newStaff() {
 
 document.getElementById("eighthbut").onclick = function() {
 		setTypeNote('eighth');
+		// notebutton = document.getElementsByClassName('notebutton');
+		// alert(notebutton.length);
+		// for(var i=0; i < notebutton.length; i++){
+		// 	console.log(notebutton[i]);
+		// 	if(!notebutton[i].hasClass('noteoff')) {
+		// 		notebutton[i].classList.add('noteoff');
+		// 		notebutton[i].classList.remove('noteon');
+		// 	}
+		// }
+		// $(".notebutton").each(function() {
+		// 	if(!($(this).hasClass('noteoff'))) {
+		// 		$(this).classList.add('noteoff');
+		// 		$(this).classList.remove('noteon');
+		// 	}
+		// });
+		// $('#eighthbut').classList.add('noteon');
 	};
 document.getElementById("quarterbut").onclick = function() {
 		setTypeNote('quarter');

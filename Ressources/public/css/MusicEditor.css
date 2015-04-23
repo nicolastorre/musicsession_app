@@ -43,20 +43,43 @@ h3
 	margin: 1em 0;
 }
 
-.controlpanel
+#controlpanel
 {
-	position: relative;
+	position: fixed;
+	top: 70px;
+	left: 23%;
 	background-color: #FFECBF;
 	padding: 10px;
 	border-radius: 5px;
 	overflow: hidden;
+	margin: auto;
 	margin-bottom: 1em;
+	overflow: hidden;
+}
+
+#controlpanel ul
+{
+	float: left;
+	margin-right: 1em
+}
+
+.noteon
+{
+	background-color: #96281B !important;
+	color: rgba(255, 255, 204, 0.9) !important;
+}
+
+.noteoff
+{
+	background-color: #F39C12;
+	color: #000;
 }
 
 section div ul li
 {
 	display: inline-block;
 	margin: auto;
+	margin-top
 }
 /*
 section input[type="button"]
@@ -73,7 +96,7 @@ section input[type="button"]
 #drawing
 {
 	margin:auto;
-	margin-top: 20px;
+	margin-top: 70px;
 	background:rgb(206,206,206);
 	box-shadow: 8px 8px 12px;
 	width:1050px;

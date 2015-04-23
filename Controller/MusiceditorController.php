@@ -237,6 +237,11 @@ MTrk
         $data['scorecomposer'] = $request->getParameter("par")[1];
         $data['scorecategory'] = $request->getParameter("par")[2];
 
+        $data['ctrlpanel1']['save'] = Translator::translate("Save");
+        $data['ctrlpanel1']['pdf'] = Translator::translate("PDF");
+        $data['ctrlpanel1']['midi'] = Translator::translate("MIDI");
+        $data['ctrlpanel1']['play'] = "Play";
+
 		$this->render("MusicEditorView.html.twig",$data);
 	}
 }

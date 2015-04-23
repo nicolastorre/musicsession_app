@@ -26,27 +26,37 @@
 	<!-- script perso -->
 	<script src="Ressources/public/js/MusicEditor.js"></script>
 	<script src="Ressources/public/js/MidiPlayer.js"></script>
+	<script>
+	$(window).scroll(function () { 
+	    //You've scrolled this much:
+	    if ($(window).scrollTop() > 70) {
+	    	document.getElementById('controlpanel').style.top = "0";
+	    }
+	    else if ($(window).scrollTop() < 70) {
+	    	document.getElementById('controlpanel').style.top = "70px";
+	    }
+	});
+	</script>
 {% endblock %}
 
 {% block section %}
-	<div class="controlpanel">
-		<ul>	
-			<li><input type="button" value="Save to Music session" id="save"></li>
-			<li><input type="button" value="PDF" id="download"></li>
-			<li><input type="button" value="MIDI" id="downloadmidi"></li>
-			<li><input type="button" value="Play" id="play" onclick="play();"></li>
-		</ul>
+	<div id="control">
+		<div id="controlpanel">
+			<ul>	
+				<li><input type="button" value="Save to Music session" id="save"></li>
+				<li><input type="button" value="PDF" id="download"></li>
+				<li><input type="button" value="MIDI" id="downloadmidi"></li>
+				<li><input type="button" value="Play" id="play" onclick="play();"></li>
+			</ul>
+			<ul>
+				<li><input type="button" class="notebutton" value="Eighth Note" id="eighthbut"></li>
+				<li><input type="button" class="notebutton" value="Quarter Note" id="quarterbut"></li>
+				<li><input type="button" class="notebutton" value="Half Note" id="halfbut"></li>
+				<li><input type="button" class="notebutton" value="Whole Note" id="wholebut"></li>
+				<li><input type="button" class="notebutton" value="remove" id="remove"></li>
+			</ul>
+		</div>
 	</div>
-	<div class="controlpanel">
-		<ul>
-			<li><input type="button" class="button" value="Eighth Note" id="eighthbut"></li>
-			<li><input type="button" value="Quarter Note" id="quarterbut"></li>
-			<li><input type="button" value="Half Note" id="halfbut"></li>
-			<li><input type="button" value="Whole Note" id="wholebut"></li>
-			<li><input type="button" value="remove" id="remove"></li>
-		</ul>
-	</div>
-	
 	{% block timeline %}
 	{% endblock %}
 {% endblock %}

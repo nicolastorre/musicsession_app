@@ -14,7 +14,8 @@ function player() {
 function play() {
 	MIDI.loadPlugin({
 		soundfontUrl: "Ressources/public/js/midi-js-soundfonts/FluidR3_GM/",
-		instrument: "acoustic_grand_piano",
+		instrument: "acoustic_grand_piano", // or the instrument code 1 (aka the default)
+    	// instruments: [ "acoustic_grand_piano", "acoustic_guitar_nylon" ],
 		onprogress: function(state, progress) {
 			console.log(state, progress);
 		},

@@ -60,7 +60,9 @@ class NewsongController extends BaseController
                     $img = new ImageManager($filepath);
                     $img->renameMove(UrlRewriting::generateSRC("userfolder", $_SESSION['pseudo'], basename($dataform['pdf']['name'],".pdf").$salt.".pdf"));
 
-                    $this->indexAction($request);
+                    $ctrl = new SongslistController();
+                    $request->setParameter("par",array($_SESSION['pseudo']));
+                    $ctrl->indexAction($request);
                 } else {
                     $this->indexAction($request, $f , Translator::translate("This title is already existing!"));
                 }
