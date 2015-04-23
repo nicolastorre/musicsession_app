@@ -46,6 +46,25 @@ header
 	background-image: url("../images/app/en.png");
 }
 
+input[type="submit"], input[type="button"], .button
+{
+	background-color: #F39C12;
+	border: medium none;
+	padding: 8px;
+	border-radius: 7px;
+	font-size: 14px;
+	line-height: 18px;
+	font-weight: bold;
+	cursor: pointer;
+	margin-top: 5px;
+}
+
+input[type="submit"]:hover, input[type="button"]:hover, .button:hover
+{
+	background-color: #96281B;
+	color: #FDEDBE;
+}
+
 section
 {
 	min-width: 500px;

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 21 Avril 2015 à 17:47
+-- Généré le :  Jeu 23 Avril 2015 à 16:08
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `dico` (
   `fr` varchar(255) NOT NULL,
   `en` varchar(255) NOT NULL,
   PRIMARY KEY (`id_dico`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=117 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=118 ;
 
 --
 -- Contenu de la table `dico`
@@ -157,7 +157,8 @@ INSERT INTO `dico` (`id_dico`, `key_dico`, `fr`, `en`) VALUES
 (113, 'Discover Music session network here: ', 'Viens découvrir le réseau Music Session ici: ', 'Discover Music session network here: '),
 (114, 'Message of ', 'Message de ', 'Message of '),
 (115, 'Hello', 'Salut', 'Hello'),
-(116, 'You are not friend with this user!', 'Vous n''êtes pas amis avec cet utilisateur!', 'You are not friend with this user!');
+(116, 'You are not friend with this user!', 'Vous n''êtes pas amis avec cet utilisateur!', 'You are not friend with this user!'),
+(117, 'No news', 'Pas de news', 'No news');
 
 -- --------------------------------------------------------
 
@@ -174,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `friendship` (
   PRIMARY KEY (`id_fdshp`),
   KEY `fk_userfriendship_a` (`fk_user_a`),
   KEY `fk_userfriendship_b` (`fk_user_b`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=58 ;
 
 --
 -- Contenu de la table `friendship`
@@ -183,7 +184,7 @@ CREATE TABLE IF NOT EXISTS `friendship` (
 INSERT INTO `friendship` (`id_fdshp`, `fk_user_a`, `fk_user_b`, `date_fdshp`) VALUES
 (28, 21, 20, '2015-04-09 14:52:48'),
 (48, 1, 20, '2015-04-20 17:16:20'),
-(52, 1, 21, '2015-04-21 13:44:16');
+(53, 1, 21, '2015-04-23 08:56:14');
 
 -- --------------------------------------------------------
 
@@ -201,7 +202,7 @@ CREATE TABLE IF NOT EXISTS `invitation` (
   PRIMARY KEY (`id_fdshp`),
   KEY `fk_userfriendship_a` (`fk_user_a`),
   KEY `fk_userfriendship_b` (`fk_user_b`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
 
 -- --------------------------------------------------------
 
@@ -217,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `likedtune` (
   PRIMARY KEY (`id_likedtune`),
   KEY `fk_likedtune_tune` (`fk_tune_lt`),
   KEY `fk_likedtune_user` (`fk_user_lt`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=84 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=85 ;
 
 --
 -- Contenu de la table `likedtune`
@@ -230,7 +231,8 @@ INSERT INTO `likedtune` (`id_likedtune`, `fk_tune_lt`, `fk_user_lt`) VALUES
 (59, 59, 1),
 (60, 60, 21),
 (61, 58, 21),
-(62, 56, 20);
+(62, 56, 20),
+(84, 81, 1);
 
 -- --------------------------------------------------------
 
@@ -286,7 +288,7 @@ INSERT INTO `message` (`id_msg`, `fk_sender`, `fk_receiver`, `date_msg`, `conten
 (28, 20, 1, '2015-04-21 15:41:57', 'fdsgsfdgfdg', 1),
 (29, 21, 1, '2015-04-21 15:42:38', 'test', 1),
 (30, 20, 1, '2015-04-21 15:45:31', 'fdsfsfsdf', 1),
-(31, 21, 1, '2015-04-21 17:43:16', 'fdsdsfs', 0);
+(31, 21, 1, '2015-04-21 17:43:16', 'fdsdsfs', 1);
 
 -- --------------------------------------------------------
 
@@ -302,7 +304,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   `content_news` varchar(255) NOT NULL,
   PRIMARY KEY (`id_news`),
   KEY `fk_news` (`fk_user_news`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=67 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=68 ;
 
 --
 -- Contenu de la table `news`
@@ -324,7 +326,8 @@ INSERT INTO `news` (`id_news`, `fk_user_news`, `date_news`, `content_news`) VALU
 (63, 1, '2015-04-18 19:58:54', '<a href=''Tune/index/59'' class=''hashtag''>#ScottishDelGatto</a>'),
 (64, 1, '2015-04-18 19:59:50', '<a href=''Tune/index/Nico/59'' class=''hashtag''>#ScottishDelGatto</a>'),
 (65, 1, '2015-04-18 20:00:54', '<a href=''Tune/index/Nico/59'' class=''hashtag''>#ScottishDelGatto</a>'),
-(66, 1, '2015-04-18 20:01:02', '<a href=''Tune/index/Nico/60'' class=''hashtag''>#AuClairDelaLune</a>');
+(66, 1, '2015-04-18 20:01:02', '<a href=''Tune/index/Nico/60'' class=''hashtag''>#AuClairDelaLune</a>'),
+(67, 1, '2015-04-23 08:59:50', '<a href=''Tune/index/Nico/81'' class=''hashtag''>#htfhghf</a>');
 
 -- --------------------------------------------------------
 
@@ -364,7 +367,7 @@ CREATE TABLE IF NOT EXISTS `score` (
   PRIMARY KEY (`id_score`),
   KEY `fk_tune_score_ref` (`fk_tune_score`),
   KEY `fk_user_score_ref` (`fk_user_score`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
 
 --
 -- Contenu de la table `score`
@@ -391,7 +394,7 @@ CREATE TABLE IF NOT EXISTS `tune` (
   `category_tune` varchar(255) NOT NULL,
   `date_tune` datetime NOT NULL,
   PRIMARY KEY (`id_tune`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=81 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=82 ;
 
 --
 -- Contenu de la table `tune`
@@ -402,7 +405,8 @@ INSERT INTO `tune` (`id_tune`, `title_tune`, `composer`, `category_tune`, `date_
 (57, 'NissaLaBella', 'Menica Rondelly', 'trad', '2015-04-09 16:40:00'),
 (58, 'LettreaElise', 'Ludwig van Beethoven', 'classique', '2015-04-09 16:42:49'),
 (59, 'ScottishDelGatto', 'Sergio Berardo', 'trad', '2015-04-09 16:44:30'),
-(60, 'AuClairDelaLune', 'anonyme', 'chanson populaire', '2015-04-09 16:54:01');
+(60, 'AuClairDelaLune', 'anonyme', 'chanson populaire', '2015-04-09 16:54:01'),
+(81, 'htfhghf', 'gfhfghfgh', 'rock', '2015-04-23 10:59:22');
 
 -- --------------------------------------------------------
 
@@ -423,7 +427,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `confirmmail` tinyint(1) NOT NULL,
   `access` enum('admin','user') NOT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
 
 --
 -- Contenu de la table `user`

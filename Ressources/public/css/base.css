@@ -467,6 +467,11 @@ nav a
 	margin-left: 0;
 }
 
+#askdelete
+{
+	margin: 2em 0px 1em 0px;
+}
+
 /* 12. NewSong timeline */
 #newsong
 {

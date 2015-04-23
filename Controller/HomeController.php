@@ -81,7 +81,7 @@ class HomeController extends BaseController
                                     "content" => $news->getContent());
             }
         } else {
-            $data['flashbag'] = Translator::translate("No news");
+            $data['flashbag'] = $data['flashbag']." ".Translator::translate("No news");
         }
 
         $this->render("HomeView.html.twig",$data); // create the view

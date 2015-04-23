@@ -159,7 +159,7 @@ class ProfilController extends BaseController
                                 "content" => $news->getContent());
             }
         } else {
-            $data['flashbag']= "No news";
+            $data['flashbag']= Translator::translate("No news");
         }
 
 		$this->render("ProfilView.html.twig",$data);

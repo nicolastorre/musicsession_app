@@ -53,7 +53,7 @@ class ParametersController extends BaseController
     * @return void .
     */
     public function askdeleteaccountAction(Request &$request, FormManager $f = null) {
-        $data = array();
+        $data = DefaultController::initModule($_SESSION['pseudo']);
         $data['ask'] = Translator::translate("Are you sure to remove your account?");
         $data['deleteaccount'] = array('url' => UrlRewriting::generateURL("deleteaccount", ""), 'name' => Translator::translate("Yes"));
         $data['redirect'] = array('url' => UrlRewriting::generateURL("Parameters", ""), 'name' => Translator::translate("No"));

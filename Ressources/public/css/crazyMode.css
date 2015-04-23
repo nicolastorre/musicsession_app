@@ -1,0 +1,89 @@
+body
+{
+	background-color: #ABFF3F !important;
+	font-family: Arial, Verdana, Sans-serif;
+	color: white;
+}
+
+/*Animation CSS3*/
+
+div
+{
+    width: 200px;
+    height: 200px;
+    background: red;
+    position: relative;
+    animation: myfirst 5s linear 1s infinite alternate;
+}
+
+@-webkit-keyframes myfirst {
+    0%   {background:red; left:0px; top:0px;}
+    25%  {background:yellow; left:50px; top:0px;}
+    50%  {background:blue; left:50px; top:50px;}
+    75%  {background:green; left:0px; top:50px;}
+    100% {background:red; left:0px; top:0px;}
+}
+
+@keyframes myfirst {
+    0%   {background:red; left:0px; top:0px;}
+    25%  {background:yellow; left:50px; top:0px;}
+    50%  {background:blue; left:50px; top:50px;}
+    75%  {background:green; left:0px; top:50px;}
+    100% {background:red; left:0px; top:0px;}
+}
+
+section
+{
+	margin-top:20em;
+	transform: skewX(5deg) skewY(15deg);
+}
+
+nav li
+{
+	position: absolute;
+    animation: round 1s linear 0s infinite;
+}
+
+@keyframes round {
+    0%   {background:blue; transform: rotate(0deg);}
+    25%  {transform: rotate(90deg);}
+    50%  {transform: rotate(180deg);}
+    75%  {transform: rotate(270deg);}
+    100% {transform: rotate(360deg);}
+}
+
+/*nav li:nth-child(2)
+{
+	position: absolute;
+	width: 300px;
+    animation: roundBis 3s linear 0s infinite;
+}
+
+@keyframes roundBis {
+    0%   {background:green; transform: rotate(0deg);left:50%; top:50%;}
+    25%  {transform: rotate(90deg);left:1000px; top:50%;}
+    50%  {transform: rotate(180deg);left:500px; top:900px;}
+    75%  {transform: rotate(270deg);left:50%; top:50%;}
+    100% {transform: rotate(360deg);left:50%; top:50%;}
+}*/
+
+#footer, footer
+{
+	background-color: red;
+	width:100px;
+	-moz-transition-property: transform;
+    -moz-transition-duration: 1s;
+    -moz-transition-timing-function: linear;
+    -moz-transition-delay: 2s;
+
+    transition-property: transform;
+    transition-duration: 1s;
+    transition-timing-function: linear;
+    transition-delay: 0s;
+}
+
+#footer, .footer, footer
+{
+	background-color: red;
+	transform: rotate(360deg);
+}

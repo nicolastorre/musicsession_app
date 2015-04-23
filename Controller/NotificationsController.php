@@ -81,7 +81,7 @@ class NotificationsController extends BaseController
 		}
 		$friendshiprep->update($friendship); // update the friendhip between the session user and the selected user
 
-		$invitationrep = new invitationRepository();
+		$invitationrep = new InvitationRepository();
 		$invitationrep->deleteinvitation($_SESSION['iduser'],$iduser);
 		$this->indexAction($request);
 	}
