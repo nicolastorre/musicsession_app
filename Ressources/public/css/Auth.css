@@ -149,3 +149,74 @@ input[type="submit"], input[type="button"], .button
 	cursor: pointer;
 	margin-top: 5px;
 }
+
+@media screen and (min-width: 640px) {
+	#authresp
+	{
+		display: none;
+	}
+}
+
+@media screen and (max-width: 640px) {
+	section
+	{
+		margin: 2em 0 0 0;
+		padding: 0;
+	}
+
+	#flashbag
+	{
+		margin: 0.5em 0 0.5em 0;
+	}
+
+	#auth
+	{
+		display: none;
+	}
+
+	#desc, #inscription, #authresp
+	{
+		display: block;
+		position: static;
+		float: none;
+		margin: 0.5em 0.5% 0.5em 0.5%;
+		width: 100%;
+	}
+}
+
+/*screensaver*/
+
+#screensaver{
+  background: none;
+  background-image: url('../images/app/notes.png'), url('../images/app/notes.png'), url('../images/app/notes.png');
+  height: 10000px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index:1000;
+  -webkit-animation: notes 10s linear infinite;
+  -moz-animation: notes 10s linear infinite;
+  -ms-animation: notes 10s linear infinite;
+  animation: notes 10s linear infinite;
+}
+@keyframes notes {
+  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+  100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+}
+@-moz-keyframes notes {
+  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+  100% {background-position: 400px 1000px, 200px 400px, 100px 300px;}
+}
+@-webkit-keyframes notes {
+  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+  100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+}
+@-ms-keyframes notes {
+  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+  100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+} 

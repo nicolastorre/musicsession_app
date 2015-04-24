@@ -48074,3 +48074,27 @@
 	<scriptlinenum>9424</scriptlinenum>
 </errorentry>
 
+<errorentry>
+	<datetime>24/04/15 14:14:30</datetime>
+	<errormsg>URL: /////	Error: SQL error: SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée.
+</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>24/04/15 14:14:34</datetime>
+	<errormsg>URL: /////	Error: SQL error: SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée.
+</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>24/04/15 14:14:37</datetime>
+	<errormsg>URL: /////	Error: SQL error: SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée.
+</errormsg>
+</errorentry>
+
+<errorentry>
+	<datetime>24/04/15 14:14:41</datetime>
+	<errormsg>URL: /////	Error: SQL error: SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée.
+</errormsg>
+</errorentry>
+

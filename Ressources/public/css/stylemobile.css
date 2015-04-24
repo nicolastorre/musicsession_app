@@ -61,6 +61,14 @@ section
 	height: 200px;
 }
 
+#footerresp > *
+{
+	display: block;
+	width: 98%;
+	height: 100%;
+	margin: 10px 1%;
+}
+
 /************************************************************************/
 /* Code responsive table from http://elvery.net/demo/responsive-tables/ */
 

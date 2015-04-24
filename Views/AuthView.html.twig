@@ -7,36 +7,9 @@
 		<link rel='stylesheet' href='Ressources/public/css/CSSReset.css' type='text/css'>
 		<link rel='stylesheet' href='Ressources/public/css/Auth.css' type='text/css'>
         <script src="Ressources/public/js/jquery-2.1.3.min.js"></script>
-        <script>
-        // $(document).ready(function() {
-        //     var movementTimer = null;
-        //     crazymode = false;
-        //     movementTimer = function() {setTimeout(function()
-        //         {
-        //             var crazy = document.createElement('link');
-        //             crazy.id = "crazymode";
-        //             crazy.rel = "stylesheet";
-        //             crazy.type = "text/css";
-        //             crazy.href = "http://localhost/ProjetTut/musicsession_app/Ressources/public/css/crazyMode.css";
-        //             var hd = document.getElementsByTagName('head')[0];
-        //             hd.appendChild(crazy);
-        //         }, 5000)};
-        //     movementTimer();
-        //     $(window).mousemove(function(e)
-        //     {
-        //         if(crazymode == true && $('#crazymode').length) {
-        //             var crazy = document.getElementById('crazymode');
-        //             crazy.parentNode.removeChild(crazy);
-        //             crazymode = false;
-        //         } else {
-        //             clearTimeout(movementTimer);
-        //             movementTimer();
-        //             crazymode = true;
-        //         }
-        //         console.log(crazymode);
-        //     });
-        });
-        </script>
+        <script src="Ressources/public/js/svg.js"></script>
+        <script src="Ressources/public/js/screensaver.js"></script>
+
 		<title>Music Score Writer</title>
 		{% endblock %}
 	</head>
@@ -55,6 +28,15 @@
             <div id="desc">
                 <h1>{{ data.title }}</h1>
                 <p>{{ data.desc }}</p>
+            </div>
+
+            <div id="authresp" class="box">
+                    <h2>{{ data.authtitle }}</h2>
+                    {{ data.authform.formstart | raw }}
+                    {{ data.authform.pseudo | raw }}
+                    {{ data.authform.pwd | raw }}
+                    {{ data.authform.submit | raw }}
+                    {{ data.authform.formend | raw }}
             </div>
 
             <div id="inscription" class="box">

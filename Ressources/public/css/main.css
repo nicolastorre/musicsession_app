@@ -1,22 +1,4 @@
 
-/*
-
-1. Menu principal
-2. Section (contenu du site)
-3. Pseudo et photo de profile
-4. Module profilcard
-5. News timeline
-6. Notifications timeline
-7. Discussion list module
-8. Messagews timeline
-9. Friends timeline
-10. Suggested friends module
-11. Parameters timeline
-12. NewSong timeline
-13. Tuneslist timeline
-14. Tune timeline
-15. Footer content
-
 
 /* 1. Menu principale */
 nav
@@ -240,4 +222,9 @@ section /*;)*/
 #musiceditor-button
 {
 	text-align: center;
+}
+
+#footerresp
+{
+	display: none;
 }
